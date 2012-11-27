@@ -12,6 +12,7 @@
  * @link
  *
  *
+ *
  */
 
 class AccountController extends Zend_Controller_Action
@@ -25,6 +26,7 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      *
+     *
      */
     public $params = null;
 
@@ -34,6 +36,7 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      *
      */
@@ -50,6 +53,7 @@ class AccountController extends Zend_Controller_Action
      * @return mixed Value.
      *
      *
+     *
      */
     public function indexAction()
     {
@@ -64,6 +68,7 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      *
      */
@@ -125,13 +130,13 @@ class AccountController extends Zend_Controller_Action
         }
     }
 
-
     /**
      * editpasswordAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
+     *
      */
     public function editpasswordAction()
     {
@@ -170,7 +175,10 @@ class AccountController extends Zend_Controller_Action
 
     }
 
-
+    public function testZendAction()
+    {
+        // action body
+    }
 
 
 }
