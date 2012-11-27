@@ -12,7 +12,6 @@
  * @link
  *
  *
- *
  */
 
 class AccountController extends Zend_Controller_Action
@@ -26,7 +25,6 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      *
-     *
      */
     public $params = null;
 
@@ -36,7 +34,6 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
-     *
      *
      *
      */
@@ -51,7 +48,6 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
-     *
      *
      *
      */
@@ -70,7 +66,6 @@ class AccountController extends Zend_Controller_Action
      * @return mixed Value.
      *
      *
-     *
      */
     public function editAction()
     {
@@ -84,12 +79,12 @@ class AccountController extends Zend_Controller_Action
         $form = new Application_Form_User();
         $edit = $form->editUser();
         $edit->email->addValidator(new Zend_Validate_Db_NoRecordExists(
-			'ads_user',
-			'email',
-			array(
+            'ads_user',
+            'email',
+            array(
                 'field' => 'id',
-				'value' => $identity->id
-				)));
+                'value' => $identity->id
+                )));
 
         $this->view->editForm = $edit;
 
@@ -130,18 +125,6 @@ class AccountController extends Zend_Controller_Action
         }
     }
 
-<<<<<<< HEAD
-
-=======
-    /**
-     * editpasswordAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     *
-     */
->>>>>>> parent of 9fbc923... Revert "Ho aggiungo un azione con Zend Tools"
     public function editpasswordAction()
     {
         $auth = Zend_Auth::getInstance();
@@ -177,22 +160,6 @@ class AccountController extends Zend_Controller_Action
             }
         }
 
-    }
-
-<<<<<<< HEAD
-    public function FunctionName($value='')
-    {
-        # code...
-    }
-
-    public function  TestAction()
-    {
-        # code...
-=======
-    public function testZendAction()
-    {
-        // action body
->>>>>>> parent of 9fbc923... Revert "Ho aggiungo un azione con Zend Tools"
     }
 
 
