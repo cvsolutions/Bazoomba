@@ -125,6 +125,13 @@ class AccountController extends Zend_Controller_Action
         }
     }
 
+    /**
+     * editpasswordAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function editpasswordAction()
     {
         $auth = Zend_Auth::getInstance();
