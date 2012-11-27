@@ -3,73 +3,23 @@
 class ShopController extends Zend_Controller_Action
 {
 
-    /**
-     * $params
-     *
-     * @var mixed
-     *
-     * @access public
-     *
-     *
-     *
-     */
     public $params = null;
 
-    /**
-     * init
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     *
-     *
-     *
-     */
     public function init()
     {
         $this->params = Plugin_Common::getParams();
     }
 
-    /**
-     * indexAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     *
-     *
-     *
-     */
     public function indexAction()
     {
         // action body
     }
 
-    /**
-     * newAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     *
-     *
-     *
-     */
     public function newAction()
     {
         // action body
     }
 
-    /**
-     * editAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     *
-     *
-     *
-     */
     public function editAction()
     {
         $id = $this->_getParam('id', 0);
