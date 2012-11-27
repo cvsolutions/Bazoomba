@@ -113,7 +113,7 @@ class AccountController extends Zend_Controller_Action
                         )
                     ));
 
-                $this->view->successForm = 'Modifica Effettuata Con Successo.';
+                $this->view->successForm = $this->params->label_success;
                 $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/account');
 
             } else {
@@ -126,6 +126,13 @@ class AccountController extends Zend_Controller_Action
     }
 
 
+    /**
+     * editpasswordAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function editpasswordAction()
     {
         $auth = Zend_Auth::getInstance();
@@ -155,7 +162,7 @@ class AccountController extends Zend_Controller_Action
                         )
                     ));
 
-                $this->view->successForm = 'Modifica Password Effettuata Con Successo.';
+                $this->view->successForm = $this->params->label_success;
                 $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/account');
 
             }
