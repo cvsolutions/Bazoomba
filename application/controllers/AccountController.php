@@ -125,6 +125,7 @@ class AccountController extends Zend_Controller_Action
         }
     }
 
+
     public function editpasswordAction()
     {
         $auth = Zend_Auth::getInstance();
@@ -163,6 +164,11 @@ class AccountController extends Zend_Controller_Action
     }
 
     public function FunctionName($value='')
+    {
+        # code...
+    }
+
+    public function  TestAction()
     {
         # code...
     }
