@@ -12,6 +12,7 @@
  * @link
  *
  *
+ *
  */
 
 class AccountController extends Zend_Controller_Action
@@ -25,6 +26,7 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      *
+     *
      */
     public $params = null;
 
@@ -34,6 +36,7 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      *
      */
@@ -50,6 +53,7 @@ class AccountController extends Zend_Controller_Action
      * @return mixed Value.
      *
      *
+     *
      */
     public function indexAction()
     {
@@ -64,6 +68,7 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      *
      */
@@ -125,7 +130,18 @@ class AccountController extends Zend_Controller_Action
         }
     }
 
+<<<<<<< HEAD
 
+=======
+    /**
+     * editpasswordAction
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     *
+     */
+>>>>>>> parent of 9fbc923... Revert "Ho aggiungo un azione con Zend Tools"
     public function editpasswordAction()
     {
         $auth = Zend_Auth::getInstance();
@@ -163,6 +179,7 @@ class AccountController extends Zend_Controller_Action
 
     }
 
+<<<<<<< HEAD
     public function FunctionName($value='')
     {
         # code...
@@ -171,6 +188,11 @@ class AccountController extends Zend_Controller_Action
     public function  TestAction()
     {
         # code...
+=======
+    public function testZendAction()
+    {
+        // action body
+>>>>>>> parent of 9fbc923... Revert "Ho aggiungo un azione con Zend Tools"
     }
 
 
