@@ -1,0 +1,24 @@
+<?php $this->layout()->setLayout('login'); ?>
+
+<div class="">
+	<?php echo $this->render('globals/menu_admin.phtml'); ?>
+</div>
+
+<div class="row">
+	<div class="">
+		<h2>Dashboard</h2>
+		<h4 class="subheader">Benvenuto, <?php echo $this->identity->name; ?>...</h4>
+	</div>
+
+	<div class="row collapse">
+  <div class="ten mobile-three columns">
+    <input type="text" />
+  </div>
+  <div class="two mobile-one columns">
+    <a class="button expand postfix">Search</a>
+  </div>
+</div>
+
+</div>
+
+<?php echo $this->render('globals/copyright_admin.phtml'); ?>

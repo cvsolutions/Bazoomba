@@ -1,0 +1,47 @@
+<?php $this->layout()->setLayout('login'); ?>
+
+<div class="">
+	<?php echo $this->render('globals/menu_admin.phtml'); ?>
+</div>
+
+<div class="row">
+	<div class="">
+		<h2>Photo Gallery</h2>
+		<h4 class="subheader">Totale <?php echo count($this->gallery); ?> (<?php echo $this->shop['title']; ?>)</h4>
+	</div>
+
+	<div class="row">
+
+		<?php if (count($this->gallery) > 0): ?>
+		<?php foreach ($this->gallery as $row): ?>
+		<div class="three mobile-two columns">
+			<img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=500&height=500">
+			<div class="panel">
+				<div href="javascript:void(0)" class="<?php echo $this->btn_class[$row->status]; ?> button split dropdown">
+					<a href="#">Anteprima</a>
+					<span></span>
+					<ul>
+						<li><a href="<?php echo $this->serverUrl(); ?>/gallery/status/type/1/id/<?php echo $row->id; ?>/ads/<?php echo $row->shop; ?>">Attivo</a></li>
+						<li><a href="<?php echo $this->serverUrl(); ?>/gallery/status/type/0/id/<?php echo $row->id; ?>/ads/<?php echo $row->shop; ?>">Sospeso</a></li>
+						<li class="divider"></li>
+						<li><a href="javascript:void(0)" data-reveal-id="deleteModal_<?php echo $row->id; ?>">Elimina</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="deleteModal_<?php echo $row->id; ?>" class="reveal-modal">
+			<h2>Esegui Logout</h2>
+			<p class="lead">Sei sicuro di voler eliminare questa Foto?</p>
+			<a class="secondary button" href="<?php echo $this->serverUrl(); ?>/gallery/delete/id/<?php echo $row->id; ?>/ads/<?php echo $row->shop; ?>">SI</a>
+			<a class="close-reveal-modal">&#215;</a>
+		</div>
+		<?php endforeach ?>
+		<?php else: ?>
+			<div class="alert-box"><?php echo $this->notfound; ?><a href="" class="close">&times;</a></div>
+		<?php endif ?>
+
+	</div>
+
+</div>
+
+<?php echo $this->render('globals/copyright_admin.phtml'); ?>

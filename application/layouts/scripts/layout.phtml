@@ -1,0 +1,25 @@
+<?php
+$this->headTitle('Portale Di Annunci Gratuiti - Bazoomba');
+$this->headTitle()->setSeparator(' - ');
+$this->headMeta()->appendName('keywords', '');
+$this->headMeta()->appendName('description', '');
+?>
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<?php echo $this->headTitle(); ?>
+	<?php echo $this->headMeta(); ?>
+        <script src="http://bazoomba.it/site/javascripts/jquery.js"></script>
+        <script src="http://bazoomba.it/site/javascripts/app.js"></script>
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+	<?php echo $this->layout()->content; ?>
+</body>
+</html>

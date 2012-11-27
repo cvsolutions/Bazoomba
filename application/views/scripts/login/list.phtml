@@ -1,0 +1,51 @@
+<?php $this->layout()->setLayout('login'); ?>
+
+<div class="">
+	<?php echo $this->render('globals/menu_admin.phtml'); ?>
+</div>
+
+<div class="row">
+	<div class="">
+		<h2>Operatori</h2>
+		<h4 class="subheader">Totale <?php echo count($this->user); ?></h4>
+
+		<?php if ($this->user): ?>
+		<table class="twelve">
+			<thead>
+				<tr>
+					<th>Operazione</th>
+					<th>Operazione</th>
+					<th>Operatore</th>
+					<th>Indirizzo Email</th>
+					<th>Stato</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($this->user as $row): ?>
+				<tr>
+					<td><a class="button" href="<?php echo $this->serverUrl(); ?>/login/edit/id/<?php echo $row->id; ?>">Modifica</a></td>
+					<td>
+						<a class="alert button" data-reveal-id="deleteModal_<?php echo $row->id; ?>" href="javascript:void(0)">Cancella</a>
+						<div id="deleteModal_<?php echo $row->id; ?>" class="reveal-modal">
+							<h2>Esegui Logout</h2>
+							<p class="lead">Sei sicuro di voler eliminare <?php echo $row->name; ?>?</p>
+							<a class="secondary button" href="<?php echo $this->serverUrl(); ?>/login/delete/id/<?php echo $row->id; ?>">SI</a>
+							<a class="close-reveal-modal">&#215;</a>
+						</div>
+					</td>
+					<td><?php echo $row->name; ?></td>
+					<td><?php echo $row->usermail; ?></td>
+					<td><img src="<?php echo $this->serverUrl(); ?>/admin/images/<?php echo $row->status; ?>.png"></td>
+				</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+		<?php else: ?>
+			<div class="alert-box"><?php echo $this->notfound; ?><a href="" class="close">&times;</a></div>
+		<?php endif ?>
+
+	</div>
+
+</div>
+
+<?php echo $this->render('globals/copyright_admin.phtml'); ?>

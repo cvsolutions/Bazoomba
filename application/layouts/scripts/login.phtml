@@ -1,0 +1,27 @@
+<?php
+$this->headTitle('Administrator - Bazoomba');
+$this->headTitle()->setSeparator(' - ');
+$this->headMeta()->appendName('keywords', '');
+$this->headMeta()->appendName('description', '');
+?>
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<?php echo $this->headTitle(); ?>
+	<?php echo $this->headMeta(); ?>
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="<?php echo $this->serverUrl(); ?>/admin/stylesheets/foundation.min.css">
+	<link rel="stylesheet" href="<?php echo $this->serverUrl(); ?>/admin/stylesheets/app.css">
+	<script src="<?php echo $this->serverUrl(); ?>/admin/javascripts/modernizr.foundation.js"></script>
+</head>
+
+<body>
+
+	<?php echo $this->layout()->content; ?>
+	
+	<script src="<?php echo $this->serverUrl(); ?>/admin/javascripts/jquery.js"></script>
+	<script src="<?php echo $this->serverUrl(); ?>/admin/javascripts/foundation.min.js"></script>
+	<script src="<?php echo $this->serverUrl(); ?>/admin/javascripts/jquery.common.js"></script>
+</body>
+</html>

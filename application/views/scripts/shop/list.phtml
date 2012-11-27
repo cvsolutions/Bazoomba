@@ -1,0 +1,67 @@
+<?php $this->layout()->setLayout('login'); ?>
+
+<div class="">
+	<?php echo $this->render('globals/menu_admin.phtml'); ?>
+</div>
+
+<div class="row">
+	<div class="">
+		<h2>Annunci</h2>
+		<h4 class="subheader">Totale <?php echo count($this->shop); ?></h4>
+
+		<?php if ($this->shop): ?>
+		<table class="twelve">
+			<thead>
+				<tr>
+					<th>Operazione</th>
+					<th>Operazione</th>
+					<th>Codice</th>
+					<th>Annuncio</th>
+					<th>Categoria</th>
+					<th>Utente</th>
+					<th>Pubblicazione</th>
+					<th>Stato</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($this->shop as $row): ?>
+				<tr>
+					<td>
+						<div href="javascript:void(0)" class="secondary button split dropdown">
+						  <a href="<?php echo $this->serverUrl(); ?>/shop/edit/id/<?php echo $row['id']; ?>">Modifica</a>
+						    <span></span>
+						  <ul>
+						    <li><a href="<?php echo $this->serverUrl(); ?>/gallery/list/shop/<?php echo $row['id']; ?>">Photo Gallery</a></li>
+						    <li class="divider"></li>
+						    <li><a href="#">Anteprima...</a></li>
+						  </ul>
+						</div>
+					</td>
+					<td>
+						<a class="alert button" data-reveal-id="deleteModal_<?php echo $row['id']; ?>" href="javascript:void(0)">Cancella</a>
+						<div id="deleteModal_<?php echo $row['id']; ?>" class="reveal-modal">
+							<h2>Esegui Logout</h2>
+							<p class="lead">Sei sicuro di voler eliminare <?php echo $row['title']; ?>?</p>
+							<a class="secondary button" href="<?php echo $this->serverUrl(); ?>/shop/delete/id/<?php echo $row['id']; ?>">SI</a>
+							<a class="close-reveal-modal">&#215;</a>
+						</div>
+					</td>
+					<td><?php echo $row['code']; ?></td>
+					<td><a class="has-tip" data-width="210" title="<?php echo $row['region']; ?>, <?php echo $this->type_ads[$row['type']]; ?> - <?php echo $row['price']; ?> €" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
+					<td><?php echo $row['category']; ?></td>
+					<td><?php echo $row['user']; ?></td>
+					<td><?php echo new Zend_Date($row['registered']); ?></td>
+					<td><img src="<?php echo $this->serverUrl(); ?>/admin/images/<?php echo $row['status']; ?>.png"></td>
+				</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+		<?php else: ?>
+			<div class="alert-box"><?php echo $this->notfound; ?><a href="" class="close">&times;</a></div>
+		<?php endif ?>
+
+	</div>
+
+</div>
+
+<?php echo $this->render('globals/copyright_admin.phtml'); ?>

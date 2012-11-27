@@ -1,0 +1,98 @@
+<div id="loginModal" class="reveal-modal">
+	<h2>Esegui Logout</h2>
+	<p class="lead">Sei sicuro di voler abbandonare Bazoomba?</p>
+	<a class="secondary button" href="<?php echo $this->serverUrl(); ?>/login/logout">SI</a>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<nav class="top-bar">
+	<ul>
+		<!-- Title Area -->
+		<li class="name">
+			<h1>
+				<a href="<?php echo $this->serverUrl(); ?>/dashboard">
+					Administrator
+				</a>
+			</h1>
+		</li>
+		<li class="toggle-topbar"><a href="#"></a></li>
+	</ul>
+
+	<section>
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<li class="divider"></li>
+			<li class="has-dropdown">
+				<a class="active" href="javascript:void(0)">Parametri di Funzionamento</a>
+				<ul class="dropdown">
+					<li><label>Sito Web</label></li>
+					<li><a href="<?php echo $this->serverUrl(); ?>/setting/edit">Configurazione</a></li>
+					<li class="divider"></li>
+					<li><label>Control Panel</label></li>
+					<li><a href="http://cpanel.bazoomba.it" target="_blank">cPanel Login</a></li>
+					<li><a href="http://cpanel.bazoomba.it/frontend/x3/sql/PhpMyAdmin.html" target="_blank">Pannello phpMyAdmin</a></li>
+					<li><a href="http://webmail.bazoomba.it" target="_blank">WebMail Online</a></li>
+					<li class="divider"></li>
+					<li><a href="<?php echo $this->serverUrl(); ?>" target="_blank">Anteprima del sito...</a></li>
+				</ul>
+			</li>
+
+			<li class="divider"></li>
+
+			<li class="has-dropdown">
+				<a class="active" href="javascript:void(0)">Operatori</a>
+				<ul class="dropdown">
+					<li><a href="<?php echo $this->serverUrl(); ?>/login/add">Aggiungi Nuovo</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?>/login/list">Modifica / Cancella</a></li>
+				</ul>
+			</li>
+
+			<li class="divider"></li>
+
+			<li class="has-dropdown">
+				<a class="active" href="javascript:void(0)">Categorie</a>
+				<ul class="dropdown">
+					<li><a href="<?php echo $this->serverUrl(); ?>/category/add">Aggiungi Nuovo</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?>/category/list">Modifica / Cancella</a></li>
+				</ul>
+			</li>
+
+			<li class="divider"></li>
+
+			<li class="has-dropdown">
+				<a class="active" href="javascript:void(0)">Annunci</a>
+				<ul class="dropdown">
+					<li><a href="<?php echo $this->serverUrl(); ?>/shop/list">Modifica / Cancella</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Operazioni Avanzate</a></li>
+					<li><a href="#">Ricerca</a></li>
+				</ul>
+			</li>
+
+			<li class="divider"></li>
+
+			<li class="has-dropdown">
+				<a class="active" href="javascript:void(0)">Utenti</a>
+				<ul class="dropdown">
+					<li><a href="<?php echo $this->serverUrl(); ?>/user/list">Modifica / Cancella</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Operazioni Avanzate</a></li>
+					<li><a href="#">Ricerca</a></li>
+				</ul>
+			</li>
+
+
+
+
+			<li class="divider hide-for-small"></li>
+
+		</ul>
+
+		<!-- Right Nav Section -->
+		<ul class="right">
+			<li class="divider show-for-medium-and-up"></li>
+			<li><a data-reveal-id="loginModal" href="javascript:void(0)">Logout</a></li>
+		</ul>
+	</section>
+
+</nav>

@@ -1,0 +1,7 @@
+ul.errors {
+	color: #cc0000;
+	list-style-type: none;
+}
+.errors li {
+	font-size: 12px;
+}

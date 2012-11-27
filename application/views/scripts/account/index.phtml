@@ -1,0 +1,5 @@
+<p>Benvenuto. <strong><?php echo $this->identity->name; ?></strong><p>
+<a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">Logout</a>
+<a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'edit')); ?>">Modifica Dati</a>
+<a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword')); ?>">Modifica Password</a>
+

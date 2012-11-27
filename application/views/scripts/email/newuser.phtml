@@ -1,0 +1,2 @@
+<p>Gentile, <?php echo $this->params['name']; ?><br>per poter completare la registrazione deve cliccare il link seguente:</p>
+<p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'confirm','serialkey' => $this->params['serialkey'])); ?>">Conferma Registrazione</a></p>

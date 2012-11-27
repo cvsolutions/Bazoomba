@@ -1,0 +1,11 @@
+<?php $this->layout()->setLayout('login'); ?>
+
+<div class="row">
+	<div class="six columns centered">
+		<h2>Accesso negato</h2>
+		<p>Rieffettua login Oppure torna alla <a href="<?php echo $this->serverUrl(); ?>">Homepage</a> del sito.</p>
+		<hr />
+		<div class="alert-box alert">Non sei autorizzato ad accedere a questa pagina<a href="" class="close">&times;</a></div>
+		<a class="button" href="<?php echo $this->serverUrl(); ?>/login">Login</a>
+	</div>
+</div>
