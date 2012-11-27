@@ -162,6 +162,11 @@ class AccountController extends Zend_Controller_Action
 
     }
 
+    public function FunctionName($value='')
+    {
+        # code...
+    }
+
 
 }
 
