@@ -35,7 +35,6 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="editpassword"/>
           <actionMethod actionName="edit"/>
-          <actionMethod actionName="testZend"/>
         </controllerFile>
         <controllerFile controllerName="Category">
           <actionMethod actionName="index"/>
@@ -129,9 +128,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Filter">
             <viewScriptFile forActionName="category"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Account">
-            <viewScriptFile forActionName="testZend"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
