@@ -85,6 +85,39 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 	}
 
     /**
+     * LastHomeShop
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function LastHomeShop()
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from('ads_shop', array(
+            'id',
+            'type',
+            'title',
+            'price',
+            'status',
+            'registered'
+            ));
+        $query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array(
+            'category' => 'name'
+            ));
+        $query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array(
+            'region' => 'name'
+            ));
+        $query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array(
+            'user' => 'name'
+            ));
+        $query->where('ads_shop.status = 1');
+        // $query->where('registered');
+        // echo $query->assemble();
+        return $this->getDefaultAdapter()->fetchAll($query);
+    }
+
+    /**
      * updateShopAdmin
      *
      * @param mixed $id           ID annuncio (ADS).

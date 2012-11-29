@@ -35,7 +35,8 @@ class IndexController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        // action body
+        $last_Ads = new Application_Model_DbTable_Shop();
+        $this->view->shop = $last_Ads->LastHomeShop();
     }
 
 
