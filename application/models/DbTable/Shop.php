@@ -8,8 +8,8 @@
 * @category ADS Shop
 * @package  Bazoomba.it
 * @author   Concetto Vecchio
-* @license  
-* @link     
+* @license
+* @link
 */
 class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 {
@@ -21,7 +21,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
      * @access protected
      */
 	protected $_name = 'ads_shop';
-	
+
 
     /**
      * $_primary
@@ -34,7 +34,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
     /**
      * getAdminShopInfo
-     * 
+     *
      * @param mixed $id ID ADS Shop.
      *
      * @access public
@@ -54,7 +54,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
     /**
      * fullShop
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -63,12 +63,12 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 	{
 		$query = $this->getDefaultAdapter()->select();
 		$query->from('ads_shop', array(
-			'id', 
-			'code', 
-			'type', 
-			'title', 
-			'price', 
-			'status', 
+			'id',
+			'code',
+			'type',
+			'title',
+			'price',
+			'status',
 			'registered'
 			));
 		$query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array(
@@ -86,7 +86,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
     /**
      * updateShopAdmin
-     * 
+     *
      * @param mixed $id           ID annuncio (ADS).
      * @param mixed $category     Categoria.
      * @param mixed $sub_category Sotto Categoria.
@@ -119,6 +119,45 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 			);
 		return $this->update($arrayName, sprintf('id = %d', $id));
 	}
+
+     /**
+     * newShop
+     *
+     * @param mixed $type   Tipologia di Account.
+     * @param mixed $name   Nome & Cognome.
+     * @param mixed $email  Email.
+     * @param mixed $phone  Telefono.
+     * @param mixed $pwd    Password.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function newShop($category, $sub_category, $region, $province, $type, $title, $description, $price, $latitude, $longitude)
+    {
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+
+        $arrayNewShop = array(
+            'user' => $identity->id,
+            'code' => strtoupper(Plugin_Common::getRandom(6)),
+            'category' => $category,
+            'sub_category' => $sub_category,
+            'region' => $region,
+            'province' => $province,
+            //'city'=> $city,
+            'type' => $type,
+            'title' => $title,
+            'description' => $description,
+            'price' => $price,
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'registered' => time(),
+            'ip_address' => $_SERVER['REMOTE_ADDR'],
+            'status' => 0,
+        );
+        return $this->insert($arrayNewShop);
+    }
 
 
 }
