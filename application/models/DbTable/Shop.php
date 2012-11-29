@@ -112,7 +112,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'user' => 'name'
             ));
         $query->where('ads_shop.status = 1');
-        // $query->where('registered');
+        $query->order('registered DESC');
+        $query->limit('0, 10');
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
