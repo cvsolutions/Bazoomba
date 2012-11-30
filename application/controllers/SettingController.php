@@ -58,7 +58,7 @@ class SettingController extends Zend_Controller_Action
 	{
 		$form = new Application_Form_Setting();
 		$this->view->settingForm = $form;
-
+		
 		$setting = new Application_Model_DbTable_Setting();
 
 		if ($this->getRequest()->getPost())
