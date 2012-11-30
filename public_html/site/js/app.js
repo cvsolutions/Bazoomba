@@ -1,56 +1,56 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-        var scegli = '<option value="0">Scegli...</option>';
-        var attendere = '<option value="0">Attendere...</option>';
+    var scegli = '<option value="0">Scegli...</option>';
+    var attendere = '<option value="0">Attendere...</option>';
 
-        $("select#province").html(scegli);
+    $("select#province").html(scegli);
+    $("select#province").attr("disabled", "disabled");
+    $("select#city").html(scegli);
+    $("select#city").attr("disabled", "disabled");
+    $("select#sub_category").html(scegli);
+    $("select#sub_category").attr("disabled", "disabled");
+
+    /**Provincie */
+    $("select#region").change(function() {
+        var regione = $("select#region option:selected").attr('value');
+        $("select#province").html(attendere);
         $("select#province").attr("disabled", "disabled");
-        $("select#city").html(scegli);
+
+        $.post("http://bazoomba/ajax/province", {
+            id_reg: regione
+        }, function(data) {
+            $("select#province").removeAttr("disabled");
+            $("select#province").html(data);
+        });
+    });
+
+    /**Città */
+    $("select#province").change(function() {
+        var provincia = $("select#province option:selected").attr('value');
+        $("select#city").html(attendere);
         $("select#city").attr("disabled", "disabled");
-        $("select#sub_category").html(scegli);
+
+        $.post("http://bazoomba/ajax/city", {
+            id_pro: provincia
+        }, function(data) {
+            $("select#city").removeAttr("disabled");
+            $("select#city").html(data);
+        });
+    });
+
+    /** Categorie */
+    $("select#category").change(function() {
+        var category = $("select#category option:selected").attr('value');
+        $("select#sub_category").html(attendere);
         $("select#sub_category").attr("disabled", "disabled");
 
-        /**Provincie */
-        $("select#region").change(function(){
-           var regione = $("select#region option:selected").attr('value');
-           $("select#province").html(attendere);
-            $("select#province").attr("disabled", "disabled");
-
-            $.post("http://bazoomba2/ajax/province", {
-                id_reg:regione
-            }, function(data){
-                $("select#province").removeAttr("disabled");
-                $("select#province").html(data);
-            });
+        $.post("http://bazoomba/ajax/subcategory", {
+            id_cat: category
+        }, function(data) {
+            $("select#sub_category").removeAttr("disabled");
+            $("select#sub_category").html(data);
         });
-
-        /**Città */
-        $("select#province").change(function(){
-            var provincia = $("select#province option:selected").attr('value');
-            $("select#city").html(attendere);
-            $("select#city").attr("disabled", "disabled");
-
-            $.post("http://bazoomba2/ajax/city", {
-                id_pro:provincia
-            }, function(data){
-               $("select#city").removeAttr("disabled");
-                $("select#city").html(data);
-            });
-        });
-
-        /** Categorie */
-        $("select#category").change(function(){
-            var category = $("select#category option:selected").attr('value');
-            $("select#sub_category").html(attendere);
-            $("select#sub_category").attr("disabled", "disabled");
-
-            $.post("http://bazoomba2/ajax/subcategory", {
-                id_cat:category
-            }, function(data){
-                $("select#sub_category").removeAttr("disabled");
-                $("select#sub_category").html(data);
-            });
-        });
+    });
 
     /** Map */
     var geocoder;
@@ -60,12 +60,12 @@ $(document).ready(function(){
     var vikey = [{
         stylers: [{
             gamma: 0.52
-        },{
+        }, {
             saturation: 11
-        } ]
+        }]
     }];
 
-    function initialize(){
+    function initialize() {
         //MAP
         var latlng = new google.maps.LatLng(41.9015141, 12.4607737);
         var options = {
@@ -89,7 +89,7 @@ $(document).ready(function(){
             position: latlng
         });
 
-        infowindow.open(map,marker);
+        infowindow.open(map, marker);
 
     }
 
@@ -100,12 +100,12 @@ $(document).ready(function(){
         $("#address").autocomplete({
             //This bit uses the geocoder to fetch address values
             source: function(request, response) {
-                geocoder.geocode( {
+                geocoder.geocode({
                     'address': request.term
                 }, function(results, status) {
                     response($.map(results, function(item) {
                         return {
-                            label:  item.formatted_address,
+                            label: item.formatted_address,
                             value: item.formatted_address,
                             latitude: item.geometry.location.lat(),
                             longitude: item.geometry.location.lng()
@@ -129,9 +129,9 @@ $(document).ready(function(){
     google.maps.event.addListener(marker, 'drag', function() {
         geocoder.geocode({
             'latLng': marker.getPosition()
-            }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[0]) {
+        }, function(results, status) {
+            if(status == google.maps.GeocoderStatus.OK) {
+                if(results[0]) {
                     $('#address').val(results[0].formatted_address);
                     $('#latitude').val(marker.getPosition().lat());
                     $('#longitude').val(marker.getPosition().lng());
@@ -146,5 +146,3 @@ $(document).ready(function(){
     });
 
 });
-
-
