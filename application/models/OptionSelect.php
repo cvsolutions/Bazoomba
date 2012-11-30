@@ -3,20 +3,20 @@
 /**
 * Application_Model_OptionSelect
 *
-* @uses     
+* @uses
 *
 * @category HTML Select
 * @package  Bazoomba.it
 * @author   Concetto Vecchio
-* @license  
-* @link     
+* @license
+* @link
 */
 class Application_Model_OptionSelect
 {
 
     /**
      * appendStatus
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -29,7 +29,7 @@ class Application_Model_OptionSelect
 
     /**
      * appendTypeUser
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -42,7 +42,7 @@ class Application_Model_OptionSelect
 
     /**
      * appendTypeAds
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -55,7 +55,7 @@ class Application_Model_OptionSelect
 
     /**
      * appendParentCategory
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -76,17 +76,21 @@ class Application_Model_OptionSelect
 
     /**
      * appendSubCategory
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
      */
-	public function appendSubCategory()
+	public function appendSubCategory($category = null)
 	{
 		$db = Zend_Db_Table::getDefaultAdapter();
 		$select = $db->select();
 		$select->from('ads_category', array('id', 'name'));
+                if(isset($category)) {
+		$select->where(sprintf('parent = %d', $category));
+                } else {
 		$select->where('parent != 0');
+                }
 		$result = $db->fetchAll($select);
 		$arrayName[0] = '-';
 		foreach ($result as $row) {
@@ -97,7 +101,7 @@ class Application_Model_OptionSelect
 
     /**
      * appendRegion
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -117,7 +121,7 @@ class Application_Model_OptionSelect
 
     /**
      * appendProvinces
-     * 
+     *
      * @param mixed $region Description.
      *
      * @access public
@@ -140,7 +144,7 @@ class Application_Model_OptionSelect
 
     /**
      * appendCity
-     * 
+     *
      * @param mixed $region    Description.
      * @param mixed $provinces Description.
      *

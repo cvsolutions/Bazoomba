@@ -40,6 +40,8 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->add(new Zend_Acl_Resource('account'));
         $this->add(new Zend_Acl_Resource('gallery'));
         $this->add(new Zend_Acl_Resource('filter'));
+        $this->add(new Zend_Acl_Resource('ajax'));
+
 
         /** assign privileges */
         $this->allow('guest', array('index','error'));
@@ -52,6 +54,8 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow('user', 'login', array('index', 'notauthorized'));
         $this->allow('user', 'account', array('index', 'edit', 'editpassword', 'logout'));
         $this->allow('user', 'shop', array('index', 'new', 'modification'));
+        $this->allow('user', 'ajax', array('index', 'province', 'city', 'subcategory'));
+
 
         $this->allow('admin', 'setting');
         $this->allow('admin', 'dashboard');

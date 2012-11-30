@@ -76,6 +76,13 @@
           <actionMethod actionName="region"/>
           <actionMethod actionName="category"/>
         </controllerFile>
+        <controllerFile controllerName="Ajax">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="newShop"/>
+          <actionMethod actionName="province"/>
+          <actionMethod actionName="city"/>
+          <actionMethod actionName="subcategory"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory enabled="false"/>
@@ -128,6 +135,21 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Filter">
             <viewScriptFile forActionName="category"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="newShop"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="province"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="city"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="subcategory"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

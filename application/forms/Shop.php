@@ -129,12 +129,10 @@ class Application_Form_Shop extends Zend_Form
 		$province = new Zend_Form_Element_Select('province');
 		$province->setLabel('Provincia');
 		$province->setRequired(true);
-		$province->addMultiOptions($select->appendProvinces());
 
 		$city = new Zend_Form_Element_Select('city');
 		$city->setLabel('Città');
 		$city->setRequired(true);
-		$city->addMultiOptions($select->appendCity());
 
 		$type = new Zend_Form_Element_Select('type');
 		$type->setLabel('Tipo di annuncio');
@@ -145,6 +143,7 @@ class Application_Form_Shop extends Zend_Form
 		$title->setLabel('Titolo');
 		$title->setRequired(true);
 		$title->addValidator('NotEmpty');
+                $title->setAttrib('placeholder', 'Titolo');
 		$title->addFilters(array(
 			'StringTrim',
 			'StripTags'
@@ -197,9 +196,9 @@ class Application_Form_Shop extends Zend_Form
 
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setLabel('Salva');
-		$submit->setAttrib('class', 'button');
+		$submit->setAttrib('class', 'btn btn-primary');
 
-		return $this->addElements(array($category, $sub_category, $region, $province, $type, $title, $description, $price, $address, $lat, $lon, $submit));
+		return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $address, $lat, $lon, $submit));
         }
     }
 
