@@ -15,12 +15,16 @@ class FilterController extends Zend_Controller_Action
 
     public function regionAction()
     {
-        // action body
+        $id = $this->_getParam('id', 0);
+        $shop = new Application_Model_DbTable_Shop();
+        $this->view->list = $shop->fullShopFilter(array('type' => 'region', 'id' => $id));
     }
 
     public function categoryAction()
     {
-        // action body
+        $id = $this->_getParam('id', 0);
+        $shop = new Application_Model_DbTable_Shop();
+        $this->view->list = $shop->fullShopFilter(array('type' => 'category', 'id' => $id));
     }
 
 
