@@ -71,15 +71,9 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 			'status',
 			'registered'
 			));
-		$query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array(
-			'category' => 'name'
-			));
-		$query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array(
-			'region' => 'name'
-			));
-		$query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array(
-			'user' => 'name'
-			));
+		$query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
+		$query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
+		$query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
 		// echo $query->assemble();
 		return $this->getDefaultAdapter()->fetchAll($query);
 	}
@@ -102,18 +96,40 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'status',
             'registered'
             ));
-        $query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array(
-            'category' => 'name'
-            ));
-        $query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array(
-            'region' => 'name'
-            ));
-        $query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array(
-            'user' => 'name'
-            ));
+        $query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
+        $query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
+        $query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
         $query->where('ads_shop.status = 1');
         $query->order('registered DESC');
         $query->limit('0, 10');
+        // echo $query->assemble();
+        return $this->getDefaultAdapter()->fetchAll($query);
+    }
+
+    /**
+     * fullShopFilter
+     * 
+     * @param array $params Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function fullShopFilter($params = array())
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from('ads_shop', array(
+            'id',
+            'code',
+            'type',
+            'title',
+            'price',
+            'status',
+            'registered'
+            ));
+        $query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
+        $query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
+        $query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
