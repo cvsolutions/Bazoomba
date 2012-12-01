@@ -21,8 +21,8 @@
 					<a href="#">Anteprima</a>
 					<span></span>
 					<ul>
-						<li><a href="<?php echo $this->serverUrl(); ?>/gallery/status/type/1/id/<?php echo $row->id; ?>/ads/<?php echo $row->shop; ?>">Attivo</a></li>
-						<li><a href="<?php echo $this->serverUrl(); ?>/gallery/status/type/0/id/<?php echo $row->id; ?>/ads/<?php echo $row->shop; ?>">Sospeso</a></li>
+						<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'status', 'type' => 1,  'id' => $row->id, 'ads' => $row->shop)); ?>">Attivo</a></li>
+						<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'status', 'type' => 0,  'id' => $row->id, 'ads' => $row->shop)); ?>">Sospeso</a></li>
 						<li class="divider"></li>
 						<li><a href="javascript:void(0)" data-reveal-id="deleteModal_<?php echo $row->id; ?>">Elimina</a></li>
 					</ul>
@@ -32,7 +32,7 @@
 		<div id="deleteModal_<?php echo $row->id; ?>" class="reveal-modal">
 			<h2>Esegui Logout</h2>
 			<p class="lead">Sei sicuro di voler eliminare questa Foto?</p>
-			<a class="secondary button" href="<?php echo $this->serverUrl(); ?>/gallery/delete/id/<?php echo $row->id; ?>/ads/<?php echo $row->shop; ?>">SI</a>
+			<a class="secondary button" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'delete', 'id' => $row->id, 'ads' => $row->shop)); ?>">SI</a>
 			<a class="close-reveal-modal">&#215;</a>
 		</div>
 		<?php endforeach ?>

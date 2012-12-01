@@ -1,4 +1,4 @@
 <?php echo $this->loginError; ?>
 <?php echo $this->loginForm; ?>
-<a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'lostpassword')); ?>">Password Smarrita</a>
-<a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'new')); ?>">Registrati</a>
+<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'lostpassword')); ?>">Password Smarrita</a>
+<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'new')); ?>">Registrati</a>

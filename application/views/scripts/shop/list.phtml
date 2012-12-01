@@ -28,10 +28,10 @@
 				<tr>
 					<td>
 						<div href="javascript:void(0)" class="secondary button split dropdown">
-						  <a href="<?php echo $this->serverUrl(); ?>/shop/edit/id/<?php echo $row['id']; ?>">Modifica</a>
+						  <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $row['id'])); ?>">Modifica</a>
 						    <span></span>
 						  <ul>
-						    <li><a href="<?php echo $this->serverUrl(); ?>/gallery/list/shop/<?php echo $row['id']; ?>">Photo Gallery</a></li>
+						    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'list', 'shop' => $row['id'])); ?>">Photo Gallery</a></li>
 						    <li class="divider"></li>
 						    <li><a href="#">Anteprima...</a></li>
 						  </ul>
@@ -42,7 +42,7 @@
 						<div id="deleteModal_<?php echo $row['id']; ?>" class="reveal-modal">
 							<h2>Esegui Logout</h2>
 							<p class="lead">Sei sicuro di voler eliminare <?php echo $row['title']; ?>?</p>
-							<a class="secondary button" href="<?php echo $this->serverUrl(); ?>/shop/delete/id/<?php echo $row['id']; ?>">SI</a>
+							<a class="secondary button" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'id' => $row['id'])); ?>">SI</a>
 							<a class="close-reveal-modal">&#215;</a>
 						</div>
 					</td>

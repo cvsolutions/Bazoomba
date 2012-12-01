@@ -6,6 +6,6 @@
 		<p>Rieffettua login Oppure torna alla <a href="<?php echo $this->serverUrl(); ?>">Homepage</a> del sito.</p>
 		<hr />
 		<div class="alert-box alert">Non sei autorizzato ad accedere a questa pagina<a href="" class="close">&times;</a></div>
-		<a class="button" href="<?php echo $this->serverUrl(); ?>/login">Login</a>
+		<a class="button" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'index')); ?>">Login</a>
 	</div>
 </div>

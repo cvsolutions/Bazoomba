@@ -1,7 +1,9 @@
 <?php if ($this->shop): ?>
+	<h1>ultimi annunci pubblicati...</h1>
 	<?php foreach ($this->shop as $row): ?>
 	<ul>
-		<li><?php echo $row['title']; ?></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'id' => $row['id'])); ?>"><?php echo $row['title']; ?></a></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>
+

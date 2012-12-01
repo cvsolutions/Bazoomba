@@ -23,13 +23,13 @@
 			<tbody>
 				<?php foreach ($this->user as $row): ?>
 				<tr>
-					<td><a class="button" href="<?php echo $this->serverUrl(); ?>/login/edit/id/<?php echo $row->id; ?>">Modifica</a></td>
+					<td><a class="button" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'edit', 'id' => $row->id)); ?>">Modifica</a></td>
 					<td>
 						<a class="alert button" data-reveal-id="deleteModal_<?php echo $row->id; ?>" href="javascript:void(0)">Cancella</a>
 						<div id="deleteModal_<?php echo $row->id; ?>" class="reveal-modal">
 							<h2>Esegui Logout</h2>
 							<p class="lead">Sei sicuro di voler eliminare <?php echo $row->name; ?>?</p>
-							<a class="secondary button" href="<?php echo $this->serverUrl(); ?>/login/delete/id/<?php echo $row->id; ?>">SI</a>
+							<a class="secondary button" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'delete', 'id' => $row->id)); ?>">SI</a>
 							<a class="close-reveal-modal">&#215;</a>
 						</div>
 					</td>

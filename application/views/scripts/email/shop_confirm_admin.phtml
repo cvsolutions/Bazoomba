@@ -1,14 +1,9 @@
 <p>Gentile Amministratore,</p>
 <p>è stato inserito un nuovo annuncio su Bazoomba.it</p>
-
-<p>
-Breve Riepilogo: <br />
-<b>Titolo: </b>  <?php echo stripslashes($this->params['title']); ?><br />
-<b>Testo: </b><br />
-<?php echo stripslashes(substr($this->params['description'],0,200)); ?>...
-</p>
-
-<br /><br />
----------------------------------------------------------------------------
-<p><a href="http://bazoomba.it/login">Accedi al software per verificare & confermare l'annuncio.</a></p>
----------------------------------------------------------------------------
+<p>Breve Riepilogo:</p>
+<ul>
+	<li>Titolo: <?php echo stripslashes($this->params['title']); ?></li>
+	<li>Testo: <?php echo stripslashes(substr($this->params['description'],0,200)); ?></li>
+</ul>
+<hr>
+<p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'index')); ?>">Accedi al software per verificare & confermare l'annuncio.</a></p>
