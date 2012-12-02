@@ -1,2 +1,22 @@
 <h1>Ricerca</h1>
 <?php echo $this->searchForm; ?>
+
+<!-- region -->
+<h1>Italia</h1>
+<?php if ($this->region): ?>
+	<?php foreach ($this->region as $row): ?>
+	<ul>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'id' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
+	</ul>
+	<?php endforeach ?>
+<?php endif ?>
+
+<!-- category -->
+<h1>Categorie</h1>
+<?php if ($this->category): ?>
+	<?php foreach ($this->category as $row): ?>
+	<ul>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'id' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
+	</ul>
+	<?php endforeach ?>
+<?php endif ?>

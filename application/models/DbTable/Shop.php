@@ -101,8 +101,11 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->join('ads_category', 'ads_shop.category = ads_category.id', array('name_category' => 'name'));
         $query->join('ads_region', 'ads_shop.region = ads_region.id', array('name_region' => 'name'));
         $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
+        $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
         $query->where('ads_shop.status = 1');
         $query->order('registered DESC');
+        $query->where('ads_gallery.status = 1');
+        $query->group('ads_shop.id');
         $query->limit('0, 10');
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);

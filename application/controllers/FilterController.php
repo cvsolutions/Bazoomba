@@ -14,6 +14,12 @@ class FilterController extends Zend_Controller_Action
     {
         $form = new Application_Form_Filter();
         $this->view->searchForm = $form->search();
+
+        $region = new Application_Model_DbTable_Region();
+        $this->view->region = $region->fetchAll();
+
+        $category = new Application_Model_DbTable_Category();
+        $this->view->category = $category->Parent_With_Category(0);
     }
 
     public function regionAction()
