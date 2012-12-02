@@ -5,7 +5,7 @@
 <?php if ($this->provinces): ?>
 	<?php foreach ($this->provinces as $row): ?>
 	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'province', 'id' => $row['id'], 'parent' => $this->region['id'])); ?>"><?php echo $row['name']; ?></a></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'province', 'id' => $row['id'], 'parent' => $this->region['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>
@@ -15,7 +15,7 @@
 <?php if ($this->list): ?>
 	<?php foreach ($this->list as $row): ?>
 	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'id' => $row['id'])); ?>"><?php echo $row['title']; ?></a></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'id' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a></li>
 		<li><?php echo $row['description']; ?></li>
 		<li><?php echo $row['category']; ?>, <?php echo $row['province']; ?></li>
 		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
@@ -30,7 +30,7 @@
 <?php if ($this->other): ?>
 	<?php foreach ($this->other as $row): ?>
 	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'id' => $row['id'])); ?>"><?php echo $row['name']; ?></a></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'id' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>
