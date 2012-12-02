@@ -1,6 +1,7 @@
-<p>Benvenuto. <strong><?php echo $this->identity->name; ?></strong><p>
-<a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">Logout</a>
-<a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'edit')); ?>">Modifica Dati</a>
-<a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword')); ?>">Modifica Password</a>
-<a href="<?php echo $this->url(array('controller' => 'shop', 'action' => 'new')); ?>">Crea Annuncio</a>
-
+<h1>Benvenuto. <strong><?php echo $this->identity->name; ?></strong></h1>
+<ul>
+	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">Logout</a></li>
+	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'edit')); ?>">Modifica Dati</a></li>
+	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword')); ?>">Modifica Password</a></li>
+	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new')); ?>">Crea Annuncio</a></li>
+</ul>

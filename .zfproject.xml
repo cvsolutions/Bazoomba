@@ -77,6 +77,7 @@
           <actionMethod actionName="category"/>
           <actionMethod actionName="province"/>
           <actionMethod actionName="subcategory"/>
+          <actionMethod actionName="search"/>
         </controllerFile>
         <controllerFile controllerName="Ajax">
           <actionMethod actionName="index"/>
@@ -86,7 +87,9 @@
           <actionMethod actionName="subcategory"/>
         </controllerFile>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
+      <formsDirectory enabled="false">
+        <formFile formName="Filter"/>
+      </formsDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory>
         <dbTableDirectory>
@@ -160,6 +163,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Filter">
             <viewScriptFile forActionName="subcategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Filter">
+            <viewScriptFile forActionName="search"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -12,7 +12,8 @@ class FilterController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $form = new Application_Form_Filter();
+        $this->view->searchForm = $form->search();
     }
 
     public function regionAction()
@@ -83,8 +84,21 @@ class FilterController extends Zend_Controller_Action
         $this->view->notfound = $this->params->label_not_found;
     }
 
+    public function searchAction()
+    {
+        $q = $this->_getParam('q', 0);
+
+        $shop = new Application_Model_DbTable_Shop();
+        $this->view->list = $shop->fullShopFilter(array('type' => 'search', 'q' => $q));
+        $this->view->type_ads = $this->params->type_ads->toArray();
+        $this->view->notfound = $this->params->label_not_found;
+        $this->view->q = $q;
+    }
+
 
 }
+
+
 
 
 

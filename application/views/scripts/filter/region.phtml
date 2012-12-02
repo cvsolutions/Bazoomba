@@ -20,6 +20,7 @@
 		<li><?php echo $row['category']; ?>, <?php echo $row['province']; ?></li>
 		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
 	</ul>
+	<hr>
 	<?php endforeach ?>
 <?php else: ?>
 	<p><?php echo $this->notfound; ?></p>

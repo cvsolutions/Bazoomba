@@ -93,11 +93,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'type',
             'title',
             'description',
+            'category',
+            'region',
             'price',
             'registered'
             ));
-        $query->join('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
-        $query->join('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
+        $query->join('ads_category', 'ads_shop.category = ads_category.id', array('name_category' => 'name'));
+        $query->join('ads_region', 'ads_shop.region = ads_region.id', array('name_region' => 'name'));
         $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
         $query->where('ads_shop.status = 1');
         $query->order('registered DESC');
@@ -134,6 +136,10 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
         switch ($params['type']) 
         {
+            case 'search':
+            $query->where(sprintf("MATCH(ads_shop.title, ads_shop.description) AGAINST('%s' IN BOOLEAN MODE)", $params['q']));
+            break;
+
             case 'category':
             $query->where(sprintf('ads_shop.category = %d', $params['id']));
             break;
@@ -154,7 +160,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where('ads_shop.status = 1');
         $query->where('ads_gallery.status = 1');
         $query->group('ads_shop.id');
-        $query->order('title ASC');
+        $query->order('registered DESC');
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
