@@ -1,8 +1,10 @@
 <?php if ($this->shop): ?>
-	<h1>ultimi annunci pubblicati...</h1>
+	<h1>Ultimi annunci pubblicati...</h1>
 	<?php foreach ($this->shop as $row): ?>
 	<ul>
 		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'id' => $row['id'])); ?>"><?php echo $row['title']; ?></a></li>
+		<li><?php echo $row['category']; ?> :: <?php echo $row['region']; ?></li>
+		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>

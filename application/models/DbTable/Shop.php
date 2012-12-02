@@ -43,14 +43,14 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
      */
     public function getAdminShopInfo($id)
     {
-      $row = $this->fetchRow(sprintf('id = %d', $id));
-      if(!$row)
-      {
-         $params = Plugin_Common::getParams();
-         throw new Exception($params->label_no_id, 1);
-     }
-     return $row->toArray();
- }
+        $row = $this->fetchRow(sprintf('id = %d', $id));
+        if(!$row)
+        {
+            $params = Plugin_Common::getParams();
+            throw new Exception($params->label_no_id, 1);
+        }
+        return $row->toArray();
+    }
 
     /**
      * fullShop
@@ -61,22 +61,22 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
      */
     public function fullShop()
     {
-      $query = $this->getDefaultAdapter()->select();
-      $query->from('ads_shop', array(
-         'id',
-         'code',
-         'type',
-         'title',
-         'price',
-         'status',
-         'registered'
-         ));
-      $query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
-      $query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
-      $query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
-		// echo $query->assemble();
-      return $this->getDefaultAdapter()->fetchAll($query);
-  }
+        $query = $this->getDefaultAdapter()->select();
+        $query->from('ads_shop', array(
+            'id',
+            'code',
+            'type',
+            'title',
+            'price',
+            'status',
+            'registered'
+            ));
+        $query->join('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
+        $query->join('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
+        $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
+        // echo $query->assemble();
+        return $this->getDefaultAdapter()->fetchAll($query);
+    }
 
     /**
      * LastHomeShop
@@ -92,12 +92,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'id',
             'type',
             'title',
+            'description',
             'price',
             'registered'
             ));
-        $query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
-        $query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
-        $query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
+        $query->join('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
+        $query->join('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
+        $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
         $query->where('ads_shop.status = 1');
         $query->order('registered DESC');
         $query->limit('0, 10');
@@ -121,12 +122,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'id',
             'type',
             'title',
+            'description',
             'price',
             'registered'
             ));
-        $query->joinLeft('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
-        $query->joinLeft('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
-        $query->joinLeft('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
+        $query->join('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
+        $query->join('ads_provinces', 'ads_shop.province = ads_provinces.id', array('province' => 'name'));
+        $query->join('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
+        $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
+        $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
 
         switch ($params['type']) 
         {
@@ -134,14 +138,24 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             $query->where(sprintf('ads_shop.category = %d', $params['id']));
             break;
             
+            case 'sub_category':
+            $query->where(sprintf('ads_shop.sub_category = %d', $params['id']));
+            break;
+
             case 'region':
             $query->where(sprintf('ads_shop.region = %d', $params['id']));
+            break;
+
+            case 'province':
+            $query->where(sprintf('ads_shop.province = %d', $params['id']));
             break;
         }
 
         $query->where('ads_shop.status = 1');
+        $query->where('ads_gallery.status = 1');
+        $query->group('ads_shop.id');
         $query->order('title ASC');
-        echo $query->assemble();
+        // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
@@ -166,20 +180,20 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
      */
     public function updateShopAdmin($id, $category, $sub_category, $region, $province, $city, $type, $title, $price, $description, $status)
     {
-      $arrayName = array(
-         'category' => $category,
-         'sub_category' => $sub_category,
-         'region' => $region,
-         'province' => $province,
-         'city' => $city,
-         'type' => $type,
-         'title' => $title,
-         'price' => $price,
-         'description' => $description,
-         'status' => $status
-         );
-      return $this->update($arrayName, sprintf('id = %d', $id));
-  }
+        $arrayName = array(
+            'category' => $category,
+            'sub_category' => $sub_category,
+            'region' => $region,
+            'province' => $province,
+            'city' => $city,
+            'type' => $type,
+            'title' => $title,
+            'price' => $price,
+            'description' => $description,
+            'status' => $status
+            );
+        return $this->update($arrayName, sprintf('id = %d', $id));
+    }
 
      /**
      * newShop

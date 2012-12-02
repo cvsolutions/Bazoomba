@@ -75,6 +75,8 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="region"/>
           <actionMethod actionName="category"/>
+          <actionMethod actionName="province"/>
+          <actionMethod actionName="subcategory"/>
         </controllerFile>
         <controllerFile controllerName="Ajax">
           <actionMethod actionName="index"/>
@@ -89,6 +91,8 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Gallery"/>
+          <dbTableFile dbTableName="Region"/>
+          <dbTableFile dbTableName="Provinces"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -149,6 +153,12 @@
             <viewScriptFile forActionName="city"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="subcategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Filter">
+            <viewScriptFile forActionName="province"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Filter">
             <viewScriptFile forActionName="subcategory"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

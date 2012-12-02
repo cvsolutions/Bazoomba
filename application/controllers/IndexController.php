@@ -15,6 +15,15 @@ class IndexController extends Zend_Controller_Action
 {
 
     /**
+     * $params
+     *
+     * @var mixed
+     *
+     * @access public
+     */
+    public $params = null;
+
+    /**
      * init
      * 
      * @access public
@@ -23,7 +32,7 @@ class IndexController extends Zend_Controller_Action
      */
     public function init()
     {
-        /* Initialize action controller here */
+        $this->params = Plugin_Common::getParams();
     }
 
     /**
@@ -36,6 +45,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $last_Ads = new Application_Model_DbTable_Shop();
+        $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->shop = $last_Ads->LastHomeShop();
     }
 

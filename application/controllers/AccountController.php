@@ -1,41 +1,33 @@
 <?php
 
 /**
- * AccountController
- *
- * @uses     Zend_Controller_Action
- *
- * @category Account
- * @package  Bazzomba.it
- * @author   Concetto Vecchio
- * @license
- * @link
- *
- *
- */
-
+* AccountController
+*
+* @uses     Zend_Controller_Action
+*
+* @category Account
+* @package  Bazoomba.it
+* @author   Concetto Vecchio
+* @license  
+* @link     
+*/
 class AccountController extends Zend_Controller_Action
 {
-
     /**
      * $params
      *
      * @var mixed
      *
      * @access public
-     *
-     *
      */
     public $params = null;
 
     /**
      * init
-     *
+     * 
      * @access public
      *
      * @return mixed Value.
-     *
-     *
      */
     public function init()
     {
@@ -44,12 +36,10 @@ class AccountController extends Zend_Controller_Action
 
     /**
      * indexAction
-     *
+     * 
      * @access public
      *
      * @return mixed Value.
-     *
-     *
      */
     public function indexAction()
     {
@@ -60,12 +50,10 @@ class AccountController extends Zend_Controller_Action
 
     /**
      * editAction
-     *
+     * 
      * @access public
      *
      * @return mixed Value.
-     *
-     *
      */
     public function editAction()
     {

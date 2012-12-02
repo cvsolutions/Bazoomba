@@ -89,6 +89,16 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 		return $arrayName;	
 	}
 
+    public function Parent_With_Category($parent)
+    {
+        return $this->fetchAll(sprintf('parent = %d', $parent));
+    }
+
+    public function Other_Category($id)
+    {
+        return $this->fetchAll(sprintf('id != %d AND parent = 0', $id));
+    }
+
     /**
      * inserNewCategory
      * 
