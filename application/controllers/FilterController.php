@@ -87,9 +87,10 @@ class FilterController extends Zend_Controller_Action
     public function searchAction()
     {
         $q = $this->_getParam('q', 0);
+        $type = $this->_getParam('type', 0);
 
         $shop = new Application_Model_DbTable_Shop();
-        $this->view->list = $shop->fullShopFilter(array('type' => 'search', 'q' => $q));
+        $this->view->list = $shop->fullShopFilter(array('type' => $type, 'q' => $q));
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->notfound = $this->params->label_not_found;
         $this->view->q = $q;

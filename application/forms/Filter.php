@@ -22,11 +22,17 @@ class Application_Form_Filter extends Zend_Form
 			'StripTags'
 			));
 
-		$submit = new Zend_Form_Element_Submit('submit');
-        $submit->setAttrib('value', 'Login');
-        $submit->setLabel('Cerca');
+		$type = new Zend_Form_Element_Hidden('type');
+		$type->setRequired(true);
+		$type->setValue('label');
+		$type->removeDecorator('HtmlTag'); 
+		$type->removeDecorator('Label'); 
 
-		return $this->addElements(array($q, $submit));
+
+		$submit = new Zend_Form_Element_Submit('submit');
+		$submit->setLabel('Cerca');
+
+		return $this->addElements(array($q, $type, $submit));
 	}
 
 

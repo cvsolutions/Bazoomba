@@ -30,6 +30,7 @@ $this->headMeta()->appendName('description', '');
     <h1>Menu</h1>
     <ul>
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">Home</a></li>
+      <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>">Ricerca</a></li>
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>">Accedi</a></li>
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'new'), null, true); ?>">Registrati</a></li>
   </ul>
