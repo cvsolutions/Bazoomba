@@ -1,12 +1,12 @@
 <!-- title / subcategory -->
 <h1>Sotto Categoria <?php echo $this->sub['name']; ?> - <?php echo $this->category['name']; ?></h1>
-<p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'id' => $this->category['id']), null, true); ?>"><?php echo $this->category['name']; ?></a></p>
+<p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id']), null, true); ?>"><?php echo $this->category['name']; ?></a></p>
 
 <!-- sub category -->
 <?php if ($this->parent): ?>
 	<?php foreach ($this->parent as $row): ?>
 	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'subcategory', 'id' => $this->category['id'], 'parent' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'subcategory', 'item' => $this->category['id'], 'parent' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>
@@ -16,7 +16,7 @@
 <?php if ($this->list): ?>
 	<?php foreach ($this->list as $row): ?>
 	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'id' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a></li>
 		<li><?php echo $row['description']; ?></li>
 		<li><?php echo $row['region']; ?>, <?php echo $row['province']; ?></li>
 		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
@@ -32,7 +32,7 @@
 <?php if ($this->other): ?>
 	<?php foreach ($this->other as $row): ?>
 	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'id' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>

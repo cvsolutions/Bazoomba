@@ -24,7 +24,7 @@ class FilterController extends Zend_Controller_Action
 
     public function regionAction()
     {
-        $id = $this->_getParam('id', 0);
+        $id = $this->_getParam('item', 0);
 
         $region = new Application_Model_DbTable_Region();
         $this->view->region = $region->getRegionInfo($id);
@@ -41,7 +41,7 @@ class FilterController extends Zend_Controller_Action
 
     public function categoryAction()
     {
-        $id = $this->_getParam('id', 0);
+        $id = $this->_getParam('item', 0);
 
         $category = new Application_Model_DbTable_Category();
         $this->view->category = $category->getCategoryInfo($id);
@@ -56,7 +56,7 @@ class FilterController extends Zend_Controller_Action
 
     public function provinceAction()
     {
-        $id = $this->_getParam('id', 0);
+        $id = $this->_getParam('item', 0);
         $parent = $this->_getParam('parent', 0);
 
         $region = new Application_Model_DbTable_Region();
@@ -75,7 +75,7 @@ class FilterController extends Zend_Controller_Action
 
     public function subcategoryAction()
     {
-        $id = $this->_getParam('id', 0);
+        $id = $this->_getParam('item', 0);
         $parent = $this->_getParam('parent', 0);
 
         $category = new Application_Model_DbTable_Category();

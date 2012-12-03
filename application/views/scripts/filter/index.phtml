@@ -6,7 +6,7 @@
 <?php if ($this->region): ?>
 	<?php foreach ($this->region as $row): ?>
 	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'id' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>
@@ -16,7 +16,7 @@
 <?php if ($this->category): ?>
 	<?php foreach ($this->category as $row): ?>
 	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'id' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>
