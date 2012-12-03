@@ -8,8 +8,8 @@
 * @category Account
 * @package  Bazoomba.it
 * @author   Concetto Vecchio
-* @license  
-* @link     
+* @license
+* @link
 */
 class AccountController extends Zend_Controller_Action
 {
@@ -24,7 +24,7 @@ class AccountController extends Zend_Controller_Action
 
     /**
      * init
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -36,7 +36,7 @@ class AccountController extends Zend_Controller_Action
 
     /**
      * indexAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -50,7 +50,7 @@ class AccountController extends Zend_Controller_Action
 
     /**
      * editAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -115,7 +115,7 @@ class AccountController extends Zend_Controller_Action
 
     /**
      * editpasswordAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -156,7 +156,10 @@ class AccountController extends Zend_Controller_Action
         }
 
     }
+    
+    public function testAction()
+    {
 
-
+    }
 }
 
