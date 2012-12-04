@@ -41,7 +41,18 @@ class AjaxController extends Zend_Controller_Action
 
                 $shop = new Application_Model_DbTable_Shop();
                 $shop->newShop($id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $latitude, $longitude);
-                
+
+                $email_admin = Plugin_Common::getParams();
+                Plugin_Common::getMail(array(
+                    'email' => $email_admin->admin_email,
+                    'subject' => '[DA CONFERMARE] Nuova Annuncio su Bazoomba.it',
+                    'template' => 'shop_confirm_admin.phtml',
+                    'params' => array(
+                        'title' => $title,
+                        'description' => $description,
+                        )
+                    ));
+
                 echo json_encode(array('id' => $id));
             }
         }

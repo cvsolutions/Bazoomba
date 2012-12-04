@@ -268,7 +268,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             ));
         $query->where('user = ?', $identity->id);
         $query->where('id = ?', $id_ads);
-        $query->where('status = 0');
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
