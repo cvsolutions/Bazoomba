@@ -142,7 +142,15 @@ class ShopController extends Zend_Controller_Action
         // action body
     }
 
+    public function mediaAction()
+    {
+        // action body
+    }
+
+
 }
+
+
 
 
 
