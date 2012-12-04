@@ -1,4 +1,9 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Shop</b> and script/action name <b>media</b></p>
-</div>
+<h1>2 STEP</h1>
+<p><b><?php echo $this->identity->name; ?></b> , aggiungi foto...</p>
+<?php echo $this->addMedia; ?>
+
+<?php if(count($this->gallery) > 0): ?>
+    <?php foreach ($this->gallery as $row): ?>
+     	<img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=100&height=100">
+    <?php endforeach ?>
+<?php endif; ?>

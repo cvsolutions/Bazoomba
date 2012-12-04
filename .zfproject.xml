@@ -171,6 +171,9 @@
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="media"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Gallery">
+            <viewScriptFile forActionName="media"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>

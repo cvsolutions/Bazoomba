@@ -23,47 +23,6 @@ class ShopController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
-
-        if ($this->getRequest()->getPost())
-        {
-            $form_data = $this->getRequest()->getPost();
-
-            if($form->isValid($form_data))
-            {
-                $category = $form->getValue('category');
-                $sub_category = $form->getValue('sub_category');
-                $region = $form->getValue('region');
-                $province = $form->getValue('province');
-                $city = $form->getValue('city');
-                $type = $form->getValue('type');
-                $title = $form->getValue('title');
-                $description = $form->getValue('description');
-                $price = $form->getValue('price');
-                $latitude = $form->getValue('latitude');
-                $longitude = $form->getValue('longitude');
-
-                $shop = new Application_Model_DbTable_Shop();
-                $shop->newShop($category, $sub_category, $region, $province, $type, $title, $description, $price, $latitude, $longitude);
-
-                $email_admin = Plugin_Common::getParams();
-                Plugin_Common::getMail(array(
-                    'email' => $email_admin->admin_email,
-                    'subject' => '[DA CONFERMARE] Nuova Annuncio su Bazoomba.it',
-                    'template' => 'shop_confirm_admin.phtml',
-                    'params' => array(
-                        'title' => $title,
-                        'description' => $description,
-                        )
-                    ));
-
-                $this->view->successForm = 'Grazie per aver inserito il tuo annuncio, a breve verrà esaminato.';
-                $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/');
-
-            } else {
-                $form->populate($form_data);
-            }
-        }
-
     }
 
     public function editAction()
@@ -144,7 +103,43 @@ class ShopController extends Zend_Controller_Action
 
     public function mediaAction()
     {
-        // action body
+        $id_ads = $this->_getParam('id', 0);
+        $shop = new Application_Model_DbTable_Shop();
+
+        $gallery = new Application_Model_DbTable_Gallery();
+        $this->view->gallery = $gallery->fetchAll(sprintf('shop = %d', $id_ads));
+
+        //controlla se l'annuncio appartiene all'utente loggato
+        if(count($shop->controlAds($id_ads)) == 1)
+        {
+
+            $form = new Application_Form_Shop();
+            $media = $form->addMedia();
+            $media->image->addFilter('Rename', sprintf('%s.jpg', uniqid()));
+            $this->view->addMedia = $media;
+
+            $auth = Zend_Auth::getInstance();
+            $identity = $auth->getStorage()->read();
+            $this->view->identity = $identity;
+
+            if($this->getRequest()->getPost())
+            {
+                $form_data = $this->getRequest()->getPost();
+                if($form->isValid($form_data))
+                {
+                    $image = $form->getValue('image');
+                    $id = $this->_getParam('id');
+
+                    $media = new Application_Model_DbTable_Gallery();
+                    $media->addMedia($id, $image);
+                    $this->_redirect('/shop/media/id/'.$id);
+                } else {
+                    $form->populate($form_data);
+                }
+            }
+        } else {
+                    $this->_redirect('/');
+        }
     }
 
 

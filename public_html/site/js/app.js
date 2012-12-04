@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function(){
 
     var scegli = '<option value="0">Scegli...</option>';
     var attendere = '<option value="0">Attendere...</option>';
@@ -11,42 +11,42 @@ $(document).ready(function() {
     $("select#sub_category").attr("disabled", "disabled");
 
     /**Provincie */
-    $("select#region").change(function() {
+    $("select#region").change(function(){
         var regione = $("select#region option:selected").attr('value');
         $("select#province").html(attendere);
         $("select#province").attr("disabled", "disabled");
 
         $.post("http://bazoomba/ajax/province", {
-            id_reg: regione
-        }, function(data) {
+            id_reg:regione
+        }, function(data){
             $("select#province").removeAttr("disabled");
             $("select#province").html(data);
         });
     });
 
     /**Città */
-    $("select#province").change(function() {
+    $("select#province").change(function(){
         var provincia = $("select#province option:selected").attr('value');
         $("select#city").html(attendere);
         $("select#city").attr("disabled", "disabled");
 
         $.post("http://bazoomba/ajax/city", {
-            id_pro: provincia
-        }, function(data) {
+            id_pro:provincia
+        }, function(data){
             $("select#city").removeAttr("disabled");
             $("select#city").html(data);
         });
     });
 
     /** Categorie */
-    $("select#category").change(function() {
+    $("select#category").change(function(){
         var category = $("select#category option:selected").attr('value');
         $("select#sub_category").html(attendere);
         $("select#sub_category").attr("disabled", "disabled");
 
         $.post("http://bazoomba/ajax/subcategory", {
-            id_cat: category
-        }, function(data) {
+            id_cat:category
+        }, function(data){
             $("select#sub_category").removeAttr("disabled");
             $("select#sub_category").html(data);
         });
@@ -60,12 +60,12 @@ $(document).ready(function() {
     var vikey = [{
         stylers: [{
             gamma: 0.52
-        }, {
+        },{
             saturation: 11
-        }]
+        } ]
     }];
 
-    function initialize() {
+    function initialize(){
         //MAP
         var latlng = new google.maps.LatLng(41.9015141, 12.4607737);
         var options = {
@@ -89,7 +89,7 @@ $(document).ready(function() {
             position: latlng
         });
 
-        infowindow.open(map, marker);
+        infowindow.open(map,marker);
 
     }
 
@@ -100,12 +100,12 @@ $(document).ready(function() {
         $("#address").autocomplete({
             //This bit uses the geocoder to fetch address values
             source: function(request, response) {
-                geocoder.geocode({
+                geocoder.geocode( {
                     'address': request.term
                 }, function(results, status) {
                     response($.map(results, function(item) {
                         return {
-                            label: item.formatted_address,
+                            label:  item.formatted_address,
                             value: item.formatted_address,
                             latitude: item.geometry.location.lat(),
                             longitude: item.geometry.location.lng()
@@ -130,8 +130,8 @@ $(document).ready(function() {
         geocoder.geocode({
             'latLng': marker.getPosition()
         }, function(results, status) {
-            if(status == google.maps.GeocoderStatus.OK) {
-                if(results[0]) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
                     $('#address').val(results[0].formatted_address);
                     $('#latitude').val(marker.getPosition().lat());
                     $('#longitude').val(marker.getPosition().lng());
@@ -146,6 +146,7 @@ $(document).ready(function() {
     });
 
 });
+
 
 $(function() {
     /** Jquery Validation Form Add Ads */
@@ -190,7 +191,7 @@ $(function() {
             'terms': {
                 required: true,
                 min: 1
-            },
+            }
         },
         messages:{
             'category':{

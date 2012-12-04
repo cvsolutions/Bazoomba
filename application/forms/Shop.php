@@ -213,5 +213,22 @@ class Application_Form_Shop extends Zend_Form
 
 		return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $address, $lat, $lon, $terms, $submit));
         }
+
+        public function addMedia()
+        {
+            $this->setAttrib('id', 'addMedia');
+
+            $image = new Zend_Form_Element_File('image');
+	    $image->setLabel('File');
+	    $image->setDestination(sprintf('%s/uploaded/ads', $_SERVER['DOCUMENT_ROOT']));
+	    $image->setRequired(true);
+	    $image->addValidator('Extension', false, 'jpg,png,gif,jpeg');
+
+            $submit = new Zend_Form_Element_Submit('submit');
+            $submit->setLabel('Insersci Immagine');
+	    $submit->setAttrib('class', 'btn btn-primary');
+
+            return $this->addElements(array($image, $submit));
+        }
     }
 

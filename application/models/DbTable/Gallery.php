@@ -8,8 +8,8 @@
 * @category Gallery
 * @package  Bazoomba.it
 * @author   Concetto Vecchio
-* @license  
-* @link     
+* @license
+* @link
 */
 class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
 {
@@ -25,7 +25,7 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
 
     /**
      * getImageInfo
-     * 
+     *
      * @param mixed $id ID Image.
      *
      * @access public
@@ -45,7 +45,7 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
 
     /**
      * updateStatusGallery
-     * 
+     *
      * @param mixed $id     ID Image.
      * @param mixed $status Se è Attivo / Sospeso.
      * @param mixed $shop   ID annuncio.
@@ -62,7 +62,7 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
 
     /**
      * deleteImageGallery
-     * 
+     *
      * @param mixed $id ID Image.
      *
      * @access public
@@ -74,6 +74,25 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
 		$row = $this->getImageInfo($id);
 		if($row['image'] > 0) unlink(sprintf('%s/uploaded/ads/%s', $_SERVER['DOCUMENT_ROOT'], $row['image']));
 		return $this->delete('id = ' . $id);
+	}
+
+     /**
+     * addMedia
+     *
+     * @param mixed $id ID Image.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+	public function addMedia($id, $image)
+	{
+		$arrayMedia = array(
+                          'shop' => $id,
+                          'image' => $image,
+                          'status' => 1,
+                );
+                return $this->insert($arrayMedia);
 	}
 
 
