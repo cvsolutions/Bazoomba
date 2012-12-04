@@ -1,3 +1,4 @@
 library
 .DS_Store
 library/Zend/.DS_Store
+.zfproject.xml
