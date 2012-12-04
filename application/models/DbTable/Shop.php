@@ -63,6 +63,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
+
     /**
      * fullShop
      *
@@ -215,6 +216,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->update($arrayName, sprintf('id = %d', $id));
     }
 
+
+    public function updateStep($id, $status)
+    {
+        $arrayName = array(
+            'step' => $status
+            );
+        return $this->update($arrayName, sprintf('id = %d', $id));
+    }
+
     /**
      * newShop
      *
@@ -251,7 +261,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'registered' => time(),
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'status' => 0,
-            'terms' => 1
+            'terms' => 1,
+            'step' => 1
         );
         return $this->insert($arrayNewShop);
     }

@@ -130,6 +130,11 @@ class ShopController extends Zend_Controller_Action
        $id_ads = $this->_getParam('id', 0);
        $this->view->id_ads = $id_ads;
        $shop = new Application_Model_DbTable_Shop();
+       $ads = $shop->getAdminShopInfo($id_ads);
+
+       if($ads['step'] == 3) {
+          $this->_redirect('/');
+       }
 
        $gallery = new Application_Model_DbTable_Gallery();
        $this->view->gallery = $gallery->fetchAll(sprintf('shop = %d', $id_ads));
@@ -154,6 +159,9 @@ class ShopController extends Zend_Controller_Action
 
                    $media = new Application_Model_DbTable_Gallery();
                    $media->addMedia($id, $image);
+
+                   $shop->updateStep($id_ads, 2);
+
                    $this->_redirect('/shop/media/id/' . $id);
                } else {
                    $form->populate($form_data);
@@ -175,7 +183,11 @@ class ShopController extends Zend_Controller_Action
        $shop = new Application_Model_DbTable_Shop();
        $row = $shop->getAdminShopInfo($id_ads);
 
-         //controlla se l'annuncio appartiene all'utente loggato
+       if($row['step'] == 3) {
+           $this->_redirect('/');
+       }
+
+       //controlla se l'annuncio appartiene all'utente loggato
        if (count($shop->controlAds($id_ads)) == 1)
        {
 
@@ -189,6 +201,8 @@ class ShopController extends Zend_Controller_Action
                'description' => $row['description'],
                )
              ));
+
+           $shop->updateStep($id_ads, 3);
        }
    }
 
