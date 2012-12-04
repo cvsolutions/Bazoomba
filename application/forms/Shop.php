@@ -182,6 +182,9 @@ class Application_Form_Shop extends Zend_Form
     		'StripTags'
     		));
 
+        $div = new Zend_Form_Element_Hidden('div');
+        $div->setDecorators(array(array('HtmlTag',array('tag'=>'div','id'=>'map_canvas'))));
+
     	$lat = new Zend_Form_Element_Hidden('latitude');
     	$lat->setRequired(true);
     	$lat->addValidator('NotEmpty');
@@ -211,7 +214,7 @@ class Application_Form_Shop extends Zend_Form
     	$submit->setLabel('Salva');
     	$submit->setAttrib('class', 'btn btn-primary');
 
-    	return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $address, $lat, $lon, $terms, $submit));
+    	return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $address, $div, $lat, $lon, $terms, $submit));
     }
 
     public function addMedia()
