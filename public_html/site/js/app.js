@@ -146,3 +146,128 @@ $(document).ready(function() {
     });
 
 });
+
+$(function() {
+    /** Jquery Validation Form Add Ads */
+    $("#newShop").validate({
+        rules:{
+            'category': {
+                required: true,
+                min: 1
+            },
+            'sub_category': {
+                required: true,
+                min: 1
+            },
+            'region': {
+                required: true,
+                min: 1
+            },
+            'province': {
+                required: true,
+                min: 1
+            },
+            'city': {
+                required: true,
+                min: 1
+            },
+            'price':{
+                required: true,
+                digits: true
+            },
+            'title': {
+                required: true,
+                minlength: 8,
+                maxlength: 50
+            },
+            'description': {
+                required: true,
+                minlength: 20
+            },
+            'address': {
+                required: true
+            },
+            'terms': {
+                required: true,
+                min: 1
+            },
+        },
+        messages:{
+            'category':{
+                required: "Il campo categoria è obbligatorio",
+                min: "Il campo categoria è obbligatorio"
+            },
+            'sub_category':{
+                required: "Il campo categoria è obbligatorio",
+                min: "Il campo sotto categoria è obbligatorio"
+            },
+            'region':{
+                required: "Il campo regione è obbligatorio",
+                min: "Il campo regione è obbligatorio"
+            },
+            'province':{
+                required: "Il campo provincia è obbligatorio",
+                min: "Il campo provincia è obbligatorio"
+            },
+            'city':{
+                required: "Il campo città è obbligatorio",
+                min: "Il campo città è obbligatorio"
+            },
+            'price':{
+                required: "Il campo prezzo è obbligatorio",
+                digits: "Inserisci solo numeri"
+            },
+            'title': {
+                required: "Il campo titolo è obbligatorio",
+                minlength: "Il campo titolo deve essere composto da almeno 8 caratteri",
+                maxlength: "Il campo titolo deve essere max 50 caratteri"
+            },
+            'description': {
+                required: "Il campo descrizione obbligatorio",
+                minlength: "Il campo descrizione deve essere composto da almeno 20 caratteri"
+            },
+            'address':{
+                required: "Il campo indirizzo è obbligatorio!"
+            },
+            'terms': {
+                required: "Il campo condizioni è obbligatorio!",
+                min: "Il campo condizioni è obbligatorio!"
+            }
+        },
+        submitHandler: function(form) {
+            $.ajax({
+                type: 'POST',
+                url: 'http://bazoomba/ajax/newshop',
+                dataType: 'json',
+                data: {
+                    region: $('#region').val(),
+                    province: $('#province').val(),
+                    city: $('#city').val(),
+                    category: $('#category').val(),
+                    sub_category: $('#sub_category').val(),
+                    type: $('#type').val(),
+                    title: $('#title').val(),
+                    description: $('#description').val(),
+                    price: $('#price').val(),
+                    address: $('#address').val(),
+                    latitude: $('#latitude').val(),
+                    longitude: $('#longitude').val()
+                },
+                beforeSend: function() {
+                    $('#submit').hide();
+                    $('img#loading').show();
+                },
+                success: function(data) {
+                    document.location.href="http://bazoomba/shop/media/id/"+data.id;
+                },
+                error: function() {
+                    alert("Errore, se il problema persiste contatta l'assistenza");
+                    $('#submit').show();
+                }
+            }); //Ajax
+        } //submihandler
+    });
+/** End Form_Add_Ads */
+
+
+});

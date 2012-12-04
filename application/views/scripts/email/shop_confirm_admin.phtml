@@ -3,7 +3,7 @@
 <p>Breve Riepilogo:</p>
 <ul>
 	<li>Titolo: <?php echo stripslashes($this->params['title']); ?></li>
-	<li>Testo: <?php echo $this->truncate($this->params['description']); ?></li>
+	<li>Testo: <?php echo $this->params['description']; ?></li>
 </ul>
 <hr>
 <p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'index')); ?>">Accedi al software per verificare & confermare l'annuncio.</a></p>

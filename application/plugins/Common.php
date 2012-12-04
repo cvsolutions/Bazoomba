@@ -80,5 +80,29 @@
          }
          return($string);
      }
+     
+     /**
+      * getId
+      *
+      * @param array $params Data Array().
+      *
+      * @access public
+      * @static
+      *
+      * @return mixed Value.
+      */
+     public static function getId($table) {
+         $new = mt_rand(10000, 99999);
+         $db = Zend_Db_Table::getDefaultAdapter();
+         $select = $db->select()
+                     ->from(sprintf('%s',$table), array('id'))
+                     ->where('id = ?', $new);
+         $rows = count($db->fetchAll($select));
+         if($rows > 0) {
+             $this->getId();
+         } else {
+             return $new;
+         }
+     }
 
  }

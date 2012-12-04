@@ -80,7 +80,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
     /**
      * LastHomeShop
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -113,7 +113,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
     /**
      * fullShopFilter
-     * 
+     *
      * @param array $params Description.
      *
      * @access public
@@ -137,7 +137,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
 
-        switch ($params['type']) 
+        switch ($params['type'])
         {
             case 'label':
             $query->where(sprintf("MATCH(ads_shop.title, ads_shop.description) AGAINST('%s' IN BOOLEAN MODE)", $params['q']));
@@ -146,7 +146,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             case 'category':
             $query->where(sprintf('ads_shop.category = %d', $params['id']));
             break;
-            
+
             case 'sub_category':
             $query->where(sprintf('ads_shop.sub_category = %d', $params['id']));
             break;
@@ -204,7 +204,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->update($arrayName, sprintf('id = %d', $id));
     }
 
-     /**
+    /**
      * newShop
      *
      * @param mixed $type   Tipologia di Account.
@@ -217,20 +217,21 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
      *
      * @return mixed Value.
      */
-     public function newShop($category, $sub_category, $region, $province, $type, $title, $description, $price, $latitude, $longitude)
-     {
+    public function newShop($id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $latitude, $longitude)
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
 
         $arrayNewShop = array(
+            'id' => $id,
             'user' => $identity->id,
             'code' => strtoupper(Plugin_Common::getRandom(6)),
             'category' => $category,
             'sub_category' => $sub_category,
             'region' => $region,
             'province' => $province,
-            //'city'=> $city,
-            'type' => $type,
+            'city'=> $city,
+            'type'=> $type,
             'title' => $title,
             'description' => $description,
             'price' => $price,
@@ -239,8 +240,24 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'registered' => time(),
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'status' => 0,
-            );
+            'terms' => 1
+        );
         return $this->insert($arrayNewShop);
+    }
+
+    public function controlAds($id_ads)
+    {
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+
+        $query = $this->getDefaultAdapter()->select();
+        $query->from('ads_shop', array(
+            'id',
+            'user'
+            ));
+        $query->where('user = ?', $identity->id);
+        $query->where('id = ?', $id_ads);
+        return $this->getDefaultAdapter()->fetchAll($query);
     }
 
 

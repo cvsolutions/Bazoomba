@@ -107,9 +107,10 @@ class Application_Form_Shop extends Zend_Form
 		return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $status, $submit));
 	}
 
-        public function newShop() {
+        public function newShop()
+        {
                 $select = new Application_Model_OptionSelect();
-		$this->setAttrib('class', 'custom');
+		$this->setAttrib('id', 'newShop');
 
 		$category = new Zend_Form_Element_Select('category');
 		$category->setLabel('Categoria');
@@ -119,7 +120,7 @@ class Application_Form_Shop extends Zend_Form
 		$sub_category = new Zend_Form_Element_Select('sub_category');
 		$sub_category->setLabel('Sotto categoria');
 		$sub_category->setRequired(true);
-		$sub_category->addMultiOptions($select->appendSubCategory());
+                $sub_category->setRegisterInArrayValidator(false);
 
 		$region = new Zend_Form_Element_Select('region');
 		$region->setLabel('Regione');
@@ -129,15 +130,18 @@ class Application_Form_Shop extends Zend_Form
 		$province = new Zend_Form_Element_Select('province');
 		$province->setLabel('Provincia');
 		$province->setRequired(true);
+                $province->setRegisterInArrayValidator(false);
 
 		$city = new Zend_Form_Element_Select('city');
 		$city->setLabel('Città');
 		$city->setRequired(true);
+                $city->setRegisterInArrayValidator(false);
 
-		$type = new Zend_Form_Element_Select('type');
+                $type = new Zend_Form_Element_Select('type');
 		$type->setLabel('Tipo di annuncio');
 		$type->setRequired(true);
 		$type->addMultiOptions($select->appendTypeAds());
+                $type->setValue(1);
 
 		$title = new Zend_Form_Element_Text('title');
 		$title->setLabel('Titolo');
@@ -194,11 +198,20 @@ class Application_Form_Shop extends Zend_Form
 			'StripTags'
 			));
 
+                $terms = new Zend_Form_Element_Checkbox('terms');
+                $terms->setLabel('Accetta Condizioni');
+                $terms->setValue(1);
+		$terms->addValidator('NotEmpty');
+                $terms->addFilters(array(
+			'StringTrim',
+			'StripTags'
+			));
+
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setLabel('Salva');
 		$submit->setAttrib('class', 'btn btn-primary');
 
-		return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $address, $lat, $lon, $submit));
+		return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $address, $lat, $lon, $terms, $submit));
         }
     }
 
