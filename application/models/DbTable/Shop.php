@@ -152,7 +152,11 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         switch ($params['type'])
         {
             case 'label':
-            $query->where(sprintf("MATCH(ads_shop.title, ads_shop.description) AGAINST('%s' IN BOOLEAN MODE)", $params['q']));
+            $query->where(sprintf("MATCH(ads_shop.title, ads_shop.description, ads_shop.tags) AGAINST('%s' IN BOOLEAN MODE)", $params['q']));
+            break;
+
+            case 'type':
+            $query->where(sprintf('ads_shop.type = %d', $params['q']));
             break;
 
             case 'category':
