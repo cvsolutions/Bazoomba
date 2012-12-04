@@ -90,8 +90,8 @@ class CategoryController extends Zend_Controller_Action
     public function editAction()
     {
         $id = $this->_getParam('id', 0);
-        $user = new Application_Model_DbTable_Category();
-        $row = $user->getCategoryInfo($id);
+        $Category = new Application_Model_DbTable_Category();
+        $row = $Category->getCategoryInfo($id);
 
         $form = new Application_Form_Category();
         $imageDB = $row['image'] > 0 ? $row['image'] : sprintf('%s.jpg', uniqid());
@@ -107,7 +107,7 @@ class CategoryController extends Zend_Controller_Action
                 $image = $form->getValue('image') ? $form->getValue('image') : $row['image'];
                 $parent = $form->getValue('parent');
 
-                $user->updateCategory($id, $name, $image, $parent);
+                $Category->updateCategory($id, $name, $image, $parent);
                 $this->view->successForm = $this->params->label_success;
                 $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/category/list');
 

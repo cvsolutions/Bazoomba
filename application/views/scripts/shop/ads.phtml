@@ -1,4 +1,26 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Shop</b> and script/action name <b>ads</b></p>
-</div>
+<hr>
+<h1><?php echo $this->row['title']; ?></h1>
+<ul>
+	<li><?php echo $this->row['code']; ?></li>
+	<li><?php echo $this->category['name']; ?></li>
+	<li><?php echo $this->sub_category['name']; ?></li>
+	<li><?php echo $this->region['name']; ?></li>
+	<li><?php echo $this->province['name']; ?></li>
+	<li><?php echo $this->city['name']; ?></li>
+	<li><?php echo $this->type_ads[$this->row['type']]; ?></li>
+	<li>€ <?php echo $this->row['price']; ?></li>
+</ul>
+
+<p><?php echo $this->row['description']; ?></p>
+
+<h1>Photo Gallery</h1>
+<?php if ($this->gallery): ?>
+<ul>
+	<?php foreach ($this->gallery as $img): ?>
+	<li><a href="<?php echo $this->serverUrl(); ?>/uploaded/ads/<?php echo $img->image; ?>"><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $img->image; ?>&width=100&height=100"></a></li>
+	<?php endforeach ?>
+</ul>
+<?php else: ?>
+	<p><?php echo $this->notfound; ?></p>
+<?php endif ?>
+

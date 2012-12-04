@@ -52,6 +52,17 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
+    public function getSiteShopInfo($id)
+    {
+        $row = $this->fetchRow(sprintf('id = %d AND status = 1', $id));
+        if(!$row)
+        {
+            $params = Plugin_Common::getParams();
+            throw new Exception($params->label_no_id, 1);
+        }
+        return $row->toArray();
+    }
+
     /**
      * fullShop
      *

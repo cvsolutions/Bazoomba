@@ -88,7 +88,29 @@ class ShopController extends Zend_Controller_Action
 
     public function adsAction()
     {
-        // action body
+        $id = $this->_getParam('show', 0);
+
+        $shop = new Application_Model_DbTable_Shop();
+        $ShopInfo = $shop->getSiteShopInfo($id);
+
+        $Category = new Application_Model_DbTable_Category();
+        $this->view->category = $Category->getCategoryInfo($ShopInfo['category']);
+        $this->view->sub_category = $Category->getCategoryInfo($ShopInfo['sub_category']);
+
+        $Region = new Application_Model_DbTable_Region();
+        $this->view->region = $Region->getRegionInfo($ShopInfo['region']);
+
+        $Provinces = new Application_Model_DbTable_Provinces();
+        $this->view->province = $Provinces->getProvinceInfo($ShopInfo['province']);
+
+        $City = new Application_Model_DbTable_City();
+        $this->view->city = $City->getCityInfo($ShopInfo['city']);
+
+        $Gallery = new Application_Model_DbTable_Gallery();
+        $this->view->gallery = $Gallery->fetchAll(sprintf('shop = %d AND status = 1', $id));
+
+        $this->view->row = $shop->getSiteShopInfo($id);
+        $this->view->type_ads = $this->params->type_ads->toArray();
     }
 
     public function modificationAction()

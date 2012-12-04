@@ -87,6 +87,9 @@
           <actionMethod actionName="city"/>
           <actionMethod actionName="subcategory"/>
         </controllerFile>
+        <controllerFile controllerName="City">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
         <formFile formName="Filter"/>
@@ -97,6 +100,7 @@
           <dbTableFile dbTableName="Gallery"/>
           <dbTableFile dbTableName="Region"/>
           <dbTableFile dbTableName="Provinces"/>
+          <dbTableFile dbTableName="City"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -173,6 +177,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Gallery">
             <viewScriptFile forActionName="media"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="City">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
