@@ -162,6 +162,15 @@ class Application_Form_Shop extends Zend_Form
     		'StripTags'
     		));
 
+        $tags = new Zend_Form_Element_Text('tags');
+    	$tags->setLabel('Tags');
+    	$tags->addValidator('NotEmpty');
+    	$tags->setAttrib('placeholder', 'Scegli i Tags');
+    	$tags->addFilters(array(
+    		'StringTrim',
+    		'StripTags'
+    		));
+
     	$price = new Zend_Form_Element_Text('price');
     	$price->setLabel('Prezzo');
     	$price->setRequired(true);
@@ -214,7 +223,7 @@ class Application_Form_Shop extends Zend_Form
     	$submit->setLabel('Salva');
     	$submit->setAttrib('class', 'btn btn-primary');
 
-    	return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $address, $div, $lat, $lon, $terms, $submit));
+    	return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $address, $div, $lat, $lon, $terms, $submit));
     }
 
     public function addMedia()

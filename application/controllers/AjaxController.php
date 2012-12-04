@@ -35,13 +35,14 @@ class AjaxController extends Zend_Controller_Action
                 $type = $this->_request->getPost('type');
                 $title = $this->_request->getPost('title');
                 $description = $this->_request->getPost('description');
+                $tags = $this->_request->getPost('tags');
                 $price = $this->_request->getPost('price');
                 $latitude = $this->_request->getPost('latitude');
                 $longitude = $this->_request->getPost('longitude');
 
                 $shop = new Application_Model_DbTable_Shop();
-                $shop->newShop($id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $latitude, $longitude);
-                
+                $shop->newShop($id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude);
+
                 echo json_encode(array('id' => $id));
             }
         }

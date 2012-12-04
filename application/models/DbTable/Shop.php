@@ -242,7 +242,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
      *
      * @return mixed Value.
      */
-    public function newShop($id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $price, $latitude, $longitude)
+    public function newShop($id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude)
     {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
@@ -259,6 +259,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'type'=> $type,
             'title' => $title,
             'description' => $description,
+            'tags' => $tags,
             'price' => $price,
             'latitude' => $latitude,
             'longitude' => $longitude,

@@ -249,6 +249,7 @@ $(function() {
                     type: $('#type').val(),
                     title: $('#title').val(),
                     description: $('#description').val(),
+                    tags: $('#tags').val(),
                     price: $('#price').val(),
                     address: $('#address').val(),
                     latitude: $('#latitude').val(),
