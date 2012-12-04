@@ -109,6 +109,9 @@ class ShopController extends Zend_Controller_Action
         $Gallery = new Application_Model_DbTable_Gallery();
         $this->view->gallery = $Gallery->fetchAll(sprintf('shop = %d AND status = 1', $id));
 
+        $User = new Application_Model_DbTable_User();
+        $this->view->user = $User->getAdminInfo($ShopInfo['user']);
+
         $this->view->row = $shop->getSiteShopInfo($id);
         $this->view->type_ads = $this->params->type_ads->toArray();
     }
