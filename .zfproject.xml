@@ -87,9 +87,6 @@
           <actionMethod actionName="city"/>
           <actionMethod actionName="subcategory"/>
         </controllerFile>
-        <controllerFile controllerName="City">
-          <actionMethod actionName="index"/>
-        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
         <formFile formName="Filter"/>
