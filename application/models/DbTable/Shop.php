@@ -288,6 +288,17 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
+    public function myshop($id)
+    {
+        $row = $this->fetchAll(sprintf('user = %d', $id));
+        if(!$row)
+        {
+            $params = Plugin_Common::getParams();
+            throw new Exception($params->label_no_id, 1);
+        }
+        return $row->toArray();
+    }
+
 
 }
 

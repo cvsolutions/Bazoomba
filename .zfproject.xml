@@ -31,6 +31,7 @@
           <actionMethod actionName="modification"/>
           <actionMethod actionName="json"/>
           <actionMethod actionName="media"/>
+          <actionMethod actionName="my"/>
           <actionMethod actionName="public"/>
         </controllerFile>
         <controllerFile controllerName="Account">

@@ -206,5 +206,13 @@ class ShopController extends Zend_Controller_Action
        }
    }
 
+   public function myAction()
+   {
+       $auth = Zend_Auth::getInstance();
+       $identity = $auth->getStorage()->read();
+       $this->view->identity = $identity;
 
+       $shop = new Application_Model_DbTable_Shop();
+       $this->view->myshop = $shop->myshop($identity->id);
+   }
 }
