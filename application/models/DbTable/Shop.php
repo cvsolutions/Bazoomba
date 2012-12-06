@@ -112,9 +112,10 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             ));
         $query->join('ads_category', 'ads_shop.category = ads_category.id', array('name_category' => 'name'));
         $query->join('ads_region', 'ads_shop.region = ads_region.id', array('name_region' => 'name'));
-        $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
+        $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name', 'type_user' => 'type'));
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
         $query->where('ads_shop.status = 1');
+        $query->where('ads_user.status = 1');
         $query->order('registered DESC');
         $query->where('ads_gallery.status = 1');
         $query->group('ads_shop.id');
@@ -146,13 +147,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->join('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
         $query->join('ads_provinces', 'ads_shop.province = ads_provinces.id', array('province' => 'name'));
         $query->join('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
-        $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
+        $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name', 'type_user' => 'type'));
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
 
         switch ($params['type'])
         {
             case 'label':
-            $query->where(sprintf("MATCH(ads_shop.title, ads_shop.description, ads_shop.tags) AGAINST('%s' IN BOOLEAN MODE)", $params['q']));
+            if($params['category']) $query->where(sprintf('ads_shop.category = %d', $params['category']));
+            if($params['region']) $query->where(sprintf('ads_shop.region = %d', $params['region']));
+            if($params['q']) $query->where(sprintf("MATCH(ads_shop.title, ads_shop.description, ads_shop.tags) AGAINST('%s' IN BOOLEAN MODE)", $params['q']));
             break;
 
             case 'type':
@@ -160,6 +163,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             break;
 
             case 'category':
+            if($params['ads']) $query->where(sprintf('ads_shop.type = %d', $params['ads']));
+            if($params['user']) $query->where(sprintf('ads_user.type = %d', $params['user']));
             $query->where(sprintf('ads_shop.category = %d', $params['id']));
             break;
 
@@ -168,6 +173,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             break;
 
             case 'region':
+            if($params['ads']) $query->where(sprintf('ads_shop.type = %d', $params['ads']));
+            if($params['user']) $query->where(sprintf('ads_user.type = %d', $params['user']));
             $query->where(sprintf('ads_shop.region = %d', $params['id']));
             break;
 
@@ -177,6 +184,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         }
 
         $query->where('ads_shop.status = 1');
+        $query->where('ads_user.status = 1');
         $query->where('ads_gallery.status = 1');
         $query->group('ads_shop.id');
         $query->order('registered DESC');

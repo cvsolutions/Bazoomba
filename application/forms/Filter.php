@@ -10,8 +10,20 @@ class Application_Form_Filter extends Zend_Form
 
 	public function search()
 	{
+		$select = new Application_Model_OptionSelect();
+
 		$this->setAction('/filter/search');
 		$this->setMethod('get');
+
+		$category = new Zend_Form_Element_Select('category');
+		$category->setLabel('Categoria');
+		$category->setRequired(true);
+		$category->addMultiOptions($select->appendParentCategory());
+
+		$region = new Zend_Form_Element_Select('region');
+    	$region->setLabel('Regione');
+    	$region->setRequired(true);
+    	$region->addMultiOptions($select->appendRegion());
 
 		$q = new Zend_Form_Element_Text('q');
 		$q->setLabel('Ricerca Annunci');
@@ -32,7 +44,7 @@ class Application_Form_Filter extends Zend_Form
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setLabel('Cerca');
 
-		return $this->addElements(array($q, $type, $submit));
+		return $this->addElements(array($category, $region, $q, $type, $submit));
 	}
 
 

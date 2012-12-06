@@ -10,6 +10,22 @@
 	<?php endforeach ?>
 <?php endif ?>
 
+<!-- type_ads -->
+<h1>Cosa cerchi?</h1>
+<?php foreach ($this->type_ads as $key => $value): ?>
+	<ul>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id'], 'ads' => $key), null, true); ?>"><?php echo $value; ?></a></li>
+	</ul>
+<?php endforeach ?>
+
+<!-- type_user -->
+<h1>Come?</h1>
+<?php foreach ($this->type_user as $key => $value): ?>
+	<ul>
+		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id'], 'user' => $key), null, true); ?>"><?php echo $value; ?></a></li>
+	</ul>
+<?php endforeach ?>
+
 <!-- list ads -->
 <h1>Lista</h1>
 <?php if ($this->list): ?>
@@ -19,6 +35,7 @@
 		<li><?php echo $this->truncate($row['description']); ?></li>
 		<li><?php echo $row['category']; ?>, <?php echo $row['province']; ?></li>
 		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
+		<li><?php echo $this->type_user[$row['type_user']]; ?></li>
 		<li><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=100&height=100"></li>
 	</ul>
 	<hr>

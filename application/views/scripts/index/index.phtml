@@ -6,6 +6,7 @@
 		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $row['category']), null, true); ?>"><?php echo $row['name_category']; ?></a> :: <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $row['region']), null, true); ?>"><?php echo $row['name_region']; ?></a></li>
 		<li><?php echo $this->truncate($row['description']); ?></li>
 		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
+		<li><?php echo $this->type_user[$row['type_user']]; ?></li>
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>

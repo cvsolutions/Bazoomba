@@ -46,6 +46,7 @@ class IndexController extends Zend_Controller_Action
     {
         $last_Ads = new Application_Model_DbTable_Shop();
         $this->view->type_ads = $this->params->type_ads->toArray();
+        $this->view->type_user = $this->params->type_user->toArray();
         $this->view->shop = $last_Ads->LastHomeShop();
     }
 

@@ -25,6 +25,8 @@ class FilterController extends Zend_Controller_Action
     public function regionAction()
     {
         $id = $this->_getParam('item', 0);
+        $ads = $this->_getParam('ads', 0);
+        $user = $this->_getParam('user', 0);
 
         $region = new Application_Model_DbTable_Region();
         $this->view->region = $region->getRegionInfo($id);
@@ -34,14 +36,17 @@ class FilterController extends Zend_Controller_Action
         $this->view->provinces = $provinces->Parent_Provinces($id);
 
         $shop = new Application_Model_DbTable_Shop();
-        $this->view->list = $shop->fullShopFilter(array('type' => 'region', 'id' => $id));
+        $this->view->list = $shop->fullShopFilter(array('type' => 'region', 'id' => $id, 'ads' => $ads, 'user' => $user));
         $this->view->type_ads = $this->params->type_ads->toArray();
+        $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
     }
 
     public function categoryAction()
     {
         $id = $this->_getParam('item', 0);
+        $ads = $this->_getParam('ads', 0);
+        $user = $this->_getParam('user', 0);
 
         $category = new Application_Model_DbTable_Category();
         $this->view->category = $category->getCategoryInfo($id);
@@ -49,8 +54,9 @@ class FilterController extends Zend_Controller_Action
         $this->view->other = $category->Other_Category($id);
 
         $shop = new Application_Model_DbTable_Shop();
-        $this->view->list = $shop->fullShopFilter(array('type' => 'category', 'id' => $id));
+        $this->view->list = $shop->fullShopFilter(array('type' => 'category', 'id' => $id, 'ads' => $ads, 'user' => $user));
         $this->view->type_ads = $this->params->type_ads->toArray();
+        $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
     }
 
@@ -70,6 +76,7 @@ class FilterController extends Zend_Controller_Action
         $shop = new Application_Model_DbTable_Shop();
         $this->view->list = $shop->fullShopFilter(array('type' => 'province', 'id' => $id));
         $this->view->type_ads = $this->params->type_ads->toArray();
+        $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
     }
 
@@ -87,19 +94,27 @@ class FilterController extends Zend_Controller_Action
         $shop = new Application_Model_DbTable_Shop();
         $this->view->list = $shop->fullShopFilter(array('type' => 'sub_category', 'id' => $parent));
         $this->view->type_ads = $this->params->type_ads->toArray();
+        $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
     }
 
     public function searchAction()
     {
         $q = $this->_getParam('q', 0);
+        $category = $this->_getParam('category', 0);
+        $region = $this->_getParam('region', 0);
         $type = $this->_getParam('type', 0);
 
         $shop = new Application_Model_DbTable_Shop();
-        $this->view->list = $shop->fullShopFilter(array('type' => $type, 'q' => $q));
+        $this->view->list = $shop->fullShopFilter(array(
+            'type' => $type,
+            'category' => $category,
+            'region' => $region,
+            'q' => $q
+            ));
         $this->view->type_ads = $this->params->type_ads->toArray();
+        $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
-        $this->view->q = $q;
     }
 
 
