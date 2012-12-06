@@ -14,6 +14,8 @@ class PageController extends Zend_Controller_Action
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
 
+        if($identity->status == 1) $this->_redirect('/account');
+
         $page = new Application_Model_DbTable_Page();
         if(count($page->getMyPage($identity->id, 'count')) == 0) $this->_redirect('/page/new');
 
@@ -25,6 +27,8 @@ class PageController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
+
+        if($identity->status == 1) $this->_redirect('/account');
 
         $page = new Application_Model_DbTable_Page();
         if(count($page->getMyPage($identity->id, 'count')) > 0) $this->_redirect('/page');

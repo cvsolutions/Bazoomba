@@ -283,6 +283,12 @@ class UserController extends Zend_Controller_Action
      */
     public function newAction()
     {
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity())
+        {
+            $this->_redirect('/account');
+        }
+
         $form = new Application_Form_User();
         $this->view->newUser = $form->newUser();
 

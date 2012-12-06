@@ -205,7 +205,8 @@ class Application_Form_User extends Zend_Form
          $radio->setLabel('Mostra Numero Telefonico');
          $radio->setValue(array('1'));
 
-         $iva = new Zend_Form_Element_Text('vat');
+         $iva = new Zend_Form_Element_Text('vat', array('autocomplete' => 'off'));
+         $iva->setAttrib('autocomplete', 'off');
          $iva->setAttrib('class', 'brand');
          $iva->setLabel('Partita Iva')
                  ->setRequired(false)
@@ -213,7 +214,7 @@ class Application_Form_User extends Zend_Form
                  ->addFilter('StringTrim')
                  ->addValidator('NotEmpty');
 
-         $name_company = new Zend_Form_Element_Text('name_company');
+         $name_company = new Zend_Form_Element_Text('name_company', array('autocomplete' => 'off'));
          $name_company->setAttrib('class', 'brand');
          $name_company->setLabel('Ragione Sociale')
                  ->setRequired(false)
