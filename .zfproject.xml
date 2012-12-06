@@ -34,6 +34,9 @@
           <actionMethod actionName="my"/>
           <actionMethod actionName="public"/>
         </controllerFile>
+        <controllerFile controllerName="Page">
+          <actionMethod actionName="index"/>
+        </controllerFile>        
         <controllerFile controllerName="Account">
           <actionMethod actionName="index"/>
           <actionMethod actionName="editpassword"/>
@@ -101,6 +104,7 @@
           <dbTableFile dbTableName="Region"/>
           <dbTableFile dbTableName="Provinces"/>
           <dbTableFile dbTableName="City"/>
+          <dbTableFile dbTableName="Page"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -180,6 +184,8 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="City">
             <viewScriptFile forActionName="index"/>
+          <viewControllerScriptsDirectory forControllerName="Page">
+            <viewScriptFile forActionName="index"/>  
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="public"/>
           </viewControllerScriptsDirectory>

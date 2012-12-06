@@ -33,6 +33,10 @@
 		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'item' => $row['id']), null, true); ?>" class="btn btn-danger">Elimina Questo Ads</a>
                 <?php endif; ?>
 
+                <p>
+                Inserito il <?php echo date("d-m-Y", $row['registered']); ?>
+                </p>
+
                 <hr>
 	<?php endforeach ?>
 </div>

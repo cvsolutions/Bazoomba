@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Nov 04, 2012 alle 09:07
+-- Generato il: Dic 06, 2012 alle 12:41
 -- Versione del server: 5.5.25
 -- Versione PHP: 5.4.4
 
@@ -32,18 +32,20 @@ CREATE TABLE `ads_category` (
   `image` varchar(255) DEFAULT NULL,
   `parent` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99398 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86409 ;
 
 --
 -- Dump dei dati per la tabella `ads_category`
 --
 
 INSERT INTO `ads_category` (`id`, `name`, `image`, `parent`) VALUES
-(37220, 'tavolo', NULL, 51559),
-(51559, 'Cucina', '50952eaa07fdf.jpg', 0),
-(88583, 'sedie', NULL, 51559),
-(44005, 'scuola', NULL, 0),
-(61802, 'alunni', NULL, 44005);
+(32347, 'Cucina', '5092558ad5ee9.jpg', 0),
+(25749, 'tavolo', '509255a7c93b7.jpg', 32347),
+(38318, 'Tecnologia', NULL, 0),
+(35839, 'Apple', NULL, 0),
+(14652, 'Macbook', NULL, 35839),
+(86408, 'Smartphone', NULL, 38318),
+(22145, 'Vincenzo', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -8207,24 +8209,30 @@ CREATE TABLE `ads_gallery` (
   `shop` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99395 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dump dei dati per la tabella `ads_gallery`
 --
 
 INSERT INTO `ads_gallery` (`id`, `image`, `shop`, `status`) VALUES
-(64116, '79111915803a229a92a65d5ddb079140.jpg', 40031, 0),
-(33308, 'f03cc0037199cbc9697508f42187ea50.jpg', 43874, 0),
-(82929, '9005e7815391400434dba63dd67da723.jpg', 43874, 0),
-(48022, 'faae487baa35a2147da9cc3c234f90fc.jpg', 43874, 0),
-(87351, '349b7ab020aefe7473beccebead347b2.jpg', 86911, 0),
-(95003, '54ab16b98f4ca8fadb36fe8f31e4e5a4.jpg', 86911, 0),
-(42484, '1a481103d2e2ee90734040e83fc5a4b8.jpg', 22822, 0),
-(30664, '3abd8954d59b8515517f1f99fdd7b2a3.jpg', 22822, 0),
-(42599, '1839910f2fb22eae3357de6f989c29fa.jpg', 22822, 0),
-(99394, '7856d3d52d28aa809d3b9c28636b80c0.jpg', 22822, 0),
-(88316, '49a2727367f9d8a3a52de715a789b217.jpg', 22822, 0);
+(1, '50be2d3ea06ac.jpg', 34288, 1),
+(2, '50be2db27c55b.jpg', 34288, 1),
+(3, '50be7168c6f45.jpg', 40858, 1),
+(4, '50be7176c21c8.jpg', 40858, 1),
+(5, '50be792fb5751.jpg', 32070, 1),
+(6, '50be7935f1575.jpg', 32070, 1),
+(7, '50be7a1eab974.jpg', 92099, 1),
+(8, '50be840a24f0b.jpg', 11986, 1),
+(9, '50be997b172fc.jpg', 88894, 1),
+(10, '50bf5c9f42407.jpg', 39539, 1),
+(11, '50bf5ca5606bc.jpg', 39539, 1),
+(12, '50bf5cab21c61.jpg', 39539, 1),
+(13, '50bf5cb46f4a3.jpg', 39539, 1),
+(14, '50bf666eba1ea.jpg', 32070, 1),
+(15, '50bfdb56e284e.jpg', 68531, 1),
+(16, '50bfdb5be496b.jpg', 68531, 1),
+(17, '50bfdb61eb237.jpg', 68531, 1);
 
 -- --------------------------------------------------------
 
@@ -8242,15 +8250,15 @@ CREATE TABLE `ads_login` (
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user` (`usermail`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=91590 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51013 ;
 
 --
 -- Dump dei dati per la tabella `ads_login`
 --
 
 INSERT INTO `ads_login` (`id`, `name`, `usermail`, `pwd`, `role`, `notify`, `status`) VALUES
-(1, 'Vecchio Concetto', 'info@cvsolutions.it', '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'admin', 1, 1),
-(91589, 'Pinco pallino', 'ciao@libero.it', '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'admin', 1, 1);
+(8, 'Vincenzo', 'vichi89@hotmail.it', 'fc0ee89b1e0d0ed83730414a0f7999b557fa0292', 'admin', 0, 1),
+(51012, 'Concetto Vecchio', 'info@cvsolutions.it', '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'admin', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -8304,6 +8312,34 @@ CREATE TABLE `ads_news` (
 INSERT INTO `ads_news` (`id`, `startdate`, `endate`, `name`, `description`, `image`, `registered`, `status`) VALUES
 (25585, 1347141600, 1347919200, 'ciao mondo', '123 ciaoo', '540f034bdbae370aac99d2b391efa2c2.jpg', 1346579404, 1),
 (85953, 1346709600, 1348092000, 'js', '<script type="text/javascript">\r\nalert(''ciao'');\r\n</script>', '', 1346587004, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ads_page`
+--
+
+CREATE TABLE `ads_page` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `registered` int(11) NOT NULL,
+  `ip_address` varchar(30) NOT NULL,
+  `telephone` varchar(15) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `site` varchar(255) NOT NULL,
+  `latitude` varchar(255) NOT NULL,
+  `longitude` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dump dei dati per la tabella `ads_page`
+--
+
+INSERT INTO `ads_page` (`id`, `user`, `status`, `registered`, `ip_address`, `telephone`, `logo`, `description`, `site`, `latitude`, `longitude`) VALUES
+(1, 86077, 0, 1354792944, '127.0.0.1', '095 7766432', '50c07ff068e5a.jpg', 'Desideri entrare a far parte dello staff di Subito.it?\r\n\r\nSe vuoi contribuire allo sviluppo del sito di annunci piÃ¹ visitato d''Italia, consulta le posizioni di lavoro attualmente aperte.\r\nDesideriamo conoscere persone di talento e con la voglia di entrare a far parte di una realtÃ  innovativa e stimolante.\r\n\r\nIl possesso di un''esperienza specifica in aziende fortemente orientate ad internet e la conoscenza del settore degli annunci classificati costituiranno un plus. Ãˆ sempre richiesta un''ottima conoscenza della lingua inglese.\r\n\r\nSubito.it fa parte del Gruppo Schibsted, gruppo media Scandinavo presente in oltre 20 nazioni.', 'http://www.bazoomba.it', '', '');
 
 -- --------------------------------------------------------
 
@@ -8493,7 +8529,7 @@ CREATE TABLE `ads_settings` (
 --
 
 INSERT INTO `ads_settings` (`id`, `title`, `description`, `keywords`, `off_line`) VALUES
-(1, 'Bazoomba', 'il portale degli annunci di qualitÃ ...', 'annunci, ads, gratis', 1);
+(1, 'Bazoomba', 'il portale degli annunci di qualitÃ  ...', 'annunci, ads, gratis', 1);
 
 -- --------------------------------------------------------
 
@@ -8514,26 +8550,30 @@ CREATE TABLE `ads_shop` (
   `title` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `description` text NOT NULL,
+  `tags` text NOT NULL,
   `latitude` decimal(10,6) NOT NULL,
   `longitude` decimal(10,6) NOT NULL,
   `status` int(11) NOT NULL,
   `terms` int(11) NOT NULL,
+  `step` int(11) NOT NULL,
   `registered` int(11) NOT NULL,
   `ip_address` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94539 ;
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `title` (`title`,`description`,`tags`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92100 ;
 
 --
 -- Dump dei dati per la tabella `ads_shop`
 --
 
-INSERT INTO `ads_shop` (`id`, `code`, `category`, `sub_category`, `region`, `province`, `city`, `user`, `type`, `title`, `price`, `description`, `latitude`, `longitude`, `status`, `terms`, `registered`, `ip_address`) VALUES
-(40031, '6AVT5', 0, 0, 15, 53, 7658, 82681, 2, 'Apple Macbook Pro 15 Usato', 0.00, 'Apple Macbook Pro 15 Usato Il PiÃ¹ potente di sempre.\r\nDi seguito si troveranno le caratteristiche tecniche.\r\n\r\nNon accetto scambi o altro, ma solo soldi.', 37.851637, 15.285313, 1, 1, 1348042663, '127.0.0.1'),
-(43874, '21AGE', 0, 0, 15, 53, 7546, 68317, 1, 'Kawasaki Ninja zx-6r, come Nuova, una Belva - 2008', 7000.00, 'Vendo Kawasaki Ninja zx-6r, come Nuova, una Belva - 2008, causa non utilizzo.\r\nPurtroppo non ho piÃ¹ tempo per cavalcare questa fantastica moto.', 37.834476, 15.270652, 1, 1, 1348047612, '127.0.0.1'),
-(86911, 'GSN2R', 8, 9, 15, 53, 7546, 68317, 4, 'Straordinario Samung Galasy S2', 300.00, 'Il display delle meraviglie:\r\nQuando navighi, guardi un video o giochi, Galaxy S II Ã¨ pronto a stupirti con il suo nuovo display da 4,3â€™â€™che, per dimensioni e qualitÃ , si pone ai vertici del mercato. In realtÃ , non Ã¨ solo una questione di dimensioni: la tecnologia Super AMOLED Plus Ã¨ un ulteriore miglioramento della tecnologia OLED che garantisce non solo una definizione super e colori saturi e brillanti ma anche una sensibilitÃ  al tocco mai vista. La risoluzione di 480 x 800 assicura una qualitÃ  â€œda desktopâ€ con una impeccabile leggibilitÃ  delle pagine, mentre i 16 milioni di colori donano un invidiabile senso di naturalezza alle fotografie e ai video che ti stai gustando.\r\n\r\n\r\nIl piÃ¹ sottile al mondo\r\nLâ€™intelligenza di uno smartphone non si misura solo in risoluzione e velocitÃ : bisogna essere potenti ma al tempo stesso cosÃ¬ piccoli e leggeri da risultare invisibili. Galaxy S II racchiude tutto quello che ti serve in un unico dispositivo: in 116 grammi di peso e in soli 8,49 mm di spessore. Tutto questo perÃ² in uno chassis elegante, ultracompatto e realizzato con particolari leghe che assicurano la massima resistenza anche ai graffi. Galaxy S II Ã¨ lo smartphone piÃ¹ sottile al mondo, perchÃ© anche lâ€™occhio vuole la sua parte.\r\n\r\nIL PIU'' VENDUTO AL MONDO!!!!!!', 37.835033, 15.243242, 1, 1, 1348052041, '127.0.0.1'),
-(94538, '6ETJS', 51559, 88583, 15, 22, 7659, 68317, 1, 'Test Annuncio 1', 34.00, 'Il display delle meraviglie:\r\n\r\nQuando navighi, guardi un video o giochi, Galaxy S II Ã¨ pronto a stupirti con il suo nuovo display da 4,3â€™â€™che, per dimensioni e qualitÃ , si pone ai vertici del mercato. In realtÃ , non Ã¨ solo una questione di dimensioni: la tecnologia Super AMOLED Plus Ã¨ un ulteriore miglioramento della tecnologia OLED che garantisce non solo una definizione super e colori saturi e brillanti ma anche una sensibilitÃ  al tocco mai vista.\r\n\r\nLa risoluzione di 480 x 800 assicura una qualitÃ  â€œda desktopâ€ con una impeccabile leggibilitÃ  delle pagine, mentre i 16 milioni di colori donano un invidiabile senso di naturalezza alle fotografie e ai video che ti stai gustando.', 37.733684, 15.157827, 0, 1, 1348052920, '127.0.0.1'),
-(22822, 'W2KT4', 0, 0, 15, 73, 0, 86069, 2, 'Fantastica Villa 200mq - Nuova Appena realizzata!!', 800000.00, 'Vendo fantastica villa, a Ragusa.\r\n\r\nLuogo incantato, la casa Ã¨ stata appena realizzata.', 36.926927, 14.725513, 0, 1, 1348057614, '127.0.0.1'),
-(70987, 'V5PRS', 0, 0, 9, 54, 7646, 82681, 1, 'Fantastica Villa 200mq - Nuova Appena realizzata!!', 400000.00, 'Fantastica Villa 200mq - Nuova Appena realizzata!! Fantastica Villa 200mq - Nuova Appena realizzata!! Fantastica Villa 200mq - Nuova Appena realizzata!!', 37.860176, 15.221198, 1, 1, 1348145266, '127.0.0.1');
+INSERT INTO `ads_shop` (`id`, `code`, `category`, `sub_category`, `region`, `province`, `city`, `user`, `type`, `title`, `price`, `description`, `tags`, `latitude`, `longitude`, `status`, `terms`, `step`, `registered`, `ip_address`) VALUES
+(32070, 'YNITWH', 38318, 86408, 15, 53, 7546, 86077, 1, 'Straordinario Samung Galasy S2', 300.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 37.851637, 15.285313, 0, 1, 3, 1354660130, '127.0.0.1'),
+(92099, 'UJB4MQ', 38318, 86408, 15, 53, 7546, 86077, 1, 'Fantastica Villa 200mq - Nuova Appena realizzata!!', 1000.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 45.465454, 9.186516, 1, 1, 3, 1354660377, '127.0.0.1'),
+(11986, 'J8N8TE', 38318, 86408, 2, 52, 6921, 86077, 2, 'Galasy Note', 400.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 40.673416, 16.581979, 1, 1, 3, 1354662801, '127.0.0.1'),
+(88894, '3K6I9P', 32347, 25749, 2, 52, 6922, 86077, 1, 'Tavolo grande', 500.00, 'Tavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grande', 'tavolo, grande, verde', 45.465454, 9.186516, 1, 1, 3, 1354668372, '127.0.0.1'),
+(39539, '7PU6C4', 35839, 14652, 15, 53, 7546, 86077, 2, 'Apple Macbook Pro 15'' Nuovo Poco Usato', 800.00, 'Al contrario di quanto si pensi, Lorem Ipsum non Ã¨ semplicemente una sequenza casuale di caratteri. Risale ad un classico della letteratura latina del 45 AC, cosa che lo rende vecchio di 2000 anni. Richard McClintock, professore di latino al Hampden-Sydney College in Virginia, ha ricercato una delle piÃ¹ oscure parole latine, consectetur, da un passaggio del Lorem Ipsum e ha scoperto tra i vari testi in cui Ã¨ citata, la fonte da cui Ã¨ tratto il testo, le sezioni 1.10.32 and 1.10.33 del "de Finibus Bonorum et Malorum" di Cicerone. Questo testo Ã¨ un trattato su teorie di etica, molto popolare nel Rinascimento. La prima riga del Lorem Ipsum, "Lorem ipsum dolor sit amet..", Ã¨ tratta da un passaggio della sezione 1.10.32.\r\n\r\nIl brano standard del Lorem Ipsum usato sin dal sedicesimo secolo Ã¨ riprodotto qui di seguito per coloro che fossero interessati. Anche le sezioni 1.10.32 e 1.10.33 del "de Finibus Bonorum et Malorum" di Cicerone sono riprodotte nella loro forma originale, accompagnate dalla traduzione inglese del 1914 di H. Rackham.', 'apple, macbook, nuovo', 37.831561, 15.268549, 1, 1, 3, 1354718360, '127.0.0.1'),
+(68531, 'IZCAFJ', 35839, 14652, 7, 79, 5398, 86077, 1, 'Ads di test per vedere cosa succede', 1.00, 'Ads di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succede', 'ads, test', 41.901514, 12.460774, 1, 1, 3, 1354721161, '127.0.0.1'),
+(55704, 'HS9UUY', 38318, 86408, 5, 14, 4401, 86077, 1, 'Tavolo grande', 300.00, 'Tavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grande', 'bologna, grande tavolo,', 44.494887, 11.342616, 0, 1, 1, 1354790960, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8545,6 +8585,7 @@ CREATE TABLE `ads_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `avatar` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -8560,18 +8601,60 @@ CREATE TABLE `ads_user` (
   `ip_address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86070 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86079 ;
 
 --
 -- Dump dei dati per la tabella `ads_user`
 --
 
-INSERT INTO `ads_user` (`id`, `type`, `name`, `email`, `pwd`, `image`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `ip_address`) VALUES
-(68317, 2, 'adhoc-group.it', 'sviluppo@adhoc-group.it', '2ba49cc690cedaa9bc08ba024c182ba67dc4924a', 'dc0a4444eac8c941e93670e92ad2673c.jpg', '2a6d3f8ba90ed8c58a701ed89f6f0fd636d1f7cc', '3405863783', 1, '', '', 0, '', 0, 1347525338, '127.0.0.1'),
-(82681, 2, 'Vincenzo Provenza', 'vichi89@hotmail.it', '2ba49cc690cedaa9bc08ba024c182ba67dc4924a', '1fdf6d2a55a4f66d6e4f564977e4a6ff.jpg', '178e75ed3f6f2eddc4c27c40bd11a508a138f1c9', '3405863783', 0, '', '', 0, '', 1, 1347728416, '127.0.0.1'),
-(86069, 1, 'ilovecode', 'info@ilovecode.it', 'f5c3b982269629a26c62c43f5e2176b96cd8b939', '53af8efedcb3d38c49486cd5a87a87c5.jpg', 'a2eceeb4b21561d5bd5f3df7f261f878a0597ae7', '3405863783', 1, '02553245667', 'I Love Code Inc.', 1, '', 0, 1347731344, '127.0.0.1'),
-(18993, 2, 'vincenzo provenza', 'jiqu@hotmail.it', '2ba49cc690cedaa9bc08ba024c182ba67dc4924a', '', '1373bcf53cb565975aea6f3a7adcd87d3056b90b', '3408877667', 1, '', '', 1, '', 0, 1348647162, '127.0.0.1'),
-(58015, 1, 'Concetto 2', 'webcr@hotmail.it', '031fad767d96fc762baabdfeffe943f9aeb52871', '', 'eed5bf4bcb4aedd535e84a6581919453556b1998', '3405566778', 1, '', '', 1, 'user', 0, 1348652841, '127.0.0.1');
+INSERT INTO `ads_user` (`id`, `type`, `name`, `avatar`, `email`, `pwd`, `image`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `ip_address`) VALUES
+(86078, 1, 'Vincenzo Provenza', '', 'sviluppo@adhoc-group.it', '7c4a8d09ca3762af61e59520943dc26494f8941b', '', 'ab8e6f42180d2a2f8225fc96d4872115496f3da0', '3407766456', 0, '04793450877', 'I love code', 1, 'user', 0, 1353591984, '127.0.0.1'),
+(86077, 2, 'Vincenzo Provenza', '50bfe63bebd68.jpg', 'vichi89@hotmail.it', 'fc0ee89b1e0d0ed83730414a0f7999b557fa0292', '', '2148fd9a471cb3003cd22570c3875f689bdf4545', '095711215', 1, '04793450877', 'I Love Code Di Vincenzo Provenza', 1, 'user', 0, 1352812977, '127.0.0.1'),
+(86069, 1, 'ilovecode', '', 'info@ilovecode.it', 'f5c3b982269629a26c62c43f5e2176b96cd8b939', '53af8efedcb3d38c49486cd5a87a87c5.jpg', 'a2eceeb4b21561d5bd5f3df7f261f878a0597ae7', '3405863783', 1, '02553245667', 'I Love Code Inc.', 1, 'user', 0, 1347731344, '127.0.0.1'),
+(35948, 1, 'Concetto test', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', '', '0de0bde97e6ce873edee596f6c8a55a6b17dadf8', '3407766456', 1, '', '', 1, 'user', 0, 1348830399, '151.54.101.171');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ads_validation_link`
+--
+
+CREATE TABLE `ads_validation_link` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serial` varchar(255) NOT NULL,
+  `data` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+
+--
+-- Dump dei dati per la tabella `ads_validation_link`
+--
+
+INSERT INTO `ads_validation_link` (`id`, `serial`, `data`) VALUES
+(4, '478a77f54f65b734a6ecd0b389b31043da39a3ee5e6b4b0d3255bfef95601890afd80709', 1346323468),
+(5, '5a0bbb358512ed8895cb58e0c2746f0fda39a3ee5e6b4b0d3255bfef95601890afd80709', 1346323483),
+(6, '7cc1ec229dce89526c6c3741bc7eca5129235008556fda3aec27e1e89af48ef462c3888e', 1346323488),
+(7, '386efcbe30f31556d5214dc9f1f5d64329235008556fda3aec27e1e89af48ef462c3888e', 1346323490),
+(8, 'ac1cd13264d2c993499f17c264c99c0a29235008556fda3aec27e1e89af48ef462c3888e', 1346323493),
+(9, '3fb6085c89789227aae190ed01a9f49829235008556fda3aec27e1e89af48ef462c3888e', 1346323495),
+(10, '4238010940db5c518d8a8239f82e951129235008556fda3aec27e1e89af48ef462c3888e', 1346323497),
+(11, '4f2f49d6fde3fac26ab4f2f20c09b84529235008556fda3aec27e1e89af48ef462c3888e', 1346323499),
+(13, 'df5268821b71528d72302fb6c53bcb7833413490552b4244a6b402b469870dec4eb2677c', 1346324204),
+(14, 'f93fbe88267dc93a1c2ec1080ab6982c33413490552b4244a6b402b469870dec4eb2677c', 1346324421),
+(15, 'cfbb8cdd25e27d8424c04cb304d0f20733413490552b4244a6b402b469870dec4eb2677c', 1346328479),
+(16, '13a2acdbcc8d8deec9b6c325cbb64a8633413490552b4244a6b402b469870dec4eb2677c', 1346328491),
+(17, '346b793ae1ce86fd8f57a62535e461c233413490552b4244a6b402b469870dec4eb2677c', 1346328681),
+(18, '15dc04a599a6ed1180ea6f3572c5c04633413490552b4244a6b402b469870dec4eb2677c', 1346328737),
+(19, 'eb1dbdf849f29c3f50b2bf9646251b9633413490552b4244a6b402b469870dec4eb2677c', 1346399584),
+(22, '0d6f647cfaa73f964d69d52fb903ac00fac3d79aba3d8127ea535aa1f3b6d71ac543eee8', 1346661261),
+(23, '0d0d00d518eb28690c28106c537a1eddfac3d79aba3d8127ea535aa1f3b6d71ac543eee8', 1346661852),
+(24, '591635dce81f13fdcda6509acfc284defac3d79aba3d8127ea535aa1f3b6d71ac543eee8', 1346661863),
+(26, 'ab55b4b96d08a9fbb6910efa45322ba1f819128aced8e8a4f676ba5095ed8ac453c0b2e6', 1346664736),
+(36, '3615f0bda617e9b2571bb6e826f6c729fac3d79aba3d8127ea535aa1f3b6d71ac543eee8', 1348650014),
+(37, 'f79a42235521564d2fc1f09e76b636fcda39a3ee5e6b4b0d3255bfef95601890afd80709', 1348650208),
+(38, 'f0abd123c54ca63aca4e3c9caf52f45fda39a3ee5e6b4b0d3255bfef95601890afd80709', 1348650289),
+(39, '3901e5f2e1d06968825f8621d59fb535fac3d79aba3d8127ea535aa1f3b6d71ac543eee8', 1348650352),
+(40, '7f6c7886fea7a6c166dc7ca08d969095fac3d79aba3d8127ea535aa1f3b6d71ac543eee8', 1348650423);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
