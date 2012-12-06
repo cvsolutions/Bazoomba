@@ -156,10 +156,36 @@ class AccountController extends Zend_Controller_Action
         }
 
     }
-    
-    public function testAction()
-    {
 
+    public function avatarAction()
+    {
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+
+        $user = new Application_Model_DbTable_User();
+        $info = $user->getAdminInfo($identity->id);
+        $this->view->identity = $info;
+
+        $form = new Application_Form_User();
+        $avatar = $form->addAvatar();
+        $avatar->image->addFilter('Rename', sprintf('%s.jpg', uniqid()));
+        $this->view->addAvatar = $avatar;
+
+        if ($this->getRequest()->getPost()) {
+            $form_data = $this->getRequest()->getPost();
+            if ($form->isValid($form_data)) {
+
+                if($info['avatar'] > 0) unlink(sprintf('%s/uploaded/avatar/%s', $_SERVER['DOCUMENT_ROOT'], $info['avatar']));
+
+                $image = $form->getValue('image');
+
+                $user->updateAvatar($identity->id, $image);
+
+                $this->_redirect('/account/avatar');
+            } else {
+                $form->populate($form_data);
+            }
+        }
     }
 }
 

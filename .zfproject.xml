@@ -38,6 +38,7 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="editpassword"/>
           <actionMethod actionName="edit"/>
+          <actionMethod actionName="avatar"/>
         </controllerFile>
         <controllerFile controllerName="Category">
           <actionMethod actionName="index"/>

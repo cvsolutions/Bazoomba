@@ -343,5 +343,22 @@ class Application_Form_User extends Zend_Form
         return $this->addElements(array($pwd, $confirm, $submit));
     }
 
+    public function addAvatar()
+    {
+    	$this->setAttrib('id', 'addAvatar');
+
+    	$image = new Zend_Form_Element_File('image');
+    	$image->setLabel('Avatar');
+    	$image->setDestination(sprintf('%s/uploaded/avatar', $_SERVER['DOCUMENT_ROOT']));
+    	$image->setRequired(true);
+    	$image->addValidator('Extension', false, 'jpg,png,gif,jpeg');
+
+    	$submit = new Zend_Form_Element_Submit('submit');
+    	$submit->setLabel('Insersci Avatar');
+    	$submit->setAttrib('class', 'btn btn-primary');
+
+    	return $this->addElements(array($image, $submit));
+    }
+
 }
 

@@ -152,6 +152,14 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
         return $this->update($arrayName, sprintf('id = %d', $id));
     }
 
+    public function updateAvatar($id, $avatar)
+    {
+        $arrayAvatar = array(
+            'avatar' => $avatar
+            );
+        return $this->update($arrayAvatar, sprintf('id = %d', $id));
+    }
+
     /**
      * newUser
      *

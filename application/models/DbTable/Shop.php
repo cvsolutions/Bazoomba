@@ -290,13 +290,21 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
     public function myshop($id)
     {
-        $row = $this->fetchAll(sprintf('user = %d', $id));
-        if(!$row)
-        {
-            $params = Plugin_Common::getParams();
-            throw new Exception($params->label_no_id, 1);
-        }
-        return $row->toArray();
+        $query = $this->getDefaultAdapter()->select();
+        $query->from('ads_shop', array(
+            'id',
+            'type',
+            'title',
+            'description',
+            'price',
+            'registered',
+            'status',
+            'step'
+            ));
+        $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
+        $query->where(sprintf('ads_shop.user = %d', $id));
+        $query->group('ads_shop.id');
+        return $this->getDefaultAdapter()->fetchAll($query);
     }
 
 

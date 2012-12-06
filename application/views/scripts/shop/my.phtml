@@ -1,29 +1,40 @@
 <p><b><?php echo $this->identity->name; ?></b>,  i tui annunci (<b><?php echo count($this->myshop); ?></b>).</p>
 
 <?php if ($this->myshop): ?>
+<div class="container">
 	<?php foreach ($this->myshop as $row): ?>
-	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a></li>
-		<li><?php echo $this->truncate($row['description']); ?></li>
-		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
+		<p>
+                    <?php if($row['photo'] != 0): ?>
+                    <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=100&height=100">
+                    <?php endif; ?>
 
-                <?php if($row['step'] == 1): ?>
+                    <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a>
+                </p>
+		<p><?php echo $this->truncate($row['description']); ?></p>
+		<p>€ <?php echo $row['price']; ?></p>
+
+                <?php if($row['step'] == 1 AND $row['status'] == 0): ?>
 		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'media', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Aggiungi Immagini</a>
-                <?php endif ?>
+                <?php endif; ?>
 
-                <?php if($row['step'] == 2): ?>
+                <?php if($row['step'] == 2 AND $row['status'] == 0): ?>
 		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'public', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Pubblica Ora</a>
-                <?php endif ?>
+                <?php endif; ?>
 
-                <?php if($row['step'] == 3 || $row['status'] == 1): ?>
-		<a href="#" class="btn btn-success">Ads Attivo</a>
-                <?php endif ?>
+                <?php if($row['step'] == 3 AND $row['status'] == 0): ?>
+		<a href="#" class="btn btn-info">Ads In Attesa Di Approvazione</a>
+                <?php endif; ?>
 
-                <?php if($row['step'] == 3 || $row['status'] == 1): ?>
-		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'item' => $row['id']), null, true); ?>" class="btn btn-danger">Elimina Ads?</a>
-                <?php endif ?>
+                <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
+		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>" class="btn btn-success">Ads Attivo</a>
+                <?php endif; ?>
 
-	</ul>
+                <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
+		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'item' => $row['id']), null, true); ?>" class="btn btn-danger">Elimina Questo Ads</a>
+                <?php endif; ?>
+
+                <hr>
 	<?php endforeach ?>
+</div>
 <?php endif ?>
 
