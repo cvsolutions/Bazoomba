@@ -113,7 +113,8 @@ class ShopController extends Zend_Controller_Action
         $UserInfo = $User->getAdminInfo($ShopInfo['user']);
         $this->view->user = $UserInfo;
 
-        $this->view->row = $shop->getSiteShopInfo($id);
+        $this->view->row = $ShopInfo;
+        $this->view->random_geo = $shop->RandomGeoIPShop($id, $ShopInfo['latitude'], $ShopInfo['longitude']);
         $this->view->type_ads = $this->params->type_ads->toArray();
 
         $form = new Application_Form_Shop();

@@ -36,7 +36,7 @@ class Application_Form_Filter extends Zend_Form
 
 		$type = new Zend_Form_Element_Hidden('type');
 		$type->setRequired(true);
-		$type->setValue('label');
+		$type->setValue('global');
 		$type->removeDecorator('HtmlTag'); 
 		$type->removeDecorator('Label'); 
 

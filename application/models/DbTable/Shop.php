@@ -114,10 +114,41 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->join('ads_region', 'ads_shop.region = ads_region.id', array('name_region' => 'name'));
         $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name', 'type_user' => 'type'));
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
+        // $query->where(sprintf("TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_shop.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_shop.longitude) , 2 ) ) , 3 ) < 10", $latitude, $longitude));
         $query->where('ads_shop.status = 1');
         $query->where('ads_user.status = 1');
         $query->order('registered DESC');
         $query->where('ads_gallery.status = 1');
+        $query->group('ads_shop.id');
+        $query->limit('0, 10');
+        // echo $query->assemble();
+        return $this->getDefaultAdapter()->fetchAll($query);
+    }
+
+    public function RandomGeoIPShop($ads, $latitude, $longitude)
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from('ads_shop', array(
+            'id',
+            'type',
+            'title',
+            'description',
+            'category',
+            'region',
+            'price',
+            'registered'
+            ));
+        $query->join('ads_category', 'ads_shop.category = ads_category.id', array('category' => 'name'));
+        $query->join('ads_provinces', 'ads_shop.province = ads_provinces.id', array('province' => 'name'));
+        $query->join('ads_region', 'ads_shop.region = ads_region.id', array('region' => 'name'));
+        $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name', 'type_user' => 'type'));
+        $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
+        $query->where(sprintf("TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_shop.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_shop.longitude) , 2 ) ) , 3 ) < 10", $latitude, $longitude));
+        $query->where(sprintf('ads_shop.id != %d', $ads));
+        $query->where('ads_shop.status = 1');
+        $query->where('ads_user.status = 1');
+        $query->where('ads_gallery.status = 1');
+        $query->order('registered DESC');
         $query->group('ads_shop.id');
         $query->limit('0, 10');
         // echo $query->assemble();
@@ -152,14 +183,10 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
         switch ($params['type'])
         {
-            case 'label':
+            case 'global':
             if($params['category']) $query->where(sprintf('ads_shop.category = %d', $params['category']));
             if($params['region']) $query->where(sprintf('ads_shop.region = %d', $params['region']));
-            if($params['q']) $query->where(sprintf("MATCH(ads_shop.title, ads_shop.description, ads_shop.tags) AGAINST('%s' IN BOOLEAN MODE)", $params['q']));
-            break;
-
-            case 'type':
-            $query->where(sprintf('ads_shop.type = %d', $params['q']));
+            if($params['q']) $query->where(sprintf("MATCH(ads_shop.title, ads_shop.description, ads_shop.tags) AGAINST('+%s*' IN BOOLEAN MODE)", str_replace(' ', ' +', $params['q'])));
             break;
 
             case 'category':
