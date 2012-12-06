@@ -19,6 +19,7 @@
 		<li><?php echo $this->truncate($row['description']); ?></li>
 		<li><?php echo $row['region']; ?>, <?php echo $row['province']; ?></li>
 		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
+		<li><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=100&height=100"></li>
 	</ul>
 	<hr>
 	<?php endforeach ?>
