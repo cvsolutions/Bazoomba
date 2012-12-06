@@ -163,67 +163,67 @@ class Application_Form_Shop extends Zend_Form
     		));
 
         $tags = new Zend_Form_Element_Text('tags');
-    	$tags->setLabel('Tags');
-    	$tags->addValidator('NotEmpty');
-    	$tags->setAttrib('placeholder', 'Scegli i Tags');
-    	$tags->addFilters(array(
-    		'StringTrim',
-    		'StripTags'
-    		));
+        $tags->setLabel('Tags');
+        $tags->addValidator('NotEmpty');
+        $tags->setAttrib('placeholder', 'Scegli i Tags');
+        $tags->addFilters(array(
+            'StringTrim',
+            'StripTags'
+            ));
 
-    	$price = new Zend_Form_Element_Text('price');
-    	$price->setLabel('Prezzo');
-    	$price->setRequired(true);
-    	$price->addValidator('NotEmpty');
-    	$price->setAttribs(array('maxlength' => '12'));
-    	$price->addFilters(array(
-    		'StringTrim',
-    		'StripTags'
-    		));
+        $price = new Zend_Form_Element_Text('price');
+        $price->setLabel('Prezzo');
+        $price->setRequired(true);
+        $price->addValidator('NotEmpty');
+        $price->setAttribs(array('maxlength' => '12'));
+        $price->addFilters(array(
+            'StringTrim',
+            'StripTags'
+            ));
 
-    	$address = new Zend_Form_Element_Text('address');
-    	$address->setAttrib('placeholder', "Scrivi l'indirizzo dell'oggetto");
-    	$address->setLabel('Mappa');
-    	$address->setRequired(true);
-    	$address->addValidator('NotEmpty');
-    	$address->addFilters(array(
-    		'StringTrim',
-    		'StripTags'
-    		));
+        $address = new Zend_Form_Element_Text('address');
+        $address->setAttrib('placeholder', "Scrivi l'indirizzo dell'oggetto");
+        $address->setLabel('Mappa');
+        $address->setRequired(true);
+        $address->addValidator('NotEmpty');
+        $address->addFilters(array(
+            'StringTrim',
+            'StripTags'
+            ));
 
         $div = new Zend_Form_Element_Hidden('div');
         $div->setDecorators(array(array('HtmlTag',array('tag'=>'div','id'=>'map_canvas'))));
 
-    	$lat = new Zend_Form_Element_Hidden('latitude');
-    	$lat->setRequired(true);
-    	$lat->addValidator('NotEmpty');
-    	$lat->addFilters(array(
-    		'StringTrim',
-    		'StripTags'
-    		));
+        $lat = new Zend_Form_Element_Hidden('latitude');
+        $lat->setRequired(true);
+        $lat->addValidator('NotEmpty');
+        $lat->addFilters(array(
+            'StringTrim',
+            'StripTags'
+            ));
 
-    	$lon = new Zend_Form_Element_Hidden('longitude');
-    	$lon->setRequired(true);
-    	$lon->addValidator('NotEmpty');
-    	$lon->addFilters(array(
-    		'StringTrim',
-    		'StripTags'
-    		));
+        $lon = new Zend_Form_Element_Hidden('longitude');
+        $lon->setRequired(true);
+        $lon->addValidator('NotEmpty');
+        $lon->addFilters(array(
+            'StringTrim',
+            'StripTags'
+            ));
 
-    	$terms = new Zend_Form_Element_Checkbox('terms');
-    	$terms->setLabel('Accetta Condizioni');
-    	$terms->setValue(1);
-    	$terms->addValidator('NotEmpty');
-    	$terms->addFilters(array(
-    		'StringTrim',
-    		'StripTags'
-    		));
+        $terms = new Zend_Form_Element_Checkbox('terms');
+        $terms->setLabel('Accetta Condizioni');
+        $terms->setValue(1);
+        $terms->addValidator('NotEmpty');
+        $terms->addFilters(array(
+            'StringTrim',
+            'StripTags'
+            ));
 
-    	$submit = new Zend_Form_Element_Submit('submit');
-    	$submit->setLabel('Salva');
-    	$submit->setAttrib('class', 'btn btn-primary');
+        $submit = new Zend_Form_Element_Submit('submit');
+        $submit->setLabel('Salva');
+        $submit->setAttrib('class', 'btn btn-primary');
 
-    	return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $address, $div, $lat, $lon, $terms, $submit));
+        return $this->addElements(array($category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $address, $div, $lat, $lon, $terms, $submit));
     }
 
     public function addMedia()
@@ -241,6 +241,43 @@ class Application_Form_Shop extends Zend_Form
     	$submit->setAttrib('class', 'btn btn-primary');
 
     	return $this->addElements(array($image, $submit));
+    }
+
+    public function Reply_Advertiser()
+    {
+
+        $name = new Zend_Form_Element_Text('name');
+        $name->setLabel('Il tuo nome');
+        $name->setRequired(true);
+        $name->addValidator('NotEmpty');
+        $name->addFilters(array(
+            'StringTrim', 
+            'StripTags'
+            ));
+
+        $mail = new Zend_Form_Element_Text('mail');
+        $mail->setLabel('La tua email');
+        $mail->setRequired(true);
+        $mail->addValidator('NotEmpty');
+        $mail->addValidator('EmailAddress');
+        $mail->addFilters(array(
+            'StringTrim', 
+            'StripTags'
+            ));
+
+        $description = new Zend_Form_Element_Textarea('description');
+        $description->setLabel('Testo');
+        $description->setRequired(true);
+        $description->addValidator('NotEmpty');
+        $description->addFilters(array(
+            'StringTrim',
+            'StripTags'
+            ));
+
+        $submit = new Zend_Form_Element_Submit('submit');
+        $submit->setLabel('Rispondi');
+        
+        return $this->addElements(array($name, $mail, $description, $submit));
     }
 }
 

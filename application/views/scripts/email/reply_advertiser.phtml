@@ -1,0 +1,4 @@
+<p>Questo è un messaggio di risposta al tuo annuncio pubblicato su <?php echo $this->params['site']; ?></p>
+<p><?php echo $this->params['title']; ?></p>
+<p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $this->params['id'])); ?>"><?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $this->params['id'])); ?></a></p>
+<p><?php echo $this->params['description']; ?></p>

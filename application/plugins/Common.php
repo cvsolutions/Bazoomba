@@ -57,6 +57,7 @@
          $data = Plugin_Common::getParams();
          $mail->setFrom($data->admin_email, $data->from_email);
          $mail->addTo($params['email']);
+         $mail->setReplyTo($params['reply']);
          $mail->setSubject($params['subject']);
          return $mail->send();
      }
