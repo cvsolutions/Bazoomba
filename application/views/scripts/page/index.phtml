@@ -1,14 +1,14 @@
 
 <ul>
-    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'edit')); ?>">Modifica Dati</a></li>
-    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'picture')); ?>">Modifica Logo</a></li>
-    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'subscription')); ?>">Abbonamento</a></li>
+	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'edit')); ?>">Modifica Dati</a></li>
+	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'picture')); ?>">Modifica Logo</a></li>
+	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'subscription')); ?>">Abbonamento</a></li>
 
 </ul>
 
 <div class="container">
 
-<h1>La tua Pagina <?php if($this->page['status'] == 0): ?> <span class="red">[Off-line]</span> <?php else: ?> <span class="green">[On-line]</span> <?php endif; ?> </h1>
+	<h1>La tua Pagina <?php if($this->page['status'] == 0): ?> <span class="red">[Off-line]</span> <?php else: ?> <span class="green">[On-line]</span> <?php endif; ?> </h1>
 
 <h4><?php echo $this->identity->name_company ?> - P.Iva <?php echo $this->identity->vat ?> - Phone: <?php echo $this->page['telephone'] ?></h4>
 <p><i>Indrizzo: <?php echo $this->page['address']; ?></i></p>
@@ -20,7 +20,16 @@
 <?php echo stripslashes(nl2br($this->page['description'])) ?>
 </p>
 
-<a class="btn btn-info" href="<?php echo $this->page['site'] ?>"><?php echo $this->page['site'] ?></a>
+	<h4><?php echo $this->identity->name_company ?> - P.Iva <?php echo $this->identity->vat ?> </h4>
+	<p>
+		<img src="<?php echo $this->serverUrl(); ?>/image.php?mode=resize&folder=logo&image=<?php echo $this->page['logo'] ?>&width=200&height=160">
+	</p>
+	<p>
+		<?php echo stripslashes(nl2br($this->page['description'])) ?>
+	</p>
+
+
+	<a class="btn btn-info" href="<?php echo $this->page['site'] ?>"><?php echo $this->page['site'] ?></a>
 
 </div>
 <script type="text/javascript">
