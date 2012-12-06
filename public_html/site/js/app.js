@@ -52,6 +52,21 @@ $(document).ready(function(){
         });
     });
 
+    /** Type Account on New & Edit*/
+    var type = $('#type').val();
+    if(type == 1) { $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').hide(); }
+
+    $('#type').change(function() {
+    var type_click = $(this).val();
+    if(type_click == 1)
+        {
+          $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').hide();
+        } else {
+          $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').show();
+        }
+    });
+
+
     /** Map */
     var geocoder;
     var map;

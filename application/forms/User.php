@@ -206,6 +206,7 @@ class Application_Form_User extends Zend_Form
          $radio->setValue(array('1'));
 
          $iva = new Zend_Form_Element_Text('vat');
+         $iva->setAttrib('class', 'brand');
          $iva->setLabel('Partita Iva')
                  ->setRequired(false)
                  ->addFilter('StripTags')
@@ -213,6 +214,7 @@ class Application_Form_User extends Zend_Form
                  ->addValidator('NotEmpty');
 
          $name_company = new Zend_Form_Element_Text('name_company');
+         $name_company->setAttrib('class', 'brand');
          $name_company->setLabel('Ragione Sociale')
                  ->setRequired(false)
                  ->addFilter('StripTags')
@@ -294,6 +296,7 @@ class Application_Form_User extends Zend_Form
          $radio->setValue(array('1'));
 
          $iva = new Zend_Form_Element_Text('vat');
+         $iva->setAttrib('class', 'brand');
          $iva->setLabel('Partita Iva')
                  ->setRequired(false)
                  ->addFilter('StripTags')
@@ -301,6 +304,7 @@ class Application_Form_User extends Zend_Form
                  ->addValidator('NotEmpty');
 
          $name_company = new Zend_Form_Element_Text('name_company');
+         $name_company->setAttrib('class', 'brand');
          $name_company->setLabel('Ragione Sociale')
                  ->setRequired(false)
                  ->addFilter('StripTags')
