@@ -170,6 +170,8 @@ class Application_Form_User extends Zend_Form
 
          $select = new Application_Model_OptionSelect();
          $this->setAttrib('class', 'custom');
+         $this->setAttrib('id', 'newUser');
+
 
          $type = new Zend_Form_Element_Select('type');
          $type->setLabel('Tipo di account');

@@ -47,9 +47,12 @@ class PageController extends Zend_Controller_Action
                    $site = $this->_getParam('site');
                    $description = $this->_getParam('description');
                    $phone = $this->_getParam('telephone');
+                   $address = $this->_getParam('address');
+                   $lat = $this->_getParam('latitude');
+                   $lon = $this->_getParam('longitude');
 
                    $media = new Application_Model_DbTable_Page();
-                   $media->newPage($identity->id, $logo, $description, $site, $phone);
+                   $media->newPage($identity->id, $logo, $description, $site, $phone, $address, $lat, $lon);
 
                    $this->_redirect('/page');
                } else {
@@ -58,4 +61,72 @@ class PageController extends Zend_Controller_Action
         }
     }
 
+    public function editAction()
+    {
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+
+        $page = new Application_Model_DbTable_Page();
+        if(count($page->getMyPage($identity->id, 'count')) == 0) $this->_redirect('/page/new');
+        $row = $page->getMyPage($identity->id, null);
+
+
+        $form = new Application_Form_Page();
+        $this->view->editForm = $form->editData();
+
+        if($this->getRequest()->getPost())
+        {
+            $form_data = $this->getRequest()->getPost();
+            if($form->isValid($form_data))
+            {
+                $site = $this->_getParam('site');
+                $description = $this->_getParam('description');
+                $phone = $this->_getParam('telephone');
+                $address = $this->_getParam('address');
+                $lat = $this->_getParam('latitude');
+                $lon = $this->_getParam('longitude');
+
+                $page->updatePage($identity->id, $description, $site, $phone, $address, $lat, $lon);
+                $this->_redirect('/page');
+
+            } else {
+                $form->populate($form_data);
+            }
+
+        } else {
+            $form->populate($row);
+        }
+
+    }
+
+    public function pictureAction()
+    {
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+
+        $page = new Application_Model_DbTable_Page();
+        $row = $page->getMyPage($identity->id, null);
+
+        $form = new Application_Form_Page();
+        $picture = $form->editPicture();
+        $picture->image->addFilter('Rename', sprintf('%s.jpg', uniqid()));
+        $this->view->editPicture = $form->editPicture();
+        $this->view->picture = $row['logo'];
+
+        if ($this->getRequest()->getPost()) {
+            $form_data = $this->getRequest()->getPost();
+            if ($form->isValid($form_data)) {
+
+                if($row['logo'] > 0) unlink(sprintf('%s/uploaded/logo/%s', $_SERVER['DOCUMENT_ROOT'], $row['logo']));
+
+                $image = $form->getValue('image');
+
+                $page->updateLogo($identity->id, $image);
+
+                $this->_redirect('/page');
+            } else {
+                $form->populate($form_data);
+            }
+        }
+    }
 }

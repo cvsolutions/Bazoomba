@@ -14,7 +14,7 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
         } else {
         $row = $this->fetchRow(sprintf('user = %d', $id));
         }
-        
+
         if(!$row)
         {
             $params = Plugin_Common::getParams();
@@ -23,7 +23,7 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-    public function newPage($id, $logo, $description, $site, $phone)
+    public function newPage($id, $logo, $description, $site, $phone, $address, $lat, $lon)
     {
         $arrayNewPage = array(
             'user' => $id,
@@ -31,10 +31,35 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
             'description' => $description,
             'telephone' => $phone,
             'site' => $site,
+            'address' => $address,
+            'latitude' => $lat,
+            'longitude' => $lon,
             'status' => 0,
             'registered' => time(),
             'ip_address' => $_SERVER['REMOTE_ADDR'],
         );
         return $this->insert($arrayNewPage);
     }
+
+    public function updatePage($id, $description, $site, $phone, $address, $lat, $lon)
+    {
+        $arrayUpdate = array(
+            'description' => $description,
+            'telephone' => $phone,
+            'site' => $site,
+            'address' => $address,
+            'latitude' => $lat,
+            'longitude' => $lon,
+        );
+        return $this->update($arrayUpdate, sprintf('user = %d', $id));
+    }
+
+    public function updateLogo($id, $image)
+    {
+        $arrayLogo = array(
+            'logo' => $image
+        );
+        return $this->update($arrayLogo, sprintf('user = %d', $id));
+    }
+
 }

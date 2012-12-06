@@ -36,6 +36,9 @@
         </controllerFile>
         <controllerFile controllerName="Page">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="new"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="picture"/>
         </controllerFile>        
         <controllerFile controllerName="Account">
           <actionMethod actionName="index"/>
@@ -185,7 +188,13 @@
           <viewControllerScriptsDirectory forControllerName="City">
             <viewScriptFile forActionName="index"/>
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="index"/>  
+            <viewScriptFile forActionName="index"/> 
+          <viewControllerScriptsDirectory forControllerName="Page">
+            <viewScriptFile forActionName="new"/>   
+          <viewControllerScriptsDirectory forControllerName="Page">
+            <viewScriptFile forActionName="edit"/>  
+          <viewControllerScriptsDirectory forControllerName="Page">
+            <viewScriptFile forActionName="picture"/>                          
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="public"/>
           </viewControllerScriptsDirectory>
