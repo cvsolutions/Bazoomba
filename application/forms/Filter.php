@@ -38,11 +38,17 @@ class Application_Form_Filter extends Zend_Form
 		$type->removeDecorator( 'HtmlTag' );
 		$type->removeDecorator( 'Label' );
 
+		$ads = new Zend_Form_Element_Hidden( 'ads' );
+		$ads->setRequired( true );
+		$ads->setValue( '' );
+		$ads->removeDecorator( 'HtmlTag' );
+		$ads->removeDecorator( 'Label' );
+
 
 		$submit = new Zend_Form_Element_Submit( 'submit' );
 		$submit->setLabel( 'Cerca' );
 
-		return $this->addElements( array( $category, $region, $q, $type, $submit ) );
+		return $this->addElements( array( $category, $region, $q, $type, $ads, $submit ) );
 	}
 
 

@@ -16,11 +16,7 @@ $(document).ready(function() {
                             label: item.label,
                             value: item.value,
                             id: item.id,
-                            type: item.type,
-                            page: item.page,
-                            portal: item.portal,
-                            region: item.region,
-                            location: item.location
+                            type: item.type
                         };
                     }));
                 }
@@ -41,12 +37,8 @@ $(document).ready(function() {
         minLength: 3,
         delay: 3,
         select: function(event, ui) {
-            $('#id').val(ui.item.id);
+            $('#ads').val(ui.item.id);
             $('#type').val(ui.item.type);
-            $('#portal').val(ui.item.portal);
-            $('#region').val(ui.item.region);
-            $('#page').val(ui.item.page);
-            $('#location').val(ui.item.location);
         }
 
     });

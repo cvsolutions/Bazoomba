@@ -130,17 +130,27 @@ class FilterController extends Zend_Controller_Action
         $category = $this->_getParam( 'category', 0 );
         $region = $this->_getParam( 'region', 0 );
         $type = $this->_getParam( 'type', 0 );
+        $ads = $this->_getParam( 'ads', 0 );
 
-        $shop = new Application_Model_DbTable_Shop();
-        $this->view->list = $shop->fullShopFilter( array(
-                'type' => $type,
-                'category' => $category,
-                'region' => $region,
-                'q' => $q
-            ) );
-        $this->view->type_ads = $this->params->type_ads->toArray();
-        $this->view->type_user = $this->params->type_user->toArray();
-        $this->view->notfound = $this->params->label_not_found;
+        switch ($type) {
+
+        case 'autocomplete':
+            $this->_redirect(sprintf('/shop/ads/show/%d', $ads));
+            break;
+
+        case 'global':
+            $shop = new Application_Model_DbTable_Shop();
+            $this->view->list = $shop->fullShopFilter( array(
+                    'type' => $type,
+                    'category' => $category,
+                    'region' => $region,
+                    'q' => $q
+                ) );
+            $this->view->type_ads = $this->params->type_ads->toArray();
+            $this->view->type_user = $this->params->type_user->toArray();
+            $this->view->notfound = $this->params->label_not_found;
+            break;
+        }
     }
 
 

@@ -107,7 +107,18 @@ class AjaxController extends Zend_Controller_Action
      *
      */
     public function autocompleteAction() {
-        $data = array('id' => '123', 'name' => 'test');
+        $Shop = new Application_Model_DbTable_Shop();
+        $ads = $Shop->fetchAll('status = 1');
+        $data = array();
+        foreach ($ads as $row) {
+            $result = array(
+                'id' => $row['id'],
+                'label' => $row['title'],
+                'type' => 'autocomplete',
+            );
+            array_push($data, $result);
+        }
+
         echo Zend_Json::encode($data);
         $this->_helper->viewRenderer->setNoRender(true);
     }
