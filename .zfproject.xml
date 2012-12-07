@@ -39,6 +39,7 @@
           <actionMethod actionName="new"/>
           <actionMethod actionName="edit"/>
           <actionMethod actionName="picture"/>
+          <actionMethod actionName="gallery"/>
         </controllerFile>        
         <controllerFile controllerName="Account">
           <actionMethod actionName="index"/>
@@ -198,7 +199,9 @@
           <viewControllerScriptsDirectory forControllerName="Page">
             <viewScriptFile forActionName="edit"/>  
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="picture"/>                          
+            <viewScriptFile forActionName="picture"/>  
+          <viewControllerScriptsDirectory forControllerName="Page">
+            <viewScriptFile forActionName="gallery"/>                            
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="public"/>
           </viewControllerScriptsDirectory>

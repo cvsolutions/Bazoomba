@@ -160,4 +160,20 @@ class Application_Form_Page extends Zend_Form
 
         return $this->addElements( array( $image, $submit ) );
     }
+
+    public function gallery()
+    {
+        $image = new Zend_Form_Element_File( 'image' );
+        $image->setLabel( 'Aggiungi Immagine Alla Gallery' );
+        $image->setDestination( sprintf( '%s/uploaded/gallery', $_SERVER['DOCUMENT_ROOT'] ) );
+        $image->setRequired( true );
+        $image->addValidator( 'Extension', false, 'jpg,png,gif,jpeg' );
+
+        $submit = new Zend_Form_Element_Submit( 'submit' );
+        $submit->setLabel( 'Aggiungi Immagine' );
+        $submit->setAttrib( 'class', 'btn btn-primary' );
+
+        return $this->addElements( array( $image, $submit ) );
+
+    }
 }

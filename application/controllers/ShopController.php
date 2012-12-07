@@ -179,7 +179,7 @@ class ShopController extends Zend_Controller_Action
                     $id = $this->_getParam( 'id' );
 
                     $media = new Application_Model_DbTable_Gallery();
-                    $media->addMedia( $id, $image );
+                    $media->addMedia( $id, $image, 0);
 
                     $shop->updateStep( $id_ads, 2 );
 

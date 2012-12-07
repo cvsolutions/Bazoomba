@@ -14,7 +14,7 @@ class AjaxController extends Zend_Controller_Action
      */
     public function preDispatch() {
         $this->_helper->layout()->disableLayout();
-        $this->_helper->viewRenderer->setNoRender( true );
+        $this->_helper->viewRenderer->setNoRender(true);
     }
 
 
@@ -58,7 +58,7 @@ class AjaxController extends Zend_Controller_Action
                 $shop = new Application_Model_DbTable_Shop();
                 $shop->newShop( $id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude );
 
-                echo json_encode( array( 'id' => $id ) );
+                echo Zend_Json::encode(array('id' => $id));
             }
         }
     }

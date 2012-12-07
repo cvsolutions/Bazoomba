@@ -85,16 +85,27 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
      *
      * @return mixed Value.
      */
-	public function addMedia($id, $image)
+	public function addMedia($id, $image, $page)
 	{
 		$arrayMedia = array(
                           'shop' => $id,
                           'image' => $image,
                           'status' => 1,
+                          'page' => $page,
                 );
                 return $this->insert($arrayMedia);
 	}
 
+        public function galleryPage($id)
+        {
+                $row = $this->fetchAll(sprintf('shop = %d AND page = 1', $id));
+		if(!$row)
+		{
+			$params = Plugin_Common::getParams();
+			throw new Exception($params->label_no_id, 1);
+		}
+		return $row->toArray();
+        }
 
 }
 

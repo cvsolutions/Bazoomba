@@ -22,7 +22,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
      * @return mixed Value.
      */
     public function __construct() {
-        
+
         /** define Roles */
         $this->addRole( new Zend_Acl_Role( 'guest' ) ); // not authenicated
         $this->addRole( new Zend_Acl_Role( 'user' ), 'guest' ); // authenticated as member inherit guest privilages
@@ -56,7 +56,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow( 'user', 'account', array( 'index', 'edit', 'editpassword', 'avatar', 'logout' ) );
         $this->allow( 'user', 'shop', array( 'index', 'new', 'modification', 'media', 'public', 'my' ) );
         $this->allow( 'user', 'ajax', array( 'index', 'newshop', 'province', 'city', 'subcategory' ) );
-        $this->allow( 'user', 'page', array( 'index', 'new', 'edit', 'picture' ) );
+        $this->allow( 'user', 'page', array( 'index', 'new', 'edit', 'picture','gallery') );
 
         $this->allow( 'admin', 'setting' );
         $this->allow( 'admin', 'dashboard' );
