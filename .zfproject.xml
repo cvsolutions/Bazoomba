@@ -95,6 +95,7 @@
           <actionMethod actionName="province"/>
           <actionMethod actionName="city"/>
           <actionMethod actionName="subcategory"/>
+          <actionMethod actionName="autocomplete"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
@@ -169,6 +170,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Ajax">
             <viewScriptFile forActionName="subcategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="autocomplete"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Filter">
             <viewScriptFile forActionName="province"/>

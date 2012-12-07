@@ -1,16 +1,16 @@
 <?php
 
 /**
-* AccountController
-*
-* @uses     Zend_Controller_Action
-*
-* @category Account
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license
-* @link
-*/
+ * AccountController
+ *
+ * @uses     Zend_Controller_Action
+ *
+ * @category Account
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class AccountController extends Zend_Controller_Action
 {
     /**
@@ -29,8 +29,7 @@ class AccountController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function init()
-    {
+    public function init() {
         /* Initialize action controller here */
     }
 
@@ -41,8 +40,7 @@ class AccountController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -55,61 +53,58 @@ class AccountController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function editAction()
-    {
+    public function editAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
 
         $user = new Application_Model_DbTable_User();
-        $row = $user->getAdminInfo($identity->id);
+        $row = $user->getAdminInfo( $identity->id );
 
         $form = new Application_Form_User();
         $edit = $form->editUser();
-        $edit->email->addValidator(new Zend_Validate_Db_NoRecordExists(
-            'ads_user',
-            'email',
-            array(
-                'field' => 'id',
-                'value' => $identity->id
-                )));
+        $edit->email->addValidator( new Zend_Validate_Db_NoRecordExists(
+                'ads_user',
+                'email',
+                array(
+                    'field' => 'id',
+                    'value' => $identity->id
+                ) ) );
 
         $this->view->editForm = $edit;
 
 
-        if($this->getRequest()->getPost())
-        {
+        if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
-            if($form->isValid($form_data))
-            {
-                $type = $form->getValue('type');
-                $name = $form->getValue('name');
-                $email = $form->getValue('email');
-                $phone = $form->getValue('telephone');
-                $phone_show = $form->getValue('phone_show');
-                $iva = $form->getValue('vat');
-                $name_company = $form->getValue('name_company');
+            if ( $form->isValid( $form_data ) ) {
+                $type = $form->getValue( 'type' );
+                $name = $form->getValue( 'name' );
+                $email = $form->getValue( 'email' );
+                $phone = $form->getValue( 'telephone' );
+                $phone_show = $form->getValue( 'phone_show' );
+                $iva = $form->getValue( 'vat' );
+                $name_company = $form->getValue( 'name_company' );
 
-                $user->updateEditUser($identity->id, $type, $name, $email, $phone, $phone_show, $iva, $name_company);
+                $user->updateEditUser( $identity->id, $type, $name, $email, $phone, $phone_show, $iva, $name_company );
 
-                Plugin_Common::getMail(array(
-                    'email' => $email,
-                    'subject' => 'Modifica Dati',
-                    'template' => 'edituser.phtml',
-                    'params' => array(
-                        'name' => $name
+                Plugin_Common::getMail( array(
+                        'email' => $email,
+                        'subject' => 'Modifica Dati',
+                        'template' => 'edituser.phtml',
+                        'params' => array(
+                            'name' => $name
                         )
-                    ));
+                    ) );
 
                 $this->view->successForm = 'Modifica Effettuata Con Successo.';
-                $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/account');
+                $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/account' );
 
             } else {
-                $form->populate($form_data);
+                $form->populate( $form_data );
             }
 
         } else {
-            $form->populate($row);
+            $form->populate( $row );
         }
     }
 
@@ -120,8 +115,7 @@ class AccountController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function editpasswordAction()
-    {
+    public function editpasswordAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -129,63 +123,59 @@ class AccountController extends Zend_Controller_Action
         $form = new Application_Form_User();
         $this->view->editPassword = $form->editPassword();
 
-        if($this->getRequest()->getPost())
-        {
+        if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
-            if($form->isValid($form_data))
-            {
-                $pwd = $form->getValue('confirm');
+            if ( $form->isValid( $form_data ) ) {
+                $pwd = $form->getValue( 'confirm' );
                 $user = new Application_Model_DbTable_User();
-                $user->updatePasswordUser($identity->id, $pwd);
+                $user->updatePasswordUser( $identity->id, $pwd );
 
-                Plugin_Common::getMail(array(
-                    'email' => $identity->email,
-                    'subject' => 'Modifica Dati',
-                    'template' => 'editpassword.phtml',
-                    'params' => array(
-                        'name' => $identity->name,
-                        'pwd' => $pwd,
-                        'email' => $identity->email
+                Plugin_Common::getMail( array(
+                        'email' => $identity->email,
+                        'subject' => 'Modifica Dati',
+                        'template' => 'editpassword.phtml',
+                        'params' => array(
+                            'name' => $identity->name,
+                            'pwd' => $pwd,
+                            'email' => $identity->email
                         )
-                    ));
+                    ) );
 
                 $this->view->successForm = 'Modifica Password Effettuata Con Successo.';
-                $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/account');
+                $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/account' );
 
             }
         }
 
     }
 
-    public function avatarAction()
-    {
+    public function avatarAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
 
         $user = new Application_Model_DbTable_User();
-        $info = $user->getAdminInfo($identity->id);
+        $info = $user->getAdminInfo( $identity->id );
         $this->view->identity = $info;
 
         $form = new Application_Form_User();
         $avatar = $form->addAvatar();
-        $avatar->image->addFilter('Rename', sprintf('%s.jpg', uniqid()));
+        $avatar->image->addFilter( 'Rename', sprintf( '%s.jpg', uniqid() ) );
         $this->view->addAvatar = $avatar;
 
-        if ($this->getRequest()->getPost()) {
+        if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
-            if ($form->isValid($form_data)) {
+            if ( $form->isValid( $form_data ) ) {
 
-                if($info['avatar'] > 0) unlink(sprintf('%s/uploaded/avatar/%s', $_SERVER['DOCUMENT_ROOT'], $info['avatar']));
+                if ( $info['avatar'] > 0 ) unlink( sprintf( '%s/uploaded/avatar/%s', $_SERVER['DOCUMENT_ROOT'], $info['avatar'] ) );
 
-                $image = $form->getValue('image');
+                $image = $form->getValue( 'image' );
 
-                $user->updateAvatar($identity->id, $image);
+                $user->updateAvatar( $identity->id, $image );
 
-                $this->_redirect('/account/avatar');
+                $this->_redirect( '/account/avatar' );
             } else {
-                $form->populate($form_data);
+                $form->populate( $form_data );
             }
         }
     }
 }
-

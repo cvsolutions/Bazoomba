@@ -1,16 +1,16 @@
 <?php
 
 /**
-* IndexController
-*
-* @uses     Zend_Controller_Action
-*
-* @category Index
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license  
-* @link     
-*/
+ * IndexController
+ *
+ * @uses     Zend_Controller_Action
+ *
+ * @category Index
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class IndexController extends Zend_Controller_Action
 {
 
@@ -25,25 +25,23 @@ class IndexController extends Zend_Controller_Action
 
     /**
      * init
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
      */
-    public function init()
-    {
+    public function init() {
         $this->params = Plugin_Common::getParams();
     }
 
     /**
      * indexAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $last_Ads = new Application_Model_DbTable_Shop();
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();

@@ -1,63 +1,61 @@
 <?php
 
 /**
-* Application_Form_Setting
-*
-* @uses     Zend_Form
-*
-* @category Form
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license  
-* @link     
-*/
+ * Application_Form_Setting
+ *
+ * @uses     Zend_Form
+ *
+ * @category Form
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class Application_Form_Setting extends Zend_Form
 {
 
-    /**
-     * init
-     * 
-     * @access public
-     *
-     * @return mixed Value.
-     */
-	public function init()
-	{
-		$title = new Zend_Form_Element_Text('title');
-		$title->setLabel('Tag title');
-		$title->setRequired(true);
-		$title->addValidator('NotEmpty');
+	/**
+	 * init
+	 *
+	 * @access public
+	 *
+	 * @return mixed Value.
+	 */
+	public function init() {
+		$title = new Zend_Form_Element_Text( 'title' );
+		$title->setLabel( 'Tag title' );
+		$title->setRequired( true );
+		$title->addValidator( 'NotEmpty' );
 		// $title->addValidator('date', 'mm-dd-YYYY');
-		$title->addFilters(array(
-			'StringTrim', 
-			'StripTags'
-			));
+		$title->addFilters( array(
+				'StringTrim',
+				'StripTags'
+			) );
 
-		$description = new Zend_Form_Element_Textarea('description');
-		$description->setLabel('Meta tag description');
-		$description->setRequired(true);
-		$description->addValidator('NotEmpty');
-		$description->addFilters(array(
-			'StringTrim', 
-			'StripTags'
-			));
+		$description = new Zend_Form_Element_Textarea( 'description' );
+		$description->setLabel( 'Meta tag description' );
+		$description->setRequired( true );
+		$description->addValidator( 'NotEmpty' );
+		$description->addFilters( array(
+				'StringTrim',
+				'StripTags'
+			) );
 
-		$keywords = new Zend_Form_Element_Textarea('keywords');
-		$keywords->setLabel('Meta tag keywords');
-		$keywords->setRequired(true);
-		$keywords->addValidator('NotEmpty');
-		$keywords->addFilters(array(
-			'StringTrim', 
-			'StripTags'
-			));
+		$keywords = new Zend_Form_Element_Textarea( 'keywords' );
+		$keywords->setLabel( 'Meta tag keywords' );
+		$keywords->setRequired( true );
+		$keywords->addValidator( 'NotEmpty' );
+		$keywords->addFilters( array(
+				'StringTrim',
+				'StripTags'
+			) );
 
-		$submit = new Zend_Form_Element_Submit('send');
-		$submit->setLabel('Salva');
-		$submit->setAttrib('class', 'button');
+		$submit = new Zend_Form_Element_Submit( 'send' );
+		$submit->setLabel( 'Salva' );
+		$submit->setAttrib( 'class', 'button' );
 
-		$this->addElements(array($title, $description, $keywords, $submit));
+		$this->addElements( array( $title, $description, $keywords, $submit ) );
 	}
 
 
 }
-
