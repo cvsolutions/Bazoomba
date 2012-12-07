@@ -40,6 +40,7 @@
           <actionMethod actionName="edit"/>
           <actionMethod actionName="picture"/>
           <actionMethod actionName="gallery"/>
+          <actionMethod actionName="deletegallery"/>
         </controllerFile>        
         <controllerFile controllerName="Account">
           <actionMethod actionName="index"/>
@@ -201,7 +202,9 @@
           <viewControllerScriptsDirectory forControllerName="Page">
             <viewScriptFile forActionName="picture"/>  
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="gallery"/>                            
+            <viewScriptFile forActionName="gallery"/>  
+          <viewControllerScriptsDirectory forControllerName="Page">
+            <viewScriptFile forActionName="deletegallery"/>                              
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="public"/>
           </viewControllerScriptsDirectory>

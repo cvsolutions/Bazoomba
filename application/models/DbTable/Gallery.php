@@ -76,6 +76,13 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
 		return $this->delete('id = ' . $id);
 	}
 
+        public function deleteGalleryPage($id, $user)
+	{
+		$row = $this->getImageInfo($id);
+		if($row['image'] > 0) unlink(sprintf('%s/uploaded/gallery/%s', $_SERVER['DOCUMENT_ROOT'], $row['image']));
+		return $this->delete(sprintf('id =  %d AND shop = %d AND page = 1', $id, $user));
+	}
+
      /**
      * addMedia
      *

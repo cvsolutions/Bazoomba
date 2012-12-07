@@ -96,6 +96,9 @@
          $auth = Zend_Auth::getInstance();
          $identity = $auth->getStorage()->read();
 
+         if ($identity->type == 1)
+             $this->_redirect('/account');
+
          $page = new Application_Model_DbTable_Page();
          $row = $page->getMyPage($identity->id, null);
 
@@ -156,5 +159,22 @@
          }
      }
 
+     public function deletegalleryAction()
+     {
+         $auth = Zend_Auth::getInstance();
+         $identity = $auth->getStorage()->read();
+         $this->view->identity = $identity;
+
+         $page = new Application_Model_DbTable_Page();
+         if (count($page->getMyPage($identity->id, 'count')) == 0)$this->_redirect('/page/new');
+         $infoPage = $page->getMyPage($identity->id, null);
+
+         $item = $this->_getParam('item', 0);
+
+         $gallery = new Application_Model_DbTable_Gallery();
+         $gallery->deleteGalleryPage($item, $infoPage['id']);
+
+         $this->_redirect('/page/gallery');
+     }
  }
 
