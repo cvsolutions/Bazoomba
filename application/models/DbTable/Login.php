@@ -74,7 +74,8 @@ class Application_Model_DbTable_Login extends Zend_Db_Table_Abstract
 			'pwd' => sha1($pwd),
 			'role' => 'admin',
 			'notify' => 1,
-			'status' => $status
+            'status' => $status,
+            'ip_address' => $_SERVER['REMOTE_ADDR']
 			);
 		return $this->insert($arrayName);
 	}
@@ -99,7 +100,8 @@ class Application_Model_DbTable_Login extends Zend_Db_Table_Abstract
 			'name' => $name,
 			'usermail' => $usermail,
 			'pwd' => empty($pwd) ? $user['pwd'] : sha1($pwd),
-			'status' => $status
+			'status' => $status,
+            'ip_address' => $_SERVER['REMOTE_ADDR']
 			);
 		return $this->update($arrayName, sprintf('id = %d', $id));
 	}

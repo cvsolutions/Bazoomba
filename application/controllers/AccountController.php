@@ -43,7 +43,10 @@ class AccountController extends Zend_Controller_Action
     public function indexAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
+
+        $Access = new Zend_Session_Namespace('LastLogin');
         $this->view->identity = $identity;
+        $this->view->last_login = $Access->yourLoginTime;
     }
 
     /**

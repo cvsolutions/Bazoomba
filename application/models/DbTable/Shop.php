@@ -250,7 +250,9 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'title' => $title,
             'price' => $price,
             'description' => $description,
-            'status' => $status
+            'status' => $status,
+            'modified' => time(),
+            'ip_address' => $_SERVER['REMOTE_ADDR']
             );
         return $this->update($arrayName, sprintf('id = %d', $id));
     }
@@ -259,7 +261,9 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     public function updateStep($id, $status)
     {
         $arrayName = array(
-            'step' => $status
+            'step' => $status,
+            'modified' => time(),
+            'ip_address' => $_SERVER['REMOTE_ADDR']
             );
         return $this->update($arrayName, sprintf('id = %d', $id));
     }
