@@ -1,5 +1,58 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
+    // AUTOCOMPLETE
+    var termTemplate = '<strong>%s</strong>';
+    $("#q").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "http://bazoomba/ajax/autocomplete",
+                dataType: "json",
+                data: {
+                    term: request.term,
+                    lang: '{$LANG}'
+                },
+                success: function(data) {
+                    response($.map(data, function(item) {
+                        return {
+                            label: item.label,
+                            value: item.value,
+                            id: item.id,
+                            type: item.type,
+                            page: item.page,
+                            portal: item.portal,
+                            region: item.region,
+                            location: item.location
+                        };
+                    }));
+                }
+            });
+        },
+        open: function(e, ui) {
+            $(this).data("autocomplete").menu.element.width(350);
+            var acData = $(this).data('autocomplete');
+            acData.menu.element.find('a').each(function() {
+                var me = $(this);
+                var regex = new RegExp(acData.term, "gi");
+                me.html(me.text().replace(regex, function(matched) {
+                    return termTemplate.replace('%s', matched);
+                }));
+            });
+        },
+        dataType: "json",
+        minLength: 3,
+        delay: 3,
+        select: function(event, ui) {
+            $('#id').val(ui.item.id);
+            $('#type').val(ui.item.type);
+            $('#portal').val(ui.item.portal);
+            $('#region').val(ui.item.region);
+            $('#page').val(ui.item.page);
+            $('#location').val(ui.item.location);
+        }
+
+    });
+
+    //
     var scegli = '<option value="0">Scegli...</option>';
     var attendere = '<option value="0">Attendere...</option>';
 
@@ -11,42 +64,42 @@ $(document).ready(function(){
     $("select#sub_category").attr("disabled", "disabled");
 
     /**Provincie */
-    $("select#region").change(function(){
+    $("select#region").change(function() {
         var regione = $("select#region option:selected").attr('value');
         $("select#province").html(attendere);
         $("select#province").attr("disabled", "disabled");
 
         $.post("http://bazoomba/ajax/province", {
-            id_reg:regione
-        }, function(data){
+            id_reg: regione
+        }, function(data) {
             $("select#province").removeAttr("disabled");
             $("select#province").html(data);
         });
     });
 
     /**Città */
-    $("select#province").change(function(){
+    $("select#province").change(function() {
         var provincia = $("select#province option:selected").attr('value');
         $("select#city").html(attendere);
         $("select#city").attr("disabled", "disabled");
 
         $.post("http://bazoomba/ajax/city", {
-            id_pro:provincia
-        }, function(data){
+            id_pro: provincia
+        }, function(data) {
             $("select#city").removeAttr("disabled");
             $("select#city").html(data);
         });
     });
 
     /** Categorie */
-    $("select#category").change(function(){
+    $("select#category").change(function() {
         var category = $("select#category option:selected").attr('value');
         $("select#sub_category").html(attendere);
         $("select#sub_category").attr("disabled", "disabled");
 
         $.post("http://bazoomba/ajax/subcategory", {
-            id_cat:category
-        }, function(data){
+            id_cat: category
+        }, function(data) {
             $("select#sub_category").removeAttr("disabled");
             $("select#sub_category").html(data);
         });
@@ -54,15 +107,16 @@ $(document).ready(function(){
 
     /** Type Account on New & Edit*/
     var type = $('#type').val();
-    if(type == 1) { $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').hide(); }
+    if(type == 1) {
+        $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').hide();
+    }
 
     $('#type').change(function() {
-    var type_click = $(this).val();
-    if(type_click == 1)
-        {
-          $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').hide();
+        var type_click = $(this).val();
+        if(type_click == 1) {
+            $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').hide();
         } else {
-          $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').show();
+            $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').show();
         }
     });
 
@@ -75,12 +129,12 @@ $(document).ready(function(){
     var vikey = [{
         stylers: [{
             gamma: 0.52
-        },{
+        }, {
             saturation: 11
-        } ]
+        }]
     }];
 
-    function initialize(){
+    function initialize() {
         //MAP
         var latlng = new google.maps.LatLng(41.9015141, 12.4607737);
         var options = {
@@ -104,7 +158,7 @@ $(document).ready(function(){
             position: latlng
         });
 
-        infowindow.open(map,marker);
+        infowindow.open(map, marker);
 
     }
 
@@ -115,12 +169,12 @@ $(document).ready(function(){
         $("#address").autocomplete({
             //This bit uses the geocoder to fetch address values
             source: function(request, response) {
-                geocoder.geocode( {
+                geocoder.geocode({
                     'address': request.term
                 }, function(results, status) {
                     response($.map(results, function(item) {
                         return {
-                            label:  item.formatted_address,
+                            label: item.formatted_address,
                             value: item.formatted_address,
                             latitude: item.geometry.location.lat(),
                             longitude: item.geometry.location.lng()
@@ -145,8 +199,8 @@ $(document).ready(function(){
         geocoder.geocode({
             'latLng': marker.getPosition()
         }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[0]) {
+            if(status == google.maps.GeocoderStatus.OK) {
+                if(results[0]) {
                     $('#address').val(results[0].formatted_address);
                     $('#latitude').val(marker.getPosition().lat());
                     $('#longitude').val(marker.getPosition().lng());
@@ -163,10 +217,9 @@ $(document).ready(function(){
 });
 
 
-$(function() {
-    /** Jquery Validation Form Add Ads */
+$(function() { /** Jquery Validation Form Add Ads */
     $("#newShop").validate({
-        rules:{
+        rules: {
             'category': {
                 required: true,
                 min: 1
@@ -187,7 +240,7 @@ $(function() {
                 required: true,
                 min: 1
             },
-            'price':{
+            'price': {
                 required: true,
                 digits: true
             },
@@ -208,28 +261,28 @@ $(function() {
                 min: 1
             }
         },
-        messages:{
-            'category':{
+        messages: {
+            'category': {
                 required: "Il campo categoria è obbligatorio",
                 min: "Il campo categoria è obbligatorio"
             },
-            'sub_category':{
+            'sub_category': {
                 required: "Il campo categoria è obbligatorio",
                 min: "Il campo sotto categoria è obbligatorio"
             },
-            'region':{
+            'region': {
                 required: "Il campo regione è obbligatorio",
                 min: "Il campo regione è obbligatorio"
             },
-            'province':{
+            'province': {
                 required: "Il campo provincia è obbligatorio",
                 min: "Il campo provincia è obbligatorio"
             },
-            'city':{
+            'city': {
                 required: "Il campo città è obbligatorio",
                 min: "Il campo città è obbligatorio"
             },
-            'price':{
+            'price': {
                 required: "Il campo prezzo è obbligatorio",
                 digits: "Inserisci solo numeri"
             },
@@ -242,7 +295,7 @@ $(function() {
                 required: "Il campo descrizione obbligatorio",
                 minlength: "Il campo descrizione deve essere composto da almeno 20 caratteri"
             },
-            'address':{
+            'address': {
                 required: "Il campo indirizzo è obbligatorio!"
             },
             'terms': {
@@ -275,7 +328,7 @@ $(function() {
                     $('img#loading').show();
                 },
                 success: function(data) {
-                    document.location.href="http://bazoomba/shop/media/id/"+data.id;
+                    document.location.href = "http://bazoomba/shop/media/id/" + data.id;
                 },
                 error: function() {
                     alert("Errore, se il problema persiste contatta l'assistenza");
@@ -283,8 +336,7 @@ $(function() {
                 }
             }); //Ajax
         } //submihandler
-    });
-/** End Form_Add_Ads */
+    }); /** End Form_Add_Ads */
 
 
 });
