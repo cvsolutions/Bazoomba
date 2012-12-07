@@ -102,8 +102,14 @@ class AjaxController extends Zend_Controller_Action
         echo $subcategory;
     }
 
+
+    /**
+     *
+     */
     public function autocompleteAction() {
-        
+        $data = array('id' => '123', 'name' => 'test');
+        echo Zend_Json::encode($data);
+        $this->_helper->viewRenderer->setNoRender(true);
     }
 
 

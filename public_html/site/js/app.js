@@ -8,8 +8,7 @@ $(document).ready(function() {
                 url: "http://bazoomba/ajax/autocomplete",
                 dataType: "json",
                 data: {
-                    term: request.term,
-                    lang: '{$LANG}'
+                    term: request.term
                 },
                 success: function(data) {
                     response($.map(data, function(item) {
