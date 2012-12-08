@@ -1,5 +1,5 @@
 <!-- list ads -->
-<h1>Circa <?php echo count($this->list); ?> risultati</h1>
+<h1>Circa <?php echo $this->total_list; ?> risultati</h1>
 <?php if ($this->list): ?>
 	<?php foreach ($this->list as $row): ?>
 	<ul>
@@ -12,6 +12,7 @@
 	</ul>
 	<hr>
 	<?php endforeach ?>
+	<?php echo $this->paginationControl($this->list, 'Sliding', 'filter/pagination.phtml'); ?>
 <?php else: ?>
 	<p><?php echo $this->notfound; ?></p>
 <?php endif ?>

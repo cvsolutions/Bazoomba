@@ -126,6 +126,7 @@ class FilterController extends Zend_Controller_Action
      *
      */
     public function searchAction() {
+
         $q = $this->_getParam( 'q', 0 );
         $category = $this->_getParam( 'category', 0 );
         $region = $this->_getParam( 'region', 0 );
@@ -139,16 +140,26 @@ class FilterController extends Zend_Controller_Action
             break;
 
         case 'global':
-            $shop = new Application_Model_DbTable_Shop();
-            $this->view->list = $shop->fullShopFilter( array(
-                    'type' => $type,
-                    'category' => $category,
-                    'region' => $region,
-                    'q' => $q
-                ) );
-            $this->view->type_ads = $this->params->type_ads->toArray();
-            $this->view->type_user = $this->params->type_user->toArray();
-            $this->view->notfound = $this->params->label_not_found;
+            if ($this->getRequest()->getParams()) {
+                $shop = new Application_Model_DbTable_Shop();
+                $result = $shop->fullShopFilter( array(
+                        'type' => $type,
+                        'category' => $category,
+                        'region' => $region,
+                        'q' => $q
+                    ) );
+
+                $page = $this->_getParam('page', 1);
+                $paginator = Zend_Paginator::factory($result);
+                $paginator->setItemCountPerPage(2);
+                $paginator->setCurrentPageNumber($page);
+
+                $this->view->list = $paginator;
+                $this->view->total_list = $paginator->getTotalItemCount();
+                $this->view->type_ads = $this->params->type_ads->toArray();
+                $this->view->type_user = $this->params->type_user->toArray();
+                $this->view->notfound = $this->params->label_not_found;
+            }
             break;
         }
     }

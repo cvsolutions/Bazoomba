@@ -1,4 +1,5 @@
 body {background-color: #efefef;}
 #map_canvas {width: 400px; height: 300px; }
 .red {color: red;}
+.errors {color: red;}
 .green {color: green;}

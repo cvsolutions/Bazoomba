@@ -133,7 +133,7 @@ class UserController extends Zend_Controller_Action
     public function listAction()
     {
         $list_user = new Application_Model_DbTable_User();
-        $this->view->user = $list_user->fetchAll();
+        $this->view->user = $list_user->fetchAll(null, array('registered DESC'));
         $this->view->notfound = $this->params->label_not_found;
         $this->view->type_user = $this->params->type_user->toArray();
     }

@@ -33,7 +33,7 @@
 						  <ul>
 						    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'list', 'shop' => $row['id'])); ?>">Photo Gallery</a></li>
 						    <li class="divider"></li>
-						    <li><a href="#">Anteprima...</a></li>
+						    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id'])); ?>" target="_blank">Anteprima...</a></li>
 						  </ul>
 						</div>
 					</td>

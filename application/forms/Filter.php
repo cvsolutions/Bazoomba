@@ -24,7 +24,8 @@ class Application_Form_Filter extends Zend_Form
 		$region->addMultiOptions( $select->appendRegion() );
 
 		$q = new Zend_Form_Element_Text( 'q' );
-		$q->setLabel( 'Ricerca Annunci' );
+		$q->setLabel( 'Cosa cerchi?' );
+		$q->setAttrib ( 'placeholder', 'es. Iphone 4, Mercedes, Divano' );
 		$q->setRequired( true );
 		$q->addValidator( 'NotEmpty' );
 		$q->addFilters( array(
