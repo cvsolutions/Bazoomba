@@ -145,7 +145,11 @@ $(function() { /** Jquery Validation Form Add Ads */
             },
             'email':{
                 required: true,
-                email: true
+                email: true,
+                remote:{
+				url: "http://bazoomba/ajax/controlemail",
+				type: "post"
+				}
             },
             'captcha-input': {
                 required: true
@@ -175,7 +179,8 @@ $(function() { /** Jquery Validation Form Add Ads */
             },
             'email': {
                 required: "Il campo email è obbligatorio",
-                email: "Inserisci un email valida"
+                email: "Inserisci un email valida",
+                remote: "Questa email risulta già registrata. Recupera la tua password."
             },
             'captcha-input': {
                 required: "Il campo captcha è obbligatorio"

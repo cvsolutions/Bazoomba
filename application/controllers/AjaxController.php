@@ -103,6 +103,17 @@ class AjaxController extends Zend_Controller_Action
         }
     }
 
+    public function controlemailAction()
+    {
+        $email = $this->_request->getPost('email');
+        $user = new Application_Model_DbTable_User();
+        if($user->controlemail($email) > 0) {
+            echo 'false';
+        } else {
+            echo 'true';
+        }
+    }
+
 
     /**
      *

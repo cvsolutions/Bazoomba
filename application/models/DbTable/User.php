@@ -300,6 +300,12 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
         return $this->update($arrayName, sprintf('id = %d', $id));
     }
 
-
+    public function controlemail($email)
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from('ads_user', 'COUNT(email)');
+        $query->where(sprintf("email = '%s' ", $email));
+        return $this->getDefaultAdapter()->fetchOne( $query );
+    }
 
 }

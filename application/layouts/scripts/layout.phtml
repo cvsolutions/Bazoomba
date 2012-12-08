@@ -27,7 +27,14 @@ $this->headMeta()->appendName('description', '');
     <ul>
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">Home</a></li>
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>">Ricerca</a></li>
+      <?php if($this->identity): ?>
+      <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'index'), null, true); ?>"><?php echo $this->identity->name; ?></a></li>
+      	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">Logout</a></li>
+
+          <?php else: ?>
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>">Accedi</a></li>
+      <?php endif; ?>
+
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'new'), null, true); ?>">Registrati</a></li>
   </ul>
 

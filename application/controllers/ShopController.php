@@ -230,6 +230,7 @@ class ShopController extends Zend_Controller_Action
             $email_admin = Plugin_Common::getParams();
             Plugin_Common::getMail( array(
                     'email' => $email_admin->admin_email,
+                    'reply' => $this->params->noreplay,
                     'subject' => '[DA CONFERMARE] Nuova Annuncio su Bazoomba.it',
                     'template' => 'shop_confirm_admin.phtml',
                     'params' => array(
@@ -238,7 +239,8 @@ class ShopController extends Zend_Controller_Action
                     )
                 ) );
 
-            $shop->updateStep( $id_ads, 3 );
+            $shop->updateStep($id_ads, 3);
+            $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/' );
         }
     }
 
@@ -259,12 +261,11 @@ class ShopController extends Zend_Controller_Action
 
         $category = new Application_Model_DbTable_Category();
         $this->view->category = $category->Parent_With_Category( 0 );
-        
+
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->status = $this->params->status->toArray();
     }
-
-
+    
 }
 
 

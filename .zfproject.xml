@@ -100,6 +100,7 @@
           <actionMethod actionName="city"/>
           <actionMethod actionName="subcategory"/>
           <actionMethod actionName="autocomplete"/>
+          <actionMethod actionName="controlemail"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
@@ -177,6 +178,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Ajax">
             <viewScriptFile forActionName="subcategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="controlemail"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Ajax">
             <viewScriptFile forActionName="autocomplete"/>

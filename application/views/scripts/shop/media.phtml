@@ -8,4 +8,6 @@
     <?php endforeach ?>
 <?php endif; ?>
 <br /><br />
+<?php if(count($this->gallery) > 0): ?>
 <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'public', 'id' => $this->id_ads)); ?>" class="btn btn-primary">Pubblica il tuo annuncio ora</a>
+<?php endif; ?>
