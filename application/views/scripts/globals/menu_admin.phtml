@@ -26,7 +26,7 @@
 				<a class="active" href="javascript:void(0)">Parametri di Funzionamento</a>
 				<ul class="dropdown">
 					<li><label>Sito Web</label></li>
-					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'setting', 'action' => 'edit')); ?>">Configurazione</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'setting', 'action' => 'edit'), null, true); ?>">Configurazione</a></li>
 					<li class="divider"></li>
 					<li><label>Control Panel</label></li>
 					<li><a href="http://cpanel.bazoomba.it" target="_blank">cPanel Login</a></li>
@@ -42,8 +42,8 @@
 			<li class="has-dropdown">
 				<a class="active" href="javascript:void(0)">Operatori</a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'add')); ?>">Aggiungi Nuovo</a></li>
-					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'list')); ?>">Modifica / Cancella</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'add'), null, true); ?>">Aggiungi Nuovo</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'list'), null, true); ?>">Modifica / Cancella</a></li>
 				</ul>
 			</li>
 
@@ -52,8 +52,8 @@
 			<li class="has-dropdown">
 				<a class="active" href="javascript:void(0)">Categorie</a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'category', 'action' => 'add')); ?>">Aggiungi Nuovo</a></li>
-					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'category', 'action' => 'list')); ?>">Modifica / Cancella</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'category', 'action' => 'add'), null, true); ?>">Aggiungi Nuovo</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'category', 'action' => 'list'), null, true); ?>">Modifica / Cancella</a></li>
 				</ul>
 			</li>
 
@@ -62,10 +62,10 @@
 			<li class="has-dropdown">
 				<a class="active" href="javascript:void(0)">Annunci</a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'list')); ?>">Modifica / Cancella</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'list'), null, true); ?>">Modifica / Cancella</a></li>
 					<li class="divider"></li>
 					<li><a href="#">Operazioni Avanzate</a></li>
-					<li><a href="#">Ricerca</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'search'), null, true); ?>">Ricerca</a></li>
 				</ul>
 			</li>
 
@@ -74,7 +74,7 @@
 			<li class="has-dropdown">
 				<a class="active" href="javascript:void(0)">Utenti</a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'list')); ?>">Modifica / Cancella</a></li>
+					<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'list'), null, true); ?>">Modifica / Cancella</a></li>
 					<li class="divider"></li>
 					<li><a href="#">Operazioni Avanzate</a></li>
 					<li><a href="#">Ricerca</a></li>

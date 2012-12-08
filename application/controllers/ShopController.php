@@ -5,15 +5,18 @@ class ShopController extends Zend_Controller_Action
 
     public $params = null;
 
-    public function init() {
+    public function init()
+    {
         $this->params = Plugin_Common::getParams();
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         // action body
     }
 
-    public function newAction() {
+    public function newAction()
+    {
         $form = new Application_Form_Shop();
         $this->view->newShop= $form->newShop();
 
@@ -22,7 +25,8 @@ class ShopController extends Zend_Controller_Action
         $this->view->identity = $identity;
     }
 
-    public function editAction() {
+    public function editAction()
+    {
         $id = $this->_getParam( 'id', 0 );
         $shop = new Application_Model_DbTable_Shop();
         $row = $shop->getAdminShopInfo( $id );
@@ -57,26 +61,35 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
-    public function listAction() {
+    public function listAction()
+    {
+
+        $search = $this->_getParam( 'search', 0 );
+        $q = $this->_getParam( 'q', 0 );
+
         $list_shop = new Application_Model_DbTable_Shop();
-        $this->view->shop = $list_shop->fullShop();
+        $this->view->shop = $list_shop->fullShop(array('search' => $search, 'q' => $q));
         $this->view->notfound = $this->params->label_not_found;
         $this->view->type_ads = $this->params->type_ads->toArray();
     }
 
-    public function detailAction() {
+    public function detailAction()
+    {
         // action body
     }
 
-    public function deleteAction() {
+    public function deleteAction()
+    {
         // action body
     }
 
-    public function galleryAction() {
+    public function galleryAction()
+    {
         // action body
     }
 
-    public function adsAction() {
+    public function adsAction()
+    {
         $id = $this->_getParam( 'show', 0 );
 
         $shop = new Application_Model_DbTable_Shop();
@@ -139,15 +152,18 @@ class ShopController extends Zend_Controller_Action
 
     }
 
-    public function modificationAction() {
+    public function modificationAction()
+    {
         // action body
     }
 
-    public function jsonAction() {
+    public function jsonAction()
+    {
         // action body
     }
 
-    public function mediaAction() {
+    public function mediaAction()
+    {
         $id_ads = $this->_getParam( 'id', 0 );
         $this->view->id_ads = $id_ads;
         $shop = new Application_Model_DbTable_Shop();
@@ -193,7 +209,8 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
-    public function publicAction() {
+    public function publicAction()
+    {
 
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
@@ -225,7 +242,8 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
-    public function myAction() {
+    public function myAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -234,10 +252,13 @@ class ShopController extends Zend_Controller_Action
         $this->view->myshop = $shop->myshop( $identity->id );
     }
 
+    public function searchAction()
+    {
+        $this->view->type_ads = $this->params->type_ads->toArray();
+        $this->view->status = $this->params->status->toArray();
+    }
 
 
-
-
-
-    // .end
 }
+
+

@@ -47,7 +47,7 @@
 						</div>
 					</td>
 					<td><?php echo $row['code']; ?></td>
-					<td><a class="has-tip" data-width="210" title="<?php echo $row['region']; ?>, <?php echo $this->type_ads[$row['type']]; ?> - <?php echo $row['price']; ?> €" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
+					<td><a class="has-tip" data-width="210" title="<?php echo $row['region']; ?>, <?php echo $this->type_ads[$row['type']]; ?> - <?php echo $row['price']; ?> € <br>Ultima modifica: <?php echo new Zend_Date($row['modified']); ?>" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
 					<td><?php echo $row['category']; ?></td>
 					<td><?php echo $row['user']; ?></td>
 					<td><?php echo new Zend_Date($row['registered']); ?></td>
