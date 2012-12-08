@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-	<div class="">
+	<div class="twelve columns centered">
 		<h2>Annunci</h2>
 		<h4 class="subheader">Totale <?php echo count($this->shop); ?></h4>
 
@@ -28,9 +28,10 @@
 				<tr>
 					<td>
 						<div href="javascript:void(0)" class="secondary button split dropdown">
-						  <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $row['id'])); ?>">Modifica</a>
+						  <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'detail', 'id' => $row['id'])); ?>">Dettaglio</a>
 						    <span></span>
 						  <ul>
+						    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $row['id'])); ?>">Modifica Scheda</a></li>
 						    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'list', 'shop' => $row['id'])); ?>">Photo Gallery</a></li>
 						    <li class="divider"></li>
 						    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id'])); ?>" target="_blank">Anteprima...</a></li>
@@ -47,7 +48,7 @@
 						</div>
 					</td>
 					<td><?php echo $row['code']; ?></td>
-					<td><a class="has-tip" data-width="210" title="<?php echo $row['region']; ?>, <?php echo $this->type_ads[$row['type']]; ?> - <?php echo $row['price']; ?> € <br>Ultima modifica: <?php echo new Zend_Date($row['modified']); ?>" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
+					<td><a class="has-tip" data-width="250" title="<?php echo $row['region']; ?>, <?php echo $this->type_ads[$row['type']]; ?> - <?php echo $row['price']; ?> € <br>Ultima modifica: <?php echo new Zend_Date($row['modified']); ?>" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
 					<td><?php echo $row['category']; ?></td>
 					<td><?php echo $row['user']; ?></td>
 					<td><?php echo new Zend_Date($row['registered']); ?></td>

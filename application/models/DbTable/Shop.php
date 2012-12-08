@@ -1,53 +1,12 @@
 <?php
-/**
- * /tmp/phptidy-sublime-buffer.php
- *
- * @package default
- */
 
-
-/**
- * Application_Model_DbTable_Shop
- *
- * @uses     Zend_Db_Table_Abstract
- *
- * @category ADS Shop
- * @package  Bazoomba.it
- * @author   Concetto Vecchio
- * @license
- * @link
- */
 class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 {
 
-    /**
-     * $_name
-     *
-     * @var string
-     *
-     * @access protected
-     */
     protected $_name = 'ads_shop';
 
-
-    /**
-     * $_primary
-     *
-     * @var string
-     *
-     * @access protected
-     */
     protected $_primary = 'id';
 
-    /**
-     * getAdminShopInfo
-     *
-     *
-     * @access public
-     *
-     * @param mixed   $id ID ADS Shop.
-     * @return mixed Value.
-     */
     public function getAdminShopInfo( $id ) {
         $row = $this->fetchRow( sprintf( 'id = %d', $id ) );
         if ( !$row ) {
@@ -57,13 +16,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-
-    /**
-     *
-     *
-     * @param unknown $id
-     * @return unknown
-     */
     public function getSiteShopInfo( $id ) {
         $row = $this->fetchRow( sprintf( 'id = %d AND status = 1', $id ) );
         if ( !$row ) {
@@ -73,14 +25,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-
-    /**
-     * fullShop
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     */
     public function fullShop( $params = array() ) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -111,14 +55,35 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
+    public function LastInsertAdminShop() {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from( 'ads_shop', array(
+                'id',
+                'title',
+                'registered'
+            ) );
+        $query->join( 'ads_user', 'ads_shop.user = ads_user.id', array( 'user' => 'name' ) );
+        $query->order( 'ads_shop.registered DESC' );
+        $query->limit( '0, 10' );
+        // echo $query->assemble();
+        return $this->getDefaultAdapter()->fetchAll( $query );
+    }
 
-    /**
-     * LastHomeShop
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     */
+    public function LastEditAdminShop() {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from( 'ads_shop', array(
+                'id',
+                'title',
+                'status',
+                'modified'
+            ) );
+        $query->join( 'ads_user', 'ads_shop.user = ads_user.id', array( 'user' => 'name' ) );
+        $query->where( 'ads_shop.modified >= CURDATE()' );
+        $query->order( 'ads_shop.registered DESC' );
+        $query->limit( '0, 10' );
+        return $this->getDefaultAdapter()->fetchAll( $query );
+    }
+
     public function LastHomeShop() {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -140,21 +105,12 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where( 'ads_user.status = 1' );
         $query->where( 'ads_gallery.status = 1' );
         $query->group( 'ads_shop.id' );
-        $query->order( 'registered DESC' );
+        $query->order( 'ads_shop.registered DESC' );
         $query->limit( '0, 10' );
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
-
-    /**
-     *
-     *
-     * @param unknown $ads
-     * @param unknown $latitude
-     * @param unknown $longitude
-     * @return unknown
-     */
     public function RandomGeoIPShop( $ads, $latitude, $longitude ) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -184,16 +140,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
-
-    /**
-     * fullShopFilter
-     *
-     *
-     * @access public
-     *
-     * @param array   $params (optional) Description.
-     * @return mixed Value.
-     */
     public function fullShopFilter( $params = array() ) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -243,31 +189,12 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where( 'ads_user.status = 1' );
         $query->where( 'ads_gallery.status = 1' );
         $query->group( 'ads_shop.id' );
-        $query->order( 'registered DESC' );
+        $query->order( 'ads_shop.registered DESC' );
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
 
-    /**
-     * updateShopAdmin
-     *
-     *
-     * @access public
-     *
-     * @param mixed   $id           ID annuncio (ADS).
-     * @param mixed   $category     Categoria.
-     * @param mixed   $sub_category Sotto Categoria.
-     * @param mixed   $region       Regione.
-     * @param mixed   $province     Provincia.
-     * @param mixed   $city         Città / Comune.
-     * @param mixed   $type         Tipo di annuncio.
-     * @param mixed   $title        Titolo.
-     * @param mixed   $price        Prezzo.
-     * @param mixed   $description  Descrizione.
-     * @param mixed   $status       Stato.
-     * @return mixed Value.
-     */
     public function updateShopAdmin( $id, $category, $sub_category, $region, $province, $city, $type, $title, $price, $description, $status ) {
         $arrayName = array(
             'category' => $category,
@@ -287,13 +214,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
 
-    /**
-     *
-     *
-     * @param unknown $id
-     * @param unknown $status
-     * @return unknown
-     */
     public function updateStep( $id, $status ) {
         $arrayName = array(
             'step' => $status,
@@ -304,27 +224,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
 
-    /**
-     * newShop
-     *
-     *
-     * @access public
-     *
-     * @param unknown $id
-     * @param unknown $category
-     * @param unknown $sub_category
-     * @param unknown $region
-     * @param unknown $province
-     * @param unknown $city
-     * @param mixed   $type         Tipologia di Account.
-     * @param unknown $title
-     * @param unknown $description
-     * @param unknown $tags
-     * @param unknown $price
-     * @param unknown $latitude
-     * @param unknown $longitude
-     * @return mixed Value.
-     */
     public function newShop( $id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude ) {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
@@ -355,12 +254,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
 
-    /**
-     *
-     *
-     * @param unknown $id_ads
-     * @return unknown
-     */
     public function controlAds( $id_ads ) {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
@@ -377,12 +270,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
 
-    /**
-     *
-     *
-     * @param unknown $id
-     * @return unknown
-     */
     public function myshop( $id ) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(

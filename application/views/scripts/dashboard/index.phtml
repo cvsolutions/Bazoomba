@@ -5,24 +5,26 @@
 </div>
 
 <div class="row">
-	<div class="">
+	<div class="twelve columns">
 		<h2>Dashboard</h2>
 		<h4 class="subheader">Benvenuto, <?php echo $this->identity->name; ?>...</h4>
 	</div>
-
-	<form action="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'list', 'search' => 'item')); ?>" method="get" accept-charset="utf-8">
-		<div class="row collapse">
-			<div class="ten mobile-three columns">
-				<input type="text" autocomplete="on" name="q" value="" placeholder="es. Iphone 5s, Mercedes, Divano" />
-			</div>
-			<div class="two mobile-one columns">
-				<input type="submit" class="button expand postfix" value="Cerca" />
-			</div>
-		</div>
-	</form>
-
 </div>
 
+<div class="row">
+	<div class="twelve columns">
+		<form action="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'list', 'search' => 'item')); ?>" method="get" accept-charset="utf-8">
+			<div class="row collapse">
+				<div class="ten mobile-three columns">
+					<input type="text" autocomplete="on" name="q" value="" placeholder="es. Iphone 5s, Mercedes, Divano" />
+				</div>
+				<div class="two mobile-one columns">
+					<input type="submit" class="button expand postfix" value="Cerca" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 
 <div class="row">
 	<div class="six columns">
@@ -32,40 +34,40 @@
 				<tr>
 					<th>Annuncio</th>
 					<th>Pubblicazione</th>
-					<th>Stato</th>
 				</tr>
 			</thead>
 			<tbody>
+				<?php foreach ($this->last_ads as $row): ?>
 				<tr>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
+					<td><a class="has-tip" data-width="250" title="Utente: <?php echo$row['user']; ?>" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
+					<td><?php echo new Zend_Date($row['registered']); ?></td>
 				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div class="six columns">
-		<h4 class="subheader">Operazioni in corso</h4>
-		<table class="twelve">
-			<thead>
-				<tr>
-					<th>Annuncio</th>
-					<th>Pubblicazione</th>
-					<th>Stato</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+			<?php endforeach ?>
+		</tbody>
+	</table>
 </div>
 
-
+<div class="six columns">
+	<h4 class="subheader">Operazioni in corso</h4>
+	<table class="twelve">
+		<thead>
+			<tr>
+				<th>Annuncio</th>
+				<th>Revisione</th>
+				<th>Stato</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($this->view_ads as $row): ?>
+			<tr>
+				<td><a class="has-tip" data-width="250" title="Utente: <?php echo$row['user']; ?>" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
+				<td><?php echo new Zend_Date($row['modified']); ?></td>
+				<td><img src="<?php echo $this->serverUrl(); ?>/admin/images/<?php echo $row['status']; ?>.png"></td>
+			</tr>
+		<?php endforeach ?>
+	</tbody>
+</table>
+</div>
+</div>
 
 <?php echo $this->render('globals/copyright_admin.phtml'); ?>
