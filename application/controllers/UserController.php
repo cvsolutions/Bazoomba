@@ -299,43 +299,6 @@ class UserController extends Zend_Controller_Action
 
         $form = new Application_Form_User();
         $this->view->newUser = $form->newUser();
-
-        if ($this->getRequest()->getPost())
-        {
-            $form_data = $this->getRequest()->getPost();
-
-            if($form->isValid($form_data))
-            {
-                $type = $form->getValue('type');
-                $name = $form->getValue('name');
-                $email = $form->getValue('email');
-                $phone = $form->getValue('telephone');
-                $phone_show = $form->getValue('phone_show');
-                $pwd = $form->getValue('pwd');
-                $serialkey = sha1(time().$email);
-                $iva = $form->getValue('vat');
-                $name_company = $form->getValue('name_company');
-
-                $user = new Application_Model_DbTable_User();
-                $user->newUser($type, $name, $email, $phone, $phone_show, $pwd, $serialkey, $iva, $name_company);
-
-                Plugin_Common::getMail(array(
-                    'email' => $email,
-                    'subject' => 'Nuova Registrazione',
-                    'template' => 'newuser.phtml',
-                    'params' => array(
-                        'name' => $name,
-                        'serialkey' => $serialkey
-                        )
-                    ));
-
-                $this->view->successForm = 'Controlla email per confermare la registrazione';
-                $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/user');
-
-            } else {
-                $form->populate($form_data);
-            }
-        }
     }
 
     /**
@@ -357,6 +320,7 @@ class UserController extends Zend_Controller_Action
 
             Plugin_Common::getMail(array(
                     'email' => $row['email'],
+                    'reply' => $this->params->noreplay,
                     'subject' => 'Registrazione Confermata',
                     'template' => 'confirmuser.phtml',
                     'params' => array(

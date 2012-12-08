@@ -9,6 +9,8 @@
 class AjaxController extends Zend_Controller_Action
 {
 
+    public $params = null;
+
     /**
      *
      */
@@ -21,7 +23,9 @@ class AjaxController extends Zend_Controller_Action
     /**
      *
      */
-    public function init() {
+    public function init()
+    {
+        $this->params = Plugin_Common::getParams();
     }
 
 
@@ -59,6 +63,42 @@ class AjaxController extends Zend_Controller_Action
                 $shop->newShop( $id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude );
 
                 echo Zend_Json::encode(array('id' => $id));
+            }
+        }
+    }
+
+    public function newuserAction() {
+
+        if ($this->getRequest()->getPost() ) {
+            $form = new Application_Form_Shop();
+            $form_data = $this->getRequest()->getPost();
+            if ( $form->isValid( $form_data ) ) {
+
+                $id = Plugin_Common::getId('ads_user');
+                $type = $this->_request->getPost('type');
+                $name = $this->_request->getPost('name');
+                $email = $this->_request->getPost('email');
+                $phone = $this->_request->getPost('telephone');
+                $phone_show = $this->_request->getPost('phone_show');
+                $pwd = $this->_request->getPost('pwd');
+                $serialkey = sha1(time().$email.$id);
+                $vat = $this->_request->getPost('vat');
+                $name_company = $this->_request->getPost('name_company');
+
+                $user = new Application_Model_DbTable_User();
+                $user->newUser($id, $type, $name, $email, $phone, $phone_show, $pwd, $serialkey, $vat, $name_company);
+
+                Plugin_Common::getMail(array(
+                    'email' => $email,
+                    'reply' => $this->params->noreplay,
+                    'subject' => 'Nuova Registrazione',
+                    'template' => 'newuser.phtml',
+                    'params' => array(
+                        'name' => $name,
+                        'serialkey' => $serialkey
+                        )
+                    ));
+                echo Zend_Json::encode(array('result' => 'Controlla email per confermare la registrazione'));
             }
         }
     }

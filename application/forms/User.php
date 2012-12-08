@@ -245,7 +245,8 @@ class Application_Form_User extends Zend_Form
             ) );
 
         $submit = new Zend_Form_Element_Submit( 'Registrati' );
-        $submit->setAttrib( 'id', 'submitbutton' );
+        $submit->setAttrib( 'class', 'btn btn-primary' );
+        $submit->setAttrib( 'id', 'submit' );
 
         return $this->addElements( array( $type, $name, $email, $phone, $radio, $iva, $name_company, $pwd, $confirm, $captcha, $submit ) );
     }

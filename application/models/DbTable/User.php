@@ -192,8 +192,9 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
      * @param unknown $name_company
      * @return mixed Value.
      */
-    public function newUser($type, $name, $email, $phone, $phone_show, $pwd, $serialkey, $iva, $name_company) {
+    public function newUser($id, $type, $name, $email, $phone, $phone_show, $pwd, $serialkey, $iva, $name_company) {
         $arrayNewUser = array(
+            'id' => $id,
             'type' => $type,
             'name' => $name,
             'email' => $email,
@@ -205,7 +206,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
             'name_company' => $name_company,
             'role' => 'user',
             'status' => 0,
-            'newsletter' => 0,
+            'newsletter' => 1,
             'registered' => time(),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
