@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Dic 07, 2012 alle 23:47
+-- Generato il: Dic 08, 2012 alle 18:50
 -- Versione del server: 5.5.25
 -- Versione PHP: 5.4.4
 
@@ -8213,7 +8213,7 @@ CREATE TABLE `ads_gallery` (
   `modified` int(11) NOT NULL,
   `ip_address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dump dei dati per la tabella `ads_gallery`
@@ -8230,15 +8230,16 @@ INSERT INTO `ads_gallery` (`id`, `image`, `shop`, `status`, `page`, `registered`
 (8, '50be840a24f0b.jpg', 11986, 1, 0, 0, 0, ''),
 (9, '50be997b172fc.jpg', 88894, 1, 0, 0, 0, ''),
 (10, '50bf5c9f42407.jpg', 39539, 1, 0, 0, 0, ''),
-(11, '50bf5ca5606bc.jpg', 39539, 1, 0, 0, 0, ''),
-(12, '50bf5cab21c61.jpg', 39539, 1, 0, 0, 0, ''),
-(13, '50bf5cb46f4a3.jpg', 39539, 1, 0, 0, 0, ''),
+(11, '50bf5ca5606bc.jpg', 39539, 0, 0, 0, 1354961549, '127.0.0.1'),
+(12, '50bf5cab21c61.jpg', 39539, 0, 0, 0, 1354961552, '127.0.0.1'),
+(20, '50c36dea4784e.jpg', 48419, 1, 0, 1354984938, 0, '127.0.0.1'),
 (14, '50bf666eba1ea.jpg', 32070, 1, 0, 0, 0, ''),
 (15, '50bfdb56e284e.jpg', 68531, 1, 0, 0, 0, ''),
 (16, '50bfdb5be496b.jpg', 68531, 1, 0, 0, 0, ''),
 (17, '50bfdb61eb237.jpg', 68531, 1, 0, 0, 0, ''),
 (18, '50c0fbb882999.jpg', 94450, 1, 0, 0, 0, ''),
-(19, '50c2405f88714.jpg', 84594, 1, 0, 1354907743, 1354907842, '127.0.0.1');
+(19, '50c2405f88714.jpg', 84594, 1, 0, 1354907743, 1354907842, '127.0.0.1'),
+(21, '50c36defd94e6.jpg', 48419, 1, 0, 1354984943, 0, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8541,6 +8542,7 @@ CREATE TABLE `ads_shop` (
   `step` int(11) NOT NULL,
   `registered` int(11) NOT NULL,
   `modified` int(11) NOT NULL,
+  `computer` text NOT NULL,
   `ip_address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category` (`category`),
@@ -8552,16 +8554,17 @@ CREATE TABLE `ads_shop` (
 -- Dump dei dati per la tabella `ads_shop`
 --
 
-INSERT INTO `ads_shop` (`id`, `code`, `category`, `sub_category`, `region`, `province`, `city`, `user`, `type`, `title`, `price`, `description`, `tags`, `latitude`, `longitude`, `status`, `terms`, `step`, `registered`, `modified`, `ip_address`) VALUES
-(32070, 'YNITWH', 38318, 86408, 15, 53, 7546, 86077, 1, 'Straordinario Samung Galasy S2', 300.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 37.851637, 15.285313, 0, 1, 3, 1354660130, 0, '127.0.0.1'),
-(92099, 'UJB4MQ', 38318, 86408, 15, 53, 7546, 86077, 1, 'Fantastica Villa 200mq - Nuova Appena realizzata!!', 1000.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 45.465454, 9.186516, 1, 1, 3, 1354660377, 0, '127.0.0.1'),
-(11986, 'J8N8TE', 38318, 86408, 2, 52, 6921, 86077, 2, 'Galasy Note', 400.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 40.673416, 16.581979, 1, 1, 3, 1354662801, 0, '127.0.0.1'),
-(88894, '3K6I9P', 32347, 25749, 2, 52, 6922, 86077, 1, 'Tavolo grande', 500.00, 'Tavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grande', 'tavolo, grande, verde', 45.465454, 9.186516, 1, 1, 3, 1354668372, 0, '127.0.0.1'),
-(39539, '7PU6C4', 35839, 14652, 15, 53, 7546, 86077, 2, 'Apple Macbook Pro 15'' Nuovo Poco Usato', 800.00, 'Al contrario di quanto si pensi, Lorem Ipsum non Ã¨ semplicemente una sequenza casuale di caratteri. Risale ad un classico della letteratura latina del 45 AC, cosa che lo rende vecchio di 2000 anni. Richard McClintock, professore di latino al Hampden-Sydney College in Virginia, ha ricercato una delle piÃ¹ oscure parole latine, consectetur, da un passaggio del Lorem Ipsum e ha scoperto tra i vari testi in cui Ã¨ citata, la fonte da cui Ã¨ tratto il testo, le sezioni 1.10.32 and 1.10.33 del "de Finibus Bonorum et Malorum" di Cicerone. Questo testo Ã¨ un trattato su teorie di etica, molto popolare nel Rinascimento. La prima riga del Lorem Ipsum, "Lorem ipsum dolor sit amet..", Ã¨ tratta da un passaggio della sezione 1.10.32.\r\n\r\nIl brano standard del Lorem Ipsum usato sin dal sedicesimo secolo Ã¨ riprodotto qui di seguito per coloro che fossero interessati. Anche le sezioni 1.10.32 e 1.10.33 del "de Finibus Bonorum et Malorum" di Cicerone sono riprodotte nella loro forma originale, accompagnate dalla traduzione inglese del 1914 di H. Rackham.', 'apple, macbook, nuovo', 37.831561, 15.268549, 1, 1, 3, 1354718360, 0, '127.0.0.1'),
-(68531, 'IZCAFJ', 35839, 14652, 7, 79, 5398, 86077, 1, 'Ads di test per vedere cosa succede', 1.00, 'Ads di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succede', 'ads, test', 41.901514, 12.460774, 1, 1, 3, 1354721161, 0, '127.0.0.1'),
-(55704, 'HS9UUY', 38318, 86408, 5, 14, 4401, 86077, 1, 'Tavolo grande', 300.00, 'Tavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grande', 'bologna, grande tavolo,', 44.494887, 11.342616, 0, 1, 1, 1354790960, 0, '127.0.0.1'),
-(94450, 'CBVHVT', 32347, 25749, 15, 22, 7659, 35948, 3, 'Traslocatore in partenza da Marsala Per Torino', 10.00, 'partenza col furgone per Torino,da Marsala \r\nTrasporto mobili,pacchi moto eccetera \r\npacchi a partire da 10 euro \r\nper informazioni Vito 3497836058', 'partire, Trasporto, furgone', 37.798045, 12.437016, 1, 1, 3, 1354824621, 0, '127.0.0.1'),
-(84594, 'PSW7JU', 35839, 14652, 15, 30, 7625, 35948, 4, 'mac os nuovo', 125.00, 'I think it''s because doing it that way keeps everything self contained. \r\nYou could potentially fake an HTTP request to your site using the PHP \r\nCLI if you wanted, e.g. for testing. If you did that, and used \r\n$_SERVER[''REMOTE_ADDR''] it wouldn''t work, whereas the controllers \r\nrequest object could be parsed a fake IP address for testing purposes. \r\nThen again, I don''t know how the request object works internally, so I \r\ncould be wrong.', 'mac os, lion', 37.627346, 14.422311, 1, 1, 3, 1354907565, 1354907808, '127.0.0.1');
+INSERT INTO `ads_shop` (`id`, `code`, `category`, `sub_category`, `region`, `province`, `city`, `user`, `type`, `title`, `price`, `description`, `tags`, `latitude`, `longitude`, `status`, `terms`, `step`, `registered`, `modified`, `computer`, `ip_address`) VALUES
+(32070, 'YNITWH', 38318, 86408, 15, 53, 7546, 86077, 1, 'Straordinario Samung Galasy S2', 300.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 37.851637, 15.285313, 0, 1, 3, 1354660130, 0, '', '127.0.0.1'),
+(92099, 'UJB4MQ', 38318, 86408, 15, 53, 7546, 86077, 1, 'Fantastica Villa 200mq - Nuova Appena realizzata!!', 1000.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 45.465454, 9.186516, 1, 1, 3, 1354660377, 0, '', '127.0.0.1'),
+(11986, 'J8N8TE', 38318, 86408, 2, 52, 6921, 86077, 2, 'Galasy Note', 400.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 40.673416, 16.581979, 1, 1, 3, 1354662801, 0, '', '127.0.0.1'),
+(88894, '3K6I9P', 32347, 25749, 2, 52, 6922, 86077, 1, 'Tavolo grande', 500.00, 'Tavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grande', 'tavolo, grande, verde', 45.465454, 9.186516, 1, 1, 3, 1354668372, 0, '', '127.0.0.1'),
+(39539, '7PU6C4', 35839, 14652, 15, 53, 7546, 86077, 2, 'Apple Macbook Pro 15'' Nuovo Poco Usato', 800.00, 'Al contrario di quanto si pensi, Lorem Ipsum non Ã¨ semplicemente una sequenza casuale di caratteri. Risale ad un classico della letteratura latina del 45 AC, cosa che lo rende vecchio di 2000 anni. Richard McClintock, professore di latino al Hampden-Sydney College in Virginia, ha ricercato una delle piÃ¹ oscure parole latine, consectetur, da un passaggio del Lorem Ipsum e ha scoperto tra i vari testi in cui Ã¨ citata, la fonte da cui Ã¨ tratto il testo, le sezioni 1.10.32 and 1.10.33 del "de Finibus Bonorum et Malorum" di Cicerone. Questo testo Ã¨ un trattato su teorie di etica, molto popolare nel Rinascimento. La prima riga del Lorem Ipsum, "Lorem ipsum dolor sit amet..", Ã¨ tratta da un passaggio della sezione 1.10.32.\r\n\r\nIl brano standard del Lorem Ipsum usato sin dal sedicesimo secolo Ã¨ riprodotto qui di seguito per coloro che fossero interessati. Anche le sezioni 1.10.32 e 1.10.33 del "de Finibus Bonorum et Malorum" di Cicerone sono riprodotte nella loro forma originale, accompagnate dalla traduzione inglese del 1914 di H. Rackham.', 'apple, macbook, nuovo', 37.831561, 15.268549, 1, 1, 3, 1354718360, 0, '', '127.0.0.1'),
+(68531, 'IZCAFJ', 35839, 14652, 7, 79, 5398, 86077, 1, 'Ads di test per vedere cosa succede', 1.00, 'Ads di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succedeAds di test per vedere cosa succede', 'ads, test', 41.901514, 12.460774, 1, 1, 3, 1354721161, 0, '', '127.0.0.1'),
+(55704, 'HS9UUY', 38318, 86408, 5, 14, 4401, 86077, 1, 'fetchAll Comment faire un order by', 300.00, 'Dans Zend frameworks quand l''on souhaite rÃ©cupÃ©rer toutes les valeurs d''un talbe on utilise la methode fetchAll(), le seul hic c''est que pour faire un ORDER BY table DESC/ASC , faut connaitre l''astuce :)\r\n\r\nMethode:\r\n$Model-fetchAll(Where,Order,Count,Offset);\r\n\r\nQuand on vois sa on se dit que sa a pas l''aire trop compliquer, en fait il faut passer comme paramÃ¨re array(''CHAMP DESC/ASC''), il faut sÃ©parer le champs d''un espace avec le paramÃ¨tre de tri !', 'bologna, grande tavolo,', 44.494887, 11.342616, 0, 1, 1, 1354790960, 1354921694, '', '127.0.0.1'),
+(94450, 'CBVHVT', 32347, 25749, 15, 22, 7659, 35948, 3, 'Traslocatore in partenza da Marsala Per Torino', 10.00, 'partenza col furgone per Torino,da Marsala \r\nTrasporto mobili,pacchi moto eccetera \r\npacchi a partire da 10 euro \r\nper informazioni Vito 3497836058', 'partire, Trasporto, furgone', 37.798045, 12.437016, 1, 1, 3, 1354824621, 0, '', '127.0.0.1'),
+(84594, 'PSW7JU', 35839, 14652, 15, 30, 7625, 35948, 4, 'mac os nuovo', 125.00, 'I think it''s because doing it that way keeps everything self contained. \r\nYou could potentially fake an HTTP request to your site using the PHP \r\nCLI if you wanted, e.g. for testing. If you did that, and used \r\n$_SERVER[''REMOTE_ADDR''] it wouldn''t work, whereas the controllers \r\nrequest object could be parsed a fake IP address for testing purposes. \r\nThen again, I don''t know how the request object works internally, so I \r\ncould be wrong.', 'mac os, lion', 37.627346, 14.422311, 1, 1, 3, 1354907565, 1354983266, '', '127.0.0.1'),
+(48419, 'USJJ8K', 35839, 14652, 16, 46, 4684, 86079, 4, 'Gathering information with ', 1.00, 'This can be useful to programmers if they are using special features that may not work for everyone, or if they want to get an idea of their target audience. This also is important when using the get_browser() function for finding out more information about the browser''s capabilities. By having this information the user can be directed to a version of your site best suited to their browser.\n\n', 'mac, os, apple', 37.508039, 15.082851, 0, 1, 3, 1354984927, 1354984946, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8598,11 +8601,11 @@ CREATE TABLE `ads_user` (
 --
 
 INSERT INTO `ads_user` (`id`, `type`, `name`, `avatar`, `email`, `pwd`, `image`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `modified`, `last_login`, `ip_address`) VALUES
-(86078, 1, 'Vincenzo Provenza', '', 'sviluppo@adhoc-group.it', '7c4a8d09ca3762af61e59520943dc26494f8941b', '', 'ab8e6f42180d2a2f8225fc96d4872115496f3da0', '3407766456', 0, '04793450877', 'I love code', 1, 'user', 0, 1353591984, 0, 0, '127.0.0.1'),
+(86078, 1, 'Vincenzo Provenza', '', 'sviluppo@adhoc-group.it', '7c4a8d09ca3762af61e59520943dc26494f8941b', '', 'ab8e6f42180d2a2f8225fc96d4872115496f3da0', '3407766456', 0, '04793450877', 'I love code', 0, 'user', 0, 1353591984, 1354920643, 0, '127.0.0.1'),
 (86077, 2, 'Vincenzo Provenza', '50bfe63bebd68.jpg', 'vichi89@hotmail.it', 'fc0ee89b1e0d0ed83730414a0f7999b557fa0292', '', '2148fd9a471cb3003cd22570c3875f689bdf4545', '095711215', 1, '04793450877', 'I Love Code Di Vincenzo Provenza', 1, 'user', 0, 1352812977, 0, 0, '127.0.0.1'),
 (86069, 1, 'ilovecode', '', 'info@ilovecode.it', 'f5c3b982269629a26c62c43f5e2176b96cd8b939', '53af8efedcb3d38c49486cd5a87a87c5.jpg', 'a2eceeb4b21561d5bd5f3df7f261f878a0597ae7', '3405863783', 1, '02553245667', 'I Love Code Inc.', 1, 'user', 0, 1347731344, 1354907160, 0, '127.0.0.1'),
-(35948, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', '', '0de0bde97e6ce873edee596f6c8a55a6b17dadf8', '3407766456', 1, '', '', 1, 'user', 0, 1348830399, 1354907269, 1354920154, '127.0.0.1'),
-(86079, 2, 'cvsolutions', '', 'info@cvsolutions.it', '2df21c1c572b28714c474825c774d1c15764307f', '', '4332defaba6b214885fb4b74d68759d6b792e086', '1234567890', 1, 'cvsolutions', 'cvsolutions', 1, 'user', 0, 1354800091, 0, 0, '127.0.0.1');
+(35948, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', '', '0de0bde97e6ce873edee596f6c8a55a6b17dadf8', '3407766456', 1, '', '', 1, 'user', 0, 1348830399, 1354981904, 1354981889, '127.0.0.1'),
+(86079, 2, 'cvsolutions', '', 'info@cvsolutions.it', '2df21c1c572b28714c474825c774d1c15764307f', '', '4332defaba6b214885fb4b74d68759d6b792e086', '1234567890', 1, 'cvsolutions', 'cvsolutions', 1, 'user', 0, 1354800091, 0, 1354984861, '127.0.0.1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

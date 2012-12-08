@@ -39,7 +39,7 @@
 			<tbody>
 				<?php foreach ($this->last_ads as $row): ?>
 				<tr>
-					<td><a class="has-tip" data-width="250" title="Utente: <?php echo$row['user']; ?>" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
+					<td><a class="has-tip" data-width="250" title="Utente: <?php echo $row['user']; ?>" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'detail', 'id' => $row['id'])); ?>"><?php echo $row['title']; ?></a></td>
 					<td><?php echo new Zend_Date($row['registered']); ?></td>
 				</tr>
 			<?php endforeach ?>
@@ -60,7 +60,7 @@
 		<tbody>
 			<?php foreach ($this->view_ads as $row): ?>
 			<tr>
-				<td><a class="has-tip" data-width="250" title="Utente: <?php echo$row['user']; ?>" href="javascript:void(0)"><?php echo $row['title']; ?></a></td>
+				<td><a class="has-tip" data-width="250" title="Utente: <?php echo$row['user']; ?>" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'detail', 'id' => $row['id'])); ?>"><?php echo $row['title']; ?></a></td>
 				<td><?php echo new Zend_Date($row['modified']); ?></td>
 				<td><img src="<?php echo $this->serverUrl(); ?>/admin/images/<?php echo $row['status']; ?>.png"></td>
 			</tr>

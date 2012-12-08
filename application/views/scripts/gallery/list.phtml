@@ -5,24 +5,27 @@
 </div>
 
 <div class="row">
-	<div class="">
+	<div class="twelve columns centered">
 		<h2>Photo Gallery</h2>
 		<h4 class="subheader">Totale <?php echo count($this->gallery); ?> (<?php echo $this->shop['title']; ?>)</h4>
 	</div>
+</div>
 
-	<div class="row">
+<div class="row">
+
+	<div class="twelve columns centered">
 
 		<?php if (count($this->gallery) > 0): ?>
-		<?php foreach ($this->gallery as $row): ?>
-		<div class="three mobile-two columns">
-			<img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=500&height=500">
+			<?php foreach ($this->gallery as $row): ?>
+			<div class="three mobile-two columns">
+			<img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=320&height=280">
 			<div class="panel">
 				<div href="javascript:void(0)" class="<?php echo $this->btn_class[$row->status]; ?> button split dropdown">
 					<a href="#">Anteprima</a>
 					<span></span>
 					<ul>
-						<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'status', 'type' => 1,  'id' => $row->id, 'ads' => $row->shop)); ?>">Attivo</a></li>
-						<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'status', 'type' => 0,  'id' => $row->id, 'ads' => $row->shop)); ?>">Sospeso</a></li>
+						<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'status', 'type' => 1,  'id' => $row->id, 'ads' => $row->shop)); ?>">Attiva</a></li>
+						<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'gallery', 'action' => 'status', 'type' => 0,  'id' => $row->id, 'ads' => $row->shop)); ?>">Sospendi</a></li>
 						<li class="divider"></li>
 						<li><a href="javascript:void(0)" data-reveal-id="deleteModal_<?php echo $row->id; ?>">Elimina</a></li>
 					</ul>
@@ -36,12 +39,11 @@
 			<a class="close-reveal-modal">&#215;</a>
 		</div>
 		<?php endforeach ?>
-		<?php else: ?>
-			<div class="alert-box"><?php echo $this->notfound; ?><a href="" class="close">&times;</a></div>
-		<?php endif ?>
+	<?php else: ?>
+		<div class="alert-box"><?php echo $this->notfound; ?><a href="" class="close">&times;</a></div>
+	<?php endif ?>
 
-	</div>
-
+</div>
 </div>
 
 <?php echo $this->render('globals/copyright_admin.phtml'); ?>

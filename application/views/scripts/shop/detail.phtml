@@ -14,8 +14,8 @@
 			<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id'])); ?>">Modifica</a>
 			<span></span>
 			<ul>			
-				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 1, 'id' => $this->row['id']), null, true); ?>">Attivo</a></li>
-				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 0, 'id' => $this->row['id']), null, true); ?>">Sospeso</a></li>
+				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 1, 'id' => $this->row['id']), null, true); ?>">Attiva</a></li>
+				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 0, 'id' => $this->row['id']), null, true); ?>">Sospendi</a></li>
 				<li class="divider"></li>
 				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id']), null, true); ?>">Elimina</a></li>			
 			</ul>
@@ -152,7 +152,16 @@
 		</table>
 
 	</div>
+</div>
 
+<div class="row">
+	<?php if (count($this->gallery) > 0): ?>
+	<?php foreach ($this->gallery as $row): ?>
+	<div class="four columns">
+		<a href="#" class="th"><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=350&height=200"></a>
+	</div>
+<?php endforeach ?>
+<?php endif ?>	
 </div>
 
 <?php echo $this->render('globals/copyright_admin.phtml'); ?>

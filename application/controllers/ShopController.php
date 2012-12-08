@@ -95,7 +95,7 @@ class ShopController extends Zend_Controller_Action
         $this->view->city = $City->getCityInfo( $ShopInfo['city'] );
 
         $Gallery = new Application_Model_DbTable_Gallery();
-        $this->view->gallery = $Gallery->fetchAll( sprintf( 'shop = %d AND status = 1', $id ) );
+        $this->view->gallery = $Gallery->fetchAll( sprintf( 'shop = %d', $id ) );
 
         $User = new Application_Model_DbTable_User();
         $UserInfo = $User->getAdminInfo( $ShopInfo['user'] );
