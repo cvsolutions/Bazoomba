@@ -10,14 +10,16 @@
 		<h4 class="subheader">Benvenuto, <?php echo $this->identity->name; ?>...</h4>
 	</div>
 
-	<div class="row collapse">
-  <div class="ten mobile-three columns">
-    <input type="text" />
-  </div>
-  <div class="two mobile-one columns">
-    <a class="button expand postfix">Search</a>
-  </div>
-</div>
+	<form action="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'list', 'search' => 'item')); ?>" method="get" accept-charset="utf-8">
+		<div class="row collapse">
+			<div class="ten mobile-three columns">
+				<input type="text" autocomplete="on" name="q" value="" placeholder="es. Iphone 5s, Mercedes, Divano" />
+			</div>
+			<div class="two mobile-one columns">
+				<input type="submit" class="button expand postfix" value="Cerca" />
+			</div>
+		</div>
+	</form>
 
 </div>
 

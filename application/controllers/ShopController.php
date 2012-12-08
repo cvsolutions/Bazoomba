@@ -254,6 +254,12 @@ class ShopController extends Zend_Controller_Action
 
     public function searchAction()
     {
+        $region = new Application_Model_DbTable_Region();
+        $this->view->region = $region->fetchAll();
+
+        $category = new Application_Model_DbTable_Category();
+        $this->view->category = $category->Parent_With_Category( 0 );
+        
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->status = $this->params->status->toArray();
     }

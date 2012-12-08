@@ -1,7 +1,7 @@
 <div id="loginModal" class="reveal-modal">
 	<h2>Esegui Logout</h2>
 	<p class="lead">Sei sicuro di voler abbandonare Bazoomba?</p>
-	<a class="secondary button" href="<?php echo $this->serverUrl(); ?>/login/logout">SI</a>
+	<a class="secondary button" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'logout'), null, true); ?>">SI</a>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
 
@@ -10,7 +10,7 @@
 		<!-- Title Area -->
 		<li class="name">
 			<h1>
-				<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index')); ?>">
+				<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index'), null, true); ?>">
 					Administrator
 				</a>
 			</h1>

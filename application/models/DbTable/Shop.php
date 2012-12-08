@@ -97,8 +97,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->join( 'ads_region', 'ads_shop.region = ads_region.id', array( 'region' => 'name' ) );
         $query->join( 'ads_user', 'ads_shop.user = ads_user.id', array( 'user' => 'name' ) );
 
-        if ( !empty($params['search']) ) {
+        if ( !empty( $params['search'] ) && $params['search'] != 'item' ) {
             $query->where( sprintf( 'ads_shop.%s = %d', $params['search'], $params['q'] ) );
+        }
+
+        if ( !empty( $params['search'] ) && $params['search'] == 'item' ) {
+            $query->where( sprintf( "MATCH(ads_shop.title, ads_shop.description, ads_shop.tags) AGAINST('+%s*' IN BOOLEAN MODE)", str_replace( ' ', ' +', $params['q'] ) ) );
+
         }
 
         $query->order( 'registered DESC' );

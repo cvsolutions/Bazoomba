@@ -5,13 +5,13 @@
 </div>
 
 <div class="row">
-	<div class="seven columns centered">
+	<div class="twelve columns centered">
 		<h2>Annunci</h2>
 		<h4 class="subheader">Ricerca avanzata</h4>
 
 
 		<div href="#" class="button split dropdown">
-			<a href="#">Tipo di annuncio</a>
+			<a href="javascript:void(0)">Tipo di annuncio</a>
 			<span></span>
 			<ul>
 				<?php foreach ($this->type_ads as $key => $value): ?>
@@ -21,11 +21,31 @@
 		</div>
 
 		<div href="#" class="button split dropdown">
-			<a href="#">Stato</a>
+			<a href="javascript:void(0)">Stato</a>
 			<span></span>
 			<ul>
 				<?php foreach ($this->status as $key => $value): ?>
 				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'list', 'search' => 'status', 'q' => $key), null, true); ?>"><?php echo $value; ?></a></li>
+				<?php endforeach ?>
+			</ul>
+		</div>
+
+		<div href="#" class="button split dropdown">
+			<a href="javascript:void(0)">Categoria</a>
+			<span></span>
+			<ul>
+				<?php foreach ($this->category as $row): ?>
+				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'list', 'search' => 'category', 'q' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
+				<?php endforeach ?>
+			</ul>
+		</div>
+
+		<div href="#" class="button split dropdown">
+			<a href="javascript:void(0)">Italia</a>
+			<span></span>
+			<ul>
+				<?php foreach ($this->region as $row): ?>
+				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'list', 'search' => 'region', 'q' => $row['id']), null, true); ?>"><?php echo $row['name']; ?></a></li>
 				<?php endforeach ?>
 			</ul>
 		</div>
