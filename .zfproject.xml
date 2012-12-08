@@ -26,7 +26,6 @@
           <actionMethod actionName="gallery"/>
           <actionMethod actionName="delete"/>
           <actionMethod actionName="edit"/>
-          <actionMethod actionName="status"/>
           <actionMethod actionName="ads"/>
           <actionMethod actionName="modification"/>
           <actionMethod actionName="json"/>
@@ -34,6 +33,7 @@
           <actionMethod actionName="my"/>
           <actionMethod actionName="public"/>
           <actionMethod actionName="search"/>
+          <actionMethod actionName="status"/>
         </controllerFile>
         <controllerFile controllerName="Page">
           <actionMethod actionName="index"/>
@@ -42,7 +42,7 @@
           <actionMethod actionName="picture"/>
           <actionMethod actionName="gallery"/>
           <actionMethod actionName="deletegallery"/>
-        </controllerFile>        
+        </controllerFile>
         <controllerFile controllerName="Account">
           <actionMethod actionName="index"/>
           <actionMethod actionName="editpassword"/>
@@ -202,20 +202,30 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="City">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="index"/> 
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="new"/>   
+            <viewScriptFile forActionName="new"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="edit"/>  
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="picture"/>  
+            <viewScriptFile forActionName="picture"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="gallery"/>  
+            <viewScriptFile forActionName="gallery"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Page">
-            <viewScriptFile forActionName="deletegallery"/>                              
+            <viewScriptFile forActionName="deletegallery"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="public"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="status"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

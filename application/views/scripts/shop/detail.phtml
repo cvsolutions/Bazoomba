@@ -5,9 +5,26 @@
 </div>
 
 <div class="row">
-	<div class="twelve columns centered">
+	<div class="seven columns">
 		<h2>Annunci</h2>
 		<h4 class="subheader">Dettaglio completo</h4>
+	</div>
+	<div align="right" class="five columns">
+		<div href="#" class="button split dropdown">
+			<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id'])); ?>">Modifica</a>
+			<span></span>
+			<ul>			
+				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 1, 'id' => $this->row['id']), null, true); ?>">Attivo</a></li>
+				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 0, 'id' => $this->row['id']), null, true); ?>">Sospeso</a></li>
+				<li class="divider"></li>
+				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id']), null, true); ?>">Elimina</a></li>			
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="twelve columns centered">
 		<table class="twelve">
 			<thead>
 				<tr>
