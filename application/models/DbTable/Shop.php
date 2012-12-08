@@ -245,6 +245,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'latitude' => $latitude,
             'longitude' => $longitude,
             'registered' => time(),
+            'computer' => $_SERVER['HTTP_USER_AGENT'],
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'status' => 0,
             'terms' => 1,
