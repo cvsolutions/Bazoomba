@@ -13,6 +13,7 @@
  */
 class DashboardController extends Zend_Controller_Action
 {
+    public $params = null;
 
     /**
      * init
@@ -22,7 +23,7 @@ class DashboardController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function init() {
-        /* Initialize action controller here */
+        $this->params = Plugin_Common::getParams();
     }
 
 
@@ -36,10 +37,23 @@ class DashboardController extends Zend_Controller_Action
     public function indexAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
-        $list_shop = new Application_Model_DbTable_Shop();
-        $this->view->last_ads = $list_shop->LastInsertAdminShop();
-        $this->view->view_ads = $list_shop->LastEditAdminShop();
+
+        $shop = new Application_Model_DbTable_Shop();
+        $this->view->g_chart_ads = $shop->fetchAll();
+        $this->view->g_chart_active = $shop->fetchAll('status = 1');
+        $this->view->g_chart_suspended = $shop->fetchAll('status = 0');
+        $this->view->last_ads = $shop->LastInsertAdminShop();
+        $this->view->view_ads = $shop->LastEditAdminShop();
+        $this->view->expir_ads = $shop->LastExpirAdminShop();
+
+        $user = new Application_Model_DbTable_User();
+        $this->view->g_chart_user = $user->fetchAll();
+
+        $gallery = new Application_Model_DbTable_Gallery();
+        $this->view->g_chart_image = $gallery->fetchAll();
+
         $this->view->identity = $identity;
+        $this->view->notfound = $this->params->label_not_found;
     }
 
 

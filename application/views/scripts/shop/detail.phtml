@@ -10,158 +10,188 @@
 		<h4 class="subheader">Dettaglio completo</h4>
 	</div>
 	<div align="right" class="five columns">
+		<p></p>
 		<div href="#" class="button split dropdown">
-			<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id'])); ?>">Modifica</a>
+			<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id'])); ?>">Modifica scheda</a>
 			<span></span>
 			<ul>			
 				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 1, 'id' => $this->row['id']), null, true); ?>">Attiva</a></li>
 				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 0, 'id' => $this->row['id']), null, true); ?>">Sospendi</a></li>
 				<li class="divider"></li>
-				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id']), null, true); ?>">Elimina</a></li>			
+				<li><a data-reveal-id="deleteModal" href="javascript:void(0)">Elimina</a></li>			
 			</ul>
 		</div>
+		<p></p>
 	</div>
+</div>
+
+<div id="deleteModal" class="reveal-modal">
+	<h2>Esegui Logout</h2>
+	<p class="lead">Sei sicuro di voler eliminare <?php echo $this->row['title']; ?>?</p>
+	<a class="secondary button" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id']), null, true); ?>">SI</a>
+	<a class="close-reveal-modal">&#215;</a>
 </div>
 
 <div class="row">
 	<div class="twelve columns centered">
-		<table class="twelve">
-			<thead>
-				<tr>
-					<th colspan="2">Riepilogo</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>ID</td>
-					<td><?php echo $this->row['id']; ?></td>
-				</tr>
-				<tr>
-					<td>Codice</td>
-					<td><?php echo $this->row['code']; ?></td>
-				</tr>
-				<tr>
-					<td>Titolo annuncio</td>
-					<td><?php echo $this->row['title']; ?></td>
-				</tr>
-				<tr>
-					<td>Categoria</td>
-					<td><?php echo $this->category['name']; ?> (<?php echo $this->sub_category['name']; ?>)</td>
-				</tr>
-				<tr>
-					<td>Regione</td>
-					<td><?php echo $this->region['name']; ?></td>
-				</tr>
-				<tr>
-					<td>Provincia</td>
-					<td><?php echo $this->province['name']; ?></td>
-				</tr>
-				<tr>
-					<td>Comune</td>
-					<td><?php echo $this->city['name']; ?></td>
-				</tr>
-				<tr>
-					<td>Prezzo</td>
-					<td>€ <?php echo $this->row['price']; ?></td>
-				</tr>
-			</tbody>
-		</table>
 
-		<table class="twelve">
-			<thead>
-				<tr>
-					<th colspan="2">Utente</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Pubblica come</td>
-					<td><?php echo $this->type_user[$this->user['type']]; ?></td>
-				</tr>
-				<tr>
-					<td>Nome</td>
-					<td><?php echo $this->user['name']; ?></td>
-				</tr>
-				<tr>
-					<td>Indirizzo E-mail</td>
-					<td><?php echo $this->user['email']; ?></td>
-				</tr>
-				<tr>
-					<td>Telefono</td>
-					<td><?php echo $this->user['telephone']; ?></td>
-				</tr>
-				<tr>
-					<td>Tipo di annuncio</td>
-					<td><?php echo $this->type_ads[$this->row['type']]; ?></td>
-				</tr>
-			</tbody>
-		</table>
+		<dl class="tabs">
+			<dd class="active"><a href="#simple1">Scheda</a></dd>
+			<dd><a href="#simple2">Immagini</a></dd>
+			<!-- <dd><a href="#simple3">Simple Tab 3</a></dd> -->
+		</dl>
 
-		<table class="twelve">
-			<thead>
-				<tr>
-					<th>Testo</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><?php echo $this->row['description']; ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $this->row['tags']; ?></td>
-				</tr>
-			</tbody>
-		</table>
+		<ul class="tabs-content">
+			<li class="active" id="simple1Tab">
+				<table class="twelve">
+					<thead>
+						<tr>
+							<th colspan="2">Riepilogo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>ID</td>
+							<td><?php echo $this->row['id']; ?></td>
+						</tr>
+						<tr>
+							<td>Codice</td>
+							<td><?php echo $this->row['code']; ?></td>
+						</tr>
+						<tr>
+							<td>Titolo annuncio</td>
+							<td><?php echo $this->row['title']; ?></td>
+						</tr>
+						<tr>
+							<td>Categoria</td>
+							<td><?php echo $this->category['name']; ?> (<?php echo $this->sub_category['name']; ?>)</td>
+						</tr>
+						<tr>
+							<td>Regione</td>
+							<td><?php echo $this->region['name']; ?></td>
+						</tr>
+						<tr>
+							<td>Provincia</td>
+							<td><?php echo $this->province['name']; ?></td>
+						</tr>
+						<tr>
+							<td>Comune</td>
+							<td><?php echo $this->city['name']; ?></td>
+						</tr>
+						<tr>
+							<td>Prezzo</td>
+							<td>€ <?php echo $this->row['price']; ?></td>
+						</tr>
+					</tbody>
+				</table>
 
-		<table class="twelve">
-			<thead>
-				<tr>
-					<th colspan="2">Informazioni</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Coordinate GPS da GoogleMaps</td>
-					<td>Lat: <?php echo $this->row['latitude']; ?> - Lon: <?php echo $this->row['longitude']; ?></td>
-				</tr>
-				<tr>
-					<td>Stato</td>
-					<td><?php echo $this->status[$this->row['status']]; ?></td>
-				</tr>
-				<tr>
-					<td>Termini e condizioni</td>
-					<td><?php echo $this->alert[$this->row['terms']]; ?></td>
-				</tr>
-				<tr>
-					<td>Pubblicazione</td>
-					<td><?php echo $this->row['registered']; ?></td>
-				</tr>
-				<tr>
-					<td>Revisione</td>
-					<td><?php echo $this->row['modified']; ?></td>
-				</tr>
-				<tr>
-					<td>Browser Web</td>
-					<td><?php echo $this->row['computer']; ?></td>
-				</tr>
-				<tr>
-					<td>Indirizzo IP</td>
-					<td><?php echo $this->row['ip_address']; ?></td>
-				</tr>
-			</tbody>
-		</table>
+				<table class="twelve">
+					<thead>
+						<tr>
+							<th colspan="2">Utente</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Pubblica come</td>
+							<td><?php echo $this->type_user[$this->user['type']]; ?></td>
+						</tr>
+						<tr>
+							<td>Nome</td>
+							<td><?php echo $this->user['name']; ?></td>
+						</tr>
+						<tr>
+							<td>Indirizzo E-mail</td>
+							<td><?php echo $this->user['email']; ?></td>
+						</tr>
+						<tr>
+							<td>Telefono</td>
+							<td><?php echo $this->user['telephone']; ?></td>
+						</tr>
+						<tr>
+							<td>Tipo di annuncio</td>
+							<td><?php echo $this->type_ads[$this->row['type']]; ?></td>
+						</tr>
+					</tbody>
+				</table>
 
-	</div>
+				<table class="twelve">
+					<thead>
+						<tr>
+							<th>Testo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><?php echo $this->row['description']; ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->row['tags']; ?></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="twelve">
+					<thead>
+						<tr>
+							<th colspan="2">Informazioni</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Coordinate GPS da GoogleMaps</td>
+							<td>Lat: <?php echo $this->row['latitude']; ?> - Lon: <?php echo $this->row['longitude']; ?></td>
+						</tr>
+						<tr>
+							<td>Stato</td>
+							<td><?php echo $this->status[$this->row['status']]; ?></td>
+						</tr>
+						<tr>
+							<td>Termini e condizioni</td>
+							<td><?php echo $this->alert[$this->row['terms']]; ?></td>
+						</tr>
+						<tr>
+							<td>Pubblicazione</td>
+							<td><?php echo new Zend_Date($this->row['registered']); ?></td>
+						</tr>
+						<tr>
+							<td>Revisione</td>
+							<td><?php echo new Zend_Date($this->row['modified']); ?></td>
+						</tr>
+						<tr>
+							<td>Scadenza</td>
+							<td><?php echo new Zend_Date($this->row['expiration']); ?></td>
+						</tr>
+						<tr>
+							<td>Browser Web</td>
+							<td><?php echo $this->row['computer']; ?></td>
+						</tr>
+						<tr>
+							<td>Indirizzo IP</td>
+							<td><?php echo $this->row['ip_address']; ?></td>
+						</tr>
+					</tbody>
+				</table>
+			</li>
+
+			<li id="simple2Tab">
+				<div class="row">
+					<?php if (count($this->gallery) > 0): ?>
+					<?php foreach ($this->gallery as $row): ?>
+					<div class="four columns">
+						<a href="#" class="th"><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=350&height=200"></a>
+						<br>
+					</div>
+				<?php endforeach ?>
+			<?php endif ?>	
+		</div>
+	</li>
+
+	<!-- <li id="simple3Tab">This is simple tab 3s content.</li> -->
+	
+</ul>
+
 </div>
-
-<div class="row">
-	<?php if (count($this->gallery) > 0): ?>
-	<?php foreach ($this->gallery as $row): ?>
-	<div class="four columns">
-		<a href="#" class="th"><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=350&height=200"></a>
-	</div>
-<?php endforeach ?>
-<?php endif ?>	
 </div>
 
 <?php echo $this->render('globals/copyright_admin.phtml'); ?>

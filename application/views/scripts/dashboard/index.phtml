@@ -49,24 +49,109 @@
 
 <div class="six columns">
 	<h4 class="subheader">Operazioni in corso</h4>
+	<dl class="tabs">
+		<dd class="active"><a href="#simple1">Statistiche</a></dd>
+		<dd><a href="#simple2">Modificati</a></dd>
+		<dd><a href="#simple3">Scadenza</a></dd>
+	</dl>
+
+	<ul class="tabs-content">
+		
+		<li class="active" id="simple1Tab">
+			<script type="text/javascript">
+
+			// Load the Visualization API and the piechart package.
+			google.load('visualization', '1.0', {
+				'packages':['corechart']
+			});
+
+			// Set a callback to run when the Google Visualization API is loaded.
+			google.setOnLoadCallback(drawChart);
+
+			// Callback that creates and populates a data table,
+			// instantiates the pie chart, passes in the data and
+			// draws it.
+			function drawChart() {
+
+				// Create the data table.
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Topping');
+				data.addColumn('number', 'Slices');
+				data.addRows([
+					['Annunci', <?php echo count($this->g_chart_ads); ?>],
+					['Utenti', <?php echo count($this->g_chart_user); ?>],
+					['Immagini', <?php echo count($this->g_chart_image); ?>],
+					['ADS Attivi', <?php echo count($this->g_chart_active); ?>],
+					['ADS Sospesi', <?php echo count($this->g_chart_suspended); ?>]
+					]);
+
+				// Set chart options
+				var options = {
+					'title':'in un colpo d\'occhio',
+					'backgroundColor': '#fff',
+					'width':450,
+					'height':300
+				};
+
+				// Instantiate and draw our chart, passing in some options.
+				var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+				chart.draw(data, options);
+			}
+			</script>
+
+			<div id="chart_div"></div>
+		</li>
+		
+		<li id="simple2Tab">
+			<?php if ($this->view_ads): ?>
+			<table class="twelve">
+				<thead>
+					<tr>
+						<th>Annuncio</th>
+						<th>Revisione</th>
+						<th>Stato</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($this->view_ads as $row): ?>
+					<tr>
+						<td><a class="has-tip" data-width="250" title="Utente: <?php echo$row['user']; ?>" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'detail', 'id' => $row['id'])); ?>"><?php echo $row['title']; ?></a></td>
+						<td><?php echo new Zend_Date($row['modified']); ?></td>
+						<td><img src="<?php echo $this->serverUrl(); ?>/admin/images/<?php echo $row['status']; ?>.png"></td>
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+	<?php else: ?>
+	<div class="alert-box"><?php echo $this->notfound; ?><a href="" class="close">&times;</a></div>
+<?php endif ?>
+</li>
+
+<li id="simple3Tab">
+	<?php if ($this->expir_ads): ?>
 	<table class="twelve">
 		<thead>
 			<tr>
 				<th>Annuncio</th>
-				<th>Revisione</th>
+				<th>Validità</th>
 				<th>Stato</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($this->view_ads as $row): ?>
+			<?php foreach ($this->expir_ads as $row): ?>
 			<tr>
 				<td><a class="has-tip" data-width="250" title="Utente: <?php echo$row['user']; ?>" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'detail', 'id' => $row['id'])); ?>"><?php echo $row['title']; ?></a></td>
-				<td><?php echo new Zend_Date($row['modified']); ?></td>
+				<td><?php echo new Zend_Date($row['expiration']); ?></td>
 				<td><img src="<?php echo $this->serverUrl(); ?>/admin/images/<?php echo $row['status']; ?>.png"></td>
 			</tr>
 		<?php endforeach ?>
 	</tbody>
 </table>
+<?php else: ?>
+	<div class="alert-box"><?php echo $this->notfound; ?><a href="" class="close">&times;</a></div>
+<?php endif ?>
+</li>
+</ul>
 </div>
 </div>
 

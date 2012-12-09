@@ -78,8 +78,23 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                 'modified'
             ) );
         $query->join( 'ads_user', 'ads_shop.user = ads_user.id', array( 'user' => 'name' ) );
-        $query->where( 'ads_shop.modified >= CURDATE()' );
-        $query->order( 'ads_shop.registered DESC' );
+        $query->where( sprintf( 'ads_shop.modified BETWEEN %d AND %d', mktime( 0, 0, 0, date( 'n' ), date( 'j' ), date( 'Y' ) ), time() ) );
+        $query->order( 'ads_shop.modified DESC' );
+        $query->limit( '0, 10' );
+        return $this->getDefaultAdapter()->fetchAll( $query );
+    }
+
+    public function LastExpirAdminShop() {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from( 'ads_shop', array(
+                'id',
+                'title',
+                'status',
+                'expiration'
+            ) );
+        $query->join( 'ads_user', 'ads_shop.user = ads_user.id', array( 'user' => 'name' ) );
+        $query->where( sprintf( 'ads_shop.expiration BETWEEN %d AND %d', mktime( 0, 0, 0, date( 'n' ), date( 'j' ), date( 'Y' ) ), time() ) );
+        $query->order( 'ads_shop.expiration DESC' );
         $query->limit( '0, 10' );
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
@@ -102,10 +117,11 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->joinLeft( 'ads_gallery', 'ads_shop.id = ads_gallery.shop', array( 'photo' => 'image' ) );
         // $query->where(sprintf("TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_shop.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_shop.longitude) , 2 ) ) , 3 ) < 10", $latitude, $longitude));
         $query->where( 'ads_shop.status = 1' );
+        $query->where( sprintf('ads_shop.expiration >= %d', time()) );
         $query->where( 'ads_user.status = 1' );
         $query->where( 'ads_gallery.status = 1' );
         $query->group( 'ads_shop.id' );
-        $query->order( 'ads_shop.registered DESC' );
+        $query->order( 'ads_shop.modified DESC' );
         $query->limit( '0, 10' );
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll( $query );
@@ -131,6 +147,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where( sprintf( "TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_shop.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_shop.longitude) , 2 ) ) , 3 ) < 10", $latitude, $longitude ) );
         $query->where( sprintf( 'ads_shop.id != %d', $ads ) );
         $query->where( 'ads_shop.status = 1' );
+        $query->where( sprintf('ads_shop.expiration >= %d', time()) );
         $query->where( 'ads_user.status = 1' );
         $query->where( 'ads_gallery.status = 1' );
         $query->order( 'registered DESC' );
@@ -186,6 +203,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         }
 
         $query->where( 'ads_shop.status = 1' );
+        $query->where( sprintf('ads_shop.expiration >= %d', time()) );
         $query->where( 'ads_user.status = 1' );
         $query->where( 'ads_gallery.status = 1' );
         $query->group( 'ads_shop.id' );
@@ -245,6 +263,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             'latitude' => $latitude,
             'longitude' => $longitude,
             'registered' => time(),
+            'expiration' => ( time() + ( 86400 * 60 ) ),
             'computer' => $_SERVER['HTTP_USER_AGENT'],
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'status' => 0,
