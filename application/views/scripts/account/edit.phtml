@@ -1,3 +1,4 @@
-<h3><?php echo $this->successForm; ?></h3>
-<p>Modifica i tuoi dati, <b><?php echo $this->identity->name ?></b> ...</p>
+<?php echo $this->render('globals/menu_user.phtml'); ?>
+<h1>Modifica i tuoi dati, <?php echo $this->identity->name ?></h1>
+<?php echo $this->successForm; ?>
 <?php echo $this->editForm; ?>

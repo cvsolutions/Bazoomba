@@ -1,4 +1,5 @@
-<p><b><?php echo $this->identity->name; ?></b>,  i tui annunci (<b><?php echo count($this->myshop); ?></b>).</p>
+<?php echo $this->render('globals/menu_user.phtml'); ?>
+<h1>I tuoi annunci (<?php echo count($this->myshop); ?>)</h1>
 
 <?php if ($this->myshop): ?>
 <div class="container">

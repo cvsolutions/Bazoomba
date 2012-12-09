@@ -3,10 +3,8 @@
    unset($params['controller']);
    unset($params['action']);
  ?>
-<div class="pagination" style="width:100%">
-    <div style="float:left;width:28%">
-    </div>
-    <div style="float:right;width:70%;">
+<div class="pagination" style="">
+    <div style="">
         <!-- First page link -->
         <?php if (isset($this->previous)): ?>
               <a href="<?php echo $this->url(array_merge($params, array('page' => $this->first))); ?>">Start</a> |

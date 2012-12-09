@@ -17,6 +17,10 @@
 			<ul>			
 				<?php if ($this->row['status'] == 0): ?><li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 1, 'id' => $this->row['id']), null, true); ?>">Attiva</a></li><?php endif ?>
 				<?php if ($this->row['status'] == 1): ?><li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 0, 'id' => $this->row['id']), null, true); ?>">Sospendi</a></li><?php endif ?>
+				<?php if ($this->row['status'] == 1): ?>
+				<li class="divider"></li>
+				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $this->row['id']), null, true); ?>" target="_blank">Anteprima...</a></li>	
+				<?php endif ?>
 				<li class="divider"></li>
 				<li><a data-reveal-id="deleteModal" href="javascript:void(0)">Elimina</a></li>			
 			</ul>
@@ -179,7 +183,7 @@
 					<?php if (count($this->gallery) > 0): ?>
 					<?php foreach ($this->gallery as $row): ?>
 					<div class="four columns">
-						<a href="#" class="th"><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=350&height=200"></a>
+						<a href="<?php echo $this->serverUrl(); ?>/uploaded/ads/<?php echo $row->image; ?>" target="_blank" class="th"><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row->image; ?>&width=350&height=200"></a>
 						<br>
 					</div>
 				<?php endforeach ?>

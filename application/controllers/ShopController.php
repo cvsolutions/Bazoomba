@@ -24,14 +24,19 @@ class ShopController extends Zend_Controller_Action
 
     public function editAction() {
         $id = $this->_getParam( 'id', 0 );
+
         $shop = new Application_Model_DbTable_Shop();
         $row = $shop->getAdminShopInfo( $id );
+
+        $user = new Application_Model_DbTable_User();
+        $UserInfo = $user->getAdminInfo( $row['user'] );
 
         $form = new Application_Form_Shop();
         $this->view->editForm = $form->editAdmin();
 
         if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
+
             if ( $form->isValid( $form_data ) ) {
                 $category = $form->getValue( 'category' );
                 $sub_category = $form->getValue( 'sub_category' );
@@ -44,7 +49,44 @@ class ShopController extends Zend_Controller_Action
                 $description = $form->getValue( 'description' );
                 $status = $form->getValue( 'status' );
 
+                switch ( $status ) {
+
+                case 0:
+                    Plugin_Common::getMail( array(
+                            'email' => $UserInfo['email'],
+                            'reply' => $this->params->noreplay,
+                            'subject' => sprintf( 'Annuncio sospeso "%s"', $row['title'] ),
+                            'template' => 'shop_suspended.phtml',
+                            'params' => array(
+                                'from_email' => $this->params->from_email,
+                                'title' => $row['title'],
+                                'id' => $row['id']
+                            )
+                        ) );
+                    break;
+
+                case 1:
+                    Plugin_Common::getMail( array(
+                            'email' => $UserInfo['email'],
+                            'reply' => $this->params->noreplay,
+                            'subject' => sprintf( 'Annuncio pubblicato "%s"', $row['title'] ),
+                            'template' => 'shop_published.phtml',
+                            'params' => array(
+                                'from_email' => $this->params->from_email,
+                                'title' => $row['title'],
+                                'id' => $row['id']
+                            )
+                        ) );
+                    break;
+
+                case 2:
+                    // code...
+                    break;
+                }
+
                 $shop->updateShopAdmin( $id, $category, $sub_category, $region, $province, $city, $type, $title, $price, $description, $status );
+
+
                 $this->view->successForm = $this->params->label_success;
                 $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/shop/list' );
 
@@ -296,18 +338,18 @@ class ShopController extends Zend_Controller_Action
         switch ( $type ) {
 
         case 0:
-        Plugin_Common::getMail( array(
-                'email' => $UserInfo['email'],
-                'reply' => $this->params->noreplay,
-                'subject' => sprintf( 'Annuncio sospeso "%s"', $ShopInfo['title'] ),
-                'template' => 'shop_suspended.phtml',
-                'params' => array(
-                    'from_email' => $this->params->from_email,
-                    'title' => $ShopInfo['title'],
-                    'id' => $ShopInfo['id']
-                )
-            ) );
-        $shop->updateStatus( $id , 0 );
+            Plugin_Common::getMail( array(
+                    'email' => $UserInfo['email'],
+                    'reply' => $this->params->noreplay,
+                    'subject' => sprintf( 'Annuncio sospeso "%s"', $ShopInfo['title'] ),
+                    'template' => 'shop_suspended.phtml',
+                    'params' => array(
+                        'from_email' => $this->params->from_email,
+                        'title' => $ShopInfo['title'],
+                        'id' => $ShopInfo['id']
+                    )
+                ) );
+            $shop->updateStatus( $id , 0 );
             break;
 
         case 1:

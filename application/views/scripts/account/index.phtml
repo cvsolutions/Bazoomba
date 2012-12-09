@@ -1,13 +1,1 @@
-<h1>Benvenuto. <strong><?php echo $this->identity->name; ?></strong></h1>
-<p>Il tuo ultimo accesso è stato il <?php echo new Zend_Date($this->last_login); ?></p>
-<ul>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">Logout</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'avatar')); ?>">Immagine Di Profilo</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'edit')); ?>">Modifica Dati</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword')); ?>">Modifica Password</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new')); ?>">+ Crea Annuncio</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'my')); ?>">I Miei Annunci</a></li>
-	<?php if($this->identity->type == 2): ?>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page')); ?>">Mini Sito</a></li>
-	<?php endif ?>
-</ul>
+<?php echo $this->render('globals/menu_user.phtml'); ?>

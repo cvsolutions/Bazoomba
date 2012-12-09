@@ -158,7 +158,7 @@ class AccountController extends Zend_Controller_Action
 
         $user = new Application_Model_DbTable_User();
         $info = $user->getAdminInfo( $identity->id );
-        $this->view->identity = $info;
+        $this->view->identity = $identity;
 
         $form = new Application_Form_User();
         $avatar = $form->addAvatar();
