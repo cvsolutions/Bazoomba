@@ -47,7 +47,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
         if ( !empty( $params['search'] ) && $params['search'] == 'item' ) {
             $query->where( sprintf( "MATCH(ads_shop.title, ads_shop.description, ads_shop.tags) AGAINST('+%s*' IN BOOLEAN MODE)", str_replace( ' ', ' +', $params['q'] ) ) );
-
         }
 
         $query->order( 'registered DESC' );
@@ -235,6 +234,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     public function updateStep( $id, $status ) {
         $arrayName = array(
             'step' => $status,
+            'modified' => time(),
+            'ip_address' => $_SERVER['REMOTE_ADDR']
+        );
+        return $this->update( $arrayName, sprintf( 'id = %d', $id ) );
+    }
+
+    public function updateStatus( $id, $status ) {
+        $arrayName = array(
+            'status' => $status,
             'modified' => time(),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );

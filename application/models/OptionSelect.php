@@ -61,6 +61,7 @@ class Application_Model_OptionSelect {
 		$select = $db->select();
 		$select->from( 'ads_category', array( 'id', 'name' ) );
 		$select->where( 'parent = 0' );
+		$select->order( 'name ASC' );
 		$result = $db->fetchAll( $select );
 		$arrayName[0] = '-';
 		foreach ( $result as $row ) {
@@ -80,6 +81,7 @@ class Application_Model_OptionSelect {
 		$db = Zend_Db_Table::getDefaultAdapter();
 		$select = $db->select();
 		$select->from( 'ads_category', array( 'id', 'name' ) );
+		$select->order( 'name ASC' );
 		if ( isset( $category ) ) {
 			$select->where( sprintf( 'parent = %d', $category ) );
 		} else {

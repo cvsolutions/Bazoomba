@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Dic 09, 2012 alle 10:44
+-- Generato il: Dic 09, 2012 alle 16:38
 -- Versione del server: 5.5.25
 -- Versione PHP: 5.4.4
 
@@ -32,20 +32,53 @@ CREATE TABLE `ads_category` (
   `image` varchar(255) DEFAULT NULL,
   `parent` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86409 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97024 ;
 
 --
 -- Dump dei dati per la tabella `ads_category`
 --
 
 INSERT INTO `ads_category` (`id`, `name`, `image`, `parent`) VALUES
-(32347, 'Cucina', '5092558ad5ee9.jpg', 0),
-(25749, 'tavolo', '509255a7c93b7.jpg', 32347),
-(38318, 'Tecnologia', NULL, 0),
-(35839, 'Apple', NULL, 0),
-(14652, 'Macbook', NULL, 35839),
-(86408, 'Smartphone', NULL, 38318),
-(22145, 'Vincenzo', NULL, 0);
+(84842, 'Auto', NULL, 0),
+(17318, 'Accessori Auto', NULL, 84842),
+(97023, 'Moto e Scooter', NULL, 0),
+(81617, 'Accessori Moto', NULL, 97023),
+(85827, 'Nautica', NULL, 0),
+(35826, 'Caravan e Camper', NULL, 0),
+(88047, 'Appartamenti', NULL, 0),
+(91880, 'Camere/Posti letto', NULL, 0),
+(32729, 'Ville singole e a schiera', NULL, 0),
+(40313, 'Garage e box', NULL, 0),
+(32322, 'Case vacanza', NULL, 0),
+(85278, 'Offerte di lavoro', NULL, 0),
+(37278, 'Informatica', NULL, 0),
+(22774, 'Console e Videogiochi', NULL, 0),
+(23705, 'Audio/Video', NULL, 0),
+(36874, 'Fotografia', NULL, 0),
+(54536, 'Telefonia', NULL, 0),
+(15177, 'Elettrodomestici', NULL, 0),
+(34019, 'Giardino e Fai da te', NULL, 0),
+(49470, 'Strumenti Musicali', NULL, 0),
+(55555, 'Collezionismo', NULL, 0),
+(72530, 'TV', NULL, 15177),
+(51060, 'Telefoni Cellulari', NULL, 54536),
+(68045, 'Accessori per Cellulari', NULL, 54536),
+(59368, 'Apple', NULL, 0),
+(54768, 'Scooter', NULL, 97023),
+(31311, 'Quad', NULL, 97023),
+(55980, 'Epoca', NULL, 97023),
+(66312, 'Barca a motore', NULL, 85827),
+(51834, 'Barca a vela', NULL, 85827),
+(42764, 'Gommone', NULL, 85827),
+(44693, 'Lettori DVD', NULL, 15177),
+(86477, 'Radio/Stereo', NULL, 15177),
+(63961, 'Computer Fissi', NULL, 37278),
+(73647, 'Computer Portatili', NULL, 37278),
+(78001, 'Accessori', NULL, 37278),
+(46503, 'Smartphone', NULL, 54536),
+(83323, 'MacBook', NULL, 59368),
+(21735, 'iMac', NULL, 59368),
+(87372, 'iPhone', NULL, 59368);
 
 -- --------------------------------------------------------
 
@@ -8213,38 +8246,22 @@ CREATE TABLE `ads_gallery` (
   `modified` int(11) NOT NULL,
   `ip_address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dump dei dati per la tabella `ads_gallery`
 --
 
 INSERT INTO `ads_gallery` (`id`, `image`, `shop`, `status`, `page`, `registered`, `modified`, `ip_address`) VALUES
-(1, '50be2d3ea06ac.jpg', 34288, 1, 0, 0, 0, ''),
-(2, '50be2db27c55b.jpg', 34288, 1, 0, 0, 0, ''),
-(3, '50be7168c6f45.jpg', 40858, 1, 0, 0, 0, ''),
-(4, '50be7176c21c8.jpg', 40858, 1, 0, 0, 0, ''),
-(5, '50be792fb5751.jpg', 32070, 1, 0, 0, 0, ''),
-(6, '50be7935f1575.jpg', 32070, 1, 0, 0, 0, ''),
-(7, '50be7a1eab974.jpg', 92099, 1, 0, 0, 0, ''),
-(8, '50be840a24f0b.jpg', 11986, 1, 0, 0, 0, ''),
-(9, '50be997b172fc.jpg', 88894, 1, 0, 0, 0, ''),
-(10, '50bf5c9f42407.jpg', 39539, 1, 0, 0, 0, ''),
-(11, '50bf5ca5606bc.jpg', 39539, 0, 0, 0, 1354961549, '127.0.0.1'),
-(12, '50bf5cab21c61.jpg', 39539, 0, 0, 0, 1354961552, '127.0.0.1'),
-(20, '50c36dea4784e.jpg', 48419, 1, 0, 1354984938, 0, '127.0.0.1'),
-(14, '50bf666eba1ea.jpg', 32070, 1, 0, 0, 0, ''),
-(15, '50bfdb56e284e.jpg', 68531, 1, 0, 0, 0, ''),
-(16, '50bfdb5be496b.jpg', 68531, 1, 0, 0, 0, ''),
-(17, '50bfdb61eb237.jpg', 68531, 1, 0, 0, 0, ''),
-(18, '50c0fbb882999.jpg', 94450, 1, 0, 0, 0, ''),
-(19, '50c2405f88714.jpg', 84594, 1, 0, 1354907743, 1354907842, '127.0.0.1'),
-(21, '50c36defd94e6.jpg', 48419, 1, 0, 1354984943, 0, '127.0.0.1'),
-(22, '50c45a0349043.jpg', 84366, 1, 0, 1355045379, 0, '127.0.0.1'),
-(23, '50c45a0b20fbd.jpg', 84366, 1, 0, 1355045387, 0, '127.0.0.1'),
-(24, '50c45a0feb893.jpg', 84366, 1, 0, 1355045391, 0, '127.0.0.1'),
-(25, '50c45a15cc82f.jpg', 84366, 1, 0, 1355045397, 0, '127.0.0.1'),
-(26, '50c45a1a34bbc.jpg', 84366, 1, 0, 1355045402, 0, '127.0.0.1');
+(1, '50c49d4653367.jpg', 26022, 1, 0, 1355062598, 0, '127.0.0.1'),
+(2, '50c49ea44a601.jpg', 72294, 1, 0, 1355062948, 0, '127.0.0.1'),
+(3, '50c49ec64083a.jpg', 72294, 1, 0, 1355062982, 0, '127.0.0.1'),
+(4, '50c49eca131f3.jpg', 72294, 1, 0, 1355062986, 0, '127.0.0.1'),
+(5, '50c4ab81e8f48.jpg', 50062, 1, 0, 1355066241, 0, '127.0.0.1'),
+(6, '50c4adba2d5d8.jpg', 90268, 1, 0, 1355066810, 0, '127.0.0.1'),
+(7, '50c4ae9e1f38a.jpg', 46883, 1, 0, 1355067038, 0, '127.0.0.1'),
+(8, '50c4aeab1519d.jpg', 46883, 1, 0, 1355067051, 0, '127.0.0.1'),
+(9, '50c4afe4c4b98.jpg', 85856, 1, 0, 1355067364, 0, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8290,15 +8307,7 @@ CREATE TABLE `ads_news` (
   `registered` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=85954 ;
-
---
--- Dump dei dati per la tabella `ads_news`
---
-
-INSERT INTO `ads_news` (`id`, `startdate`, `endate`, `name`, `description`, `image`, `registered`, `status`) VALUES
-(25585, 1347141600, 1347919200, 'ciao mondo', '123 ciaoo', '540f034bdbae370aac99d2b391efa2c2.jpg', 1346579404, 1),
-(85953, 1346709600, 1348092000, 'js', '<script type="text/javascript">\r\nalert(''ciao'');\r\n</script>', '', 1346587004, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -8317,18 +8326,18 @@ CREATE TABLE `ads_page` (
   `logo` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `site` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `latitude` varchar(255) NOT NULL,
   `longitude` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dump dei dati per la tabella `ads_page`
 --
 
-INSERT INTO `ads_page` (`id`, `user`, `status`, `registered`, `modified`, `ip_address`, `telephone`, `logo`, `description`, `site`, `latitude`, `longitude`) VALUES
-(1, 86077, 0, 1354792944, 0, '127.0.0.1', '095 7766432', '50c07ff068e5a.jpg', 'Desideri entrare a far parte dello staff di Subito.it?\r\n\r\nSe vuoi contribuire allo sviluppo del sito di annunci piÃ¹ visitato d''Italia, consulta le posizioni di lavoro attualmente aperte.\r\nDesideriamo conoscere persone di talento e con la voglia di entrare a far parte di una realtÃ  innovativa e stimolante.\r\n\r\nIl possesso di un''esperienza specifica in aziende fortemente orientate ad internet e la conoscenza del settore degli annunci classificati costituiranno un plus. Ãˆ sempre richiesta un''ottima conoscenza della lingua inglese.\r\n\r\nSubito.it fa parte del Gruppo Schibsted, gruppo media Scandinavo presente in oltre 20 nazioni.', 'http://www.bazoomba.it', '', ''),
-(2, 86079, 0, 1354800158, 0, '127.0.0.1', '1234567890', '50c09c1e6e478.jpg', 'ciao mondo', 'http://www.cvsolutions.it', '', '');
+INSERT INTO `ads_page` (`id`, `user`, `status`, `registered`, `modified`, `ip_address`, `telephone`, `logo`, `description`, `site`, `address`, `latitude`, `longitude`) VALUES
+(1, 33124, 0, 1355065937, 0, '127.0.0.1', '0987654321', '50c4aa51b7e93.jpg', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'http://www.cvsolutions.it', 'Via Emilia, BO, Italia', '44.4439543', '11.478653099999974');
 
 -- --------------------------------------------------------
 
@@ -8554,24 +8563,19 @@ CREATE TABLE `ads_shop` (
   KEY `category` (`category`),
   KEY `region` (`region`),
   FULLTEXT KEY `title` (`title`,`description`,`tags`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94451 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90269 ;
 
 --
 -- Dump dei dati per la tabella `ads_shop`
 --
 
 INSERT INTO `ads_shop` (`id`, `code`, `category`, `sub_category`, `region`, `province`, `city`, `user`, `type`, `title`, `price`, `description`, `tags`, `latitude`, `longitude`, `status`, `terms`, `step`, `registered`, `modified`, `expiration`, `computer`, `ip_address`) VALUES
-(32070, 'YNITWH', 38318, 86408, 15, 53, 7546, 86077, 1, 'Straordinario Samung Galasy S2', 300.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione.\r\n\r\nÃˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 37.851637, 15.285313, 0, 1, 3, 1354660130, 1355044533, 1351728000, '', '127.0.0.1'),
-(92099, 'UJB4MQ', 38318, 86408, 15, 53, 7546, 86077, 1, 'Fantastica Villa 200mq - Nuova Appena realizzata!!', 1000.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione.\r\n\r\nÃˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 45.465454, 9.186516, 1, 1, 3, 1354660377, 1355043739, 0, '', '127.0.0.1'),
-(11986, 'J8N8TE', 38318, 86408, 2, 52, 6921, 86077, 2, 'Galasy Note', 400.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.', '', 40.673416, 16.581979, 1, 1, 3, 1354662801, 0, 1351728000, '', '127.0.0.1'),
-(88894, '3K6I9P', 32347, 25749, 2, 52, 6922, 86077, 1, 'Tavolo grande', 500.00, 'Tavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grandeTavolo grande', 'tavolo, grande, verde', 45.465454, 9.186516, 1, 1, 3, 1354668372, 0, 0, '', '127.0.0.1'),
-(39539, '7PU6C4', 35839, 14652, 15, 53, 7546, 86077, 2, 'Apple Macbook Pro 15'' Nuovo Poco Usato', 800.00, 'Al contrario di quanto si pensi, Lorem Ipsum non Ã¨ semplicemente una sequenza casuale di caratteri. Risale ad un classico della letteratura latina del 45 AC, cosa che lo rende vecchio di 2000 anni. Richard McClintock, professore di latino al Hampden-Sydney College in Virginia, ha ricercato una delle piÃ¹ oscure parole latine, consectetur, da un passaggio del Lorem Ipsum e ha scoperto tra i vari testi in cui Ã¨ citata, la fonte da cui Ã¨ tratto il testo, le sezioni 1.10.32 and 1.10.33 del "de Finibus Bonorum et Malorum" di Cicerone. Questo testo Ã¨ un trattato su teorie di etica, molto popolare nel Rinascimento. La prima riga del Lorem Ipsum, "Lorem ipsum dolor sit amet..", Ã¨ tratta da un passaggio della sezione 1.10.32.\r\n\r\nIl brano standard del Lorem Ipsum usato sin dal sedicesimo secolo Ã¨ riprodotto qui di seguito per coloro che fossero interessati. Anche le sezioni 1.10.32 e 1.10.33 del "de Finibus Bonorum et Malorum" di Cicerone sono riprodotte nella loro forma originale, accompagnate dalla traduzione inglese del 1914 di H. Rackham.', 'apple, macbook, nuovo', 37.831561, 15.268549, 1, 1, 3, 1354718360, 0, 0, '', '127.0.0.1'),
-(68531, 'IZCAFJ', 35839, 14652, 7, 79, 5398, 86077, 1, 'Sacchetti per aspirapolvere LG', 1.00, 'Vendo NUOVE 6 pezzi sacchetti per spirapolvere LG a prezzo bassisimo 60 euro...guarda miei altre annunci...', 'ads, test', 41.901514, 12.460774, 1, 1, 3, 1354721161, 1355045587, 0, '', '127.0.0.1'),
-(55704, 'HS9UUY', 38318, 86408, 5, 14, 4401, 86077, 1, 'fetchAll Comment faire un order by', 300.00, 'Dans Zend frameworks quand l''on souhaite rÃ©cupÃ©rer toutes les valeurs d''un talbe on utilise la methode fetchAll(), le seul hic c''est que pour faire un ORDER BY table DESC/ASC , faut connaitre l''astuce :)\r\n\r\nMethode:\r\n$Model-fetchAll(Where,Order,Count,Offset);\r\n\r\nQuand on vois sa on se dit que sa a pas l''aire trop compliquer, en fait il faut passer comme paramÃ¨re array(''CHAMP DESC/ASC''), il faut sÃ©parer le champs d''un espace avec le paramÃ¨tre de tri !', 'bologna, grande tavolo,', 44.494887, 11.342616, 0, 1, 1, 1354790960, 1354921694, 1355044332, '', '127.0.0.1'),
-(94450, 'CBVHVT', 32347, 25749, 15, 22, 7659, 35948, 3, 'Traslocatore in partenza da Marsala Per Torino', 10.00, 'partenza col furgone per Torino,da Marsala \r\nTrasporto mobili,pacchi moto eccetera \r\npacchi a partire da 10 euro \r\nper informazioni Vito 3497836058', 'partire, Trasporto, furgone', 37.798045, 12.437016, 1, 1, 3, 1354824621, 0, 0, '', '127.0.0.1'),
-(84594, 'PSW7JU', 35839, 14652, 15, 30, 7625, 35948, 4, 'mac os nuovo', 125.00, 'I think it''s because doing it that way keeps everything self contained. \r\nYou could potentially fake an HTTP request to your site using the PHP \r\nCLI if you wanted, e.g. for testing. If you did that, and used \r\n$_SERVER[''REMOTE_ADDR''] it wouldn''t work, whereas the controllers \r\nrequest object could be parsed a fake IP address for testing purposes. \r\nThen again, I don''t know how the request object works internally, so I \r\ncould be wrong.', 'mac os, lion', 37.627346, 14.422311, 1, 1, 3, 1354907565, 1354983266, 0, '', '127.0.0.1'),
-(48419, 'USJJ8K', 35839, 14652, 16, 46, 4684, 86079, 4, 'Gathering information with ', 1.00, 'This can be useful to programmers if they are using special features that may not work for everyone, or if they want to get an idea of their target audience. This also is important when using the get_browser() function for finding out more information about the browser''s capabilities. By having this information the user can be directed to a version of your site best suited to their browser.\n\n', 'mac, os, apple', 37.508039, 15.082851, 0, 1, 3, 1354984927, 1354984946, 0, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1'),
-(84366, '76EMSG', 38318, 86408, 7, 79, 5427, 35948, 4, 'nuovo telefono SD45', 100.00, 'The Unix epoch (or Unix time or POSIX time or Unix timestamp) is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), not counting leap seconds (in ISO 8601: 1970-01-01T00:00:00Z). Literally speaking the epoch is Unix time 0 (midnight 1/1/1970), but ''epoch'' is often used as a synonym for ''Unix time''. Many Unix systems store epoch dates as a signed 32-bit integer, which might cause problems on January 19, 2038 (known as the Year 2038 problem or Y2038).', 'telefono, smartphone, nokia', 41.901514, 12.460774, 1, 1, 3, 1355045354, 1355045452, 1360229354, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1');
+(26022, 'STV5B2', 59368, 87372, 15, 22, 7659, 68158, 2, 'IPhone 4 16Gb 16 Gb nero PERFETTO!', 230.00, 'Vendo iPhone 5 nero da 16Gb in condizioni PERFETTE, senza nessun graffio e perfettamente funzionante. \r\nIl telefono ha sempre avuto le pellicole fronte e retro e la custodia. \r\nSolo scambio a mano. \r\nPreferisco contatto telefonico.', 'apple, iphone, nuovo', 37.720242, 15.190427, 1, 1, 3, 1355062488, 1355064975, 1360246488, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1'),
+(72294, 'KXPFYC', 15177, 72530, 15, 53, 7546, 68158, 2, 'Televisore 14 pollici', 100.00, 'Televisore 14 pollici di colore grigio, vero affare', 'tv, Televisore', 37.850891, 15.286643, 1, 1, 3, 1355062939, 1355065670, 1360246939, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1'),
+(50062, 'WSZWDU', 37278, 73647, 15, 22, 7658, 33124, 2, 'Computer fisso PC Desktop 2400+	', 160.00, 'Amd athlon 2400+ 2ghz \n\nwindows xp - office e vari programmi \nlettore dvd \nmasterizzatore dvd : pioneer dvd-rw \n\n1 giga ram \nmaxtor 20gb \n\nconsegna preferibilmente a mano \n\nl''oggetto che si vende Ã¨ quello descritto in foto e nella descrizione. \n\nper altre informazioni o foto non esitate a contattarmi.', 'pc, Amd, desktop, windows', 37.791589, 15.209400, 1, 1, 3, 1355066058, 1355066383, 1360250058, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1'),
+(90268, 'X91BJK', 15177, 44693, 9, 54, 1673, 33124, 4, 'MASTERIZZATORE LITE-ON SATA BLACK mod. iHAS124-04B', 0.00, 'MASTERIZZATORE CON FIRMWARE AGGIORNATO ANCHE PER  XBOX\n\nBurner Max per gli XGD3\n\nE'' INUTILE CHE VI ELENCHI LE CARATTERISTICHE,CHI LO COMPRA LO CONOSCE GIA'' E SA LE FUNZIONI CHE PUO'' SVOLGERE!!!\n\nN.B. IN OMAGGIO UNA LICENZA ORIGINALE DI NERO 9 ESSENTIAL SU OGNI MASTERIZZATORE CHE COMPRATE (VEDI FOTO INSERZIONE)\n\nN.B. SE NE ACQUISTATE ALMENO 10 IL PREZZO SCENDE DA 40 A 35 EURO A PEZZO', 'XBOX', 45.459013, 9.197846, 1, 1, 3, 1355066805, 1355066849, 1360250805, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1'),
+(46883, 'WZIU9I', 97023, 54768, 15, 61, 7398, 55384, 2, 'Scooter piaggio liberty50 - 1998', 400.00, 'Colore amaranto,condizioni ottime,bauletto,usato pochissimo mai incidentato.', 'Scooter, piaggio, liberty, 50', 38.115688, 13.361267, 1, 1, 3, 1355067033, 1355067098, 1360251033, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1'),
+(85856, 'CMSGW6', 54536, 46503, 15, 22, 7659, 55384, 2, 'Samsung Galaxy S 2', 180.00, 'Vendo samsung Galaxy s 2 con prova d''acquisto per la garanzia!compreso nel prezzo oltre a tutta la scatola (con il relativo contenuto di caricabatterie, auricolari nuovi ecc) anche la batteria samsung 2000amp con relativo coperchio posteriore(del valore di 60euro sul mercato). il telefono l''ho comprato a febbraio, Ã¨ in perfette condizioni e funziona benissimo!no perdi tempo e niente scambi , ritiro a mano o spedizione con pagamento sulla mia carta postepay ', 'samsung, nuovo', 37.723998, 15.188217, 1, 1, 3, 1355067327, 1355067381, 1360251327, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8601,18 +8605,16 @@ CREATE TABLE `ads_user` (
   `ip_address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86080 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68159 ;
 
 --
 -- Dump dei dati per la tabella `ads_user`
 --
 
 INSERT INTO `ads_user` (`id`, `type`, `name`, `avatar`, `email`, `pwd`, `image`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `modified`, `last_login`, `ip_address`) VALUES
-(86078, 1, 'Vincenzo Provenza', '', 'sviluppo@adhoc-group.it', '7c4a8d09ca3762af61e59520943dc26494f8941b', '', 'ab8e6f42180d2a2f8225fc96d4872115496f3da0', '3407766456', 0, '04793450877', 'I love code', 0, 'user', 0, 1353591984, 1354920643, 0, '127.0.0.1'),
-(86077, 2, 'Vincenzo Provenza', '50bfe63bebd68.jpg', 'vichi89@hotmail.it', 'fc0ee89b1e0d0ed83730414a0f7999b557fa0292', '', '2148fd9a471cb3003cd22570c3875f689bdf4545', '095711215', 1, '04793450877', 'I Love Code Di Vincenzo Provenza', 1, 'user', 0, 1352812977, 0, 0, '127.0.0.1'),
-(86069, 1, 'ilovecode', '', 'info@ilovecode.it', 'f5c3b982269629a26c62c43f5e2176b96cd8b939', '53af8efedcb3d38c49486cd5a87a87c5.jpg', 'a2eceeb4b21561d5bd5f3df7f261f878a0597ae7', '3405863783', 1, '02553245667', 'I Love Code Inc.', 1, 'user', 0, 1347731344, 1354907160, 0, '127.0.0.1'),
-(35948, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', '', '0de0bde97e6ce873edee596f6c8a55a6b17dadf8', '3407766456', 1, '', '', 1, 'user', 0, 1348830399, 1354981904, 1355045278, '127.0.0.1'),
-(86079, 2, 'cvsolutions', '', 'info@cvsolutions.it', '2df21c1c572b28714c474825c774d1c15764307f', '', '4332defaba6b214885fb4b74d68759d6b792e086', '1234567890', 1, 'cvsolutions', 'cvsolutions', 1, 'user', 0, 1354800091, 0, 1354984861, '127.0.0.1');
+(68158, 1, 'Concetto', '50c4a999709e7.jpg', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', '', 'acd83aabf7b734f22fd7381e96d3613fbace087e', '1234567890', 1, '', '', 1, 'user', 1, 1355062144, 1355065753, 1355067216, '127.0.0.1'),
+(33124, 2, 'Azienda Test', '', 'info@cvsolutions.it', '2df21c1c572b28714c474825c774d1c15764307f', '', '98b79ddc15633a22a83c3906c20bbb6260fa8380', '0987654321', 1, '1234567890', 'cvsolutions', 1, 'user', 1, 1355065826, 1355065835, 1355065888, '127.0.0.1'),
+(55384, 1, 'Pinco Pallino', '', 'pippo@libero.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', '', '252aef565d153c76db5bffe2fe789d29d8650c9c', '12353456', 0, '', '', 1, 'user', 1, 1355066907, 1355066923, 1355067243, '127.0.0.1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

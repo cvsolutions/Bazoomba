@@ -5,18 +5,15 @@ class ShopController extends Zend_Controller_Action
 
     public $params = null;
 
-    public function init()
-    {
+    public function init() {
         $this->params = Plugin_Common::getParams();
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         // action body
     }
 
-    public function newAction()
-    {
+    public function newAction() {
         $form = new Application_Form_Shop();
         $this->view->newShop= $form->newShop();
 
@@ -25,8 +22,7 @@ class ShopController extends Zend_Controller_Action
         $this->view->identity = $identity;
     }
 
-    public function editAction()
-    {
+    public function editAction() {
         $id = $this->_getParam( 'id', 0 );
         $shop = new Application_Model_DbTable_Shop();
         $row = $shop->getAdminShopInfo( $id );
@@ -61,8 +57,7 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
-    public function listAction()
-    {
+    public function listAction() {
 
         $search = $this->_getParam( 'search', 0 );
         $q = $this->_getParam( 'q', 0 );
@@ -73,8 +68,7 @@ class ShopController extends Zend_Controller_Action
         $this->view->type_ads = $this->params->type_ads->toArray();
     }
 
-    public function detailAction()
-    {
+    public function detailAction() {
 
         $id = $this->_getParam( 'id', 0 );
 
@@ -106,20 +100,18 @@ class ShopController extends Zend_Controller_Action
         $this->view->type_user = $this->params->type_user->toArray();
         $this->view->status = $this->params->status->toArray();
         $this->view->alert = $this->params->alert->toArray();
+        $this->view->notfound = $this->params->label_not_found;
     }
 
-    public function deleteAction()
-    {
+    public function deleteAction() {
         // action body
     }
 
-    public function galleryAction()
-    {
+    public function galleryAction() {
         // action body
     }
 
-    public function adsAction()
-    {
+    public function adsAction() {
         $id = $this->_getParam( 'show', 0 );
 
         $shop = new Application_Model_DbTable_Shop();
@@ -181,18 +173,15 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
-    public function modificationAction()
-    {
+    public function modificationAction() {
         // action body
     }
 
-    public function jsonAction()
-    {
+    public function jsonAction() {
         // action body
     }
 
-    public function mediaAction()
-    {
+    public function mediaAction() {
         $id_ads = $this->_getParam( 'id', 0 );
         $this->view->id_ads = $id_ads;
         $shop = new Application_Model_DbTable_Shop();
@@ -238,8 +227,7 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
-    public function publicAction()
-    {
+    public function publicAction() {
 
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
@@ -249,6 +237,7 @@ class ShopController extends Zend_Controller_Action
 
         $shop = new Application_Model_DbTable_Shop();
         $row = $shop->getAdminShopInfo( $id_ads );
+
         if ( $row['step'] == 3 ) {
             $this->_redirect( '/' );
         }
@@ -265,6 +254,7 @@ class ShopController extends Zend_Controller_Action
                     'params' => array(
                         'title' => $row['title'],
                         'description' => $row['description'],
+                        'id' => $row['id']
                     )
                 ) );
 
@@ -273,8 +263,7 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
-    public function myAction()
-    {
+    public function myAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -283,8 +272,7 @@ class ShopController extends Zend_Controller_Action
         $this->view->myshop = $shop->myshop( $identity->id );
     }
 
-    public function searchAction()
-    {
+    public function searchAction() {
         $region = new Application_Model_DbTable_Region();
         $this->view->region = $region->fetchAll();
 
@@ -295,12 +283,56 @@ class ShopController extends Zend_Controller_Action
         $this->view->status = $this->params->status->toArray();
     }
 
-    public function statusAction()
-    {
-        // action body
+    public function statusAction() {
+        $type = $this->_getParam( 'type', 0 );
+        $id = $this->_getParam( 'id', 0 );
+
+        $shop = new Application_Model_DbTable_Shop();
+        $ShopInfo = $shop->getAdminShopInfo( $id );
+
+        $user = new Application_Model_DbTable_User();
+        $UserInfo = $user->getAdminInfo( $ShopInfo['user'] );
+
+        switch ( $type ) {
+
+        case 0:
+        Plugin_Common::getMail( array(
+                'email' => $UserInfo['email'],
+                'reply' => $this->params->noreplay,
+                'subject' => sprintf( 'Annuncio sospeso "%s"', $ShopInfo['title'] ),
+                'template' => 'shop_suspended.phtml',
+                'params' => array(
+                    'from_email' => $this->params->from_email,
+                    'title' => $ShopInfo['title'],
+                    'id' => $ShopInfo['id']
+                )
+            ) );
+        $shop->updateStatus( $id , 0 );
+            break;
+
+        case 1:
+            Plugin_Common::getMail( array(
+                    'email' => $UserInfo['email'],
+                    'reply' => $this->params->noreplay,
+                    'subject' => sprintf( 'Annuncio pubblicato "%s"', $ShopInfo['title'] ),
+                    'template' => 'shop_published.phtml',
+                    'params' => array(
+                        'from_email' => $this->params->from_email,
+                        'title' => $ShopInfo['title'],
+                        'id' => $ShopInfo['id']
+                    )
+                ) );
+            $shop->updateStatus( $id , 1 );
+            break;
+
+        case 2:
+            // code...
+            break;
+        }
+
+        $this->view->successForm = $this->params->label_success;
+        $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/shop/list' );
     }
 
 
 }
-
-

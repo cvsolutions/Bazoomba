@@ -1,0 +1,7 @@
+<p>Il tuo annuncio è stato pubblicato</p>
+<p>Ce l'abbiamo fatta! L'annuncio "<?php echo $this->params['title']; ?>" è stato pubblicato su <?php echo $this->params['from_email']; ?> e rimarrà attivo per 60 giorni.</p>
+<p>Per vedere l'annuncio clicca sul link qui sotto:</p>
+<ul>
+	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $this->params['id']), null, true); ?>"><?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $this->params['id']), null, true); ?></a></li>
+</ul>
+<p>In bocca al lupo!</p>

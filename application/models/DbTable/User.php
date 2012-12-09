@@ -169,7 +169,9 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
      */
     public function updateAvatar($id, $avatar) {
         $arrayAvatar = array(
-            'avatar' => $avatar
+            'avatar' => $avatar,
+            'modified' => time(),
+            'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayAvatar, sprintf('id = %d', $id));
     }
@@ -208,6 +210,8 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
             'status' => 0,
             'newsletter' => 1,
             'registered' => time(),
+            'modified' => time(),
+            'last_login' => time(),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->insert($arrayNewUser);

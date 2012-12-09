@@ -15,8 +15,8 @@
 			<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'edit', 'id' => $this->row['id'])); ?>">Modifica scheda</a>
 			<span></span>
 			<ul>			
-				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 1, 'id' => $this->row['id']), null, true); ?>">Attiva</a></li>
-				<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 0, 'id' => $this->row['id']), null, true); ?>">Sospendi</a></li>
+				<?php if ($this->row['status'] == 0): ?><li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 1, 'id' => $this->row['id']), null, true); ?>">Attiva</a></li><?php endif ?>
+				<?php if ($this->row['status'] == 1): ?><li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'status', 'type' => 0, 'id' => $this->row['id']), null, true); ?>">Sospendi</a></li><?php endif ?>
 				<li class="divider"></li>
 				<li><a data-reveal-id="deleteModal" href="javascript:void(0)">Elimina</a></li>			
 			</ul>
@@ -183,7 +183,9 @@
 						<br>
 					</div>
 				<?php endforeach ?>
-			<?php endif ?>	
+			<?php else: ?>
+						<p><?php echo $this->notfound; ?></p>
+					<?php endif ?>
 		</div>
 	</li>
 

@@ -158,8 +158,9 @@ class AjaxController extends Zend_Controller_Action
      *
      */
     public function autocompleteAction() {
+        $term = $this->_getParam( 'term', 0 );
         $Shop = new Application_Model_DbTable_Shop();
-        $ads = $Shop->fetchAll('status = 1');
+        $ads = $Shop->fullShopFilter(array('type' => 'global', 'q' => $term));
         $data = array();
         foreach ($ads as $row) {
             $result = array(

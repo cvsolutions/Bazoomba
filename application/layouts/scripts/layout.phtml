@@ -7,21 +7,21 @@ $this->headMeta()->appendName('description', '');
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <?php echo $this->headTitle(); ?>
-    <?php echo $this->headMeta(); ?>
+  <meta charset="utf-8" />
+  <?php echo $this->headTitle(); ?>
+  <?php echo $this->headMeta(); ?>
 
-     <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap.css" rel="stylesheet">
-     <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap-responsive.css" rel="stylesheet">
-     <link href="<?php echo $this->serverUrl(); ?>/site/css/app.css" rel="stylesheet" />
-     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap.css" rel="stylesheet">
+  <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="<?php echo $this->serverUrl(); ?>/site/css/app.css" rel="stylesheet" />
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-</head>
+  </head>
 
-<body>
+  <body>
 
     <h1>Menu</h1>
     <ul>
@@ -29,24 +29,24 @@ $this->headMeta()->appendName('description', '');
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>">Ricerca</a></li>
       <?php if($this->identity): ?>
       <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'index'), null, true); ?>"><?php echo $this->identity->name; ?></a></li>
-      	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">Logout</a></li>
+      <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">Logout</a></li>
 
-          <?php else: ?>
-      <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>">Accedi</a></li>
-      <?php endif; ?>
+    <?php else: ?>
+    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>">Accedi</a></li>
+  <?php endif; ?>
 
-      <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'new'), null, true); ?>">Registrati</a></li>
-  </ul>
+  <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'new'), null, true); ?>">Registrati</a></li>
+</ul>
 
-  <?php echo $this->layout()->content; ?>
+<?php echo $this->layout()->content; ?>
 
-  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-  <script src="<?php echo $this->serverUrl(); ?>/site/js/bootstrap.js"></script>
-  <script src="<?php echo $this->serverUrl(); ?>/site/js/jquery.validate.js"></script>
-  <script src="<?php echo $this->serverUrl(); ?>/site/js/validate.js"></script>
-  <script src="<?php echo $this->serverUrl(); ?>/site/js/app.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script src="<?php echo $this->serverUrl(); ?>/site/js/bootstrap.js"></script>
+<script src="<?php echo $this->serverUrl(); ?>/site/js/jquery.validate.js"></script>
+<script src="<?php echo $this->serverUrl(); ?>/site/js/validate.js"></script>
+<script src="<?php echo $this->serverUrl(); ?>/site/js/app.js"></script>
 
 </body>
 </html>

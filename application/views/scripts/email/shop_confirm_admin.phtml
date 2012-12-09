@@ -6,4 +6,4 @@
 	<li>Testo: <?php echo $this->params['description']; ?></li>
 </ul>
 <hr>
-<p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'login', 'action' => 'index')); ?>">Accedi al software per verificare & confermare l'annuncio.</a></p>
+<p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'detail', 'id' => $this->params['id']), null, true); ?>">Accedi al software per verificare & confermare l'annuncio.</a></p>
