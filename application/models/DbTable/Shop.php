@@ -251,6 +251,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
 
     public function newShop( $id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude ) {
+
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
 
@@ -281,7 +282,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->insert( $arrayNewShop );
     }
 
-
     public function controlAds( $id_ads ) {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
@@ -307,6 +307,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                 'description',
                 'price',
                 'registered',
+                'expiration',
                 'status',
                 'step'
             ) );

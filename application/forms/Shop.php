@@ -159,6 +159,20 @@ class Application_Form_Shop extends Zend_Form
                 'StripTags'
             ) );
 
+        $video = new Zend_Form_Element_Select('video');
+        $video->setLabel('Piattaforma Video');
+        $video->addMultiOptions($select->appendVideo());
+        $video->setValue(1);
+
+        $url = new Zend_Form_Element_Text('url');
+        $url->setLabel('Url Video');
+        $url->addValidator('NotEmpty');
+        $url->setAttrib('placeholder', 'Il Tuo Url video qui...');
+        $url->addFilters( array(
+                'StringTrim',
+                'StripTags'
+            ) );
+
         $tags = new Zend_Form_Element_Text( 'tags' );
         $tags->setLabel( 'Tags' );
         $tags->addValidator( 'NotEmpty' );
@@ -220,7 +234,7 @@ class Application_Form_Shop extends Zend_Form
         $submit->setLabel( 'Salva' );
         $submit->setAttrib( 'class', 'btn btn-primary' );
 
-        return $this->addElements( array( $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $address, $div, $lat, $lon, $terms, $submit ) );
+        return $this->addElements( array( $category, $sub_category, $region, $province, $city, $type, $title, $description, $video, $url, $tags, $price, $address, $div, $lat, $lon, $terms, $submit ) );
     }
 
     public function addMedia() {

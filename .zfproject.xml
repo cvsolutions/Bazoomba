@@ -114,6 +114,7 @@
           <dbTableFile dbTableName="Provinces"/>
           <dbTableFile dbTableName="City"/>
           <dbTableFile dbTableName="Page"/>
+          <dbTableFile dbTableName="Video"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>

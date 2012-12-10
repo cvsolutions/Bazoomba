@@ -102,7 +102,9 @@ $(function() { /** Jquery Validation Form Add Ads */
                     price: $('#price').val(),
                     address: $('#address').val(),
                     latitude: $('#latitude').val(),
-                    longitude: $('#longitude').val()
+                    longitude: $('#longitude').val(),
+                    video: $('#video').val(),
+                    url_video: $('#url').val()
                 },
                 beforeSend: function() {
                     $('#submit').hide();

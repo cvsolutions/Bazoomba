@@ -49,6 +49,11 @@ class Application_Model_OptionSelect {
 		return $params->type_ads->toArray();
 	}
 
+        public function appendVideo() {
+		$params = Plugin_Common::getParams();
+		return $params->video->toArray();
+	}
+
 	/**
 	 * appendParentCategory
 	 *
