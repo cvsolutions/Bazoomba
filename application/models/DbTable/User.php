@@ -129,7 +129,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     public function updatePassword($id, $serialkey, $pwd) {
         $arrayName = array(
             'pwd' => sha1($pwd),
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayName, sprintf("id = %d AND serialkey = '%s'", $id, $serialkey));
@@ -153,7 +153,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
             'type' => $type,
             'name' => $name,
             'status' => $status,
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayName, sprintf('id = %d', $id));
@@ -170,7 +170,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     public function updateAvatar($id, $avatar) {
         $arrayAvatar = array(
             'avatar' => $avatar,
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayAvatar, sprintf('id = %d', $id));
@@ -209,9 +209,9 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
             'role' => 'user',
             'status' => 0,
             'newsletter' => 1,
-            'registered' => time(),
-            'modified' => time(),
-            'last_login' => time(),
+            'registered' => new Zend_Db_Expr('NOW()'),
+            'modified' => new Zend_Db_Expr('NOW()'),
+            'last_login' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->insert($arrayNewUser);
@@ -230,7 +230,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     public function confirmUser($serialkey) {
         $arrayConfirm = array(
             'status' => 1,
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayConfirm, sprintf('serialkey = %d', $serialkey));
@@ -262,7 +262,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
             'phone_show' => $phone_show,
             'vat' => $iva,
             'name_company' => $name_company,
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayName, sprintf('id = %d', $id));
@@ -282,7 +282,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     public function updatePasswordUser($id, $pwd) {
         $arrayName = array(
             'pwd' => sha1($pwd),
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayName, sprintf('id = %d', $id));

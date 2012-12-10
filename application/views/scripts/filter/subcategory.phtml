@@ -1,3 +1,4 @@
+<?php echo $this->headTitle($this->sub['name']); ?>
 <!-- title / subcategory -->
 <h1>Sotto Categoria <?php echo $this->sub['name']; ?> - <?php echo $this->category['name']; ?></h1>
 <p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id']), null, true); ?>"><?php echo $this->category['name']; ?></a></p>

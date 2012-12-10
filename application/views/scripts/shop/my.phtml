@@ -3,7 +3,7 @@
 
 <?php if ($this->myshop): ?>
 <div class="container">
-<<<<<<< HEAD
+
     <?php foreach ($this->myshop as $row): ?>
     <p>
         <?php if($row['photo'] != 0): ?>
@@ -39,45 +39,8 @@
     <p>Inserito il <?php echo new Zend_Date($row['registered']); ?></p>
 
     <hr>
-=======
-	<?php foreach ($this->myshop as $row): ?>
-		<p>
-                    <?php if($row['photo'] != 0): ?>
-                    <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=100&height=100">
-                    <?php endif; ?>
+    <?php endforeach ?>
 
-                    <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a>
-                </p>
-		<p><?php echo $this->truncate($row['description']); ?></p>
-		<p>€ <?php echo $row['price']; ?></p>
-
-                <?php if($row['step'] == 1 AND $row['status'] == 0): ?>
-		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'media', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Aggiungi Immagini</a>
-                <?php endif; ?>
-
-                <?php if($row['step'] == 2 AND $row['status'] == 0): ?>
-		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'public', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Pubblica Ora</a>
-                <?php endif; ?>
-
-                <?php if($row['step'] == 3 AND $row['status'] == 0): ?>
-		<a href="#" class="btn btn-info">Ads In Attesa Di Approvazione</a>
-                <?php endif; ?>
-
-                <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
-		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>" class="btn btn-success">Ads Attivo</a>
-                <?php endif; ?>
-
-                <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
-		<a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'item' => $row['id']), null, true); ?>" class="btn btn-danger">Elimina Questo Ads</a>
-                <?php endif; ?>
-
-                <p>
-                Inserito il <?php echo date("d-m-Y", $row['registered']); ?>, scadenza programmata il <?php echo date("d-m-Y", $row['expiration']); ?>
-                </p>
-
-                <hr>
->>>>>>> Add table & form video
-	<?php endforeach ?>
 </div>
 <?php endif ?>
 

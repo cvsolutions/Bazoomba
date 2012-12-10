@@ -1,3 +1,5 @@
+<?php echo $this->headTitle(sprintf('%s | %s | %s', $this->row['title'], $this->category['name'], $this->region['name'])); ?>
+
 <h1><?php echo $this->row['title']; ?></h1>
 <ul>
 	<li><?php echo $this->row['code']; ?></li>
@@ -14,10 +16,10 @@
 <ul>
 	<li><?php echo $this->user['name']; ?></li>
 	<li><?php echo $this->type_user[$this->user['type']]; ?></li>
-	<li><?php echo $this->user['telephone']; ?></li>
+	<?php if ($this->user['phone_show'] == 1): ?><li><?php echo $this->user['telephone']; ?></li><?php endif ?>
 </ul>
 
-<p><?php echo $this->row['description']; ?></p>
+<p><?php echo nl2br($this->row['description']); ?></p>
 
 <h1>Photo Gallery</h1>
 <?php if ($this->gallery): ?>
@@ -35,8 +37,8 @@
 <?php echo $this->ReplyForm; ?>
 
 <!-- list ads -->
-<h1>Nelle vicinanze</h1>
 <?php if ($this->random_geo): ?>
+	<h1>Nelle vicinanze</h1>
 	<?php foreach ($this->random_geo as $row): ?>
 	<ul>
 		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a></li>

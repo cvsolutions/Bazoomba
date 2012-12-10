@@ -16,8 +16,7 @@ class Application_Model_DbTable_Video extends Zend_Db_Table_Abstract
             'user' => $identity->id,
             'shop' => $shop,
             'type' => $video,
-            'registered' => time(),
-            'computer' => $_SERVER['HTTP_USER_AGENT'],
+            'registered' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'status' => 1
         );

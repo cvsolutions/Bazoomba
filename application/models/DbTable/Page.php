@@ -59,7 +59,7 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
             'latitude' => $lat,
             'longitude' => $lon,
             'status' => 0,
-            'registered' => time(),
+            'registered' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->insert($arrayNewPage);
@@ -86,7 +86,7 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
             'address' => $address,
             'latitude' => $lat,
             'longitude' => $lon,
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayUpdate, sprintf('user = %d', $id));
@@ -103,7 +103,7 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
     public function updateLogo($id, $image) {
         $arrayLogo = array(
             'logo' => $image,
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayLogo, sprintf('user = %d', $id));

@@ -1,3 +1,5 @@
+<?php echo $this->headTitle($this->province['name']); ?>
+
 <!-- title / province region -->
 <h1>Provincia <?php echo $this->province['name']; ?>, <?php echo $this->region['name']; ?></h1>
 <p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id']), null, true); ?>"><?php echo $this->region['name']; ?></a></p>

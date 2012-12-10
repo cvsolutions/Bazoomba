@@ -102,6 +102,12 @@
           <actionMethod actionName="autocomplete"/>
           <actionMethod actionName="controlemail"/>
         </controllerFile>
+        <controllerFile controllerName="Content">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="privacy"/>
+          <actionMethod actionName="about"/>
+          <actionMethod actionName="terms"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
         <formFile formName="Filter"/>
@@ -227,6 +233,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="status"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Content">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Content">
+            <viewScriptFile forActionName="privacy"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Content">
+            <viewScriptFile forActionName="about"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Content">
+            <viewScriptFile forActionName="terms"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -81,7 +81,7 @@ class UserController extends Zend_Controller_Action
 
                     $User = new Application_Model_DbTable_User();
                     $row = $User->getEmailInfo($username);
-                    $User->updateAccessUser(time(), $user->id);
+                    $User->updateAccessUser(new Zend_Db_Expr('NOW()'), $user->id);
 
                     $Access = new Zend_Session_Namespace('LastLogin');
                     $Access->yourLoginTime = $row['last_login'];

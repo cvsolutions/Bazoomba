@@ -42,6 +42,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->add( new Zend_Acl_Resource( 'filter' ) );
         $this->add( new Zend_Acl_Resource( 'ajax' ) );
         $this->add( new Zend_Acl_Resource( 'page' ) );
+        $this->add( new Zend_Acl_Resource( 'content' ) );
 
         /** assign privileges */
         $this->allow( 'guest', array( 'index', 'error' ) );
@@ -50,6 +51,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow( 'guest', 'ajax', array( 'index', 'autocomplete','newuser','controlemail') );
         $this->allow( 'guest', 'user', array( 'index', 'lostpassword', 'resetpassword', 'new', 'confirm' ) );
         $this->allow( 'guest', 'filter', array( 'index', 'search', 'category', 'region', 'subcategory', 'province' ) );
+        $this->allow( 'guest', 'content', array( 'index', 'about', 'privacy', 'terms' ) );
 
         $this->allow( 'user', 'user', array( 'index', 'logout' ) );
         $this->allow( 'user', 'login', array( 'index', 'notauthorized' ) );

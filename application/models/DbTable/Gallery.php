@@ -62,7 +62,7 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
     public function updateStatusGallery($id, $status, $shop) {
         $arrayName = array(
             'status' => $status,
-            'modified' => time(),
+            'modified' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->update($arrayName, sprintf('id = %d AND shop = %d', $id, $shop));
@@ -116,7 +116,7 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
             'image' => $image,
             'status' => 1,
             'page' => $page,
-            'registered' => time(),
+            'registered' => new Zend_Db_Expr('NOW()'),
             'ip_address' => $_SERVER['REMOTE_ADDR']
         );
         return $this->insert($arrayMedia);

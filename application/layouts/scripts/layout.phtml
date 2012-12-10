@@ -1,6 +1,6 @@
 <?php
 $this->headTitle('Portale Di Annunci Gratuiti - Bazoomba');
-$this->headTitle()->setSeparator(' - ');
+$this->headTitle()->setSeparator(' | ');
 $this->headMeta()->appendName('keywords', '');
 $this->headMeta()->appendName('description', '');
 ?>
@@ -46,6 +46,12 @@ $this->headMeta()->appendName('description', '');
         <hr>
 
         <p>All rights reserved.</p>
+
+        <ul>
+          <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'content', 'action' => 'about'), null, true); ?>">Chi Siamo</a></li>
+          <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'content', 'action' => 'privacy'), null, true); ?>">Privacy</a></li>
+          <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'content', 'action' => 'terms'), null, true); ?>">Termini e condizioni</a></li>
+        </ul>
 
 
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
