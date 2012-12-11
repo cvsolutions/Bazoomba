@@ -1,22 +1,16 @@
 <?php
-/**
- * /tmp/phptidy-sublime-buffer.php
- *
- * @package default
- */
-
 
 /**
- * Application_Model_DbTable_Gallery
- *
- * @uses     Zend_Db_Table_Abstract
- *
- * @category Gallery
- * @package  Bazoomba.it
- * @author   Concetto Vecchio
- * @license
- * @link
- */
+* Application_Model_DbTable_Gallery
+*
+* @uses     Zend_Db_Table_Abstract
+*
+* @category Gallery
+* @package  Bazoomba.it
+* @author   Concetto Vecchio
+* @license  
+* @link     
+*/
 class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
 {
 
@@ -30,12 +24,21 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
     protected $_name = 'ads_gallery';
 
     /**
-     * getImageInfo
+     * $_primary
      *
+     * @var string
+     *
+     * @access protected
+     */
+    protected $_primary = 'id';
+
+    /**
+     * getImageInfo
+     * 
+     * @param mixed $id ID image.
      *
      * @access public
      *
-     * @param mixed   $id ID Image.
      * @return mixed Value.
      */
     public function getImageInfo($id) {
@@ -47,16 +50,15 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-
     /**
      * updateStatusGallery
-     *
+     * 
+     * @param mixed $id     ID Image.
+     * @param mixed $status Stato.
+     * @param mixed $shop   ID ADS.
      *
      * @access public
      *
-     * @param mixed   $id     ID Image.
-     * @param mixed   $status Se è Attivo / Sospeso.
-     * @param mixed   $shop   ID annuncio.
      * @return mixed Value.
      */
     public function updateStatusGallery($id, $status, $shop) {
@@ -68,14 +70,13 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
         return $this->update($arrayName, sprintf('id = %d AND shop = %d', $id, $shop));
     }
 
-
     /**
      * deleteImageGallery
-     *
+     * 
+     * @param mixed $id ID Image.
      *
      * @access public
      *
-     * @param mixed   $id ID Image.
      * @return mixed Value.
      */
     public function deleteImageGallery($id) {
@@ -84,13 +85,15 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
         return $this->delete('id = ' . $id);
     }
 
-
     /**
+     * deleteGalleryPage
+     * 
+     * @param mixed $id   ID Image.
+     * @param mixed $user ID User.
      *
+     * @access public
      *
-     * @param unknown $id
-     * @param unknown $user
-     * @return unknown
+     * @return mixed Value.
      */
     public function deleteGalleryPage($id, $user) {
         $row = $this->getImageInfo($id);
@@ -98,16 +101,15 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
         return $this->delete(sprintf('id =  %d AND shop = %d AND page = 1', $id, $user));
     }
 
-
     /**
      * addMedia
-     *
+     * 
+     * @param mixed $id    ID Image.
+     * @param mixed $image Files.
+     * @param mixed $page  ID Page.
      *
      * @access public
      *
-     * @param mixed   $id    ID Image.
-     * @param unknown $image
-     * @param unknown $page
      * @return mixed Value.
      */
     public function addMedia($id, $image, $page) {
@@ -122,12 +124,14 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
         return $this->insert($arrayMedia);
     }
 
-
     /**
+     * galleryPage
+     * 
+     * @param mixed $id ID ADS.
      *
+     * @access public
      *
-     * @param unknown $id
-     * @return unknown
+     * @return mixed Value.
      */
     public function galleryPage($id) {
         $row = $this->fetchAll(sprintf('shop = %d AND page = 1', $id));

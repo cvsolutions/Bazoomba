@@ -1,49 +1,74 @@
 <?php
+
 /**
- * /tmp/phptidy-sublime-buffer.php
+ * AjaxController
  *
- * @package default
+ * @uses     Zend_Controller_Action
+ *
+ * @category Ajax
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
  */
-
-
 class AjaxController extends Zend_Controller_Action
 {
 
+    /**
+     * $params
+     *
+     * @var mixed
+     *
+     * @access public
+     */
     public $params = null;
 
     /**
+     * preDispatch
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function preDispatch() {
         $this->_helper->layout()->disableLayout();
-        $this->_helper->viewRenderer->setNoRender(true);
+        $this->_helper->viewRenderer->setNoRender( true );
     }
 
-
     /**
+     * init
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
-    public function init()
-    {
+    public function init() {
         $this->params = Plugin_Common::getParams();
     }
 
-
     /**
+     * indexAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function indexAction() {
         // action body
     }
 
-
     /**
+     * newshopAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function newshopAction() {
         if ( $this->getRequest()->getPost() ) {
             $form = new Application_Form_Shop();
             $form_data = $this->getRequest()->getPost();
+
             if ( $form->isValid( $form_data ) ) {
 
                 $id = Plugin_Common::getId( 'ads_shop' );
@@ -59,70 +84,86 @@ class AjaxController extends Zend_Controller_Action
                 $price = $this->_request->getPost( 'price' );
                 $latitude = $this->_request->getPost( 'latitude' );
                 $longitude = $this->_request->getPost( 'longitude' );
-                $url = $this->_request->getPost('url_video');
-                $vid = $this->_request->getPost('video');
+                $url = $this->_request->getPost( 'url_video' );
+                $vid = $this->_request->getPost( 'video' );
 
                 $video = new Application_Model_DbTable_Video();
-                $video->newVideo($id, $url, $vid);
+                $video->newVideo( $id, $url, $vid );
 
                 $shop = new Application_Model_DbTable_Shop();
                 $shop->newShop( $id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude );
 
-                echo Zend_Json::encode(array('id' => $id));
+                echo Zend_Json::encode( array( 'id' => $id ) );
             }
         }
     }
 
+    /**
+     * newuserAction
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function newuserAction() {
 
-        if ($this->getRequest()->getPost() ) {
+        if ( $this->getRequest()->getPost() ) {
             $form = new Application_Form_Shop();
             $form_data = $this->getRequest()->getPost();
             if ( $form->isValid( $form_data ) ) {
 
-                $id = Plugin_Common::getId('ads_user');
-                $type = $this->_request->getPost('type');
-                $name = $this->_request->getPost('name');
-                $email = $this->_request->getPost('email');
-                $phone = $this->_request->getPost('telephone');
-                $phone_show = $this->_request->getPost('phone_show');
-                $pwd = $this->_request->getPost('pwd');
-                $serialkey = sha1(time().$email.$id);
-                $vat = $this->_request->getPost('vat');
-                $name_company = $this->_request->getPost('name_company');
+                $id = Plugin_Common::getId( 'ads_user' );
+                $type = $this->_request->getPost( 'type' );
+                $name = $this->_request->getPost( 'name' );
+                $email = $this->_request->getPost( 'email' );
+                $phone = $this->_request->getPost( 'telephone' );
+                $phone_show = $this->_request->getPost( 'phone_show' );
+                $pwd = $this->_request->getPost( 'pwd' );
+                $serialkey = sha1( time().$email.$id );
+                $vat = $this->_request->getPost( 'vat' );
+                $name_company = $this->_request->getPost( 'name_company' );
 
                 $user = new Application_Model_DbTable_User();
-                $user->newUser($id, $type, $name, $email, $phone, $phone_show, $pwd, $serialkey, $vat, $name_company);
+                $user->newUser( $id, $type, $name, $email, $phone, $phone_show, $pwd, $serialkey, $vat, $name_company );
 
-                Plugin_Common::getMail(array(
-                    'email' => $email,
-                    'reply' => $this->params->noreplay,
-                    'subject' => 'Nuova Registrazione',
-                    'template' => 'newuser.phtml',
-                    'params' => array(
-                        'name' => $name,
-                        'serialkey' => $serialkey
+                Plugin_Common::getMail( array(
+                        'email' => $email,
+                        'reply' => $this->params->noreplay,
+                        'subject' => 'Nuova Registrazione',
+                        'template' => 'newuser.phtml',
+                        'params' => array(
+                            'name' => $name,
+                            'serialkey' => $serialkey
                         )
-                    ));
-                echo Zend_Json::encode(array('result' => 'Controlla email per confermare la registrazione'));
+                    ) );
+                echo Zend_Json::encode( array( 'result' => 'Controlla email per confermare la registrazione' ) );
             }
         }
     }
 
-    public function controlemailAction()
-    {
-        $email = $this->_request->getPost('email');
+    /**
+     * controlemailAction
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function controlemailAction() {
+        $email = $this->_request->getPost( 'email' );
         $user = new Application_Model_DbTable_User();
-        if($user->controlemail($email) > 0) {
+        if ( $user->controlemail( $email ) > 0 ) {
             echo 'false';
         } else {
             echo 'true';
         }
     }
 
-
     /**
+     * provinceAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function provinceAction() {
         $select = new Application_Model_OptionSelect();
@@ -133,9 +174,12 @@ class AjaxController extends Zend_Controller_Action
         echo $province;
     }
 
-
     /**
+     * cityAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function cityAction() {
         $select = new Application_Model_OptionSelect();
@@ -146,9 +190,12 @@ class AjaxController extends Zend_Controller_Action
         echo $city;
     }
 
-
     /**
+     * subcategoryAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function subcategoryAction() {
         $select = new Application_Model_OptionSelect();
@@ -159,26 +206,29 @@ class AjaxController extends Zend_Controller_Action
         echo $subcategory;
     }
 
-
     /**
+     * autocompleteAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function autocompleteAction() {
         $term = $this->_getParam( 'term', 0 );
         $Shop = new Application_Model_DbTable_Shop();
-        $ads = $Shop->fullShopFilter(array('type' => 'global', 'q' => $term));
+        $ads = $Shop->fullShopFilter( array( 'type' => 'global', 'q' => $term ) );
         $data = array();
-        foreach ($ads as $row) {
+        foreach ( $ads as $row ) {
             $result = array(
                 'id' => $row['id'],
                 'label' => $row['title'],
                 'type' => 'autocomplete',
             );
-            array_push($data, $result);
+            array_push( $data, $result );
         }
 
-        echo Zend_Json::encode($data);
-        $this->_helper->viewRenderer->setNoRender(true);
+        echo Zend_Json::encode( $data );
+        $this->_helper->viewRenderer->setNoRender( true );
     }
 
 

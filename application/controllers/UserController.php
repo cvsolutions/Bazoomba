@@ -1,16 +1,16 @@
 <?php
 
 /**
-* UserController
-*
-* @uses     Zend_Controller_Action
-*
-* @category User
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license
-* @link
-*/
+ * UserController
+ *
+ * @uses     Zend_Controller_Action
+ *
+ * @category User
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class UserController extends Zend_Controller_Action
 {
     /**
@@ -29,11 +29,9 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function init()
-    {
+    public function init() {
         $this->params = Plugin_Common::getParams();
     }
-
 
     /**
      * indexAction
@@ -42,57 +40,52 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $form = new Application_Form_User();
         $this->view->loginForm = $form->login();
 
         $auth = Zend_Auth::getInstance();
-        if ($auth->hasIdentity())
-        {
-            $this->_redirect('/account');
+        if ( $auth->hasIdentity() ) {
+            $this->_redirect( '/account' );
         }
 
-        if ($this->getRequest()->getPost())
-        {
+        if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
 
-            if($form->isValid($form_data))
-            {
+            if ( $form->isValid( $form_data ) ) {
                 $db = Zend_Db_Table::getDefaultAdapter();
-                $adapter = new Zend_Auth_Adapter_DbTable($db);
-                $adapter->setTableName('ads_user');
-                $adapter->setIdentityColumn('email');
-                $adapter->setCredentialColumn('pwd');
-                $adapter->setCredentialTreatment('SHA1(?) AND status = 1');
+                $adapter = new Zend_Auth_Adapter_DbTable( $db );
+                $adapter->setTableName( 'ads_user' );
+                $adapter->setIdentityColumn( 'email' );
+                $adapter->setCredentialColumn( 'pwd' );
+                $adapter->setCredentialTreatment( 'SHA1(?) AND status = 1' );
 
-                $username = $form->getValue('user');
-                $password = $form->getValue('pwd');
+                $username = $form->getValue( 'user' );
+                $password = $form->getValue( 'pwd' );
 
-                $adapter->setIdentity($username);
-                $adapter->setCredential($password);
+                $adapter->setIdentity( $username );
+                $adapter->setCredential( $password );
 
-                $result = $auth->authenticate($adapter);
+                $result = $auth->authenticate( $adapter );
 
-                if ($result->isValid())
-                {
+                if ( $result->isValid() ) {
                     $user = $adapter->getResultRowObject();
-                    $auth->getStorage()->write($user);
+                    $auth->getStorage()->write( $user );
 
                     $User = new Application_Model_DbTable_User();
-                    $row = $User->getEmailInfo($username);
-                    $User->updateAccessUser(new Zend_Db_Expr('NOW()'), $user->id);
+                    $row = $User->getEmailInfo( $username );
+                    $User->updateAccessUser( new Zend_Db_Expr( 'NOW()' ), $user->id );
 
-                    $Access = new Zend_Session_Namespace('LastLogin');
+                    $Access = new Zend_Session_Namespace( 'LastLogin' );
                     $Access->yourLoginTime = $row['last_login'];
 
-                    $this->_redirect('/account');
+                    $this->_redirect( '/account' );
                 } else {
                     $this->view->loginError = $this->params->label_check_user;
                 }
 
             } else {
-                $form->populate($form_data);
+                $form->populate( $form_data );
             }
         }
     }
@@ -104,10 +97,9 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function logoutAction()
-    {
+    public function logoutAction() {
         Zend_Auth::getInstance()->clearIdentity();
-        $this->_redirect('/user/notauthorized');
+        $this->_redirect( '/user/notauthorized' );
     }
 
 
@@ -118,8 +110,7 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function notauthorizedAction()
-    {
+    public function notauthorizedAction() {
         // action body
     }
 
@@ -130,10 +121,9 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function listAction()
-    {
+    public function listAction() {
         $list_user = new Application_Model_DbTable_User();
-        $this->view->user = $list_user->fetchAll(null, array('registered DESC'));
+        $this->view->user = $list_user->fetchAll( null, array( 'registered DESC' ) );
         $this->view->notfound = $this->params->label_not_found;
         $this->view->type_user = $this->params->type_user->toArray();
     }
@@ -145,11 +135,9 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function deleteAction()
-    {
+    public function deleteAction() {
         // action body
     }
-
 
     /**
      * editAction
@@ -158,34 +146,31 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function editAction()
-    {
-        $id = $this->_getParam('id', 0);
+    public function editAction() {
+        $id = $this->_getParam( 'id', 0 );
         $user = new Application_Model_DbTable_User();
-        $row = $user->getAdminInfo($id);
+        $row = $user->getAdminInfo( $id );
 
         $form = new Application_Form_User();
         $this->view->editForm = $form->editAdmin();
 
-        if($this->getRequest()->getPost())
-        {
+        if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
-            if($form->isValid($form_data))
-            {
-                $type = $form->getValue('type');
-                $name = $form->getValue('name');
-                $status = $form->getValue('status');
+            if ( $form->isValid( $form_data ) ) {
+                $type = $form->getValue( 'type' );
+                $name = $form->getValue( 'name' );
+                $status = $form->getValue( 'status' );
 
-                $user->updateAdminUser($id, $type, $name, $status);
+                $user->updateAdminUser( $id, $type, $name, $status );
                 $this->view->successForm = $this->params->label_success;
-                $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/user/list');
+                $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/user/list' );
 
             } else {
-                $form->populate($form_data);
+                $form->populate( $form_data );
             }
 
         } else {
-            $form->populate($row);
+            $form->populate( $row );
         }
     }
 
@@ -196,45 +181,41 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function lostpasswordAction()
-    {
+    public function lostpasswordAction() {
         $form = new Application_Form_User();
         $this->view->passwordForm = $form->lostPassword();
 
-        if ($this->getRequest()->getPost())
-        {
+        if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
-            if($form->isValid($form_data))
-            {
-                $email = $form->getValue('user');
+            if ( $form->isValid( $form_data ) ) {
+                $email = $form->getValue( 'user' );
 
                 $user = new Application_Model_DbTable_User();
-                $row = $user->getEmailInfo($email);
+                $row = $user->getEmailInfo( $email );
 
-                Plugin_Common::getMail(array(
-                    'email' => $row['email'],
-                    'subject' => 'Richiesta reset password',
-                    'template' => 'lostpassword.phtml',
-                    'params' => array(
-                        'id' => $row['id'],
-                        'name' => $row['name'],
-                        'serialkey' => $row['serialkey']
+                Plugin_Common::getMail( array(
+                        'email' => $row['email'],
+                        'subject' => 'Richiesta reset password',
+                        'template' => 'lostpassword.phtml',
+                        'params' => array(
+                            'id' => $row['id'],
+                            'name' => $row['name'],
+                            'serialkey' => $row['serialkey']
                         )
-                    ));
+                    ) );
 
                 $this->view->successForm = 'OK';
-                $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/');
+                $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/' );
                 // sleep(3);
                 // $this->_redirect('/');
                 // $this->_helper->layout()->disableLayout();
                 // $this->_helper->viewRenderer->setNoRender(true);
 
             } else {
-                $form->populate($form_data);
+                $form->populate( $form_data );
             }
         }
     }
-
 
     /**
      * resetpasswordAction
@@ -243,58 +224,53 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function resetpasswordAction()
-    {
-        $id = $this->_getParam('id', 0);
-        $serialkey = $this->_getParam('serialkey', 0);
+    public function resetpasswordAction() {
+        $id = $this->_getParam( 'id', 0 );
+        $serialkey = $this->_getParam( 'serialkey', 0 );
 
         $user = new Application_Model_DbTable_User();
-        $row = $user->getSerialKeyInfo($id, $serialkey);
+        $row = $user->getSerialKeyInfo( $id, $serialkey );
 
         $form = new Application_Form_User();
         $this->view->passwordForm = $form->resetPassword();
 
-        if ($this->getRequest()->getPost())
-        {
+        if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
-            if($form->isValid($form_data))
-            {
-                $pwd = $form->getValue('pwd');
+            if ( $form->isValid( $form_data ) ) {
+                $pwd = $form->getValue( 'pwd' );
 
-                Plugin_Common::getMail(array(
-                    'email' => $row['email'],
-                    'subject' => 'Nuove Credenziali portale',
-                    'template' => 'resetpassword.phtml',
-                    'params' => array(
-                        'name' => $row['name'],
+                Plugin_Common::getMail( array(
                         'email' => $row['email'],
-                        'pwd' => $pwd
+                        'subject' => 'Nuove Credenziali portale',
+                        'template' => 'resetpassword.phtml',
+                        'params' => array(
+                            'name' => $row['name'],
+                            'email' => $row['email'],
+                            'pwd' => $pwd
                         )
-                    ));
+                    ) );
 
-                $user->updatePassword($id, $serialkey, $pwd);
+                $user->updatePassword( $id, $serialkey, $pwd );
                 $this->view->successForm = 'OK';
-                $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/');
+                $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/' );
 
             } else {
-                $form->populate($form_data);
+                $form->populate( $form_data );
             }
         }
     }
 
-     /**
+    /**
      * newAction
      *
      * @access public
      *
      * @return mixed Value.
      */
-    public function newAction()
-    {
+    public function newAction() {
         $auth = Zend_Auth::getInstance();
-        if ($auth->hasIdentity())
-        {
-            $this->_redirect('/account');
+        if ( $auth->hasIdentity() ) {
+            $this->_redirect( '/account' );
         }
 
         $form = new Application_Form_User();
@@ -308,32 +284,28 @@ class UserController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function confirmAction()
-    {
-         $serialkey = $this->_getParam('serialkey');
-         $user = new Application_Model_DbTable_User();
+    public function confirmAction() {
+        $serialkey = $this->_getParam( 'serialkey' );
+        $user = new Application_Model_DbTable_User();
 
-         if($user->confirmUser($serialkey)) {
+        if ( $user->confirmUser( $serialkey ) ) {
 
             $user = new Application_Model_DbTable_User();
-            $row = $user->getInfoSerialKey($serialkey);
+            $row = $user->getInfoSerialKey( $serialkey );
 
-            Plugin_Common::getMail(array(
+            Plugin_Common::getMail( array(
                     'email' => $row['email'],
                     'reply' => $this->params->noreplay,
                     'subject' => 'Registrazione Confermata',
                     'template' => 'confirmuser.phtml',
                     'params' => array(
                         'name' => $row['name'],
-                        )
-                    ));
+                    )
+                ) );
 
             $this->view->successForm = 'Registrazione Completata';
-            $this->view->headMeta()->appendHttpEquiv('refresh','3; url=/user');
-
-         }
-
+            $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/user' );
+        }
     }
 
 }
-

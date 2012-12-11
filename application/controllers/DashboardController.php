@@ -13,6 +13,13 @@
  */
 class DashboardController extends Zend_Controller_Action
 {
+    /**
+     * $params
+     *
+     * @var mixed
+     *
+     * @access public
+     */
     public $params = null;
 
     /**
@@ -40,8 +47,8 @@ class DashboardController extends Zend_Controller_Action
 
         $shop = new Application_Model_DbTable_Shop();
         $this->view->g_chart_ads = $shop->fetchAll();
-        $this->view->g_chart_active = $shop->fetchAll('status = 1');
-        $this->view->g_chart_suspended = $shop->fetchAll('status = 0');
+        $this->view->g_chart_active = $shop->fetchAll( 'status = 1' );
+        $this->view->g_chart_suspended = $shop->fetchAll( 'status = 0' );
         $this->view->last_ads = $shop->LastInsertAdminShop();
         $this->view->view_ads = $shop->LastEditAdminShop();
         $this->view->expir_ads = $shop->LastExpirAdminShop();

@@ -1,26 +1,45 @@
 <?php
+
 /**
- * /tmp/phptidy-sublime-buffer.php
+ * FilterController
  *
- * @package default
+ * @uses     Zend_Controller_Action
+ *
+ * @category Filter
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
  */
-
-
 class FilterController extends Zend_Controller_Action
 {
 
+    /**
+     * $params
+     *
+     * @var mixed
+     *
+     * @access public
+     */
     public $params = null;
 
     /**
+     * init
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function init() {
         $this->params = Plugin_Common::getParams();
     }
 
-
     /**
+     * indexAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function indexAction() {
         $form = new Application_Form_Filter();
@@ -33,9 +52,12 @@ class FilterController extends Zend_Controller_Action
         $this->view->category = $category->Parent_With_Category( 0 );
     }
 
-
     /**
+     * regionAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function regionAction() {
         $id = $this->_getParam( 'item', 0 );
@@ -56,9 +78,12 @@ class FilterController extends Zend_Controller_Action
         $this->view->notfound = $this->params->label_not_found;
     }
 
-
     /**
-     * kjjjkj
+     * categoryAction
+     *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function categoryAction() {
         $id = $this->_getParam( 'item', 0 );
@@ -77,9 +102,12 @@ class FilterController extends Zend_Controller_Action
         $this->view->notfound = $this->params->label_not_found;
     }
 
-
     /**
+     * provinceAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function provinceAction() {
         $id = $this->_getParam( 'item', 0 );
@@ -100,9 +128,12 @@ class FilterController extends Zend_Controller_Action
         $this->view->notfound = $this->params->label_not_found;
     }
 
-
     /**
+     * subcategoryAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function subcategoryAction() {
         $id = $this->_getParam( 'item', 0 );
@@ -123,7 +154,11 @@ class FilterController extends Zend_Controller_Action
 
 
     /**
+     * searchAction
      *
+     * @access public
+     *
+     * @return mixed Value.
      */
     public function searchAction() {
 
@@ -133,14 +168,14 @@ class FilterController extends Zend_Controller_Action
         $type = $this->_getParam( 'type', 0 );
         $ads = $this->_getParam( 'ads', 0 );
 
-        switch ($type) {
+        switch ( $type ) {
 
         case 'autocomplete':
-            $this->_redirect(sprintf('/shop/ads/show/%d', $ads));
+            $this->_redirect( sprintf( '/shop/ads/show/%d', $ads ) );
             break;
 
         case 'global':
-            if ($this->getRequest()->getParams()) {
+            if ( $this->getRequest()->getParams() ) {
                 $shop = new Application_Model_DbTable_Shop();
                 $result = $shop->fullShopFilter( array(
                         'type' => $type,
@@ -149,10 +184,10 @@ class FilterController extends Zend_Controller_Action
                         'q' => $q
                     ) );
 
-                $page = $this->_getParam('page', 1);
-                $paginator = Zend_Paginator::factory($result);
-                $paginator->setItemCountPerPage(2);
-                $paginator->setCurrentPageNumber($page);
+                $page = $this->_getParam( 'page', 1 );
+                $paginator = Zend_Paginator::factory( $result );
+                $paginator->setItemCountPerPage( 2 );
+                $paginator->setCurrentPageNumber( $page );
 
                 $this->view->list = $paginator;
                 $this->view->total_list = $paginator->getTotalItemCount();

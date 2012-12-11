@@ -1,16 +1,16 @@
 <?php
 
 /**
- * AccountController
- *
- * @uses     Zend_Controller_Action
- *
- * @category Account
- * @package  Bazoomba.it
- * @author   Concetto Vecchio
- * @license
- * @link
- */
+* AccountController
+*
+* @uses     Zend_Controller_Action
+*
+* @category Account
+* @package  Bazoomba.it
+* @author   Concetto Vecchio
+* @license  
+* @link     
+*/
 class AccountController extends Zend_Controller_Action
 {
     /**
@@ -44,7 +44,7 @@ class AccountController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
 
-        $Access = new Zend_Session_Namespace('LastLogin');
+        $Access = new Zend_Session_Namespace( 'LastLogin' );
         $this->view->identity = $identity;
         $this->view->last_login = $Access->yourLoginTime;
     }
@@ -75,7 +75,6 @@ class AccountController extends Zend_Controller_Action
                 ) ) );
 
         $this->view->editForm = $edit;
-
 
         if ( $this->getRequest()->getPost() ) {
             $form_data = $this->getRequest()->getPost();
@@ -152,6 +151,13 @@ class AccountController extends Zend_Controller_Action
 
     }
 
+    /**
+     * avatarAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function avatarAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();

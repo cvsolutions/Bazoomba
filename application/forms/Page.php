@@ -1,12 +1,37 @@
 <?php
 
+/**
+ * Application_Form_Page
+ *
+ * @uses     Zend_Form
+ *
+ * @category Page
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class Application_Form_Page extends Zend_Form
 {
 
+    /**
+     * init
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function init() {
 
     }
 
+    /**
+     * newPage
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function newPage() {
         $image = new Zend_Form_Element_File( 'image' );
         $image->setLabel( 'Logo' );
@@ -80,6 +105,13 @@ class Application_Form_Page extends Zend_Form
         return $this->addElements( array( $image, $description, $site, $phone, $address, $div, $lat, $lon, $submit ) );
     }
 
+    /**
+     * editData
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function editData() {
         $description = new Zend_Form_Element_Textarea( 'description' );
         $description->setLabel( 'Dici chi sei' );
@@ -147,6 +179,13 @@ class Application_Form_Page extends Zend_Form
         return $this->addElements( array( $description, $site, $phone, $address, $div, $lat, $lon, $submit ) );
     }
 
+    /**
+     * editPicture
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function editPicture() {
         $image = new Zend_Form_Element_File( 'image' );
         $image->setLabel( 'Logo' );
@@ -161,8 +200,14 @@ class Application_Form_Page extends Zend_Form
         return $this->addElements( array( $image, $submit ) );
     }
 
-    public function gallery()
-    {
+    /**
+     * gallery
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function gallery() {
         $image = new Zend_Form_Element_File( 'image' );
         $image->setLabel( 'Aggiungi Immagine Alla Gallery' );
         $image->setDestination( sprintf( '%s/uploaded/gallery', $_SERVER['DOCUMENT_ROOT'] ) );

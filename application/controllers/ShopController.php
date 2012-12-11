@@ -1,18 +1,57 @@
 <?php
 
+/**
+* ShopController
+*
+* @uses     Zend_Controller_Action
+*
+* @category Shop
+* @package  Bazoomba.it
+* @author   Concetto Vecchio
+* @license  
+* @link     
+*/
 class ShopController extends Zend_Controller_Action
 {
 
+    /**
+     * $params
+     *
+     * @var mixed
+     *
+     * @access public
+     */
     public $params = null;
 
+    /**
+     * init
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function init() {
         $this->params = Plugin_Common::getParams();
     }
 
+    /**
+     * indexAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function indexAction() {
         // action body
     }
 
+    /**
+     * newAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function newAction() {
         $form = new Application_Form_Shop();
         $this->view->newShop= $form->newShop();
@@ -22,6 +61,13 @@ class ShopController extends Zend_Controller_Action
         $this->view->identity = $identity;
     }
 
+    /**
+     * editAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function editAction() {
         $id = $this->_getParam( 'id', 0 );
 
@@ -86,7 +132,6 @@ class ShopController extends Zend_Controller_Action
 
                 $shop->updateShopAdmin( $id, $category, $sub_category, $region, $province, $city, $type, $title, $price, $description, $status );
 
-
                 $this->view->successForm = $this->params->label_success;
                 $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/shop/list' );
 
@@ -99,6 +144,13 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
+    /**
+     * listAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function listAction() {
 
         $search = $this->_getParam( 'search', 0 );
@@ -110,6 +162,13 @@ class ShopController extends Zend_Controller_Action
         $this->view->type_ads = $this->params->type_ads->toArray();
     }
 
+    /**
+     * detailAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function detailAction() {
 
         $id = $this->_getParam( 'id', 0 );
@@ -145,14 +204,35 @@ class ShopController extends Zend_Controller_Action
         $this->view->notfound = $this->params->label_not_found;
     }
 
+    /**
+     * deleteAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function deleteAction() {
         // action body
     }
 
+    /**
+     * galleryAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function galleryAction() {
         // action body
     }
 
+    /**
+     * adsAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function adsAction() {
         $id = $this->_getParam( 'show', 0 );
 
@@ -215,14 +295,35 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
+    /**
+     * modificationAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function modificationAction() {
         // action body
     }
 
+    /**
+     * jsonAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function jsonAction() {
         // action body
     }
 
+    /**
+     * mediaAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function mediaAction() {
         $id_ads = $this->_getParam( 'id', 0 );
         $this->view->id_ads = $id_ads;
@@ -269,6 +370,13 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
+    /**
+     * publicAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function publicAction() {
 
         $auth = Zend_Auth::getInstance();
@@ -284,7 +392,7 @@ class ShopController extends Zend_Controller_Action
             $this->_redirect( '/' );
         }
 
-        //controlla se l'annuncio appartiene all'utente loggato
+        // controlla se l'annuncio appartiene all'utente loggato
         if ( count( $shop->controlAds( $id_ads ) ) == 1 ) {
 
             $email_admin = Plugin_Common::getParams();
@@ -305,6 +413,13 @@ class ShopController extends Zend_Controller_Action
         }
     }
 
+    /**
+     * myAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function myAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
@@ -314,6 +429,13 @@ class ShopController extends Zend_Controller_Action
         $this->view->myshop = $shop->myshop( $identity->id );
     }
 
+    /**
+     * searchAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function searchAction() {
         $region = new Application_Model_DbTable_Region();
         $this->view->region = $region->fetchAll();
@@ -325,6 +447,13 @@ class ShopController extends Zend_Controller_Action
         $this->view->status = $this->params->status->toArray();
     }
 
+    /**
+     * statusAction
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function statusAction() {
         $type = $this->_getParam( 'type', 0 );
         $id = $this->_getParam( 'id', 0 );

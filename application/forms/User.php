@@ -5,7 +5,7 @@
  *
  * @uses     Zend_Form
  *
- * @category Form
+ * @category User
  * @package  Bazoomba.it
  * @author   Concetto Vecchio
  * @license
@@ -116,7 +116,6 @@ class Application_Form_User extends Zend_Form
         return $this->addElements( array( $pwd, $confirm, $submit ) );
     }
 
-
     /**
      * editAdmin
      *
@@ -152,7 +151,6 @@ class Application_Form_User extends Zend_Form
         return $this->addElements( array( $type, $name, $status, $submit ) );
     }
 
-
     /**
      * newUser
      *
@@ -166,27 +164,26 @@ class Application_Form_User extends Zend_Form
         $select = new Application_Model_OptionSelect();
         $this->setAttrib( 'class', 'custom' );
         $this->setAttrib( 'id', 'newUser' );
-
-
+        
         $type = new Zend_Form_Element_Select( 'type' );
         $type->setLabel( 'Tipo di account' );
         $type->addMultiOptions( $select->appendTypeUser() );
 
         $name = new Zend_Form_Element_Text( 'name' );
-        $name->setLabel( 'Nome & Cognome' )
-        ->setRequired( true )
-        ->addFilter( 'StripTags' )
-        ->addFilter( 'StringTrim' )
-        ->addValidator( 'NotEmpty' );
+        $name->setLabel( 'Nome & Cognome' );
+        $name->setRequired( true );
+        $name->addFilter( 'StripTags' );
+        $name->addFilter( 'StringTrim' );
+        $name->addValidator( 'NotEmpty' );
 
         $email = new Zend_Form_Element_Text( 'email' );
-        $email->setLabel( 'Email' )
-        ->setRequired( true )
-        ->addFilter( 'StripTags' )
-        ->addFilter( 'StringTrim' )
-        ->addValidator( 'NotEmpty' )
-        ->addValidator( 'EmailAddress' )
-        ->addValidator( new Zend_Validate_Db_NoRecordExists( array(
+        $email->setLabel( 'Email' );
+        $email->setRequired( true );
+        $email->addFilter( 'StripTags' );
+        $email->addFilter( 'StringTrim' );
+        $email->addValidator( 'NotEmpty' );
+        $email->addValidator( 'EmailAddress' );
+        $email->addValidator( new Zend_Validate_Db_NoRecordExists( array(
                     'table' => 'ads_user',
                     'field' => 'email'
                 ) ) );
@@ -346,6 +343,13 @@ class Application_Form_User extends Zend_Form
         return $this->addElements( array( $pwd, $confirm, $submit ) );
     }
 
+    /**
+     * addAvatar
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function addAvatar() {
         $this->setAttrib( 'id', 'addAvatar' );
 

@@ -1,10 +1,35 @@
 <?php
 
+/**
+* Application_Model_DbTable_Shop
+*
+* @uses     Zend_Db_Table_Abstract
+*
+* @category Shop
+* @package  Bazoomba.it
+* @author   Concetto Vecchio
+* @license  
+* @link     
+*/
 class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 {
 
+    /**
+     * $_name
+     *
+     * @var string
+     *
+     * @access protected
+     */
     protected $_name = 'ads_shop';
 
+    /**
+     * $_primary
+     *
+     * @var string
+     *
+     * @access protected
+     */
     protected $_primary = 'id';
 
     public function getAdminShopInfo( $id ) {
@@ -16,6 +41,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
+    /**
+     * getSiteShopInfo
+     * 
+     * @param mixed $id Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function getSiteShopInfo( $id ) {
         $row = $this->fetchRow( sprintf( 'id = %d AND status = 1', $id ) );
         if ( !$row ) {
@@ -25,6 +59,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
+    /**
+     * fullShop
+     * 
+     * @param array $params Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function fullShop( $params = array() ) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -54,6 +97,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
+    /**
+     * LastInsertAdminShop
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function LastInsertAdminShop() {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -68,6 +118,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
+    /**
+     * LastEditAdminShop
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function LastEditAdminShop() {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -84,6 +141,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
+    /**
+     * LastExpirAdminShop
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function LastExpirAdminShop() {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -99,6 +163,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
+    /**
+     * LastHomeShop
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function LastHomeShop() {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -127,6 +198,17 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
+    /**
+     * RandomGeoIPShop
+     * 
+     * @param mixed $ads       Description.
+     * @param mixed $latitude  Description.
+     * @param mixed $longitude Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function RandomGeoIPShop( $ads, $latitude, $longitude ) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -157,6 +239,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
+    /**
+     * fullShopFilter
+     * 
+     * @param array $params Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function fullShopFilter( $params = array() ) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
@@ -213,6 +304,25 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
 
+    /**
+     * updateShopAdmin
+     * 
+     * @param mixed $id           Description.
+     * @param mixed $category     Description.
+     * @param mixed $sub_category Description.
+     * @param mixed $region       Description.
+     * @param mixed $province     Description.
+     * @param mixed $city         Description.
+     * @param mixed $type         Description.
+     * @param mixed $title        Description.
+     * @param mixed $price        Description.
+     * @param mixed $description  Description.
+     * @param mixed $status       Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function updateShopAdmin( $id, $category, $sub_category, $region, $province, $city, $type, $title, $price, $description, $status ) {
         $arrayName = array(
             'category' => $category,
@@ -232,6 +342,16 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
 
+    /**
+     * updateStep
+     * 
+     * @param mixed $id     Description.
+     * @param mixed $status Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function updateStep( $id, $status ) {
         $arrayName = array(
             'step' => $status,
@@ -241,6 +361,16 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->update( $arrayName, sprintf( 'id = %d', $id ) );
     }
 
+    /**
+     * updateStatus
+     * 
+     * @param mixed $id     Description.
+     * @param mixed $status Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function updateStatus( $id, $status ) {
         $arrayName = array(
             'status' => $status,
@@ -251,6 +381,27 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
 
+    /**
+     * newShop
+     * 
+     * @param mixed $id           Description.
+     * @param mixed $category     Description.
+     * @param mixed $sub_category Description.
+     * @param mixed $region       Description.
+     * @param mixed $province     Description.
+     * @param mixed $city         Description.
+     * @param mixed $type         Description.
+     * @param mixed $title        Description.
+     * @param mixed $description  Description.
+     * @param mixed $tags         Description.
+     * @param mixed $price        Description.
+     * @param mixed $latitude     Description.
+     * @param mixed $longitude    Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function newShop( $id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude ) {
 
         $auth = Zend_Auth::getInstance();
@@ -284,6 +435,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->insert( $arrayNewShop );
     }
 
+    /**
+     * controlAds
+     * 
+     * @param mixed $id_ads Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function controlAds( $id_ads ) {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
@@ -299,7 +459,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
-
+    /**
+     * myshop
+     * 
+     * @param mixed $id Description.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function myshop( $id ) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(

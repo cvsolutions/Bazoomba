@@ -6,7 +6,7 @@
  * @uses     Zend_Controller_Action
  *
  * @category Category
- * @package  Bazzomba.it
+ * @package  Bazoomba.it
  * @author   Concetto Vecchio
  * @license
  * @link

@@ -1,12 +1,37 @@
 <?php
 
+/**
+* Application_Form_Filter
+*
+* @uses     Zend_Form
+*
+* @category Filter
+* @package  Bazoomba.it
+* @author   Concetto Vecchio
+* @license  
+* @link     
+*/
 class Application_Form_Filter extends Zend_Form
 {
 
+    /**
+     * init
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
 	public function init() {
 		/* Form Elements & Other Definitions Here ... */
 	}
 
+    /**
+     * search
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
 	public function search() {
 		$select = new Application_Model_OptionSelect();
 

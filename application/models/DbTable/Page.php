@@ -1,24 +1,46 @@
 <?php
+
 /**
- * /tmp/phptidy-sublime-buffer.php
- *
- * @package default
- */
-
-
+* Application_Model_DbTable_Page
+*
+* @uses     Zend_Db_Table_Abstract
+*
+* @category Page
+* @package  Bazoomba.it
+* @author   Concetto Vecchio
+* @license  
+* @link     
+*/
 class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
 {
 
+    /**
+     * $_name
+     *
+     * @var string
+     *
+     * @access protected
+     */
     protected $_name = 'ads_page';
 
+    /**
+     * $_primary
+     *
+     * @var string
+     *
+     * @access protected
+     */
     protected $_primary = 'id';
 
     /**
+     * getMyPage
+     * 
+     * @param mixed $id   ID User.
+     * @param mixed $type Type SQL.
      *
+     * @access public
      *
-     * @param unknown $id
-     * @param unknown $type
-     * @return unknown
+     * @return mixed Value.
      */
     public function getMyPage($id, $type) {
         if ($type == 'count') {
@@ -34,19 +56,21 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-
     /**
+     * newPage
+     * 
+     * @param mixed $id          ID Page.
+     * @param mixed $logo        File Logo.
+     * @param mixed $description Description.
+     * @param mixed $site        Url http.
+     * @param mixed $phone       Telefono.
+     * @param mixed $address     Indirizzo.
+     * @param mixed $lat         Coordinata.
+     * @param mixed $lon         Coordinata.
      *
+     * @access public
      *
-     * @param unknown $id
-     * @param unknown $logo
-     * @param unknown $description
-     * @param unknown $site
-     * @param unknown $phone
-     * @param unknown $address
-     * @param unknown $lat
-     * @param unknown $lon
-     * @return unknown
+     * @return mixed Value.
      */
     public function newPage($id, $logo, $description, $site, $phone, $address, $lat, $lon) {
         $arrayNewPage = array(
@@ -65,18 +89,20 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
         return $this->insert($arrayNewPage);
     }
 
-
     /**
+     * updatePage
+     * 
+     * @param mixed $id          ID Page.
+     * @param mixed $description Description.
+     * @param mixed $site        Url http.
+     * @param mixed $phone       Telefono.
+     * @param mixed $address     Indirizzo.
+     * @param mixed $lat         Coordinata.
+     * @param mixed $lon         Coordinata.
      *
+     * @access public
      *
-     * @param unknown $id
-     * @param unknown $description
-     * @param unknown $site
-     * @param unknown $phone
-     * @param unknown $address
-     * @param unknown $lat
-     * @param unknown $lon
-     * @return unknown
+     * @return mixed Value.
      */
     public function updatePage($id, $description, $site, $phone, $address, $lat, $lon) {
         $arrayUpdate = array(
@@ -92,13 +118,15 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
         return $this->update($arrayUpdate, sprintf('user = %d', $id));
     }
 
-
     /**
+     * updateLogo
+     * 
+     * @param mixed $id    ID Page.
+     * @param mixed $image Files Logo.
      *
+     * @access public
      *
-     * @param unknown $id
-     * @param unknown $image
-     * @return unknown
+     * @return mixed Value.
      */
     public function updateLogo($id, $image) {
         $arrayLogo = array(

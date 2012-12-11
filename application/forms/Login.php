@@ -5,7 +5,7 @@
  *
  * @uses     Zend_Form
  *
- * @category Form
+ * @category Login
  * @package  Bazoomba.it
  * @author   Concetto Vecchio
  * @license

@@ -1,39 +1,73 @@
 <?php
 
+/**
+ * ContentController
+ *
+ * @uses     Zend_Controller_Action
+ *
+ * @category Content
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class ContentController extends Zend_Controller_Action
 {
 
-    public function init()
-    {
+    /**
+     * init
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function init() {
         /* Initialize action controller here */
     }
 
-    public function indexAction()
-    {
+    /**
+     * indexAction
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function indexAction() {
         // action body
     }
 
-    public function privacyAction()
-    {
+    /**
+     * privacyAction
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function privacyAction() {
         // action body
     }
 
-    public function aboutAction()
-    {
+    /**
+     * aboutAction
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function aboutAction() {
         // action body
     }
 
-    public function termsAction()
-    {
+    /**
+     * termsAction
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function termsAction() {
         // action body
     }
 
 
 }
-
-
-
-
-
-
-
