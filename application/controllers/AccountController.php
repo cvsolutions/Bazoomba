@@ -30,7 +30,7 @@ class AccountController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function init() {
-        /* Initialize action controller here */
+        $this->params = Plugin_Common::getParams();
     }
 
     /**
@@ -98,7 +98,7 @@ class AccountController extends Zend_Controller_Action
                         )
                     ) );
 
-                $this->view->successForm = 'Modifica Effettuata Con Successo.';
+                $this->view->successForm = $this->params->label_success;
                 $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/account' );
 
             } else {
@@ -143,9 +143,8 @@ class AccountController extends Zend_Controller_Action
                         )
                     ) );
 
-                $this->view->successForm = 'Modifica Password Effettuata Con Successo.';
+                $this->view->successForm = $this->params->label_success;
                 $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/account' );
-
             }
         }
 
@@ -178,9 +177,7 @@ class AccountController extends Zend_Controller_Action
                 if ( $info['avatar'] > 0 ) unlink( sprintf( '%s/uploaded/avatar/%s', $_SERVER['DOCUMENT_ROOT'], $info['avatar'] ) );
 
                 $image = $form->getValue( 'image' );
-
                 $user->updateAvatar( $identity->id, $image );
-
                 $this->_redirect( '/account/avatar' );
             } else {
                 $form->populate( $form_data );

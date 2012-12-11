@@ -136,7 +136,7 @@ class AjaxController extends Zend_Controller_Action
                             'serialkey' => $serialkey
                         )
                     ) );
-                echo Zend_Json::encode( array( 'result' => 'Controlla email per confermare la registrazione' ) );
+                echo Zend_Json::encode( array( 'result' => $this->params->label_confirm_registration; ) );
             }
         }
     }

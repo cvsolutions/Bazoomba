@@ -204,7 +204,7 @@ class UserController extends Zend_Controller_Action
                         )
                     ) );
 
-                $this->view->successForm = 'OK';
+                $this->view->successForm = $this->params->label_change_password;
                 $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/' );
                 // sleep(3);
                 // $this->_redirect('/');
@@ -251,7 +251,7 @@ class UserController extends Zend_Controller_Action
                     ) );
 
                 $user->updatePassword( $id, $serialkey, $pwd );
-                $this->view->successForm = 'OK';
+                $this->view->successForm = $this->params->label_success;
                 $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/' );
 
             } else {
@@ -303,7 +303,7 @@ class UserController extends Zend_Controller_Action
                     )
                 ) );
 
-            $this->view->successForm = 'Registrazione Completata';
+            $this->view->successForm = $this->params->label_registration_complete;
             $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/user' );
         }
     }
