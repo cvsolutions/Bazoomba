@@ -30,6 +30,7 @@ class CategoryController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function init() {
+        /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
     }
 
