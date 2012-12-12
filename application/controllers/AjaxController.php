@@ -137,7 +137,7 @@ class AjaxController extends Zend_Controller_Action
                             'serialkey' => $serialkey
                         )
                     ) );
-                echo Zend_Json::encode( array( 'result' => $this->params->label_confirm_registration; ) );
+                echo Zend_Json::encode( array( 'result' => $this->params->label_confirm_registration ) );
             }
         }
     }
