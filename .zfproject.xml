@@ -10,6 +10,7 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="offline"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Gallery">
@@ -259,6 +260,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Cronjob">
             <viewScriptFile forActionName="eliminates"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="offline"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

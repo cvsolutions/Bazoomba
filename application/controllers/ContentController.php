@@ -23,6 +23,7 @@ class ContentController extends Zend_Controller_Action
      */
     public function init() {
         /* Initialize action controller here */
+        Plugin_Common::Chech_Off_Line();
     }
 
     /**

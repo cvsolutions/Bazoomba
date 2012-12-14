@@ -50,11 +50,14 @@ class Application_Form_Setting extends Zend_Form
 				'StripTags'
 			) );
 
+		$off_line = new Zend_Form_Element_Checkbox( "off_line" );
+		$off_line->setLabel( 'Sito in manutenzione' );
+
 		$submit = new Zend_Form_Element_Submit( 'send' );
 		$submit->setLabel( 'Salva' );
 		$submit->setAttrib( 'class', 'button' );
 
-		$this->addElements( array( $title, $description, $keywords, $submit ) );
+		$this->addElements( array( $title, $description, $keywords, $off_line, $submit ) );
 	}
 
 

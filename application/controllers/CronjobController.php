@@ -20,7 +20,7 @@ class CronjobController extends Zend_Controller_Action
      *
      * @access public
      */
-    public $params = null;
+    public $params;
 
     /**
      * preDispatch
@@ -30,6 +30,8 @@ class CronjobController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function preDispatch() {
+
+        /* disable Layout */
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender( true );
     }
@@ -42,6 +44,7 @@ class CronjobController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function init() {
+        
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
     }

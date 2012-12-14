@@ -21,7 +21,7 @@ class GalleryController extends Zend_Controller_Action
      *
      * @access public
      */
-    public $params = null;
+    public $params;
 
     /**
      * init

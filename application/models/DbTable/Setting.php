@@ -54,11 +54,12 @@ class Application_Model_DbTable_Setting extends Zend_Db_Table_Abstract
      *
      * @return mixed Value.
      */
-    public function updateSettings( $title, $description, $keywords ) {
+    public function updateSettings( $title, $description, $keywords, $off_line ) {
         $arrayName = array(
             'title' => $title,
             'description' => $description,
-            'keywords' => $keywords
+            'keywords' => $keywords,
+            'off_line' => $off_line
         );
         return $this->update( $arrayName, 'id = 1' );
     }

@@ -106,4 +106,19 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
         }
     }
 
+    /**
+     * Chech_Off_Line
+     * 
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function Chech_Off_Line() {
+        $setting = new Application_Model_DbTable_Setting();
+        $info = $setting->getSettings();
+        if ( $info['off_line'] == 1 ) {
+            $this->redirect( '/index/offline' );
+        }
+    }
+
 }

@@ -21,7 +21,7 @@ class ShopController extends Zend_Controller_Action
      *
      * @access public
      */
-    public $params = null;
+    public $params;
 
     /**
      * init
@@ -235,6 +235,8 @@ class ShopController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function adsAction() {
+
+        Plugin_Common::Chech_Off_Line();
         $id = $this->_getParam( 'show', 0 );
 
         $shop = new Application_Model_DbTable_Shop();

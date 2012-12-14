@@ -20,7 +20,7 @@ class UserController extends Zend_Controller_Action
      *
      * @access public
      */
-    public $params = null;
+    public $params;
 
     /**
      * init
@@ -42,6 +42,9 @@ class UserController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function indexAction() {
+
+        Plugin_Common::Chech_Off_Line();
+
         $form = new Application_Form_User();
         $this->view->loginForm = $form->login();
 
@@ -183,6 +186,9 @@ class UserController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function lostpasswordAction() {
+
+        Plugin_Common::Chech_Off_Line();
+
         $form = new Application_Form_User();
         $this->view->passwordForm = $form->lostPassword();
 
@@ -269,6 +275,9 @@ class UserController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function newAction() {
+
+        Plugin_Common::Chech_Off_Line();
+        
         $auth = Zend_Auth::getInstance();
         if ( $auth->hasIdentity() ) {
             $this->_redirect( '/account' );
