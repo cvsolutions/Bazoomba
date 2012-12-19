@@ -34,6 +34,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     /**
      * appendParentName
+     * Recupero le informazioni sulla sottocategoria
      *
      * @param mixed   $parent ID sotto categoria.
      *
@@ -48,6 +49,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     /**
      * getCategoryInfo
+     * Tutte le informazioni sulla categoria
      *
      * @param mixed   $id ID della categoria.
      *
@@ -66,6 +68,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     /**
      * full_List
+     * La lista di tutte le categoria attive
      *
      * @access public
      *
@@ -87,6 +90,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     /**
      * Parent_With_Category
+     * Solo le sottocategoria della catagoria selezionata
      *
      * @param mixed   $parent ID sotto categoria.
      *
@@ -100,6 +104,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     /**
      * Other_Category
+     * Tutte le categorie escluso quella selezionata
      *
      * @param mixed   $id ID categoria.
      *
