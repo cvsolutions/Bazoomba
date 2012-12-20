@@ -8,8 +8,8 @@
 * @category Shop
 * @package  Bazoomba.it
 * @author   Concetto Vecchio
-* @license  
-* @link     
+* @license
+* @link
 */
 class ShopController extends Zend_Controller_Action
 {
@@ -25,7 +25,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * init
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -33,11 +33,13 @@ class ShopController extends Zend_Controller_Action
     public function init() {
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
+        $select = new Application_Model_OptionSelect();
+        $this->view->region = $select->appendRegion();
     }
 
     /**
      * indexAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -48,7 +50,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * newAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -64,7 +66,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * editAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -147,7 +149,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * listAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -165,7 +167,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * detailAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -207,7 +209,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * deleteAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -218,7 +220,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * galleryAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -229,7 +231,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * adsAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -300,7 +302,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * modificationAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -311,7 +313,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * jsonAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -322,7 +324,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * mediaAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -375,7 +377,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * publicAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -418,7 +420,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * myAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -434,7 +436,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * searchAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
@@ -452,7 +454,7 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * statusAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.

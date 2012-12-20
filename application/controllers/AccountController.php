@@ -8,8 +8,8 @@
 * @category Account
 * @package  Bazoomba.it
 * @author   Concetto Vecchio
-* @license  
-* @link     
+* @license
+* @link
 */
 class AccountController extends Zend_Controller_Action
 {
@@ -32,6 +32,8 @@ class AccountController extends Zend_Controller_Action
     public function init() {
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
+        $select = new Application_Model_OptionSelect();
+        $this->view->region = $select->appendRegion();
     }
 
     /**
@@ -153,7 +155,7 @@ class AccountController extends Zend_Controller_Action
 
     /**
      * avatarAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.

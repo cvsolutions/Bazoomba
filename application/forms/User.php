@@ -54,6 +54,7 @@ class Application_Form_User extends Zend_Form
 
         $submit = new Zend_Form_Element_Submit( 'login' );
         $submit->setLabel( 'Esegui Login' );
+        $submit->setAttrib('class', 'btn btn-warning');
 
         return $this->addElements( array( $user, $pwd, $submit ) );
     }
@@ -162,9 +163,9 @@ class Application_Form_User extends Zend_Form
         $this->setName( 'register' );
 
         $select = new Application_Model_OptionSelect();
-        $this->setAttrib( 'class', 'custom' );
+        $this->setAttrib( 'class', 'form-horizontal' );
         $this->setAttrib( 'id', 'newUser' );
-        
+
         $type = new Zend_Form_Element_Select( 'type' );
         $type->setLabel( 'Tipo di account' );
         $type->addMultiOptions( $select->appendTypeUser() );
@@ -232,20 +233,11 @@ class Application_Form_User extends Zend_Form
         $validator->setToken( 'pwd' );
         $validator->setObscureValue( true );
 
-        $captcha = new Zend_Form_Element_Captcha( 'captcha', array(
-                'label' => "Compila il captcha",
-                'captcha' => array(
-                    'captcha' => 'Figlet',
-                    'wordLen' => 6,
-                    'timeout' => 300,
-                ),
-            ) );
-
         $submit = new Zend_Form_Element_Submit( 'Registrati' );
         $submit->setAttrib( 'class', 'btn btn-primary' );
         $submit->setAttrib( 'id', 'submit' );
 
-        return $this->addElements( array( $type, $name, $email, $phone, $radio, $iva, $name_company, $pwd, $confirm, $captcha, $submit ) );
+        return $this->addElements( array( $type, $name, $email, $phone, $radio, $iva, $name_company, $pwd, $confirm, $submit ) );
     }
 
     /**
