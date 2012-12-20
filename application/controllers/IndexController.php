@@ -81,7 +81,6 @@ class IndexController extends Zend_Controller_Action
         /* @var [view] [assign data] */
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
-<<<<<<< HEAD
         $this->view->shop = $Shop->LastHomeShop();
     }
 
@@ -98,11 +97,9 @@ class IndexController extends Zend_Controller_Action
         $this->_helper->layout()->disableLayout();
 
         if ( $this->info['off_line'] == 0 ) {
-
             /* redirect */
             $this->_redirect( '/' );
         }
-=======
         $this->view->shop = $last_Ads->LastHomeShop();
         $select = new Application_Model_OptionSelect();
         $this->view->region = $select->appendRegion();
@@ -110,7 +107,6 @@ class IndexController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
->>>>>>> add bootstrap
     }
 
 
