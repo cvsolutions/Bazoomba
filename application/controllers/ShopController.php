@@ -34,7 +34,11 @@ class ShopController extends Zend_Controller_Action
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
         $select = new Application_Model_OptionSelect();
-        $this->view->region = $select->appendRegion();
+        $this->view->region_select = $select->appendRegion();
+
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+        $this->view->identity = $identity;
     }
 
     /**
@@ -58,10 +62,6 @@ class ShopController extends Zend_Controller_Action
     public function newAction() {
         $form = new Application_Form_Shop();
         $this->view->newShop= $form->newShop();
-
-        $auth = Zend_Auth::getInstance();
-        $identity = $auth->getStorage()->read();
-        $this->view->identity = $identity;
     }
 
     /**

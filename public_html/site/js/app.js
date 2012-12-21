@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+    //add class in careusal
+    $('div.item:first').addClass("active");
+
     // AUTOCOMPLETE
     var termTemplate = '<strong>%s</strong>';
     $("#q").autocomplete({

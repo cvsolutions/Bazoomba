@@ -1,40 +1,216 @@
 <?php echo $this->headTitle(sprintf('%s | %s | %s', $this->row['title'], $this->category['name'], $this->region['name'])); ?>
 
-<h1><?php echo $this->row['title']; ?></h1>
-<ul>
-	<li><?php echo $this->row['code']; ?></li>
-	<li><?php echo $this->category['name']; ?></li>
-	<li><?php echo $this->sub_category['name']; ?></li>
-	<li><?php echo $this->region['name']; ?></li>
-	<li><?php echo $this->province['name']; ?></li>
-	<li><?php echo $this->city['name']; ?></li>
-	<li><?php echo $this->type_ads[$this->row['type']]; ?></li>
-	<li>€ <?php echo $this->row['price']; ?></li>
-</ul>
+<div class="container" style="background: #fafafa; border-radius: 5px; border: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px; ">
 
-<h1>Informazioni Contatto</h1>
-<ul>
-	<li><?php echo $this->user['name']; ?></li>
-	<li><?php echo $this->type_user[$this->user['type']]; ?></li>
-	<?php if ($this->user['phone_show'] == 1): ?><li><?php echo $this->user['telephone']; ?></li><?php endif ?>
-</ul>
+    <div class="row">
+        <div class="span12" style="background: #efefef; border-bottom: 1px solid #ccc;">
 
-<p><?php echo nl2br($this->row['description']); ?></p>
+            <div class="pull-left" style="padding: 12px;">
+            <strong>#<?php echo $this->row['code']; ?> - <?php echo $this->type_ads[$this->row['type']]; ?> - <?php echo new Zend_Date($this->row['registered']); ?></strong> <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->region['name']; ?></button></a> <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->province['name']; ?></button></a>  <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->category['name']; ?></button></a> <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->sub_category['name']; ?></button></a>
+            </div><!--pull-left-->
 
-<h1>Photo Gallery</h1>
-<?php if ($this->gallery): ?>
-<ul>
-	<?php foreach ($this->gallery as $img): ?>
-	<li><a href="<?php echo $this->serverUrl(); ?>/uploaded/ads/<?php echo $img->image; ?>"><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $img->image; ?>&width=100&height=100"></a></li>
-	<?php endforeach ?>
-</ul>
-<?php else: ?>
-	<p><?php echo $this->notfound; ?></p>
-<?php endif ?>
+            <div class="pull-right" style="padding: 12px;">
+              <button class="btn btn-mini btn" type="button"><i class="icon-print"></i>  Stampa Volantino </button>
+              <button class="btn btn-mini btn" type="button"><i class="icon-star"></i>  Aggiungi ai Preferiti</button>
+              <button class="btn btn-mini btn" type="button"><i class="icon-fire"></i>  Segnala Annuncio </button>
+            </div><!--pull-right-->
+        </div><!--span12-->
+      </div><!--row-->
 
-<h1>Rispondi all'inserzionista</h1>
-<?php echo $this->successForm; ?>
-<?php echo $this->ReplyForm; ?>
+    <div class="row">
+        <div class="span7">
+            <div style="padding: 12px;">
+            <h2><?php echo $this->row['title']; ?></h2>
+            <div style="background: #fff; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
+
+                <div id="myCarousel" class="carousel slide">
+                <div class="carousel-inner gallery">
+
+
+
+                  <!--GALLERY-->
+                  <?php if ($this->gallery): ?>
+                  <?php foreach ($this->gallery as $img): ?>
+                  <div class="item">
+                      <div style="min-height: 400px;">
+                    <center><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $img->image; ?>&width=800&height=600"></center>
+                      </div>
+                    <div class="carousel-caption">
+                      <h4><?php echo $this->row['title']; ?></h4>
+                    </div>
+                  </div>
+                  <?php endforeach ?>
+                  <?php endif ?>
+
+                </div><!--carousel-inner-->
+
+                <?php if (count($this->gallery) > 1) : ?>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                <?php endif; ?>
+                
+              </div><!--myCarousel-->
+
+              <div class="row">
+                  <div class="span6">
+                  <p><?php echo nl2br($this->row['description']); ?></p>
+                  </div>
+              </div>
+
+            </div><!--style-->
+            </div><!--style-->
+        </div><!--span7-->
+
+
+
+
+        <div class="span3">
+
+                <div class="row">
+                    <div class="span3">
+                        <div style="padding:12px;">
+                            <h2 class="pull-right"> € <?php echo $this->row['price']; ?></h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span3">
+                        <div style="padding:12px;">
+                            <a href="#myModal" role="button" class="btn btn-large btn-warning pull-right" data-toggle="modal">
+                                <i class="icon-envelope icon-white"></i> Contatta Il Venditore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span3">
+                        <div style="padding:12px;">
+                            <div style="background: #f6f6f6; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
+                                  <div id="maps" style="width: 100%; height: 200px;"></div>
+                                  <center><a href="#expMaps" data-toggle="modal"><button style="margin-top: 10px;" class="btn" type="button"><i class="icon-map-marker"></i>  Espandi Mappa</button> </a></center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ExpMaps-->
+                <div id="expMaps" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Mappa</h3>
+                    </div>
+                    <div class="modal-body">
+                         <div id="expmaps" style="width: 100%; height: 400px;"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Chiudi</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span3">
+                        <div style="padding:12px;">
+                            <div style="background: #fff; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
+                            <img src="http://placehold.it/480x320" alt="">
+                                <center><h4><?php echo $this->user['name']; ?></h4></center>
+                                <center><h5><?php if ($this->user['phone_show'] == 1): ?>Tel. <?php echo $this->user['telephone']; ?><?php endif ?></h5></center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Contatta <?php echo $this->user['name']; ?></h3>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo $this->ReplyForm; ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Annula</button>
+                        <button class="btn btn-warning">Invia Richiesta</button>
+                    </div>
+                </div>
+
+
+
+
+
+        </div><!--span3-->
+
+
+
+
+
+
+        <div class="span2">
+
+            <div class="row">
+                    <div class="span2">
+                        <div style="padding:12px;">
+                            <h2 class="pull-left">Vicinanze</h2>
+                        </div>
+                    </div>
+            </div>
+
+            <?php for($i = 1; $i <= 3; $i++): ?>
+            <div class="row">
+                    <div class="span2">
+                        <div style="padding:12px;">
+                            <div style="background: #fff; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
+                            <img src="http://placehold.it/480x320" alt="">
+                                <center><h5>Nome Annuncio <br /> € 1200,00</h5></center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endfor; ?>
+
+
+
+
+        </div><!--span2-->
+
+
+    </div><!--row-->
+</div><!--container-->
+<script type="text/javascript">
+var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
+var latlang = new google.maps.LatLng(<?php echo $this->row['latitude']; ?>,<?php echo $this->row['longitude']; ?>);
+var mapOptions = {
+    center: latlang,
+    zoom: 9,
+    disableDefaultUI: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: vikey
+};
+
+var map = new google.maps.Map(document.getElementById("maps"),
+mapOptions);
+var marker = new google.maps.Marker({ position: latlang,map: map,title: "<?php echo $this->row['title']; ?>" });
+</script>
+
+<!--Exp Maps-->
+<script type="text/javascript">
+var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
+var latlang = new google.maps.LatLng(<?php echo $this->row['latitude']; ?>,<?php echo $this->row['longitude']; ?>);
+var mapOptions = {
+    center: latlang,
+    zoom: 9,
+    disableDefaultUI: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: vikey
+};
+
+var map = new google.maps.Map(document.getElementById("expmaps"),
+mapOptions);
+var marker = new google.maps.Marker({ position: latlang,map: map,title: "<?php echo $this->row['title']; ?>" });
+</script>
+
 
 <!-- list ads -->
 <?php if ($this->random_geo): ?>

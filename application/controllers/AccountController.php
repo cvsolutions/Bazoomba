@@ -33,7 +33,7 @@ class AccountController extends Zend_Controller_Action
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
         $select = new Application_Model_OptionSelect();
-        $this->view->region = $select->appendRegion();
+        $this->view->region_select = $select->appendRegion();
     }
 
     /**

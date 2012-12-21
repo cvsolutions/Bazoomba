@@ -61,6 +61,16 @@ class IndexController extends Zend_Controller_Action
 
         /* @var [view] [assign data] */
         $this->view->setting = $this->info;
+
+        /* @var [select] [array con tutte le regioni] */
+        $region = new Application_Model_OptionSelect();
+
+        /* @var [view] [assign region] */
+        $this->view->region_select = $region->appendRegion();
+
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+        $this->view->identity = $identity;
     }
 
     /**

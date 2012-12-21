@@ -33,7 +33,7 @@ class UserController extends Zend_Controller_Action
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
         $select = new Application_Model_OptionSelect();
-        $this->view->region = $select->appendRegion();
+        $this->view->region_select = $select->appendRegion();
     }
 
     /**
@@ -279,7 +279,7 @@ class UserController extends Zend_Controller_Action
     public function newAction() {
 
         Plugin_Common::Chech_Off_Line();
-        
+
         $auth = Zend_Auth::getInstance();
         if ( $auth->hasIdentity() ) {
             $this->_redirect( '/account' );
