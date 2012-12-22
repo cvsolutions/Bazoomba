@@ -44,6 +44,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->add( new Zend_Acl_Resource( 'page' ) );
         $this->add( new Zend_Acl_Resource( 'content' ) );
         $this->add( new Zend_Acl_Resource( 'cronjob' ) );
+        $this->add( new Zend_Acl_Resource( 'request' ) );
 
         /** assign privileges */
         $this->allow( 'guest', array( 'index', 'error' ) );
@@ -54,6 +55,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow( 'guest', 'filter', array( 'index', 'search', 'category', 'region', 'subcategory', 'province' ) );
         $this->allow( 'guest', 'content', array( 'index', 'about', 'privacy', 'terms' ) );
         $this->allow( 'guest', 'cronjob', array( 'expiration', 'eliminates', '' ) );
+        $this->allow( 'guest', 'request', array( 'index', 'subscribe', 'edit', 'delete' ) );
 
         $this->allow( 'user', 'user', array( 'index', 'logout' ) );
         $this->allow( 'user', 'login', array( 'index', 'notauthorized' ) );
