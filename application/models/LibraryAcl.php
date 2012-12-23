@@ -49,7 +49,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         /** assign privileges */
         $this->allow( 'guest', array( 'index', 'error' ) );
         $this->allow( 'guest', 'login', array( 'index', 'notauthorized' ) );
-        $this->allow( 'guest', 'shop', array( 'index', 'ads' ) );
+        $this->allow( 'guest', 'shop', array( 'index', 'json', 'ads' ) );
         $this->allow( 'guest', 'ajax', array( 'index', 'autocomplete','newuser','controlemail') );
         $this->allow( 'guest', 'user', array( 'index', 'lostpassword', 'resetpassword', 'new', 'confirm' ) );
         $this->allow( 'guest', 'filter', array( 'index', 'search', 'category', 'region', 'subcategory', 'province' ) );

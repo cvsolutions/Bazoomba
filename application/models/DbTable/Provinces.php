@@ -34,6 +34,7 @@ class Application_Model_DbTable_Provinces extends Zend_Db_Table_Abstract
 
     /**
      * getProvinceInfo
+     * Recupero tutte le informazioni della provincia
      *
      * @param mixed   $id ID Provincia.
      *
@@ -52,6 +53,7 @@ class Application_Model_DbTable_Provinces extends Zend_Db_Table_Abstract
 
     /**
      * Parent_Provinces
+     * Recupero tutte le province della regione selezionata
      *
      * @param mixed   $region ID Regione.
      *

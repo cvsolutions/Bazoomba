@@ -34,6 +34,7 @@ class Application_Model_DbTable_Region extends Zend_Db_Table_Abstract
 
     /**
      * getRegionInfo
+     * Recupero tutte le informazioni sulla regione
      *
      * @param mixed   $id ID Regione.
      *
@@ -52,6 +53,7 @@ class Application_Model_DbTable_Region extends Zend_Db_Table_Abstract
 
     /**
      * Other_Region
+     * Tutte le regione d'Italia, tranne quella selezionata
      *
      * @param mixed   $id ID Regione.
      *

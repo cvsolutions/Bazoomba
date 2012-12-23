@@ -1,16 +1,16 @@
 <?php
 
 /**
-* Application_Model_DbTable_Video
-*
-* @uses     Zend_Db_Table_Abstract
-*
-* @category Video
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license  
-* @link     
-*/
+ * Application_Model_DbTable_Video
+ *
+ * @uses     Zend_Db_Table_Abstract
+ *
+ * @category Video
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class Application_Model_DbTable_Video extends Zend_Db_Table_Abstract
 {
 
@@ -34,10 +34,11 @@ class Application_Model_DbTable_Video extends Zend_Db_Table_Abstract
 
     /**
      * newVideo
-     * 
-     * @param mixed $shop  Description.
-     * @param mixed $url   Description.
-     * @param mixed $video Description.
+     * Inserimento nuovo video
+     *
+     * @param mixed   $shop  ID Annuncio.
+     * @param mixed   $url   Link per il video.
+     * @param mixed   $video Descrizione.
      *
      * @access public
      *

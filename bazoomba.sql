@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Dic 12, 2012 alle 22:14
+-- Generato il: Dic 22, 2012 alle 11:26
 -- Versione del server: 5.5.25
 -- Versione PHP: 5.4.4
 
@@ -8284,7 +8284,7 @@ CREATE TABLE `ads_login` (
   `ip_address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user` (`usermail`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65284 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88989 ;
 
 --
 -- Dump dei dati per la tabella `ads_login`
@@ -8515,6 +8515,37 @@ INSERT INTO `ads_region` (`id`, `name`, `latitude`, `longitude`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `ads_request`
+--
+
+CREATE TABLE `ads_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `category` int(11) NOT NULL,
+  `region` int(11) NOT NULL,
+  `tags` text NOT NULL,
+  `registered` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  `ip_address` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `token` (`token`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76823 ;
+
+--
+-- Dump dei dati per la tabella `ads_request`
+--
+
+INSERT INTO `ads_request` (`id`, `token`, `name`, `email`, `category`, `region`, `tags`, `registered`, `status`, `ip_address`) VALUES
+(30883, '011ae8ed821b26f1e3da2032eec40ea4', 'Concetto Vecchio', 'webcr@hotmail.it', 37278, 15, 'nuovo|iphone', '2012-12-22 10:51:02', 1, '127.0.0.1'),
+(63927, 'e6f5e5d8da7ad986cdb7d86e8ccb54f0', 'Lorem Ipsum', 'info@cvsolutions.it', 84842, 15, 'Pajero|usato|ottime condizioni', '2012-12-22 10:52:51', 1, '127.0.0.1'),
+(69643, '5d508c6162d7489f562755ead1069602', 'Concetto Vecchio', 'info@cvsolutions.it', 37278, 9, 'mac|os|imac nuovo', '2012-12-22 11:08:25', 1, '127.0.0.1'),
+(76822, 'd9314fc99091b7c58d65bdf8831e4705', 'pinco pallino', 'cvsolutions@me.com', 36874, 15, 'nikon|affare|usato|nuovo', '2012-12-22 11:01:49', 1, '127.0.0.1');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `ads_settings`
 --
 
@@ -8532,7 +8563,7 @@ CREATE TABLE `ads_settings` (
 --
 
 INSERT INTO `ads_settings` (`id`, `title`, `description`, `keywords`, `off_line`) VALUES
-(1, 'Bazoomba', 'il portale degli annunci di qualitÃ  ...', 'annunci, ads, gratis', 1);
+(1, 'Bazoomba', 'il portale degli annunci di qualitÃ  ...', 'annunci, ads, gratis', 0);
 
 -- --------------------------------------------------------
 
@@ -8567,9 +8598,7 @@ CREATE TABLE `ads_shop` (
   PRIMARY KEY (`id`),
   KEY `category` (`category`),
   KEY `region` (`region`),
-  KEY `category_2` (`category`),
   KEY `sub_category` (`sub_category`),
-  KEY `region_2` (`region`),
   KEY `province` (`province`),
   KEY `user` (`user`),
   KEY `type` (`type`),
@@ -8624,7 +8653,7 @@ CREATE TABLE `ads_user` (
 --
 
 INSERT INTO `ads_user` (`id`, `type`, `name`, `avatar`, `email`, `pwd`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `modified`, `last_login`, `ip_address`) VALUES
-(16429, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2012-12-11 21:24:40', '2012-12-12 22:13:56', '127.0.0.1'),
+(16429, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2012-12-11 21:24:40', '2012-12-21 08:26:07', '127.0.0.1'),
 (94016, 2, 'cvsolutions', '', 'info@cvsolutions.it', '2df21c1c572b28714c474825c774d1c15764307f', 'a83977e45eadcdedefb50a944a3272c8b48df4b5', '095123987', 0, 'cvsolutions', 'cvsolutions', 1, 'user', 1, '2012-12-10 20:00:27', '2012-12-11 21:34:25', '2012-12-10 20:03:40', '127.0.0.1'),
 (14034, 1, 'Pinco Pallino', '', 'info@pippo.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'feaf4c00da53de0b5c96277a56f047a0a442113a', '0', 0, '', '', 1, 'user', 1, '2012-12-10 20:08:59', '2012-12-10 20:09:13', '2012-12-10 20:09:45', '127.0.0.1');
 

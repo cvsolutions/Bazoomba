@@ -118,6 +118,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     /**
      * inserNewCategory
+     * Inserimento nuova categoria nel DB
      *
      * @param mixed   $id     ID della categoria.
      * @param mixed   $name   Nome.
@@ -140,6 +141,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     /**
      * updateCategory
+     * Modifico la categoria selezionata
      *
      * @param mixed   $id     ID della Categoria.
      * @param mixed   $name   Nome.
@@ -161,6 +163,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     /**
      * deleteCategory
+     * Elimino la categoria / files dal server
      *
      * @param mixed   $id ID della Categoria.
      *

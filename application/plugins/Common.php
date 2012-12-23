@@ -15,6 +15,7 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
 
     /**
      * getParams
+     * Recupero le informazioni del file di configurazione .ini
      *
      * @access public
      * @static
@@ -29,6 +30,8 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
 
     /**
      * getMail
+     * Preparo la funzione per inviare le email
+     * dal sistema
      *
      * @param array   $params Data Array().
      *
@@ -63,9 +66,10 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
     }
 
     /**
-     * getRandomPWD
+     * getRandom
+     * Genero una string in modo casuale
      *
-     * @param array   $params Data Array().
+     * @param int     $length Lunghezza della stringa.
      *
      * @access public
      * @static
@@ -82,10 +86,13 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
         return $string;
     }
 
+
     /**
      * getId
+     * Creo un ID univoco
+     * per ogni inserimento di record nel database
      *
-     * @param array   $params Data Array().
+     * @param mixed   $table Tabella del databse.
      *
      * @access public
      * @static
@@ -108,12 +115,14 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
 
     /**
      * Chech_Off_Line
-     * 
+     * Imposto il sito in modalità OFF
+     *
      * @access public
+     * @static
      *
      * @return mixed Value.
      */
-    public function Chech_Off_Line() {
+    public static function Chech_Off_Line() {
         $setting = new Application_Model_DbTable_Setting();
         $info = $setting->getSettings();
         if ( $info['off_line'] == 1 ) {

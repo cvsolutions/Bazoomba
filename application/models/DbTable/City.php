@@ -34,6 +34,7 @@ class Application_Model_DbTable_City extends Zend_Db_Table_Abstract
 
     /**
      * getCityInfo
+     * Recupero tutte le informazioni sulla città
      * 
      * @param mixed $id ID comune.
      *

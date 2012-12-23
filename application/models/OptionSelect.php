@@ -15,6 +15,7 @@ class Application_Model_OptionSelect {
 
 	/**
 	 * appendStatus
+	 * Array con gli stati
 	 *
 	 * @access public
 	 *
@@ -27,6 +28,7 @@ class Application_Model_OptionSelect {
 
 	/**
 	 * appendTypeUser
+	 * Array con la tipologia di account
 	 *
 	 * @access public
 	 *
@@ -39,6 +41,7 @@ class Application_Model_OptionSelect {
 
 	/**
 	 * appendTypeAds
+	 * Array con la tipologia di annunci
 	 *
 	 * @access public
 	 *
@@ -49,13 +52,22 @@ class Application_Model_OptionSelect {
 		return $params->type_ads->toArray();
 	}
 
-        public function appendVideo() {
+	/**
+	 * appendVideo
+	 * Array con i video più conosciuti
+	 *
+	 * @access public
+	 *
+	 * @return mixed Value.
+	 */
+	public function appendVideo() {
 		$params = Plugin_Common::getParams();
 		return $params->video->toArray();
 	}
 
 	/**
 	 * appendParentCategory
+	 * Array con tutte le categorie
 	 *
 	 * @access public
 	 *
@@ -77,6 +89,8 @@ class Application_Model_OptionSelect {
 
 	/**
 	 * appendSubCategory
+	 * Array con tutte le sotto categorie
+	 * per la categoria selezionata
 	 *
 	 * @access public
 	 *
@@ -102,6 +116,7 @@ class Application_Model_OptionSelect {
 
 	/**
 	 * appendRegion
+	 * Array con tutte le regioni
 	 *
 	 * @access public
 	 *
@@ -121,8 +136,9 @@ class Application_Model_OptionSelect {
 
 	/**
 	 * appendProvinces
+	 * Array con tutte le province della regione
 	 *
-	 * @param mixed   $region Description.
+	 * @param mixed   $region ID Regione.
 	 *
 	 * @access public
 	 *
@@ -143,9 +159,10 @@ class Application_Model_OptionSelect {
 
 	/**
 	 * appendCity
+	 * Array con tutte le città di ogni provincia
 	 *
-	 * @param mixed   $region    Description.
-	 * @param mixed   $provinces Description.
+	 * @param mixed   $region    ID Regione.
+	 * @param mixed   $provinces ID Provincia.
 	 *
 	 * @access public
 	 *

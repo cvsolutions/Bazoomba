@@ -34,6 +34,7 @@ class Application_Model_DbTable_Login extends Zend_Db_Table_Abstract
 
     /**
      * getLoginInfo
+     * Recupero tutte le informazioni di ogni operatore
      *
      * @param mixed   $id ID Account User.
      *
@@ -52,6 +53,7 @@ class Application_Model_DbTable_Login extends Zend_Db_Table_Abstract
 
     /**
      * inserNewUser
+     * Inserimento nuovo operatore
      *
      * @param mixed   $id       ID Operatore.
      * @param mixed   $name     Nome & Cognome.
@@ -79,6 +81,7 @@ class Application_Model_DbTable_Login extends Zend_Db_Table_Abstract
 
     /**
      * updateUser
+     * Modifico i dati del operatore selezionato
      *
      * @param mixed   $id       ID Operatore.
      * @param mixed   $name     Nome & Cognome.
@@ -104,6 +107,7 @@ class Application_Model_DbTable_Login extends Zend_Db_Table_Abstract
 
     /**
      * deleteUser
+     * Elimino l'account di ogni operatore
      *
      * @param mixed   $id ID User.
      *

@@ -1,16 +1,16 @@
 <?php
 
 /**
-* ShopController
-*
-* @uses     Zend_Controller_Action
-*
-* @category Shop
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license
-* @link
-*/
+ * ShopController
+ *
+ * @uses     Zend_Controller_Action
+ *
+ * @category Shop
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class ShopController extends Zend_Controller_Action
 {
 
@@ -313,13 +313,45 @@ class ShopController extends Zend_Controller_Action
 
     /**
      * jsonAction
+     * // http://bazoomba/shop/json/?q=iphone
      *
      * @access public
      *
      * @return mixed Value.
      */
     public function jsonAction() {
-        // action body
+
+        /* disable Layout */
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender( true );
+
+        /* recupero i parametri */
+        $category = $this->_getParam( 'category', 0 );
+        $region = $this->_getParam( 'region', 0 );
+        $q = $this->_getParam( 'q', 0 );
+
+        $Shop = new Application_Model_DbTable_Shop();
+        $ads = $Shop->fullShopFilter( array(
+                'type' => 'global',
+                'category' => $category,
+                'region' => $region,
+                'q' => $q
+            ) );
+
+        $data = array();
+        foreach ( $ads as $row ) {
+            $result = array(
+                'id' => $row['id'],
+                'title' => $row['title'],
+                'price' => $row['price'],
+                'photo' => $row['photo'],
+                'user' => $row['user'],
+                'province' => $row['province']
+            );
+            array_push( $data, $result );
+        }
+
+        echo Zend_Json::encode( $data );
     }
 
     /**

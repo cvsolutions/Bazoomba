@@ -34,8 +34,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * getAdminInfo
+     * Recupero tutte le informazioni sull' account user
+     * da usare solo per il superadmin
      *
-     * @param mixed   $id Description.
+     * @param mixed   $id ID User.
      *
      * @access public
      *
@@ -52,8 +54,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * getEmailInfo
+     * Recupero tutte le informazioni user
+     * tramite l'indirizzo email e l'account deve essere attivo
      *
-     * @param mixed   $email Description.
+     * @param mixed   $email indirizzo E-mail.
      *
      * @access public
      *
@@ -68,12 +72,13 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-
     /**
      * getSerialKeyInfo
+     * Recupero le informazioni sull'account
+     * faccio una verifica sul token serialkey
      *
-     * @param mixed   $id        Description.
-     * @param mixed   $serialkey Description.
+     * @param mixed   $id        ID User.
+     * @param mixed   $serialkey Token serialkey.
      *
      * @access public
      *
@@ -90,8 +95,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * getInfoSerialKey
+     * Recupero le informazioni sull'account
+     * Verifico il Token serialkey
      *
-     * @param mixed   $serialkey Description.
+     * @param mixed   $serialkey Token serialkey.
      *
      * @access public
      *
@@ -108,10 +115,11 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * updatePassword
+     * Modifico la password per l'account selezionato
      *
-     * @param mixed   $id        Description.
-     * @param mixed   $serialkey Description.
-     * @param mixed   $pwd       Description.
+     * @param mixed   $id        ID User.
+     * @param mixed   $serialkey Token di sicurezza.
+     * @param mixed   $pwd       New Password.
      *
      * @access public
      *
@@ -128,11 +136,13 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * updateAdminUser
+     * Aggiornamento account con privilieggi
+     * di superadmin
      *
-     * @param mixed   $id     Description.
-     * @param mixed   $type   Description.
-     * @param mixed   $name   Description.
-     * @param mixed   $status Description.
+     * @param mixed   $id     ID User.
+     * @param mixed   $type   Tipologia di account.
+     * @param mixed   $name   Nome & Cognome.
+     * @param mixed   $status Stato account.
      *
      * @access public
      *
@@ -151,9 +161,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * updateAvatar
+     * Aggiornamento image Avatar
      *
-     * @param mixed   $id     Description.
-     * @param mixed   $avatar Description.
+     * @param mixed   $id     ID User.
+     * @param mixed   $avatar File Image.
      *
      * @access public
      *
@@ -170,17 +181,18 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * newUser
+     * Inserimento nuovo user
      *
-     * @param mixed   $id           Description.
-     * @param mixed   $type         Description.
-     * @param mixed   $name         Description.
-     * @param mixed   $email        Description.
-     * @param mixed   $phone        Description.
-     * @param mixed   $phone_show   Description.
-     * @param mixed   $pwd          Description.
-     * @param mixed   $serialkey    Description.
-     * @param mixed   $iva          Description.
-     * @param mixed   $name_company Description.
+     * @param mixed   $id           ID User.
+     * @param mixed   $type         Tipologia account.
+     * @param mixed   $name         Nome & Cognome.
+     * @param mixed   $email        Indirizzo Email.
+     * @param mixed   $phone        Telefono.
+     * @param mixed   $phone_show   Mostra il telefono sul sito.
+     * @param mixed   $pwd          Password.
+     * @param mixed   $serialkey    Token di sicurezza.
+     * @param mixed   $iva          Partita IVA.
+     * @param mixed   $name_company Ragione sociale.
      *
      * @access public
      *
@@ -211,8 +223,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * confirmUser
+     * Verifico tramite link sulla email
+     * e attivo l'account
      *
-     * @param mixed   $serialkey Description.
+     * @param mixed   $serialkey Token Serialkey.
      *
      * @access public
      *
@@ -229,15 +243,16 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * updateEditUser
+     * Aggiornamento profilo account
      *
-     * @param mixed   $id           Description.
-     * @param mixed   $type         Description.
-     * @param mixed   $name         Description.
-     * @param mixed   $email        Description.
-     * @param mixed   $phone        Description.
-     * @param mixed   $phone_show   Description.
-     * @param mixed   $iva          Description.
-     * @param mixed   $name_company Description.
+     * @param mixed   $id           ID User.
+     * @param mixed   $type         Tipologia account.
+     * @param mixed   $name         Nome & Cognome.
+     * @param mixed   $email        Indirizzo Email.
+     * @param mixed   $phone        Telefono.
+     * @param mixed   $phone_show   Mostra il telefono sul sito.
+     * @param mixed   $iva          Partita IVA.
+     * @param mixed   $name_company Ragione sociale.
      *
      * @access public
      *
@@ -260,9 +275,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * updatePasswordUser
+     * Aggiornamento New password
      *
-     * @param mixed   $id  Description.
-     * @param mixed   $pwd Description.
+     * @param mixed   $id  ID User.
+     * @param mixed   $pwd New Password.
      *
      * @access public
      *
@@ -279,9 +295,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * updateAccessUser
+     * Aggiorno la data di accesso al sistema
      *
-     * @param mixed   $date Description.
-     * @param mixed   $id   Description.
+     * @param mixed   $date Last Date.
+     * @param mixed   $id   ID User.
      *
      * @access public
      *
@@ -297,8 +314,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     /**
      * controlemail
+     * Verifico che l'indirizzo email
+     * non esiste sul database / ajax
      *
-     * @param mixed   $email Description.
+     * @param mixed   $email UserMail.
      *
      * @access public
      *
@@ -309,6 +328,18 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
         $query->from( 'ads_user', 'COUNT(email)' );
         $query->where( sprintf( "email = '%s' ", $email ) );
         return $this->getDefaultAdapter()->fetchOne( $query );
+    }
+
+    /**
+     * Delete_Cron_Suspended
+     * Elimino tutti gli account NON attivi
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function Delete_Account_Suspended() {
+        return $this->delete( 'status = 0' );
     }
 
 }

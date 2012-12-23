@@ -3,29 +3,25 @@ $this->headTitle($this->setting['title']);
 $this->headTitle()->setSeparator(' | ');
 $this->headMeta()->appendName('keywords', '');
 $this->headMeta()->appendName('description', '');
-$this->headTitle('Portale Di Annunci Gratuiti - Bazoomba');
-$this->headTitle()->setSeparator(' | ');
-$this->headMeta()->appendName('keywords', '');
-$this->headMeta()->appendName('description', '');
 ?>
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <?php echo $this->headTitle(); ?>
-        <?php echo $this->headMeta(); ?>
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo $this->serverUrl(); ?>/site/css/style.css" rel="stylesheet">
-        <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap.css" rel="stylesheet">
-        <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap-responsive.css" rel="stylesheet">
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-        <script src="<?php echo $this->serverUrl(); ?>/site/js/jquery.validate.js"></script>
-        <script src="<?php echo $this->serverUrl(); ?>/site/js/validate.js"></script>
-        <script src="<?php echo $this->serverUrl(); ?>/site/js/bootstrap.min.js"></script>
-        <script src="<?php echo $this->serverUrl(); ?>/site/js/app.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <?php echo $this->headTitle(); ?>
+    <?php echo $this->headMeta(); ?>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $this->serverUrl(); ?>/site/css/style.css" rel="stylesheet">
+    <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="<?php echo $this->serverUrl(); ?>/site/js/jquery.validate.js"></script>
+    <script src="<?php echo $this->serverUrl(); ?>/site/js/validate.js"></script>
+    <script src="<?php echo $this->serverUrl(); ?>/site/js/bootstrap.min.js"></script>
+    <script src="<?php echo $this->serverUrl(); ?>/site/js/app.js"></script>
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -47,58 +43,53 @@ $this->headMeta()->appendName('description', '');
                         <ul class="nav">
                             <li class="active"><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>"><i class="icon-home"></i> Home</a></li>
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'new'), null, true); ?>">Registrati</a></li>
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker"></i> Sicilia <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                                 <?php foreach ($this->region_select as $key => $value): ?>
-                                     <li><a href="<?php echo $key; ?>"><?php echo $value; ?></a></li>
-                                 <?php endforeach; ?>
-                        </ul>
-                        </li>
-                        </ul>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker"></i> Sicilia <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                   <?php foreach ($this->region_select as $key => $value): ?>
+                                   <li><a href="<?php echo $key; ?>"><?php echo $value; ?></a></li>
+                               <?php endforeach; ?>
+                           </ul>
+                       </li>
+                   </ul>
 
-                        <!--Search Form-->
-                        <form class="navbar-search form-search pull-left" action="">
-                            <div class="input-append">
-                                <input type="text" class="span3 search-query" placeholder="Iphone 5, Samsung Galasy, BMW, Bilocale">
-                                <button type="submit" class="btn btn-warning"><i class="icon-search"></i></button>
-                            </div>
-                        </form>
+                   <!--Search Form-->
+                   <form class="navbar-search form-search pull-left" action="">
+                    <div class="input-append">
+                        <input type="text" class="span3 search-query" placeholder="Iphone 5, Samsung Galasy, BMW, Bilocale">
+                        <button type="submit" class="btn btn-warning"><i class="icon-search"></i></button>
+                    </div>
+                </form>
 
-                        <a class="btn btn-warning pull-right" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new'), null, true); ?>"><i class="icon-plus icon-white"></i> Inserisci Annuncio Gratis</a>
-                        <ul class="nav pull-right">
-                            <?php if ($this->identity): ?>
-                                 <li class="dropdown">
-                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->identity->name; ?><b class="caret"></b></a>
-                                     <ul class="dropdown-menu">
-                                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'my'), null, true); ?>"> <i class="icon-user"></i> I miei annunci</a> </li>
-                                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new'), null, true); ?>"> <i class="icon-plus"></i> Crea annuncio</a> </li>
-                                         <li class="divider"></li>
-                                         <li class="nav-header"> Profilo</li>
-                                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'index'), null, true); ?>"><i class="icon-home"></i> Dashboard</a></li>
-                                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'edit'), null, true); ?>"><i class="icon-pencil"></i> Modifica Dati</a></li>
-                                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword'), null, true); ?>"><i class="icon-lock"></i> Modifica Password</a></li>
-                                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'avatar'), null, true); ?>"><i class="icon-picture"></i> Immagine di profilo</a></li>
-                                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout'), null, true); ?>"><i class="icon-off"></i> Logout</a></li>
-                                     </ul>
-                                 </li>
-                             <? else: ?>
-                                 <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>"><i class="icon-lock"></i> Esegui Login</a></li>
-                            <?php endif; ?>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div><!--/.container -->
-            </div><!--/.navbar-inner -->
-        </div><!--/.navbar-->
-
-
-        <?php echo $this->layout()->content; ?>
+                <a class="btn btn-warning pull-right" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new'), null, true); ?>"><i class="icon-plus icon-white"></i> Inserisci Annuncio Gratis</a>
+                <ul class="nav pull-right">
+                    <?php if ($this->identity): ?>
+                    <li class="dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->identity->name; ?><b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                           <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'my'), null, true); ?>"> <i class="icon-user"></i> I miei annunci</a> </li>
+                           <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new'), null, true); ?>"> <i class="icon-plus"></i> Crea annuncio</a> </li>
+                           <li class="divider"></li>
+                           <li class="nav-header"> Profilo</li>
+                           <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'index'), null, true); ?>"><i class="icon-home"></i> Dashboard</a></li>
+                           <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'edit'), null, true); ?>"><i class="icon-pencil"></i> Modifica Dati</a></li>
+                           <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword'), null, true); ?>"><i class="icon-lock"></i> Modifica Password</a></li>
+                           <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'avatar'), null, true); ?>"><i class="icon-picture"></i> Immagine di profilo</a></li>
+                           <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout'), null, true); ?>"><i class="icon-off"></i> Logout</a></li>
+                       </ul>
+                   </li>
+               <? else: ?>
+               <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>"><i class="icon-lock"></i> Esegui Login</a></li>
+           <?php endif; ?>
+       </ul>
+   </div><!--/.nav-collapse -->
+</div><!--/.container -->
+</div><!--/.navbar-inner -->
+</div><!--/.navbar-->
 
 
+<?php echo $this->layout()->content; ?>
 
 
-
-
-
-    </body>
+</body>
 </html>

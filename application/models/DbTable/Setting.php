@@ -33,6 +33,7 @@ class Application_Model_DbTable_Setting extends Zend_Db_Table_Abstract
 
     /**
      * getSettings
+     * Recupero le informazioni di configurazione
      *
      * @access public
      *
@@ -45,6 +46,7 @@ class Application_Model_DbTable_Setting extends Zend_Db_Table_Abstract
 
     /**
      * updateSettings
+     * Aggiornamento delle informazioni
      *
      * @param mixed   $title       Meta Tag Titolo.
      * @param mixed   $description Meta Tag Description.
