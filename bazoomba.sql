@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Dic 22, 2012 alle 11:26
+-- Generato il: Dic 23, 2012 alle 17:58
 -- Versione del server: 5.5.25
 -- Versione PHP: 5.4.4
 
@@ -8298,24 +8298,6 @@ INSERT INTO `ads_login` (`id`, `name`, `usermail`, `pwd`, `role`, `notify`, `sta
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `ads_news`
---
-
-CREATE TABLE `ads_news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `startdate` date NOT NULL,
-  `endate` date NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `registered` datetime NOT NULL,
-  `status` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `ads_page`
 --
 
@@ -8653,7 +8635,7 @@ CREATE TABLE `ads_user` (
 --
 
 INSERT INTO `ads_user` (`id`, `type`, `name`, `avatar`, `email`, `pwd`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `modified`, `last_login`, `ip_address`) VALUES
-(16429, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2012-12-11 21:24:40', '2012-12-21 08:26:07', '127.0.0.1'),
+(16429, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2012-12-11 21:24:40', '2012-12-23 17:45:53', '127.0.0.1'),
 (94016, 2, 'cvsolutions', '', 'info@cvsolutions.it', '2df21c1c572b28714c474825c774d1c15764307f', 'a83977e45eadcdedefb50a944a3272c8b48df4b5', '095123987', 0, 'cvsolutions', 'cvsolutions', 1, 'user', 1, '2012-12-10 20:00:27', '2012-12-11 21:34:25', '2012-12-10 20:03:40', '127.0.0.1'),
 (14034, 1, 'Pinco Pallino', '', 'info@pippo.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'feaf4c00da53de0b5c96277a56f047a0a442113a', '0', 0, '', '', 1, 'user', 1, '2012-12-10 20:08:59', '2012-12-10 20:09:13', '2012-12-10 20:09:45', '127.0.0.1');
 
