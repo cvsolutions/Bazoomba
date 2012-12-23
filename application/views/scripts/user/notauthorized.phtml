@@ -1,2 +1,10 @@
-<p>Accesso negato</p>
-<p>Rieffettua <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'index')); ?>">login</a> Oppure torna alla <a href="<?php echo $this->serverUrl(); ?>">Home</a> del sito.</p>
+<div class="container">
+    <div class="row">
+        <div class="span12" style="margin-top: 20px;">
+            <div class="alert alert-error">
+            <strong>Accesso negato!</strong>
+            Rieffettua <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'index')); ?>">Login</a>, oppure torna alla <a href="<?php echo $this->serverUrl(); ?>">Home</a> del sito.
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,37 @@
-<?php echo $this->render('globals/menu_user.phtml'); ?>
+<div class="container" style="background-color: #f0f0f0; border-radius: 15px; margin-top: 20px;">
+
+    <?php echo $this->render('globals/menu_user.phtml'); ?>
+
+    <div class="row">
+        <div class="span3">
+
+            <div class="row">
+                <div class="span3">
+                    <div style="padding:12px;">
+                        <div style="background: #f6f6f6; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
+                            <img src="http://placehold.it/480x320" alt="">
+                        </div><!--style-->
+                    </div><!--padding-->
+                </div><!--span4-->
+            </div><!--row-->
+
+            <div class="row">
+                <div class="span3">
+                    <div style="padding: 12px;">
+                        <div class="alert alert-success">
+                        <strong>Ultimo Accesso:</strong><br />  <?php echo new Zend_Date($this->last_login); ?>
+                        </div><!--style-->
+                    </div><!--padding-->
+                </div><!--span4-->
+            </div><!--row-->
+
+
+        </div><!--span4-->
+
+        <div class="span9">
+
+        </div><!--span8-->
+
+    </div><!--row-->
+
+</div><!--container-->

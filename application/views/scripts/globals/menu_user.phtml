@@ -1,14 +1,25 @@
-<h1>Benvenuto, <?php echo $this->identity->name; ?></h1>
-<p>Il tuo ultimo accesso è stato il <?php echo new Zend_Date($this->last_login); ?></p>
-<ul>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout'), null, true); ?>">Logout</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'avatar'), null, true); ?>">Immagine Di Profilo</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'edit'), null, true); ?>">Modifica Dati</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword'), null, true); ?>">Modifica Password</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new'), null, true); ?>">+ Crea Annuncio</a></li>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'my'), null, true); ?>">I Miei Annunci</a></li>
-	<?php if($this->identity->type == 2): ?>
-	<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page'), null, true); ?>">Mini Sito</a></li>
-	<?php endif ?>
-</ul>
-<hr>
+ <div class="row">
+        <div class="span12">
+            <div style="padding:12px;">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a class="brand" href="#"><?php echo $this->identity->name; ?></a>
+                        <ul class="nav pull-left">
+                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'avatar'), null, true); ?>"><i class="icon-picture"></i> Immagine di Profilo</a></li>
+                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'edit'), null, true); ?>"><i class="icon-edit"></i> Modifica Dati</a></li>
+                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword'), null, true); ?>"><i class="icon-lock"></i> Modifica Password</a></li>
+                            <?php if($this->identity->type == 2): ?>
+                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page'), null, true); ?>"><i class="icon-globe"></i> Brand Page</a></li>
+                        <?php endif ?>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout'), null, true); ?>"><i class="icon-off"></i> Logout</a></li>
+                        </ul>
+
+                        <a class="btn btn-warning pull-right" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'my'), null, true); ?>"> I Miei Annunci</a>
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
