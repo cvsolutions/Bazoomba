@@ -1,46 +1,83 @@
-<?php echo $this->render('globals/menu_user.phtml'); ?>
-<h1>I tuoi annunci (<?php echo count($this->myshop); ?>)</h1>
+<div class="container" style="background-color: #f0f0f0; border-radius: 15px; margin-top: 20px;">
 
-<?php if ($this->myshop): ?>
-<div class="container">
+    <?php echo $this->render('globals/menu_user.phtml'); ?>
 
-    <?php foreach ($this->myshop as $row): ?>
-    <p>
-        <?php if($row['photo'] != 0): ?>
-        <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=100&height=100">
-        <?php endif; ?>
+    <div class="row">
+        <div class="span12">
+            <div style="padding: 12px;">
+                
+                <div style="background-color: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: -25px;">
 
-        <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a>
-    </p>
+                    <?php if ($this->myshop): ?>
+                    <div class="btn-group">
+                    <button class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown">Annunci (<?php echo count($this->myshop); ?>) <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Ordina Per Attivi</a></li>
+                        <li><a href="#">Ordina Per Sospesi</a></li>
+                        <li><a href="#">Ordina Per Data</a></li>
+                    </ul>
+                    </div><!-- /btn-group -->
 
-    <p><?php echo $this->truncate($row['description']); ?></p>
-    <p>€ <?php echo $row['price']; ?></p>
 
-    <?php if($row['step'] == 1 AND $row['status'] == 0): ?>
-    <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'media', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Aggiungi Immagini</a>
-    <?php endif; ?>
+                     <?php foreach ($this->myshop as $row): ?>
+                     <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
 
-    <?php if($row['step'] == 2 AND $row['status'] == 0): ?>
-    <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'public', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Pubblica Ora</a>
-    <?php endif; ?>
+                         <div class="span3">
+                             <?php if($row['photo'] != 0): ?>
+                                 <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360">
+                             <?php endif; ?>
+                         </div>
 
-    <?php if($row['step'] == 3 AND $row['status'] == 0): ?>
-    <a href="#" class="btn btn-info">Ads In Attesa Di Approvazione</a>
-    <?php endif; ?>
+                         <div class="span8">
+                             <div style="padding: 12px;">
 
-    <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
-    <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>" class="btn btn-success">Ads Attivo</a>
-    <?php endif; ?>
+                                <h4><?php echo $row['title']; ?></h4>
+                                <p><?php echo $this->truncate($row['description']); ?></p>
+                                <h4>€ <?php echo $row['price']; ?> - Inserito il <?php echo new Zend_Date($row['registered']); ?></h4>
 
-    <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
-    <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'item' => $row['id']), null, true); ?>" class="btn btn-danger">Elimina Questo Ads</a>
-    <?php endif; ?>
+                                <?php if($row['step'] == 1 AND $row['status'] == 0): ?>
+                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'media', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Aggiungi Immagini</a>
+                                <?php endif; ?>
 
-    <p>Inserito il <?php echo new Zend_Date($row['registered']); ?></p>
+                                <?php if($row['step'] == 2 AND $row['status'] == 0): ?>
+                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'public', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Pubblica Ora</a>
+                                <?php endif; ?>
 
-    <hr>
-    <?php endforeach ?>
+                                <?php if($row['step'] == 3 AND $row['status'] == 0): ?>
+                                <a href="#" class="btn btn-info">Ads In Attesa Di Approvazione</a>
+                                <?php endif; ?>
 
-</div>
-<?php endif ?>
+                                <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
+                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>" class="btn btn-success">Ads Attivo</a>
+                                <?php endif; ?>
+
+                                <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
+                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'item' => $row['id']), null, true); ?>" class="btn btn-danger">Elimina Questo Ads</a>
+                                <?php endif; ?>
+                            </div><!--padding-->
+                         </div><!--span8-->
+
+                     </div><!-- row-->
+                     <?php endforeach ?>
+
+
+                      <?php else: ?>
+
+                        <div class="row">
+                            <div class="span12">
+                                <div class="alert alert-error">
+                                    <strong>Non hai inserito nessun annuncio attualmente. Pubblica adesso il tuo primo annuncio.</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endif; ?>
+
+                </div><!--style-->
+            </div><!--padding-->
+        </div><!--12-->
+    </div><!--row-->
+
+</div><!--container-->
+
 

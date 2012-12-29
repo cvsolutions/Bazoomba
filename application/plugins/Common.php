@@ -115,7 +115,10 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
 
     /**
      * Chech_Off_Line
+<<<<<<< HEAD
      * Imposto il sito in modalità OFF
+=======
+>>>>>>> Sistemate Alcune Cose
      *
      * @access public
      * @static
@@ -129,5 +132,24 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
             $this->redirect( '/index/offline' );
         }
     }
+
+     /**
+     * Control_Image
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public static function Control_Image($directory, $image)  {
+        $file = sprintf('%s/uploaded/%s/%s', $_SERVER['DOCUMENT_ROOT'], $directory, $image);
+        $no_image = 'no_image.jpg';
+
+        if($image AND $file AND file_exists($file)) {
+            return $image;
+        } else {
+            return $no_image;
+        }
+    }
+
 
 }

@@ -263,6 +263,15 @@ class ShopController extends Zend_Controller_Action
         $User = new Application_Model_DbTable_User();
         $UserInfo = $User->getAdminInfo( $ShopInfo['user'] );
         $this->view->user = $UserInfo;
+        $this->view->avatar = Plugin_Common::Control_Image('avatar', $UserInfo['avatar']);
+
+        $Page = new Application_Model_DbTable_Page();
+        $PageInfo = $Page->getMyPage( $ShopInfo['user'], null);
+        $this->view->page = $PageInfo;
+        $this->view->logo = Plugin_Common::Control_Image('logo', $PageInfo['logo']);
+
+
+        $this->view->notfound = $this->params->label_not_found_ads;
 
         $this->view->row = $ShopInfo;
         $this->view->random_geo = $shop->RandomGeoIPShop( $id, $ShopInfo['latitude'], $ShopInfo['longitude'] );
