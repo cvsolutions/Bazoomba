@@ -33,6 +33,7 @@ class Application_Form_Login extends Zend_Form
 	 * @return mixed Value.
 	 */
 	public function login() {
+
 		$usermail = new Zend_Form_Element_Text( 'usermail' );
 		$usermail->setLabel( 'Indirizzo E-mail' );
 		$usermail->setRequired( true );
@@ -52,11 +53,16 @@ class Application_Form_Login extends Zend_Form
 				'StripTags'
 			) );
 
+		$hash = new Zend_Form_Element_Hash( 'hash', 'no_csrf_foo', array( 'salt' => 'unique' ) );
+		$hash->setDecorators( array(
+				array( 'ViewHelper', array( 'helper' => 'formHidden' ) )
+			) );
+
 		$submit = new Zend_Form_Element_Submit( 'login' );
 		$submit->setLabel( 'Login' );
 		$submit->setAttrib( 'class', 'button' );
 
-		return $this->addElements( array( $usermail, $pwd, $submit ) );
+		return $this->addElements( array( $usermail, $pwd, $hash, $submit ) );
 	}
 
 	/**

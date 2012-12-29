@@ -36,11 +36,11 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
      * New_Request
      * Inserimento nuova richiesta
      * 
-     * @param mixed $name     Description.
-     * @param mixed $email    Description.
-     * @param mixed $category Description.
-     * @param mixed $region   Description.
-     * @param mixed $tags     Description.
+     * @param mixed $name     Nome & Cognome.
+     * @param mixed $email    Indirizzo Email.
+     * @param mixed $category Categoria.
+     * @param mixed $region   Regione.
+     * @param mixed $tags     Parole chiavi.
      *
      * @access public
      *
