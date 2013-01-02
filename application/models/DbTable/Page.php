@@ -47,20 +47,29 @@ class Application_Model_DbTable_Page extends Zend_Db_Table_Abstract
      *
      * @return mixed Value.
      */
-    public function getMyPage( $id, $type ) {
-
-        if ( $type == 'count' ) {
-            $row = $this->fetchAll( sprintf( 'user = %d', $id ) );
+    public function getMyPage($id, $type) {
+        if ($type == 'count') {
+            $row = $this->fetchAll(sprintf('user = %d', $id));
         } else {
-            $row = $this->fetchRow( sprintf( 'user = %d', $id ) );
+            $row = $this->fetchRow(sprintf('user = %d', $id));
         }
 
-        if ( !$row ) {
-            $params = Plugin_Common::getParams();
-            throw new Exception( $params->label_no_id, 1 );
-            if($row) return $row->toArray();
-        }
+        if($row) return $row->toArray();
+    }
 
+    /**
+     * getInfoPage
+     * Recupero tutte le informazioni sulla scheda
+     *
+     * @param mixed   $id   ID User.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function getInfoPage($id) {
+        $row = $this->fetchRow(sprintf('id = %d', $id));
+        if($row) return $row->toArray();
     }
 
     /**

@@ -241,8 +241,11 @@ class ShopController extends Zend_Controller_Action
         Plugin_Common::Chech_Off_Line();
         $id = $this->_getParam( 'show', 0 );
 
+
         $shop = new Application_Model_DbTable_Shop();
         $ShopInfo = $shop->getSiteShopInfo( $id );
+
+        $this->view->othersAdsPage = $shop->othersAdsPage($ShopInfo['user']);
 
         $Category = new Application_Model_DbTable_Category();
         $this->view->category = $Category->getCategoryInfo( $ShopInfo['category'] );

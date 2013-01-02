@@ -537,5 +537,20 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll( $query );
     }
 
-
+    public function othersAdsPage($id) {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from( 'ads_shop', array(
+                'id',
+                'type',
+                'title',
+                'description',
+                'price',
+                'registered'
+            ) );
+        $query->joinLeft( 'ads_gallery', 'ads_shop.id = ads_gallery.shop', array( 'photo' => 'image' ) );
+        $query->where( sprintf( 'user = %d', $id ) );
+        $query->group( 'ads_shop.id' );
+        $query->order( 'ads_shop.registered DESC' );
+        return $this->getDefaultAdapter()->fetchAll( $query );
+    }
 }

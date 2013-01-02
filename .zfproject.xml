@@ -43,6 +43,7 @@
           <actionMethod actionName="picture"/>
           <actionMethod actionName="gallery"/>
           <actionMethod actionName="deletegallery"/>
+          <actionMethod actionName="site"/>
         </controllerFile>
         <controllerFile controllerName="Account">
           <actionMethod actionName="index"/>
@@ -287,6 +288,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Cronjob">
             <viewScriptFile forActionName="remembernewads"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Page">
+            <viewScriptFile forActionName="site"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

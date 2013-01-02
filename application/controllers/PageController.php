@@ -1,37 +1,45 @@
 <?php
 
 /**
-* PageController
-*
-* @uses     Zend_Controller_Action
-*
-* @category Page
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license  
-* @link     
-*/
-class PageController extends Zend_Controller_Action {
+ * PageController
+ *
+ * @uses     Zend_Controller_Action
+ *
+ * @category Page
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ *
+ */
+
+class PageController extends Zend_Controller_Action
+{
 
     /**
      * init
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function init() {
-        // action
+    public function init()
+    {
+        $select = new Application_Model_OptionSelect();
+        $this->view->region_select = $select->appendRegion();
     }
 
     /**
      * indexAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -47,12 +55,14 @@ class PageController extends Zend_Controller_Action {
 
     /**
      * newAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function newAction() {
+    public function newAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -93,14 +103,17 @@ class PageController extends Zend_Controller_Action {
 
     /**
      * editAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function editAction() {
+    public function editAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
+        $this->view->identity = $identity;
 
         $page = new Application_Model_DbTable_Page();
         if ( count( $page->getMyPage( $identity->id, 'count' ) ) == 0 )
@@ -133,14 +146,17 @@ class PageController extends Zend_Controller_Action {
 
     /**
      * pictureAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function pictureAction() {
+    public function pictureAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
+        $this->view->identity = $identity;
 
         if ( $identity->type == 1 )
             $this->_redirect( '/account' );
@@ -173,12 +189,14 @@ class PageController extends Zend_Controller_Action {
 
     /**
      * galleryAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function galleryAction() {
+    public function galleryAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -214,12 +232,14 @@ class PageController extends Zend_Controller_Action {
 
     /**
      * deletegalleryAction
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function deletegalleryAction() {
+    public function deletegalleryAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -235,4 +255,26 @@ class PageController extends Zend_Controller_Action {
 
         $this->_redirect( '/page/gallery' );
     }
+
+    public function siteAction()
+    {
+        $id = $this->_getParam( 'item', 0 );
+        $Page = new Application_Model_DbTable_Page();
+        $PageInfo = $Page->getInfoPage($id);
+        $this->view->page = $PageInfo;
+
+        $User = new Application_Model_DbTable_User();
+        $this->view->user = $User->getAdminInfo( $PageInfo['user'] );
+
+        $this->view->logo = Plugin_Common::Control_Image('logo', $PageInfo['logo']);
+
+        $image = new Application_Model_DbTable_Gallery();
+        $this->view->gallery = $image->galleryPage( $PageInfo['id'] );
+
+        $shop = new Application_Model_DbTable_Shop();
+        $this->view->ads = $shop->othersAdsPage($PageInfo['user']);
+    }
+
+
 }
+

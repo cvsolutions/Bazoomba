@@ -34,6 +34,8 @@ class FilterController extends Zend_Controller_Action
 
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
+        $select = new Application_Model_OptionSelect();
+        $this->view->region_select = $select->appendRegion();
 
         /* Check if your website is down */
         Plugin_Common::Chech_Off_Line();

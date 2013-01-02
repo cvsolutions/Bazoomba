@@ -56,6 +56,8 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow( 'guest', 'content', array( 'index', 'about', 'privacy', 'terms' ) );
         $this->allow( 'guest', 'cronjob', array( 'expiration', 'eliminates', '' ) );
         $this->allow( 'guest', 'request', array( 'index', 'subscribe', 'edit', 'delete' ) );
+        $this->allow( 'guest', 'page', array( 'site') );
+
 
         $this->allow( 'user', 'user', array( 'index', 'logout' ) );
         $this->allow( 'user', 'login', array( 'index', 'notauthorized' ) );

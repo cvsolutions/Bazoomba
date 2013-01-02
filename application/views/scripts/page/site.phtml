@@ -1,0 +1,115 @@
+<?php echo $this->headTitle(sprintf('%s - Bazoomba Page', $this->user['name_company'])); ?>
+
+
+
+
+<div class="container" style="background-color: #fff; margin-top: 30px; margin-bottom: 20px;  -moz-box-shadow:0 2px 15px #898989;-webkit-box-shadow:0 2px 15px #898989;box-shadow:0 2px 15px #898989;">
+
+    <div class="row">
+        <div class="span12">
+            <div style="background-color: #f2f2f2; position: relative;">
+
+                <div class="row">
+                    <div class="span3">
+                        <img style="position: absolute; padding: 5px; background-color: #fff; -moz-box-shadow:0 2px 15px #898989;-webkit-box-shadow:0 2px 15px #898989;box-shadow:0 2px 15px #898989;  top: -10px; left: 15px; z-index: 5;" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=logo&image=<?php echo $this->logo; ?>&width=250&height=100" alt="<?php echo $this->user['name']; ?>" title="<?php echo $this->user['name']; ?>"/>
+                    </div>
+                    <div class="span4">
+                        <h3><?php echo $this->user['name_company']; ?></h3>
+                    </div>
+                    <div class="span5">
+                        <div style="margin-top: 20px;">
+                        <a href="<?php echo $this->page['site']; ?>" target="_blank"><button class="btn btn-mini"><i class="icon-globe"></i> <?php echo $this->page['site']; ?></button></a>
+                        <a href="#"><button class="btn btn-mini"><i class="icon-envelope"></i> <?php echo $this->page['telephone']; ?></button></a>
+                        <a href="#"><button class="btn btn-mini"><i class="icon-info-sign"></i> P.Iva <?php echo $this->user['vat']; ?></button></a>
+                        </div>
+                    </div>
+                </div><!--row-->
+
+            </div><!--style-->
+        </div><!--span12-->
+    </div><!--row-->
+
+    <div class="row">
+        <div class="span12">
+                <div style="width: 100%; height: 250px;" id="mapsbrand"></div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="span6">
+            <div style="padding: 12px;">
+            <h3>Chi Siamo</h3>
+            <p><?php echo nl2br($this->page['description']); ?></p>
+            </div>
+        </div>
+
+        <div class="span6">
+            <div style="padding: 12px;">
+            <h3>Gallery</h3>
+            <?php if(count($this->gallery) > 0): ?>
+                <?php foreach ($this->gallery as $row): ?>
+
+                            <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=gallery&image=<?php echo $row['image']; ?>&width=100&height=100">
+
+                <?php endforeach ?>
+            <?php else: ?>
+                            <div class="alert alert-box">Le foto devono ancora essere caricate.</div>
+            <?php endif; ?>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="span12">
+            <div style="padding: 12px;">
+            <h3>Annunci di <?php echo $this->user['name_company']; ?> (<?php echo count($this->ads); ?>)</h3>
+            </div>
+        </div>
+    </div>
+            <?php if(count($this->ads) > 0): ?>
+                <?php foreach ($this->ads as $row): ?>
+                    <div class="row">
+                        <div class="span4">
+                            <div style="padding: 12px;">
+                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=440&height=340"></a>
+                            </div>
+                        </div>
+                        <div class="span6"><div style="padding: 12px;"><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><h4><?php echo $row['title']; ?></h4></a> <p><?php echo $this->truncate($row['description']); ?></p> <p><a href="#"><button class="btn btn-mini"><i class="icon-time"></i> <?php echo new Zend_Date($row['registered']); ?></button></a>  </p> </div></div>
+                        <div class="span2"><div style="padding: 12px;"><h4>€ <?php echo $row['price']; ?></h4></div></div>
+                    </div>
+                 <?php endforeach ?>
+            <?php else: ?>
+            <div class="alert alert-box">
+                <strong><?php echo $this->user['name_company']; ?></strong> non ha ancora caricato annunci.
+            </div>
+            <?php endif; ?>
+
+
+
+
+
+
+
+
+
+</div><!--container-->
+
+<script type="text/javascript">
+var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
+var latlang = new google.maps.LatLng(<?php echo $this->page['latitude']; ?>, <?php echo $this->page['longitude']; ?>);
+var mapOptions = {
+    center: latlang,
+    zoom: 9,
+    disableDefaultUI: false,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: vikey
+};
+
+var map = new google.maps.Map(document.getElementById("mapsbrand"),
+mapOptions);
+var marker = new google.maps.Marker({ position: latlang,map: map,title: "<?php echo $this->user['name_company']; ?>" });
+</script>
+

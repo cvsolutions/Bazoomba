@@ -1,12 +1,31 @@
 <?php echo $this->headTitle(sprintf('%s | %s | %s', $this->row['title'], $this->category['name'], $this->region['name'])); ?>
 
-<div class="container" style="background: #fafafa; border-radius: 5px; border: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px; ">
+<?php if ($this->user['type'] == 2 AND count($this->othersAdsPage) > 0): ?>
+<div class="container" style="margin-top: 20px; margin-bottom: -20px;">
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-box">
+                Questo annuncio è gestito da un azienda verificata <strong>( <?php echo $this->user['name_company']; ?> )</strong>. Guarda tutti gli altri annunci <strong><?php echo $this->user['name_company']; ?>.</strong>
+                <span class="pull-right"><a href="#"><button class="btn btn-mini btn" type="button"><i class="icon-tags"></i> Altri Annunci (<?php echo count($this->othersAdsPage); ?>)</button></a></span>
+            </div>
+        </div>
+    </div><!--row-->
+</div>
+<?php endif; ?>
+
+
+<div class="container" style="background: #fafafa; border-radius: 5px; border: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px;">
 
     <div class="row">
         <div class="span12" style="background: #efefef; border-bottom: 1px solid #ccc;">
 
             <div class="pull-left" style="padding: 12px;">
-                <strong>#<?php echo $this->row['code']; ?> - <?php echo new Zend_Date($this->row['registered']); ?></strong> <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->type_ads[$this->row['type']]; ?></button></a>  <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->region['name']; ?></button></a> <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->province['name']; ?></button></a>  <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->category['name']; ?></button></a> <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->sub_category['name']; ?></button></a>
+                <strong>#<?php echo $this->row['code']; ?> - <?php echo new Zend_Date($this->row['registered']); ?></strong>
+                <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->type_ads[$this->row['type']]; ?></button></a>
+                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id']), null, true); ?>"><button class="btn btn-mini" type="button"><?php echo $this->region['name']; ?></button></a>
+                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'province', 'item' => $this->province['id'], 'parent' => $this->region['id']), null, true); ?>"><button class="btn btn-mini" type="button"><?php echo $this->province['name']; ?></button></a>
+                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id']), null, true); ?>"><button class="btn btn-mini" type="button"><?php echo $this->category['name']; ?></button></a>
+                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'subcategory', 'item' => $this->category['id'], 'parent' => $this->sub_category['id']), null, true); ?>"><button class="btn btn-mini" type="button"><?php echo $this->sub_category['name']; ?></button></a>
             </div><!--pull-left-->
 
             <div class="pull-right" style="padding: 12px;">
@@ -77,11 +96,9 @@
                 <div class="row">
                     <div class="span3">
                         <div style="padding:12px;">
-                            <div style="width: 228px; margin-left: auto; margin-right: auto;">
                             <a href="#myModal" role="button" class="btn btn-large btn-warning pull-right" data-toggle="modal">
                                 <i class="icon-envelope icon-white"></i> Contatta Il Venditore
                             </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +135,7 @@
 
 
                             <?php if ($this->user['type'] == 1): ?>
-                                
+
                             <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=avatar&image=<?php echo $this->avatar; ?>&width=480&height=320" alt="<?php echo $this->user['name']; ?>" title="<?php echo $this->user['name']; ?>"/>
                             <center><h4><?php echo $this->user['name']; ?></h4></center>
                             <center><h5><?php if ($this->user['phone_show'] == 1): ?>Tel. <?php echo $this->user['telephone']; ?><?php endif ?></h5></center>
@@ -127,7 +144,7 @@
 
                             <center><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=logo&image=<?php echo $this->logo; ?>&width=480&height=320" alt="<?php echo $this->user['name_company']; ?>" title="<?php echo $this->user['name_company']; ?>"/></center>
 
-                            <center><h4><?php echo $this->user['name_company']; ?></h4></center>
+                            <center><h4><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'site', 'item' => $this->page['id']), null, true); ?>"><?php echo $this->user['name_company']; ?></a></h4></center>
                             <center><h5>P.Iva <?php echo $this->user['vat']; ?></h5></center>
                             <?php if($this->page['site']): ?> <center><h5><a href="<?php echo $this->page['site']; ?>" target="_blank"><?php echo $this->page['site']; ?></a></h5></center><?php endif; ?>
                             <?php if($this->page['telephone']): ?><center><h5>Tel. Azienda <?php echo $this->page['telephone']; ?></h5></center><?php endif; ?>
