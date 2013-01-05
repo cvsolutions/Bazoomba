@@ -1,40 +1,61 @@
-<?php echo $this->render('globals/menu_user.phtml'); ?>
-<?php echo $this->render('globals/menu_company.phtml'); ?>
+<div class="container" style="background-color: #f0f0f0; border-radius: 15px; margin-top: 20px;">
 
-	<h1>La tua Pagina <?php if($this->page['status'] == 0): ?> <span class="red">[Off-line]</span> <?php else: ?> <span class="green">[On-line]</span> <?php endif; ?> </h1>
+    <?php echo $this->render('globals/menu_user.phtml'); ?>
 
-  <h4><?php echo $this->identity->name_company ?> - P.Iva <?php echo $this->identity->vat ?> - Phone: <?php echo $this->page['telephone'] ?></h4>
-  <p><i>Indrizzo: <?php echo $this->page['address']; ?></i></p>
-  <div id="map" style="width: 600px; height: 250px;"></div>
-  <p>
-    <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=resize&folder=logo&image=<?php echo $this->page['logo'] ?>&width=200&height=160">
-</p>
-<p>
-    <?php echo stripslashes(nl2br($this->page['description'])) ?>
-</p>
+    <div class="row">
+        <div class="span12">
+            <div style="padding: 12px;">
 
-<a class="btn btn-info" href="<?php echo $this->page['site'] ?>"><?php echo $this->page['site'] ?></a>
+                <div style="background-color: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: -25px;">
 
-<script type="text/javascript">
-var initialize = function() {
-  var latlng = new google.maps.LatLng(<?php echo $this->page['latitude'] ?>,<?php echo $this->page['longitude'] ?>);
-  var options = { zoom: 14,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-};
-var map = new google.maps.Map(document.getElementById('map'), options);
-var marker = new google.maps.Marker(
-{
-    position: latlng,
-    map: map,
-    flat: true
-}
-);
-google.maps.event.addListener(marker, 'click', function() {
-    infowindow.open(map,marker);
-});
+                    <?php echo $this->render('globals/menu_company.phtml'); ?>
 
-}
 
-window.onload = initialize;
-</script>
+                    <h1>La tua Pagina <?php if($this->page['status'] == 0): ?> <span class="red">[Off-line]</span> <?php else: ?> <span class="green">[On-line]</span> <?php endif; ?> </h1>
+
+                    <h4><?php echo $this->identity->name_company ?> - P.Iva <?php echo $this->identity->vat ?> - Phone: <?php echo $this->page['telephone'] ?></h4>
+                    <p><i>Indrizzo: <?php echo $this->page['address']; ?></i></p>
+                    <div id="map" style="width: 600px; height: 250px;"></div>
+                    <p>
+                        <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=resize&folder=logo&image=<?php echo $this->page['logo'] ?>&width=200&height=160">
+                    </p>
+                    <p>
+                        <?php echo stripslashes(nl2br($this->page['description'])) ?>
+                    </p>
+
+                    <a class="btn btn-info" href="<?php echo $this->page['site'] ?>"><?php echo $this->page['site'] ?></a>
+
+                    <script type="text/javascript">
+                    var initialize = function() {
+                    var latlng = new google.maps.LatLng(<?php echo $this->page['latitude'] ?>,<?php echo $this->page['longitude'] ?>);
+                    var options = { zoom: 14,
+                        center: latlng,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var map = new google.maps.Map(document.getElementById('map'), options);
+                    var marker = new google.maps.Marker(
+                    {
+                        position: latlng,
+                        map: map,
+                        flat: true
+                    }
+                    );
+                    google.maps.event.addListener(marker, 'click', function() {
+                        infowindow.open(map,marker);
+                    });
+
+                    }
+
+                    window.onload = initialize;
+                    </script>
+
+
+
+
+
+                </div><!--style-->
+            </div><!--padding-->
+        </div><!--12-->
+    </div><!--row-->
+
+</div><!--container-->

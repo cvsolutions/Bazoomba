@@ -168,6 +168,9 @@ class AccountController extends Zend_Controller_Action
         $info = $user->getAdminInfo( $identity->id );
         $this->view->identity = $identity;
 
+        $this->view->avatar = Plugin_Common::Control_Image('avatar', $info['avatar']);
+
+
         $form = new Application_Form_User();
         $avatar = $form->addAvatar();
         $avatar->image->addFilter( 'Rename', sprintf( '%s.jpg', uniqid() ) );

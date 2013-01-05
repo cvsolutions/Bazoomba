@@ -10,7 +10,7 @@
 
                     <?php if ($this->myshop): ?>
                     <div class="btn-group">
-                    <button class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown">Annunci (<?php echo count($this->myshop); ?>) <span class="caret"></span></button>
+                    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Annunci (<?php echo count($this->myshop); ?>) <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <li><a href="#">Ordina Per Attivi</a></li>
                         <li><a href="#">Ordina Per Sospesi</a></li>
@@ -19,12 +19,15 @@
                     </div><!-- /btn-group -->
 
 
+
                      <?php foreach ($this->myshop as $row): ?>
                      <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
 
                          <div class="span3">
                              <?php if($row['photo'] != 0): ?>
                                  <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360">
+                             <?php else: ?>
+                                 <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=no_image.jpg&width=480&height=360">
                              <?php endif; ?>
                          </div>
 
@@ -48,12 +51,20 @@
                                 <?php endif; ?>
 
                                 <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
-                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>" class="btn btn-success">Ads Attivo</a>
+                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>" class="btn btn-success"><i class="icon-ok icon-white"></i> Attivo</a>
+
+                                <div class="btn-group">
+                                <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="icon-remove"></i> Elimina Annuncio <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'item' => 1), null, true); ?>">Elimina perchè non più disponibile.</a></li>
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'item' => 2), null, true); ?>">Elimina perchè venduto.</a></li>
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'item' => 3), null, true); ?>">Elimina per motivi personali/altro.</a></li>
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'item' => 4), null, true); ?>">Elimina perchè non mi piace Bazoomba.</a></li>
+                                </ul>
+                                </div>
                                 <?php endif; ?>
 
-                                <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
-                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'item' => $row['id']), null, true); ?>" class="btn btn-danger">Elimina Questo Ads</a>
-                                <?php endif; ?>
+
                             </div><!--padding-->
                          </div><!--span8-->
 
