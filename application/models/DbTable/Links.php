@@ -1,0 +1,24 @@
+<?php
+
+class Application_Model_DbTable_Links extends Zend_Db_Table_Abstract
+{
+
+    protected $_name = 'ads_links';
+    protected $_primary = 'id';
+
+    public function Mapping_Url($url, $location)
+    {
+        $arrayName = array(
+            'url' => $url,
+            'location' => $location,
+            'registered' => new Zend_Db_Expr( 'NOW()' ),
+            'computer' => $_SERVER['HTTP_USER_AGENT'],
+            'ip_address' => $_SERVER['REMOTE_ADDR']
+        );
+        return $this->insert( $arrayName );
+
+    }
+
+
+}
+
