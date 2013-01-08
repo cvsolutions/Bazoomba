@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Dic 23, 2012 alle 17:58
+-- Generato il: Gen 09, 2013 alle 00:01
 -- Versione del server: 5.5.25
 -- Versione PHP: 5.4.4
 
@@ -8236,6 +8236,35 @@ INSERT INTO `ads_city` (`id`, `region`, `provinces`, `name`, `sigla`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `ads_delete`
+--
+
+CREATE TABLE `ads_delete` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shop` varchar(255) NOT NULL,
+  `user` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `registered` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ads_favorites`
+--
+
+CREATE TABLE `ads_favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shop` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `registered` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `ads_gallery`
 --
 
@@ -8251,7 +8280,7 @@ CREATE TABLE `ads_gallery` (
   PRIMARY KEY (`id`),
   KEY `shop` (`shop`),
   KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dump dei dati per la tabella `ads_gallery`
@@ -8265,7 +8294,36 @@ INSERT INTO `ads_gallery` (`id`, `image`, `shop`, `status`, `page`, `registered`
 (14, '50c634e58395c.jpg', 93902, 1, 0, '2012-12-10 20:15:49', '0000-00-00 00:00:00', '127.0.0.1'),
 (15, '5065eae1307b7.jpg', 24165, 1, 0, '2012-09-28 20:22:25', '0000-00-00 00:00:00', '127.0.0.1'),
 (16, '5065eae4d792c.jpg', 24165, 1, 0, '2012-09-28 20:22:28', '0000-00-00 00:00:00', '127.0.0.1'),
-(17, '50c79004b7116.jpg', 25557, 1, 0, '2012-12-11 20:56:52', '0000-00-00 00:00:00', '127.0.0.1');
+(17, '50c79004b7116.jpg', 25557, 1, 0, '2012-12-11 20:56:52', '0000-00-00 00:00:00', '127.0.0.1'),
+(18, '50eb4f9eba37c.jpg', 1, 1, 1, '2013-01-07 23:43:42', '0000-00-00 00:00:00', '127.0.0.1'),
+(19, '50eb4fa369a26.jpg', 1, 1, 1, '2013-01-07 23:43:47', '0000-00-00 00:00:00', '127.0.0.1'),
+(20, '50eb4faa76a6b.jpg', 1, 1, 1, '2013-01-07 23:43:54', '0000-00-00 00:00:00', '127.0.0.1');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ads_links`
+--
+
+CREATE TABLE `ads_links` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) NOT NULL,
+  `location` int(11) NOT NULL,
+  `registered` datetime NOT NULL,
+  `computer` text NOT NULL,
+  `ip_address` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dump dei dati per la tabella `ads_links`
+--
+
+INSERT INTO `ads_links` (`id`, `url`, `location`, `registered`, `computer`, `ip_address`) VALUES
+(1, 'http://www.cvsolutions.it', 2, '2013-01-08 23:56:43', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1'),
+(2, 'http://www.cvsolutions.it', 2, '2013-01-08 23:57:40', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1'),
+(3, 'http://www.cvsolutions.it', 2, '2013-01-08 23:58:05', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1'),
+(4, 'http://www.cvsolutions.it', 2, '2013-01-08 23:59:46', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.101 Safari/537.11', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8635,8 +8693,8 @@ CREATE TABLE `ads_user` (
 --
 
 INSERT INTO `ads_user` (`id`, `type`, `name`, `avatar`, `email`, `pwd`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `modified`, `last_login`, `ip_address`) VALUES
-(16429, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2012-12-11 21:24:40', '2012-12-23 17:45:53', '127.0.0.1'),
-(94016, 2, 'cvsolutions', '', 'info@cvsolutions.it', '2df21c1c572b28714c474825c774d1c15764307f', 'a83977e45eadcdedefb50a944a3272c8b48df4b5', '095123987', 0, 'cvsolutions', 'cvsolutions', 1, 'user', 1, '2012-12-10 20:00:27', '2012-12-11 21:34:25', '2012-12-10 20:03:40', '127.0.0.1'),
+(16429, 1, 'Concetto Vecchio', '', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2012-12-11 21:24:40', '2013-01-08 21:52:25', '127.0.0.1'),
+(94016, 2, 'cvsolutions', '', 'info@cvsolutions.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a83977e45eadcdedefb50a944a3272c8b48df4b5', '095123987', 0, 'cvsolutions', 'cvsolutions', 1, 'user', 1, '2012-12-10 20:00:27', '2013-01-08 22:42:15', '2013-01-08 23:32:29', '127.0.0.1'),
 (14034, 1, 'Pinco Pallino', '', 'info@pippo.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'feaf4c00da53de0b5c96277a56f047a0a442113a', '0', 0, '', '', 1, 'user', 1, '2012-12-10 20:08:59', '2012-12-10 20:09:13', '2012-12-10 20:09:45', '127.0.0.1');
 
 -- --------------------------------------------------------
