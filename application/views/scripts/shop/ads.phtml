@@ -145,7 +145,7 @@
 
                             <center><h4><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'site', 'item' => $this->page['id']), null, true); ?>"><?php echo $this->user['name_company']; ?></a></h4></center>
                             <center><h5>P.Iva <?php echo $this->user['vat']; ?></h5></center>
-                            <?php if($this->page['site']): ?> <center><h5><a href="<?php echo $this->page['site']; ?>" target="_blank"><?php echo $this->page['site']; ?></a></h5></center><?php endif; ?>
+                            <?php if($this->page['site']): ?> <center><h5><a class="btn btn-mini" href="<?php echo $this->page['site']; ?>" target="_blank"><i class="icon-globe"></i> <?php echo $this->page['site']; ?></a></h5></center><?php endif; ?>
                             <?php if($this->page['telephone']): ?><center><h5>Tel. Azienda <?php echo $this->page['telephone']; ?></h5></center><?php endif; ?>
                             <center><h5><?php if ($this->user['phone_show'] == 1): ?>Tel. Responsabile <?php echo $this->user['telephone']; ?><?php endif ?></h5></center>
 
