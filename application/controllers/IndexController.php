@@ -73,6 +73,11 @@ class IndexController extends Zend_Controller_Action
         $this->view->identity = $identity;
     }
 
+    private function _IPGeolocationService()
+    {
+
+    }
+
     /**
      * indexAction
      *
@@ -84,6 +89,9 @@ class IndexController extends Zend_Controller_Action
 
         /* Check if your website is down */
         Plugin_Common::Chech_Off_Line();
+
+        // $xml = new Plugin_XmlToString();
+        // $iplocation = $xml->Load_Xml();
 
         /* @var Application_Model_DbTable_Shop [Shop] */
         $Shop = new Application_Model_DbTable_Shop();

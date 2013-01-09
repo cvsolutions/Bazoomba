@@ -103,6 +103,7 @@
           <actionMethod actionName="subcategory"/>
           <actionMethod actionName="autocomplete"/>
           <actionMethod actionName="controlemail"/>
+          <actionMethod actionName="geolocation"/>
         </controllerFile>
         <controllerFile controllerName="Content">
           <actionMethod actionName="index"/>
@@ -298,6 +299,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Links">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="geolocation"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

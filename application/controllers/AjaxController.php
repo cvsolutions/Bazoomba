@@ -10,7 +10,9 @@
  * @author   Concetto Vecchio
  * @license
  * @link
+ *
  */
+
 class AjaxController extends Zend_Controller_Action
 {
 
@@ -20,8 +22,9 @@ class AjaxController extends Zend_Controller_Action
      * @var mixed
      *
      * @access public
+     *
      */
-    public $params;
+    public $params = null;
 
     /**
      * preDispatch
@@ -29,10 +32,12 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function preDispatch() {
+    public function preDispatch()
+    {
         $this->_helper->layout()->disableLayout();
-        $this->_helper->viewRenderer->setNoRender( true );
+        $this->_helper->viewRenderer->setNoRender(true);
     }
 
     /**
@@ -41,8 +46,10 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function init() {
+    public function init()
+    {
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
     }
@@ -53,8 +60,10 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         // action body
     }
 
@@ -64,37 +73,42 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function newshopAction() {
-        if ( $this->getRequest()->getPost() ) {
+    public function newshopAction()
+    {
+        if ($this->getRequest()->getPost()) {
             $form = new Application_Form_Shop();
             $form_data = $this->getRequest()->getPost();
 
-            if ( $form->isValid( $form_data ) ) {
+            if ($form->isValid($form_data)) {
 
-                $id = Plugin_Common::getId( 'ads_shop' );
-                $category = $this->_request->getPost( 'category' );
-                $sub_category = $this->_request->getPost( 'sub_category' );
-                $region = $this->_request->getPost( 'region' );
-                $province = $this->_request->getPost( 'province' );
-                $city = $this->_request->getPost( 'city' );
-                $type = $this->_request->getPost( 'type' );
-                $title = $this->_request->getPost( 'title' );
-                $description = $this->_request->getPost( 'description' );
-                $tags = $this->_request->getPost( 'tags' );
-                $price = $this->_request->getPost( 'price' );
-                $latitude = $this->_request->getPost( 'latitude' );
-                $longitude = $this->_request->getPost( 'longitude' );
-                $url = $this->_request->getPost( 'url_video' );
-                $vid = $this->_request->getPost( 'video' );
+                $id = Plugin_Common::getId('ads_shop');
+                $category = $this->_request->getPost('category');
+                $sub_category = $this->_request->getPost('sub_category');
+                $region = $this->_request->getPost('region');
+                $province = $this->_request->getPost('province');
+                $city = $this->_request->getPost('city');
+                $type = $this->_request->getPost('type');
+                $title = $this->_request->getPost('title');
+                $description = $this->_request->getPost('description');
+                $tags = $this->_request->getPost('tags');
+                $price = $this->_request->getPost('price');
+                $latitude = $this->_request->getPost('latitude');
+                $longitude = $this->_request->getPost('longitude');
+                $url = $this->_request->getPost('url_video');
+                $vid = $this->_request->getPost('video');
 
                 $video = new Application_Model_DbTable_Video();
-                $video->newVideo( $id, $url, $vid );
+                $video->newVideo($id, $url, $vid);
 
                 $shop = new Application_Model_DbTable_Shop();
-                $shop->newShop( $id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags, $price, $latitude, $longitude );
+                $shop->newShop(
+                    $id, $category, $sub_category, $region, $province, $city, $type, $title, $description, $tags,
+                    $price, $latitude, $longitude
+                );
 
-                echo Zend_Json::encode( array( 'id' => $id ) );
+                echo Zend_Json::encode(array('id' => $id));
             }
         }
     }
@@ -105,39 +119,43 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function newuserAction() {
+    public function newuserAction()
+    {
 
-        if ( $this->getRequest()->getPost() ) {
+        if ($this->getRequest()->getPost()) {
             $form = new Application_Form_Shop();
             $form_data = $this->getRequest()->getPost();
-            if ( $form->isValid( $form_data ) ) {
+            if ($form->isValid($form_data)) {
 
-                $id = Plugin_Common::getId( 'ads_user' );
-                $type = $this->_request->getPost( 'type' );
-                $name = $this->_request->getPost( 'name' );
-                $email = $this->_request->getPost( 'email' );
-                $phone = $this->_request->getPost( 'telephone' );
-                $phone_show = $this->_request->getPost( 'phone_show' );
-                $pwd = $this->_request->getPost( 'pwd' );
-                $serialkey = sha1( time().$email.$id );
-                $vat = $this->_request->getPost( 'vat' );
-                $name_company = $this->_request->getPost( 'name_company' );
+                $id = Plugin_Common::getId('ads_user');
+                $type = $this->_request->getPost('type');
+                $name = $this->_request->getPost('name');
+                $email = $this->_request->getPost('email');
+                $phone = $this->_request->getPost('telephone');
+                $phone_show = $this->_request->getPost('phone_show');
+                $pwd = $this->_request->getPost('pwd');
+                $serialkey = sha1(time() . $email . $id);
+                $vat = $this->_request->getPost('vat');
+                $name_company = $this->_request->getPost('name_company');
 
                 $user = new Application_Model_DbTable_User();
-                $user->newUser( $id, $type, $name, $email, $phone, $phone_show, $pwd, $serialkey, $vat, $name_company );
+                $user->newUser($id, $type, $name, $email, $phone, $phone_show, $pwd, $serialkey, $vat, $name_company);
 
-                Plugin_Common::getMail( array(
-                        'email' => $email,
-                        'reply' => $this->params->noreplay,
-                        'subject' => 'Nuova Registrazione',
-                        'template' => 'newuser.phtml',
-                        'params' => array(
-                            'name' => $name,
-                            'serialkey' => $serialkey
-                        )
-                    ) );
-                echo Zend_Json::encode( array( 'result' => $this->params->label_confirm_registration ) );
+                Plugin_Common::getMail(
+                    array(
+                         'email'    => $email,
+                         'reply'    => $this->params->noreplay,
+                         'subject'  => 'Nuova Registrazione',
+                         'template' => 'newuser.phtml',
+                         'params'   => array(
+                             'name'      => $name,
+                             'serialkey' => $serialkey
+                         )
+                    )
+                );
+                echo Zend_Json::encode(array('result' => $this->params->label_confirm_registration));
             }
         }
     }
@@ -148,11 +166,13 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function controlemailAction() {
-        $email = $this->_request->getPost( 'email' );
+    public function controlemailAction()
+    {
+        $email = $this->_request->getPost('email');
         $user = new Application_Model_DbTable_User();
-        if ( $user->controlemail( $email ) > 0 ) {
+        if ($user->controlemail($email) > 0) {
             echo 'false';
         } else {
             echo 'true';
@@ -165,12 +185,14 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function provinceAction() {
+    public function provinceAction()
+    {
         $select = new Application_Model_OptionSelect();
         $province = '';
-        foreach ( $select->appendProvinces( $_REQUEST['id_reg'] ) as $key => $value ) {
-            $province .= sprintf( '<option value="%d">%s</option>', $key, $value );
+        foreach ($select->appendProvinces($_REQUEST['id_reg']) as $key => $value) {
+            $province .= sprintf('<option value="%d">%s</option>', $key, $value);
         }
         echo $province;
     }
@@ -181,12 +203,14 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function cityAction() {
+    public function cityAction()
+    {
         $select = new Application_Model_OptionSelect();
         $city = '';
-        foreach ( $select->appendCity( 0, $_REQUEST['id_pro'] ) as $key => $value ) {
-            $city .= sprintf( '<option value="%d">%s</option>', $key, $value );
+        foreach ($select->appendCity(0, $_REQUEST['id_pro']) as $key => $value) {
+            $city .= sprintf('<option value="%d">%s</option>', $key, $value);
         }
         echo $city;
     }
@@ -197,12 +221,14 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function subcategoryAction() {
+    public function subcategoryAction()
+    {
         $select = new Application_Model_OptionSelect();
         $subcategory = '';
-        foreach ( $select->appendSubCategory( $_REQUEST['id_cat'] ) as $key => $value ) {
-            $subcategory .= sprintf( '<option value="%d">%s</option>', $key, $value );
+        foreach ($select->appendSubCategory($_REQUEST['id_cat']) as $key => $value) {
+            $subcategory .= sprintf('<option value="%d">%s</option>', $key, $value);
         }
         echo $subcategory;
     }
@@ -213,24 +239,33 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function autocompleteAction() {
-        $term = $this->_getParam( 'term', 0 );
+    public function autocompleteAction()
+    {
+        $term = $this->_getParam('term', 0);
         $Shop = new Application_Model_DbTable_Shop();
-        $ads = $Shop->fullShopFilter( array( 'type' => 'global', 'q' => $term ) );
+        $ads = $Shop->fullShopFilter(array('type' => 'global', 'q' => $term));
         $data = array();
-        foreach ( $ads as $row ) {
+        foreach ($ads as $row) {
             $result = array(
-                'id' => $row['id'],
+                'id'    => $row['id'],
                 'label' => $row['title'],
-                'type' => 'autocomplete',
+                'type'  => 'autocomplete',
             );
-            array_push( $data, $result );
+            array_push($data, $result);
         }
 
-        echo Zend_Json::encode( $data );
-        $this->_helper->viewRenderer->setNoRender( true );
+        echo Zend_Json::encode($data);
+        $this->_helper->viewRenderer->setNoRender(true);
+    }
+
+    public function geolocationAction()
+    {
+        $xml = new Plugin_XmlToString();
+        $iplocation = $xml->Load_Xml();
     }
 
 
 }
+

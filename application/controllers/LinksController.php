@@ -1,8 +1,14 @@
 <?php
 
+/**
+ *
+ */
 class LinksController extends Zend_Controller_Action
 {
 
+    /**
+     * disable Layout
+     */
     public function preDispatch() {
 
         /* disable Layout */
@@ -15,6 +21,9 @@ class LinksController extends Zend_Controller_Action
         /* Initialize action controller here */
     }
 
+    /**
+     * Mapping URL's
+     */
     public function indexAction()
     {
         $url = $this->_getParam('url', 0);
