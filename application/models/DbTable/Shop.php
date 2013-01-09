@@ -188,24 +188,21 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
     /**
-     * LastHomeShop
      * Gli ultimi 10 annunci pubblicati
-     * da mostrare nella vetrina del sito
+     * da mostrare nella mappa vetrina del sito
      * Gli annunci devono essere attivi e NON possono essere scaduti
      *
-     * @access public
+     * @param $region Region of Italy
      *
-     * @return mixed Value.
+     * @return array
      */
-    public function LastHomeShop() {
+    public function LastHomeShop($region) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
                 'id',
                 'type',
                 'title',
                 'description',
-                'category',
-                'region',
                 'price',
                 'registered'
             ) );
@@ -217,9 +214,10 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where( 'ads_shop.expiration >= CURDATE()' );
         $query->where( 'ads_user.status = 1' );
         $query->where( 'ads_gallery.status = 1' );
+        $query->where( 'ads_region.name LIKE ? ', '%' . $region . '%' );
         $query->group( 'ads_shop.id' );
         $query->order( 'ads_shop.modified DESC' );
-        $query->limit( '0, 10' );
+        $query->limit( '0, 100' );
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll( $query );
     }

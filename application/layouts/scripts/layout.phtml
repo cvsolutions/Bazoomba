@@ -3,6 +3,9 @@ $this->headTitle($this->setting['title']);
 $this->headTitle()->setSeparator(' | ');
 $this->headMeta()->appendName('keywords', '');
 $this->headMeta()->appendName('description', '');
+
+$Maps = new Zend_Session_Namespace('GeoLocationMaps');
+
 ?>
 <!doctype html>
 <html>
@@ -44,7 +47,15 @@ $this->headMeta()->appendName('description', '');
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>"><i class="icon-home"></i> Home</a></li>
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'new'), null, true); ?>">Registrati</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker"></i> Sicilia <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker"></i>
+
+                                    <?php if(isset($Maps->region)): ?>
+                                        <?php if(isset($Maps->region)) echo $Maps->region; ?>
+                                    <?php else: ?>
+                                        Italia
+                                    <?php endif; ?>
+
+                                    <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                    <?php foreach ($this->region_select as $key => $value): ?>
                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $key), null, true); ?>"><?php echo $value; ?></a></li>

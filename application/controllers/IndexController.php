@@ -90,16 +90,14 @@ class IndexController extends Zend_Controller_Action
         /* Check if your website is down */
         Plugin_Common::Chech_Off_Line();
 
-        // $xml = new Plugin_XmlToString();
-        // $iplocation = $xml->Load_Xml();
-
-        /* @var Application_Model_DbTable_Shop [Shop] */
-        $Shop = new Application_Model_DbTable_Shop();
+        $GeoLocation = new Plugin_GeoLocationMaps();
+        $iplocation = $GeoLocation->Region_Code();
+        $geoMaps = new Zend_Session_Namespace('GeoLocationMaps');
+        $geoMaps->region = $iplocation['region'];
 
         /* @var [view] [assign data] */
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
-        $this->view->shop = $Shop->LastHomeShop();
     }
 
     /**

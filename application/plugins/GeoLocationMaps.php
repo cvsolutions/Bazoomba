@@ -1,6 +1,6 @@
 <?php
 
-class Plugin_XmlToString extends Zend_Controller_Plugin_Abstract
+class Plugin_GeoLocationMaps extends Zend_Controller_Plugin_Abstract
 {
     /**
      * @return mixed
@@ -27,9 +27,10 @@ class Plugin_XmlToString extends Zend_Controller_Plugin_Abstract
     }
 
     /**
+     * @return array
      * @throws ErrorException
      */
-    public function Load_Xml()
+    private function _Load_Xml()
     {
         // $ip = $this->_Check_IP();
         $ip = '79.53.101.25';
@@ -38,7 +39,7 @@ class Plugin_XmlToString extends Zend_Controller_Plugin_Abstract
             throw new ErrorException('IP Address Not Found');
         }
 
-        $services = sprintf('http://services.ipaddresslabs.com/iplocation/locateip?key=demo&ip=%s', $ip);
+        $services = sprintf('http://services.ipaddresslabs.com/iplocation/locateip?key=SAKT8SAXER362234SVNZ&ip=%s', $ip);
         $xml = new Zend_Config_Xml($services);
 
         $data = array(
@@ -48,8 +49,16 @@ class Plugin_XmlToString extends Zend_Controller_Plugin_Abstract
         );
 
         // print_r($xml);
-        print_r($data);
+        // print_r($data);
         return $data;
+    }
+
+    /**
+     * @return array
+     */
+    public function Region_Code()
+    {
+        return $this->_Load_Xml();
     }
 
 }
