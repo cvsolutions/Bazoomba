@@ -39,7 +39,9 @@ class Plugin_GeoLocationMaps extends Zend_Controller_Plugin_Abstract
             throw new ErrorException('IP Address Not Found');
         }
 
-        $services = sprintf('http://services.ipaddresslabs.com/iplocation/locateip?key=SAKT8SAXER362234SVNZ&ip=%s', $ip);
+        $services = sprintf(
+            'http://services.ipaddresslabs.com/iplocation/locateip?key=SAKT8SAXER362234SVNZ&ip=%s', $ip
+        );
         $xml = new Zend_Config_Xml($services);
 
         $data = array(

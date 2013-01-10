@@ -57,9 +57,10 @@ $Maps = new Zend_Session_Namespace('GeoLocationMaps');
 
                                     <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
+
                                    <?php foreach ($this->region_select as $key => $value): ?>
-                                   <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $key), null, true); ?>"><?php echo $value; ?></a></li>
-                               <?php endforeach; ?>
+                                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $key), null, true); ?>"><?php echo $value; ?></a></li>
+                                   <?php endforeach; ?>
                            </ul>
                        </li>
                    </ul>

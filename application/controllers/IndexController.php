@@ -48,7 +48,8 @@ class IndexController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function init() {
+    public function init()
+    {
 
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
@@ -85,19 +86,31 @@ class IndexController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function indexAction() {
+    public function indexAction()
+    {
 
         /* Check if your website is down */
         Plugin_Common::Chech_Off_Line();
+        $latitude = '';
+        $longitude = '';
 
-        $GeoLocation = new Plugin_GeoLocationMaps();
-        $iplocation = $GeoLocation->Region_Code();
-        $geoMaps = new Zend_Session_Namespace('GeoLocationMaps');
-        $geoMaps->region = $iplocation['region'];
+        if (!isset($_SESSION['GeoLocationMaps'])) {
+            $GeoLocation = new Plugin_GeoLocationMaps();
+            $geoData = $GeoLocation->Region_Code();
+            $geoMaps = new Zend_Session_Namespace('GeoLocationMaps');
+            $geoMaps->region = $geoData['region'];
+        }
+
+        $Region = new Application_Model_DbTable_Region();
+        $info_region = $Region->Region_GeoCode($_SESSION['GeoLocationMaps']['region']);
+        $latitude = $info_region['latitude'];
+        $longitude = $info_region['longitude'];
 
         /* @var [view] [assign data] */
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
+        $this->view->latitude = $latitude;
+        $this->view->longitude = $longitude;
     }
 
     /**
@@ -107,14 +120,15 @@ class IndexController extends Zend_Controller_Action
      *
      * @return mixed Value.
      */
-    public function offlineAction() {
+    public function offlineAction()
+    {
 
         /* disable Layout */
         $this->_helper->layout()->disableLayout();
 
-        if ( $this->info['off_line'] == 0 ) {
+        if ($this->info['off_line'] == 0) {
             /* redirect */
-            $this->_redirect( '/' );
+            $this->redirect('/');
         }
         $this->view->shop = $last_Ads->LastHomeShop();
         $select = new Application_Model_OptionSelect();

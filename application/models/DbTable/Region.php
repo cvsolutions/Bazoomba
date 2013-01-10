@@ -42,11 +42,12 @@ class Application_Model_DbTable_Region extends Zend_Db_Table_Abstract
      *
      * @return mixed Value.
      */
-    public function getRegionInfo( $id ) {
-        $row = $this->fetchRow( sprintf( 'id = %d', $id ) );
-        if ( !$row ) {
+    public function getRegionInfo($id)
+    {
+        $row = $this->fetchRow(sprintf('id = %d', $id));
+        if (!$row) {
             $params = Plugin_Common::getParams();
-            throw new Exception( $params->label_no_id, 1 );
+            throw new Exception($params->label_no_id, 1);
         }
         return $row->toArray();
     }
@@ -61,8 +62,25 @@ class Application_Model_DbTable_Region extends Zend_Db_Table_Abstract
      *
      * @return mixed Value.
      */
-    public function Other_Region( $id ) {
-        return $this->fetchAll( sprintf( 'id != %d', $id ) );
+    public function Other_Region($id)
+    {
+        return $this->fetchAll(sprintf('id != %d', $id));
+    }
+
+    /**
+     * @param $code Codice di localizazione
+     *
+     * @return array
+     * @throws Exception
+     */
+    public function Region_GeoCode($code)
+    {
+        $row = $this->fetchRow(sprintf("name LIKE '%s' ", '%' . $code . '%'));
+        if (!$row) {
+            $params = Plugin_Common::getParams();
+            throw new Exception($params->label_no_id, 1);
+        }
+        return $row->toArray();
     }
 
 
