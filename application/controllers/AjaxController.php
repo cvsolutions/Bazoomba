@@ -263,10 +263,10 @@ class AjaxController extends Zend_Controller_Action
     public function geolocationAction()
     {
         $GeoLocation = new Plugin_GeoLocationMaps();
-        $iplocation = $GeoLocation->Region_Code();
+        $geoData = $GeoLocation->Region_Code();
 
         $Shop = new Application_Model_DbTable_Shop();
-        $data = $Shop->LastHomeShop($iplocation['region']);
+        $data = $Shop->LastHomeShop($geoData['region']);
 
         echo Zend_Json::encode($data);
         $this->_helper->viewRenderer->setNoRender(true);
