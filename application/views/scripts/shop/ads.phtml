@@ -29,7 +29,7 @@
             </div><!--pull-left-->
 
             <div class="pull-right" style="padding: 12px;">
-              <button class="btn btn-mini btn" type="button"><i class="icon-print"></i>  Stampa Volantino </button>
+              <a class="btn btn-mini btn" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'export', 'action' => 'ads', 'id' => $this->row['id']), null, true); ?>" type="button"><i class="icon-print"></i>  Stampa Volantino </a>
               <button class="btn btn-mini btn" type="button"><i class="icon-star"></i>  Aggiungi ai Preferiti</button>
             </div><!--pull-right-->
         </div><!--span12-->

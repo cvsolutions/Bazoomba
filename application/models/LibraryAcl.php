@@ -47,6 +47,8 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->add(new Zend_Acl_Resource('cronjob'));
         $this->add(new Zend_Acl_Resource('request'));
         $this->add(new Zend_Acl_Resource('links'));
+        $this->add(new Zend_Acl_Resource('export'));
+
 
         /** assign privileges */
         $this->allow('guest', array('index', 'error'));
@@ -60,6 +62,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow('guest', 'request', array('index', 'subscribe', 'edit', 'delete'));
         $this->allow('guest', 'page', array('site'));
         $this->allow('guest', 'links', array('index'));
+        $this->allow('guest', 'export', array('ads'));
 
 
         $this->allow('user', 'user', array('index', 'logout'));

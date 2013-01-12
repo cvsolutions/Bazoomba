@@ -126,6 +126,10 @@
         <controllerFile controllerName="Links">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Export">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="ads"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
         <formFile formName="Filter"/>
@@ -302,6 +306,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Ajax">
             <viewScriptFile forActionName="geolocation"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Export">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Export">
+            <viewScriptFile forActionName="ads"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

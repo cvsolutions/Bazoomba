@@ -9,7 +9,7 @@
                 <div class="span3">
                     <div style="padding:12px;">
                         <div style="background: #f6f6f6; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
-                            <img src="http://placehold.it/480x320" alt="">
+                            <?php echo $this->gravatar($this->identity->email, array('imgSize' => 480)); ?>
                         </div><!--style-->
                     </div><!--padding-->
                 </div><!--span4-->
