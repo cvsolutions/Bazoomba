@@ -41,6 +41,8 @@ class IndexController extends Zend_Controller_Action
      */
     public $info;
 
+    private $_geoMaps;
+
     /**
      * init
      *
@@ -72,6 +74,8 @@ class IndexController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
+
+        $this->_geoMaps = new Zend_Session_Namespace('GeoLocationMaps');
     }
 
     private function _IPGeolocationService()
@@ -94,11 +98,10 @@ class IndexController extends Zend_Controller_Action
         $latitude = '';
         $longitude = '';
 
-        if (!isset($_SESSION['GeoLocationMaps'])) {
+        if (!isset($this->_geoMaps->region)) {
             $GeoLocation = new Plugin_GeoLocationMaps();
             $geoData = $GeoLocation->Region_Code();
-            $geoMaps = new Zend_Session_Namespace('GeoLocationMaps');
-            $geoMaps->region = $geoData['region'];
+            $this->_geoMaps->region = $geoData['region'];
         }
 
         $Region = new Application_Model_DbTable_Region();

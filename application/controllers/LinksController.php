@@ -7,18 +7,17 @@ class LinksController extends Zend_Controller_Action
 {
 
     /**
-     * disable Layout
+     * @var
      */
-    public function preDispatch() {
-
-        /* disable Layout */
-        $this->_helper->layout()->disableLayout();
-        $this->_helper->viewRenderer->setNoRender( true );
-    }
+    private $_mapping;
 
     public function init()
     {
-        /* Initialize action controller here */
+        /* disable Layout */
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender( true );
+
+        $this->_mapping = new Zend_Session_Namespace('ADS_Mapping');
     }
 
     /**
@@ -31,12 +30,13 @@ class LinksController extends Zend_Controller_Action
 
         if($this->getRequest())
         {
-            if(isset($_SESSION['ADS_Mapping']))
+            if(isset($this->_mapping->remember))
             {
                 $this->redirect($url);
                 exit();
+
             } else {
-                $_SESSION['ADS_Mapping'] = rand();
+                $this->_mapping->remember = rand();
                 $Links = new Application_Model_DbTable_Links();
                 $Links->Mapping_Url($url, $location);
                 $this->redirect($url);
