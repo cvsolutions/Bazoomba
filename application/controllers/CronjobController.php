@@ -43,6 +43,10 @@ class CronjobController extends Zend_Controller_Action
          */
     }
 
+    /**
+     * ADS Jobs
+     * Cerca tra tutte le offerte di annunci in Italia.
+     */
     public function remembernewadsAction()
     {
         /** @var $Request */
@@ -73,15 +77,13 @@ class CronjobController extends Zend_Controller_Action
                              'subject'  => 'Nuovi Annunci su Bazoomba.it',
                              'template' => 'shop_remember_new_ads.phtml',
                              'params'   => array(
-                                 'user' => $row['name'],
+                                 'user'     => $row['name'],
                                  'type_ads' => $this->params->type_ads->toArray(),
-                                 'ads'  => $listADS
+                                 'ads'      => $listADS
                              )
                         )
                     );
                 }
-
-
             }
         }
 

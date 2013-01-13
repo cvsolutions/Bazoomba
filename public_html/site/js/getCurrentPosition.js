@@ -11,13 +11,6 @@ if (navigator.geolocation) {
  */
 function Show_Maps(posizione) {
 
-    var vikey = [
-        { stylers:[
-            { gamma:0.52 },
-            { saturation:11 }
-        ] }
-    ];
-
     var latitude = posizione.coords.latitude;
     var longitude = posizione.coords.longitude;
 
@@ -37,7 +30,6 @@ function Show_Maps(posizione) {
         }
     });
 
-
     $('#maps').gmap().bind('init', function () {
         $.getJSON('http://bazoomba/ajax/geolocation/latitude/' + latitude + '/longitude/' + longitude, function (data) {
             $.each(data, function (i, marker) {
@@ -45,7 +37,9 @@ function Show_Maps(posizione) {
                     'position':new google.maps.LatLng(marker.latitude, marker.longitude),
                     'bounds':true
                 }).click(function () {
-                        $('#maps').gmap('openInfoWindow', { 'content':marker.title }, this);
+                        $('#maps').gmap('openInfoWindow', {
+                            'content':marker.title
+                        }, this);
                     });
             });
         });

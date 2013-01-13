@@ -335,12 +335,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
             // ricerca globale
             // concatenate con -> q / categorie / regioni
             case 'global':
+
                 if ($params['category']) {
                     $query->where(sprintf('ads_shop.category = %d', $params['category']));
                 }
+
                 if ($params['region']) {
                     $query->where(sprintf('ads_shop.region = %d', $params['region']));
                 }
+
                 if ($params['q']) {
                     $query->where(
                         sprintf(
