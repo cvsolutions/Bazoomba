@@ -54,7 +54,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow('guest', array('index', 'error'));
         $this->allow('guest', 'login', array('index', 'notauthorized'));
         $this->allow('guest', 'shop', array('index', 'json', 'ads'));
-        $this->allow('guest', 'ajax', array('index', 'autocomplete', 'newuser', 'controlemail', 'geolocation'));
+        $this->allow('guest', 'ajax', array('index', 'autocomplete', 'newuser', 'controlemail', 'geolocation', 'region'));
         $this->allow('guest', 'user', array('index', 'lostpassword', 'resetpassword', 'new', 'confirm'));
         $this->allow('guest', 'filter', array('index', 'search', 'category', 'region', 'subcategory', 'province'));
         $this->allow('guest', 'content', array('index', 'about', 'privacy', 'terms'));

@@ -11,6 +11,7 @@
  * @license
  * @link
  *
+ *
  */
 
 class AjaxController extends Zend_Controller_Action
@@ -23,6 +24,7 @@ class AjaxController extends Zend_Controller_Action
      *
      * @access public
      *
+     *
      */
     public $params = null;
 
@@ -32,6 +34,7 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      */
     public function preDispatch()
@@ -47,6 +50,7 @@ class AjaxController extends Zend_Controller_Action
      *
      * @return mixed Value.
      *
+     *
      */
     public function init()
     {
@@ -61,6 +65,7 @@ class AjaxController extends Zend_Controller_Action
      *
      * @return mixed Value.
      *
+     *
      */
     public function indexAction()
     {
@@ -73,6 +78,7 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      */
     public function newshopAction()
@@ -119,6 +125,7 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      */
     public function newuserAction()
@@ -167,6 +174,7 @@ class AjaxController extends Zend_Controller_Action
      *
      * @return mixed Value.
      *
+     *
      */
     public function controlemailAction()
     {
@@ -186,6 +194,7 @@ class AjaxController extends Zend_Controller_Action
      *
      * @return mixed Value.
      *
+     *
      */
     public function provinceAction()
     {
@@ -203,6 +212,7 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      */
     public function cityAction()
@@ -222,6 +232,7 @@ class AjaxController extends Zend_Controller_Action
      *
      * @return mixed Value.
      *
+     *
      */
     public function subcategoryAction()
     {
@@ -239,6 +250,7 @@ class AjaxController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      *
      */
     public function autocompleteAction()
@@ -260,15 +272,31 @@ class AjaxController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    /**
+     * Show json ads maps
+     *
+     */
     public function geolocationAction()
     {
-        $GeoLocation = new Plugin_GeoLocationMaps();
-        $geoData = $GeoLocation->Region_Code();
+        $latitude = $this->_getParam('latitude', 0);
+        $longitude = $this->_getParam('longitude', 0);
 
         $Shop = new Application_Model_DbTable_Shop();
-        $data = $Shop->LastHomeShop($geoData['region']);
+        $data = $Shop->LastHomeShop($latitude, $longitude);
 
         echo Zend_Json::encode($data);
+        $this->_helper->viewRenderer->setNoRender(true);
+    }
+
+    public function regionAction()
+    {
+        $latitude = $this->_getParam('latitude', 0);
+        $longitude = $this->_getParam('longitude', 0);
+
+        $region = new Application_Model_DbTable_Region();
+        $row = $region->Region_GeoCode($latitude, $longitude);
+
+        echo $row['name'];
         $this->_helper->viewRenderer->setNoRender(true);
     }
 

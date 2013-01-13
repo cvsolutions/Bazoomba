@@ -188,15 +188,15 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
     /**
-     * Gli ultimi 10 annunci pubblicati
-     * da mostrare nella mappa vetrina del sito
-     * Gli annunci devono essere attivi e NON possono essere scaduti
-     *
-     * @param $region Region of Italy
+     * Gli ultimi 100 annunci
+     * nelle vivinanze in base ad un ragio di 10km
+     * da mostrare in homepage
+     * @param $latitude
+     * @param $longitude
      *
      * @return array
      */
-    public function LastHomeShop($region) {
+    public function LastHomeShop($latitude, $longitude) {
         $query = $this->getDefaultAdapter()->select();
         $query->from( 'ads_shop', array(
                 'id',
@@ -206,14 +206,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                 'registered'
             ) );
         $query->join( 'ads_category', 'ads_shop.category = ads_category.id', array( 'name_category' => 'name' ) );
-        $query->join( 'ads_region', 'ads_shop.region = ads_region.id', array( 'name_region' => 'name' ) );
         $query->join( 'ads_user', 'ads_shop.user = ads_user.id', array( 'user' => 'name', 'type_user' => 'type' ) );
         $query->joinLeft( 'ads_gallery', 'ads_shop.id = ads_gallery.shop', array( 'photo' => 'image' ) );
+        $query->where( sprintf( "TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_shop.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_shop.longitude) , 2 ) ) , 3 ) < 100", $latitude, $longitude ) );
         $query->where( 'ads_shop.status = 1' );
         $query->where( 'ads_shop.expiration >= CURDATE()' );
         $query->where( 'ads_user.status = 1' );
         $query->where( 'ads_gallery.status = 1' );
-        $query->where( 'ads_region.name LIKE ? ', '%' . $region . '%' );
         $query->group( 'ads_shop.id' );
         $query->order( 'ads_shop.modified DESC' );
         $query->limit( '0, 100' );

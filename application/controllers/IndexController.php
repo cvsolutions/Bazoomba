@@ -41,8 +41,6 @@ class IndexController extends Zend_Controller_Action
      */
     public $info;
 
-    private $_geoMaps;
-
     /**
      * init
      *
@@ -74,13 +72,6 @@ class IndexController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
-
-        $this->_geoMaps = new Zend_Session_Namespace('GeoLocationMaps');
-    }
-
-    private function _IPGeolocationService()
-    {
-
     }
 
     /**
@@ -92,28 +83,12 @@ class IndexController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-
         /* Check if your website is down */
         Plugin_Common::Chech_Off_Line();
-        $latitude = '';
-        $longitude = '';
-
-        if (!isset($this->_geoMaps->region)) {
-            $GeoLocation = new Plugin_GeoLocationMaps();
-            $geoData = $GeoLocation->Region_Code();
-            $this->_geoMaps->region = $geoData['region'];
-        }
-
-        $Region = new Application_Model_DbTable_Region();
-        $info_region = $Region->Region_GeoCode($_SESSION['GeoLocationMaps']['region']);
-        $latitude = $info_region['latitude'];
-        $longitude = $info_region['longitude'];
 
         /* @var [view] [assign data] */
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
-        $this->view->latitude = $latitude;
-        $this->view->longitude = $longitude;
     }
 
     /**

@@ -68,17 +68,18 @@ class Application_Model_DbTable_Region extends Zend_Db_Table_Abstract
     }
 
     /**
-     * @param $code Codice di localizazione
+     * @param $latitude
+     * @param $longitude
      *
      * @return array
      * @throws Exception
      */
-    public function Region_GeoCode($code)
+    public function Region_GeoCode($latitude, $longitude)
     {
-        $row = $this->fetchRow(sprintf("name LIKE '%s' ", '%' . $code . '%'));
+        $query = sprintf("TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_region.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_region.longitude) , 2 ) ) , 3 ) < 150", $latitude, $longitude);
+        $row = $this->fetchRow($query);
         if (!$row) {
-            $params = Plugin_Common::getParams();
-            throw new Exception($params->label_no_id, 1);
+            return array('name' => 'Italia');
         }
         return $row->toArray();
     }

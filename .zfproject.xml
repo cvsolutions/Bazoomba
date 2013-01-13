@@ -104,6 +104,7 @@
           <actionMethod actionName="autocomplete"/>
           <actionMethod actionName="controlemail"/>
           <actionMethod actionName="geolocation"/>
+          <actionMethod actionName="region"/>
         </controllerFile>
         <controllerFile controllerName="Content">
           <actionMethod actionName="index"/>
@@ -312,6 +313,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Export">
             <viewScriptFile forActionName="ads"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ajax">
+            <viewScriptFile forActionName="region"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

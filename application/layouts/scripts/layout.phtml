@@ -25,6 +25,7 @@ $Maps = new Zend_Session_Namespace('GeoLocationMaps');
     <script src="<?php echo $this->serverUrl(); ?>/site/js/validate.js"></script>
     <script src="<?php echo $this->serverUrl(); ?>/site/js/bootstrap.min.js"></script>
     <script src="<?php echo $this->serverUrl(); ?>/site/js/app.js"></script>
+    <script src="<?php echo $this->serverUrl(); ?>/site/js/getCurrentPosition.js"></script>
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -47,15 +48,7 @@ $Maps = new Zend_Session_Namespace('GeoLocationMaps');
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>"><i class="icon-home"></i> Home</a></li>
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'new'), null, true); ?>">Registrati</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker"></i>
-
-                                    <?php if(isset($Maps->region)): ?>
-                                        <?php if(isset($Maps->region)) echo $Maps->region; ?>
-                                    <?php else: ?>
-                                        Italia
-                                    <?php endif; ?>
-
-                                    <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker"></i><span id="name_region">Italia</span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
                                    <?php foreach ($this->region_select as $key => $value): ?>

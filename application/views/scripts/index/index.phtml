@@ -27,18 +27,3 @@
 
 
     </div> <!-- /container -->
-
-
-
-
-    <script type="text/javascript">
-            var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
-            var mapOptions = {
-                center: new google.maps.LatLng(<?php echo $this->latitude; ?>,<?php echo $this->longitude; ?>),
-                zoom: 9,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: vikey
-            };
-            var map = new google.maps.Map(document.getElementById("maps"),
-            mapOptions);
-        </script>
