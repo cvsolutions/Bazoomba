@@ -22,13 +22,13 @@ function Show_Maps(posizione) {
     var longitude = posizione.coords.longitude;
 
     $.ajax({
-        type: 'POST',
-        url: 'http://bazoomba/ajax/region/',
+        type:'POST',
+        url:'http://bazoomba/ajax/region/',
         data:{
             latitude:latitude,
             longitude:longitude
         },
-        dataType: 'html',
+        dataType:'html',
         success:function (msg) {
             $('#name_region').html(msg);
         },
@@ -37,19 +37,24 @@ function Show_Maps(posizione) {
         }
     });
 
-    var punto = new google.maps.LatLng(latitude, longitude),
 
-        opzioni = {
-            zoom:9,
-            center:punto,
-            styles:vikey,
-            mapTypeId:google.maps.MapTypeId.ROADMAP
-        },
-        contenitore = document.getElementById('maps'),
-        mappa = new google.maps.Map(contenitore, opzioni),
-        marker = new google.maps.Marker({
-            position:punto,
-            map:mappa,
-            title: 'Tu sei qui!'
+    $('#maps').gmap().bind('init', function () {
+        $.getJSON('http://bazoomba/ajax/geolocation/latitude/' + latitude + '/longitude/' + longitude, function (data) {
+            $.each(data, function (i, marker) {
+                $('#maps').gmap('addMarker', {
+                    'position':new google.maps.LatLng(marker.latitude, marker.longitude),
+                    'bounds':true
+                }).click(function () {
+                        $('#maps').gmap('openInfoWindow', { 'content':marker.title }, this);
+                    });
+            });
         });
+    });
+
+//
 }
+
+
+
+
+

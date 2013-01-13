@@ -224,8 +224,9 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                              'id',
                              'type',
                              'title',
-                             'price',
-                             'registered'
+                             'latitude',
+                             'longitude',
+                             'price'
                         )
         );
         $query->join('ads_category', 'ads_shop.category = ads_category.id', array('name_category' => 'name'));
@@ -233,7 +234,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
         $query->where(
             sprintf(
-                "TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_shop.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_shop.longitude) , 2 ) ) , 3 ) < 100",
+                "TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_shop.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_shop.longitude) , 2 ) ) , 3 ) < 500",
                 $latitude, $longitude
             )
         );
@@ -243,7 +244,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where('ads_gallery.status = 1');
         $query->group('ads_shop.id');
         $query->order('ads_shop.modified DESC');
-        $query->limit('0, 100');
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
