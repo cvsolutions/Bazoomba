@@ -1,16 +1,16 @@
 <?php
 
 /**
-* Application_Model_DbTable_Request
-*
-* @uses     Zend_Db_Table_Abstract
-*
-* @category Request
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license  
-* @link     
-*/
+ * Application_Model_DbTable_Request
+ *
+ * @uses     Zend_Db_Table_Abstract
+ *
+ * @category Request
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ */
 class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
 {
 
@@ -21,7 +21,7 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
      *
      * @access protected
      */
-	protected $_name = 'ads_request';
+    protected $_name = 'ads_request';
 
     /**
      * $_primary
@@ -30,12 +30,12 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
      *
      * @access protected
      */
-	protected $_primary = 'id';
+    protected $_primary = 'id';
 
     /**
      * New_Request
      * Inserimento nuova richiesta
-     * 
+     *
      * @param mixed $name     Nome & Cognome.
      * @param mixed $email    Indirizzo Email.
      * @param mixed $category Categoria.
@@ -46,32 +46,55 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
      *
      * @return mixed Value.
      */
-	public function New_Request( $name, $email, $category, $region, $tags ) {
-		$arrayNewUser = array(
-			'id' => rand( 11111, 99999 ),
-			'token' => md5( uniqid( rand(), true ) ),
-			'name' => $name,
-			'email' => $email,
-			'category' => $category,
-			'region' => $region,
-			'tags' => $tags,
-			'registered' => new Zend_Db_Expr( 'NOW()' ),
-			'status' => 1,
-			'ip_address' => $_SERVER['REMOTE_ADDR']
-		);
-		return $this->insert( $arrayNewUser );
-	}
+    public function New_Request($name, $email, $category, $region, $tags)
+    {
+        $arrayNewUser = array(
+            'id'         => rand(11111, 99999),
+            'token'      => md5(uniqid(rand(), true)),
+            'name'       => $name,
+            'email'      => $email,
+            'category'   => $category,
+            'region'     => $region,
+            'tags'       => $tags,
+            'registered' => new Zend_Db_Expr('NOW()'),
+            'status'     => 1,
+            'ip_address' => $_SERVER['REMOTE_ADDR']
+        );
+        return $this->insert($arrayNewUser);
+    }
 
     /**
      * Delete_Request_Suspended
      * Elimino tutte le richieste NON più attive
-     * 
+     *
      * @access public
      *
      * @return mixed Value.
      */
-	 public function Delete_Request_Suspended() {
-        return $this->delete( 'status = 0' );
+    public function Delete_Request_Suspended()
+    {
+        return $this->delete('status = 0');
+    }
+
+    /**
+     * Tutte le richieste fatte dagli utenti
+     * @return array
+     */
+    public function List_Request()
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from(
+            'ads_request', array(
+                                'name',
+                                'email',
+                                'category',
+                                'region',
+                                'tags'
+                           )
+        );
+        $query->where('status = 1');
+        // echo $query->assemble();
+        return $this->getDefaultAdapter()->fetchAll($query);
     }
 
 

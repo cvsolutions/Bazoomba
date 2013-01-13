@@ -2,36 +2,90 @@
 
 class CronjobController extends Zend_Controller_Action
 {
+    /**
+     * @var
+     */
+    public $params;
 
-    public $params = null;
-
-    public function preDispatch() {
-
+    public function init()
+    {
         /* disable Layout */
         $this->_helper->layout()->disableLayout();
-        $this->_helper->viewRenderer->setNoRender( true );
-    }
+        $this->_helper->viewRenderer->setNoRender(true);
 
-    public function init() {
-        
-        /* Initialize action controller here */
+        /* load common params */
         $this->params = Plugin_Common::getParams();
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         // action body
     }
 
-    public function expirationAction() {
-        // action body
+    public function expirationAction()
+    {
+        /**
+         * @todo eliminazione degli annunci in scadenza
+         *
+         * 1) expiration = date()
+         */
     }
 
-    public function eliminatesAction() {
-        // action body
+    public function eliminatesAction()
+    {
+        /**
+         * @todo eliminazione dei record inutilizzati sul database
+         *
+         * 1) User: status = 0
+         * 2) ADS: status = 1 & step != 3
+         * 3) Gallery = status = 0
+         * 4) request = status = 0
+         */
     }
 
-    public function remembernewadsAction() {
-        // action body
+    public function remembernewadsAction()
+    {
+        /** @var $Request */
+        $Request = new Application_Model_DbTable_Request();
+
+        /** @var $result la lista di tutte le richieste */
+        $result = $Request->List_Request();
+
+        $Shop = new Application_Model_DbTable_Shop();
+
+        if (is_array($result)) {
+            foreach ($result as $row) {
+
+                /** @var $listADS Tutti gli annunci trovati */
+                $listADS = $Shop->List_Ads_Request($row['tags'], $row['category'], $row['region']);
+                print_r($listADS);
+
+                if ($listADS) {
+
+                    /**
+                     * invio la mail ai clienti
+                     * solo se il sistema ha trovato gli annunci richiesti
+                     */
+                    Plugin_Common::getMail(
+                        array(
+                             'email'    => $row['email'],
+                             'reply'    => $this->params->noreplay,
+                             'subject'  => 'Nuovi Annunci su Bazoomba.it',
+                             'template' => 'shop_remember_new_ads.phtml',
+                             'params'   => array(
+                                 'user' => $row['name'],
+                                 'type_ads' => $this->params->type_ads->toArray(),
+                                 'ads'  => $listADS
+                             )
+                        )
+                    );
+                }
+
+
+            }
+        }
+
+        //print_r($result);
     }
 
 

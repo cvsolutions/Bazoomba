@@ -1,4 +1,25 @@
-body {background-image: url('bg.png'); background-repeat: repeat; padding-top: 51px;}
-.gallery {background:#f6f6f6;}
-.gallery img {min-height: 400px; max-height: 500px;}
-.photoAT {padding: 4px; border: 1px solid #ccc; background-color: #f2f2f2; border-radius: 5px;}
+body {
+    background-image: url('bg.png');
+    background-repeat: repeat;
+    padding-top: 51px;
+}
+
+.gallery {
+    background: #f6f6f6;
+}
+
+.gallery img {
+    min-height: 400px;
+    max-height: 500px;
+}
+
+.photoAT {
+    padding: 4px;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+#maps img {
+    max-width: none;
+}

@@ -105,7 +105,7 @@ class GalleryController extends Zend_Controller_Action
 
         $gallery = new Application_Model_DbTable_Gallery();
         $gallery->updateStatusGallery( $id, $type, $ads );
-        $this->_redirect( sprintf( '/gallery/list/shop/%d', $ads ) );
+        $this->redirect( sprintf( '/gallery/list/shop/%d', $ads ) );
     }
 
 

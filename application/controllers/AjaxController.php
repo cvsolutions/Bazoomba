@@ -288,6 +288,9 @@ class AjaxController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    /**
+     * Show name region GeoLacation
+     */
     public function regionAction()
     {
         $latitude = $this->_getParam('latitude', 0);

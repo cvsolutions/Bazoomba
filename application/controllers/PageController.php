@@ -26,8 +26,7 @@ class PageController extends Zend_Controller_Action
      */
     public function init()
     {
-        $select = new Application_Model_OptionSelect();
-        $this->view->region_select = $select->appendRegion();
+
     }
 
     /**

@@ -1,10 +1,16 @@
 <?php
+
+/** set head meta */
 $this->headTitle($this->setting['title']);
 $this->headTitle()->setSeparator(' | ');
 $this->headMeta()->appendName('keywords', '');
 $this->headMeta()->appendName('description', '');
 
-$Maps = new Zend_Session_Namespace('GeoLocationMaps');
+/** @var $select new obj Select */
+$select = new Application_Model_OptionSelect();
+
+/** @var $region_select list of region */
+$region_select = $select->RegionByAds();
 
 ?>
 <!doctype html>
@@ -51,7 +57,7 @@ $Maps = new Zend_Session_Namespace('GeoLocationMaps');
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker"></i><span id="name_region">Italia</span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                   <?php foreach ($this->region_select as $key => $value): ?>
+                                   <?php foreach ($region_select as $key => $value): ?>
                                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $key), null, true); ?>"><?php echo $value; ?></a></li>
                                    <?php endforeach; ?>
                            </ul>

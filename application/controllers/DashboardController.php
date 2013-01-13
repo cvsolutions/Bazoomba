@@ -81,6 +81,7 @@ class DashboardController extends Zend_Controller_Action
         /* @var [type] [authentication] */
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
+
         $this->view->identity = $identity;
         $this->view->notfound = $this->params->label_not_found;
     }

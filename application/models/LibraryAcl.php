@@ -58,7 +58,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow('guest', 'user', array('index', 'lostpassword', 'resetpassword', 'new', 'confirm'));
         $this->allow('guest', 'filter', array('index', 'search', 'category', 'region', 'subcategory', 'province'));
         $this->allow('guest', 'content', array('index', 'about', 'privacy', 'terms'));
-        $this->allow('guest', 'cronjob', array('expiration', 'eliminates', ''));
+        $this->allow('guest', 'cronjob', array('expiration', 'eliminates', 'remembernewads'));
         $this->allow('guest', 'request', array('index', 'subscribe', 'edit', 'delete'));
         $this->allow('guest', 'page', array('site'));
         $this->allow('guest', 'links', array('index'));

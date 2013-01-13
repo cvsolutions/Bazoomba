@@ -16,7 +16,13 @@
 
                          
                          <div class="span3">
-                             <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=avatar&image=<?php echo $this->avatar ?>&width=480&height=360" />
+
+                             <?php if($this->avatar > 0): ?>
+                                <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=avatar&image=<?php echo $this->avatar ?>&width=480&height=360" />
+                             <?php else: ?>
+                                <?php echo $this->gravatar($this->identity->email, array('imgSize' => 480)); ?>
+                             <?php endif; ?>
+
                          </div>
 
                          <div class="span8">

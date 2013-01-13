@@ -22,13 +22,13 @@ function Show_Maps(posizione) {
     var longitude = posizione.coords.longitude;
 
     $.ajax({
-        type:"POST",
-        url:"http://bazoomba/ajax/region/",
+        type: 'POST',
+        url: 'http://bazoomba/ajax/region/',
         data:{
             latitude:latitude,
             longitude:longitude
         },
-        dataType:"html",
+        dataType: 'html',
         success:function (msg) {
             $('#name_region').html(msg);
         },
@@ -45,11 +45,11 @@ function Show_Maps(posizione) {
             styles:vikey,
             mapTypeId:google.maps.MapTypeId.ROADMAP
         },
-        contenitore = document.getElementById("maps"),
+        contenitore = document.getElementById('maps'),
         mappa = new google.maps.Map(contenitore, opzioni),
         marker = new google.maps.Marker({
             position:punto,
             map:mappa,
-            title:"Tu sei qui!"
+            title: 'Tu sei qui!'
         });
 }
