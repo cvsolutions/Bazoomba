@@ -11,6 +11,7 @@
                             <?php if($this->identity->type == 2): ?>
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page'), null, true); ?>"><i class="icon-globe"></i> Brand Page</a></li>
                         <?php endif ?>
+                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'favorites'), null, true); ?>"><i class="icon-star"></i> Preferiti</a></li>
                         </ul>
                         <ul class="nav pull-right">
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout'), null, true); ?>"><i class="icon-off"></i> Logout</a></li>

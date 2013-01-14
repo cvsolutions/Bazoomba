@@ -115,6 +115,13 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
 
     /**
      * Imposto il sito in modalità OFF
+     * Chech_Off_Line
+     * Imposto il sito in modalità OFF
+     *
+     * @access public
+     * @static
+     *
+     * @return mixed Value.
      */
     public static function Chech_Off_Line() {
         $setting = new Application_Model_DbTable_Setting();
@@ -138,8 +145,8 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
         if($image AND $file AND file_exists($file)) {
             return $image;
         } else {
-            // return $no_image;
-            return 0;
+             return $no_image;
+            
         }
     }
 

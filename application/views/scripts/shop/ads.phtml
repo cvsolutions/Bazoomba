@@ -13,8 +13,21 @@
 </div>
 <?php endif; ?>
 
+<div id="result_favorite" style="display: none;">
+    <div class="container" style="margin-top: 20px; margin-bottom: -20px;">
+        <div class="row">
+        <div class="span12">
+            <div class="alert alert-box resfev">
+
+            </div>
+        </div>
+    </div><!--row-->
+    </div>
+    </div>
 
 <div class="container" style="background: #fafafa; border-radius: 5px; border: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px;">
+
+
 
     <div class="row">
         <div class="span12" style="background: #efefef; border-bottom: 1px solid #ccc;">
@@ -30,7 +43,10 @@
 
             <div class="pull-right" style="padding: 12px;">
               <a class="btn btn-mini btn" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'export', 'action' => 'ads', 'id' => $this->row['id']), null, true); ?>" type="button"><i class="icon-print"></i>  Stampa Volantino </a>
-              <button class="btn btn-mini btn" type="button"><i class="icon-star"></i>  Aggiungi ai Preferiti</button>
+
+              <?php if ($this->identity): ?>
+              <button id="<?php echo $this->user['id']; ?>,<?php echo $this->row['id']; ?>" class="btn btn-mini btn addfavorite" type="button"><i class="icon-star"></i>  Aggiungi ai Preferiti</button>
+              <?php endif; ?>
             </div><!--pull-right-->
         </div><!--span12-->
       </div><!--row-->
@@ -252,6 +268,24 @@ var mapOptions = {
 var map = new google.maps.Map(document.getElementById("expmaps"),
 mapOptions);
 var expmarker = new google.maps.Marker({ position: explatlang,map: map,title: "<?php echo $this->row['title']; ?>" });
+                $(".addfavorite").click(function(e){
+                $.ajax({
+                type: 'POST',
+                url: 'http://bazoomba/ajax/addfavorite',
+                dataType: 'json',
+                data: {
+                    fav: $(".addfavorite").attr("id")
+                },
+                success: function(data) {
+                    $('#result_favorite').fadeIn().delay(4000).slideUp(1500);
+                    $('.resfev').html(data.result);
+                    $('.addfavorite').fadeOut();
+                },
+                error: function() {
+                    alert("Errore, se il problema persiste contatta l'assistenza");
+                }
+            }); //Ajax
+});
 </script>
 
 
