@@ -147,6 +147,7 @@
           <dbTableFile dbTableName="Video"/>
           <dbTableFile dbTableName="Request"/>
           <dbTableFile dbTableName="Links"/>
+          <dbTableFile dbTableName="Favorite"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>

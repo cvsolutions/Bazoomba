@@ -145,8 +145,8 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
         if($image AND $file AND file_exists($file)) {
             return $image;
         } else {
-            // return $no_image;
-            return 0;
+             return $no_image;
+            
         }
     }
 

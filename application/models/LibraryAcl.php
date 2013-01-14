@@ -69,7 +69,7 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow('user', 'login', array('index', 'notauthorized'));
         $this->allow('user', 'account', array('index', 'edit', 'editpassword', 'avatar', 'logout'));
         $this->allow('user', 'shop', array('index', 'new', 'modification', 'media', 'public', 'my'));
-        $this->allow('user', 'ajax', array('index', 'newshop', 'province', 'city', 'subcategory'));
+        $this->allow('user', 'ajax', array('index', 'newshop', 'province', 'city', 'subcategory', 'addfavorite'));
         $this->allow('user', 'page', array('index', 'new', 'edit', 'picture', 'gallery', 'deletegallery'));
 
         $this->allow('admin', 'setting');

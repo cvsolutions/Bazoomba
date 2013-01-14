@@ -236,6 +236,7 @@ class ShopController extends Zend_Controller_Action
      */
     public function adsAction() {
 
+
         Plugin_Common::Chech_Off_Line();
         $id = $this->_getParam( 'show', 0 );
 
@@ -551,6 +552,5 @@ class ShopController extends Zend_Controller_Action
         $this->view->successForm = $this->params->label_success;
         $this->view->headMeta()->appendHttpEquiv( 'refresh', '3; url=/shop/list' );
     }
-
 
 }

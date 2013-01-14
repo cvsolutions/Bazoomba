@@ -303,6 +303,21 @@ class AjaxController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    public function addfavoriteAction()
+    {
+        if ($this->getRequest()->getPost()) {
+                $fav = $this->_request->getPost('fav');
+                $array_fav = explode(",", $fav);
+                $favorite = new Application_Model_DbTable_Favorite();
 
+                if($favorite->controlfavorite($array_fav[0], $array_fav[1]) == 0)
+                {
+                    if($favorite->addFavorite($array_fav[0], $array_fav[1])) echo Zend_Json::encode(array('result' => $this->params->label_success_favorite));
+                } else {
+                    echo Zend_Json::encode(array('result' => $this->params->label_error_favorite));
+                }
+        }
+
+    }
 }
 
