@@ -1,7 +1,7 @@
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(Show_Maps);
 } else {
-    alert('La geo-localizzazione NON è possibile');
+    alert('La geo-localizzazione NON è possibile...');
 }
 
 /**
@@ -30,12 +30,22 @@ function Show_Maps(posizione) {
         }
     });
 
+    $('#maps').gmap('addMarker', {
+        'position':new google.maps.LatLng(latitude, longitude),
+        'icon': 'http://bazoomba/site/img/world.png',
+        'bounds':true
+    }).click(function () {
+            $('#maps').gmap('openInfoWindow', {
+                'content': 'io...'
+            }, this);
+        });
+
     $('#maps').gmap().bind('init', function () {
         $.getJSON('http://bazoomba/ajax/geolocation/latitude/' + latitude + '/longitude/' + longitude, function (data) {
             $.each(data, function (i, marker) {
                 $('#maps').gmap('addMarker', {
                     'position':new google.maps.LatLng(marker.latitude, marker.longitude),
-                    'icon': 'http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-265cb2/shapecolor-color/shadow-1/border-black/symbolstyle-contrast/symbolshadowstyle-no/gradient-no/splice.png',
+                    'icon': 'http://bazoomba/site/img/bigcity.png',
                     'bounds':true
                 }).click(function () {
                         $('#maps').gmap('openInfoWindow', {
