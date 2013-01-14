@@ -37,6 +37,10 @@ class FilterController extends Zend_Controller_Action
 
         /* Check if your website is down */
         Plugin_Common::Chech_Off_Line();
+
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+        $this->view->identity = $identity;
     }
 
     /**

@@ -1,5 +1,19 @@
 $(document).ready(function() {
 
+    $('.hh').tooltip({
+      selector: "a[rel=tooltip]"
+    });
+
+    $('.tooltip-test').tooltip();
+    $('.popover-test').popover();
+
+    // popover demo
+    $("a[rel=popover]")
+      .popover()
+      .click(function(e) {
+        e.preventDefault()
+      });
+
     //add class in careusal
     $('div.item:first').addClass("active");
 
