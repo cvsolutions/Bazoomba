@@ -35,6 +35,7 @@ function Show_Maps(posizione) {
             $.each(data, function (i, marker) {
                 $('#maps').gmap('addMarker', {
                     'position':new google.maps.LatLng(marker.latitude, marker.longitude),
+                    'icon': 'http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-265cb2/shapecolor-color/shadow-1/border-black/symbolstyle-contrast/symbolshadowstyle-no/gradient-no/splice.png',
                     'bounds':true
                 }).click(function () {
                         $('#maps').gmap('openInfoWindow', {
