@@ -1,10 +1,19 @@
 <?php echo $this->headTitle('Ricerca'); ?>
+<div class="container">
+    <div class="row">
 
-<h1>Ricerca</h1>
+        <div class="span6">
+            <h1>Ricerca</h1>
 <?php echo $this->searchForm; ?>
 
-<!-- region -->
-<h1>Italia</h1>
+
+        </div><!--span6-->
+
+        <div class="span6">
+
+            <div class="row">
+                <div class="span3">
+                    <h1>Italia</h1>
 <?php if ($this->region): ?>
 	<?php foreach ($this->region as $row): ?>
 	<ul>
@@ -12,8 +21,9 @@
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>
+                </div>
 
-<!-- category -->
+                <div class="span3">
 <h1>Categorie</h1>
 <?php if ($this->category): ?>
 	<?php foreach ($this->category as $row): ?>
@@ -22,3 +32,17 @@
 	</ul>
 	<?php endforeach ?>
 <?php endif ?>
+                </div>
+            </div>
+
+
+
+
+        </div><!--span6-->
+
+    </div><!--row-->
+
+
+</div><!--contaner-->
+
+

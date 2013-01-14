@@ -75,7 +75,7 @@
                     <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
                     <?php foreach ($this->other as $row): ?>
 
-                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['name']); ?>">Annunci in <?php echo $row['name']; ?></a></li>
+                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['name']); ?>">Annunci in <strong><?php echo $row['name']; ?></strong></a></li>
 
                     <?php endforeach ?>
                     </ul>
@@ -119,8 +119,14 @@
                     <?php endforeach ?>
                 </ul>
                 <?php else: ?>
-                <p><?php echo $this->notfound; ?></p>
 
+                <div class="row">
+                            <div class="span9">
+                                <div class="alert alert-error">
+                                    <strong><i class="icon-exclamation-sign"></i> <?php echo $this->notfound; ?></strong>
+                                </div>
+                            </div>
+                        </div>
                 <?php endif ?>
 
                 </div>
