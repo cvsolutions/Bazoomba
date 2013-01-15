@@ -36,7 +36,7 @@ class Application_Model_DbTable_Favorite extends Zend_Db_Table_Abstract
                              'user'
                         )
         );
-        $query->joinLeft('ads_shop', 'ads_favorites.shop = ads_shop.id', array('title' => 'title', 'description' => 'description', 'price' => 'price', 'date' => 'registered'));
+        $query->joinLeft('ads_shop', 'ads_favorites.shop = ads_shop.id', array('idshop' => 'id', 'title' => 'title', 'description' => 'description', 'price' => 'price', 'date' => 'registered'));
         $query->joinLeft('ads_gallery', 'ads_favorites.shop = ads_gallery.shop', array('photo' => 'image'));
         $query->order('ads_gallery.registered ASC');
         $query->group('ads_favorites.shop');

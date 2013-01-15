@@ -161,5 +161,19 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
         return $this->delete( 'status = 0' );
     }
 
+    public function controlDeleteImage($photo, $ads)
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from( 'ads_gallery', 'COUNT(id)' );
+        $query->where( sprintf( "id = %d AND shop = %d", $photo, $ads));
+        return $this->getDefaultAdapter()->fetchOne( $query );
+    }
+
+        public function Delete_Media($id) {
+        $row = $this->getImageInfo( $id );
+        if ( $row['image'] > 0 ) unlink( sprintf( '%s/uploaded/ads/%s', $_SERVER['DOCUMENT_ROOT'], $row['image'] ) );
+        return $this->delete( 'id = ' . $id );
+    }
+
 
 }

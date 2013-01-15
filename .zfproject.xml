@@ -19,6 +19,7 @@
           <actionMethod actionName="delete"/>
           <actionMethod actionName="edit"/>
           <actionMethod actionName="status"/>
+          <actionMethod actionName="deletemedia"/>
         </controllerFile>
         <controllerFile controllerName="Shop">
           <actionMethod actionName="index"/>
@@ -325,6 +326,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Account">
             <viewScriptFile forActionName="removefavorite"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Gallery">
+            <viewScriptFile forActionName="deletemedia"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

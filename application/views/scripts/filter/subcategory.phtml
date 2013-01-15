@@ -1,41 +1,158 @@
 <?php echo $this->headTitle($this->sub['name']); ?>
-<!-- title / subcategory -->
-<h1>Sotto Categoria <?php echo $this->sub['name']; ?> - <?php echo $this->category['name']; ?></h1>
-<p><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id']), null, true); ?>/<?php echo $this->seourl($this->category['name']); ?>"><?php echo $this->category['name']; ?></a></p>
 
-<!-- sub category -->
-<?php if ($this->parent): ?>
-	<?php foreach ($this->parent as $row): ?>
-	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'subcategory', 'item' => $this->category['id'], 'parent' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['name']); ?>"><?php echo $row['name']; ?></a></li>
-	</ul>
-	<?php endforeach ?>
-<?php endif ?>
 
-<!-- list ads -->
-<h1>Lista</h1>
-<?php if ($this->list): ?>
-	<?php foreach ($this->list as $row): ?>
-	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></li>
-		<li><?php echo $row['description']; ?></li>
-		<li><?php echo $row['region']; ?>, <?php echo $row['province']; ?></li>
-		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
-		<li><?php echo $this->type_user[$row['type_user']]; ?></li>
-		<li><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=100&height=100"></li>
-	</ul>
-	<hr>
-	<?php endforeach ?>
-<?php else: ?>
-	<p><?php echo $this->notfound; ?></p>
-<?php endif ?>
 
-<!-- category -->
-<h1>Categorie</h1>
-<?php if ($this->other): ?>
-	<?php foreach ($this->other as $row): ?>
-	<ul>
-		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['name']); ?>"><?php echo $row['name']; ?></a></li>
-	</ul>
-	<?php endforeach ?>
-<?php endif ?>
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+
+        <div class="span3">
+
+            <div class="row">
+                <div class="span3">
+                        <div class="btn-group" style="margin-bottom: 10px;">
+                        <button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i> <?php echo $this->sub['name']; ?>, <?php echo $this->category['name']; ?> <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <?php if ($this->parent): ?>
+                            <?php foreach ($this->parent as $row): ?>
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'subcategory', 'item' => $this->category['id'], 'parent' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['name']); ?>"><?php echo $row['name']; ?></a></li>
+                            <?php endforeach ?>
+                            <?php endif ?>
+                        </ul>
+                        <button class="btn" style="margin-left: 5px;"><i class="icon-refresh"></i> Maps</button>
+                        </div><!-- /btn-group -->
+                </div><!--span3-->
+            </div><!--row-->
+
+            <div class="row">
+                <div class="span3">
+                     <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
+                     <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>"><strong>Annunci In <?php echo $this->sub['name']; ?>, <?php echo $this->category['name']; ?></strong> <span class="badge badge-warning"> <?php echo count($this->list); ?></span></a></li>
+                     </ul>
+                </div><!--span3-->
+            </div><!--row-->
+
+            <div class="row">
+                <div class="span3">
+                     <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
+                     <?php foreach ($this->type_user as $key => $value): ?>
+                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id'], 'ads' => $key), null, true); ?>"><?php echo $value; ?></a></li>
+                    <?php endforeach ?>
+                    </ul>
+                </div><!--span3-->
+            </div><!--row-->
+
+            <div class="row">
+                <div class="span3">
+                     <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
+                     <?php foreach ($this->type_ads as $key => $value): ?>
+                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id'], 'ads' => $key), null, true); ?>"><?php echo $value; ?></a></li>
+                    <?php endforeach ?>
+                    </ul>
+                </div><!--span3-->
+            </div><!--row-->
+
+            <div class="row">
+                <div class="span3">
+                     <div class="alert alert-success">
+                        <strong>Non hai trovato quello che cerhi?</strong>
+                        <p>Non demordere, scopri il nostro servizio che ti trova subito ciò che ti serve.
+                        <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'request', 'action' => 'subscribe'), null, true); ?>">Provalo adesso</a></p>
+                        </div>
+                </div><!--span3-->
+            </div><!--row-->
+
+            <div class="row">
+                <div class="span3">
+                      <div class="alert alert-success">
+                        <strong>Sei un azienda?</strong>
+                        <p>Scopri <strong>Brand Page</strong>.<br />
+                        <a href="#">Scopri adesso</a></p>
+                        </div>
+                </div><!--span3-->
+            </div><!--row-->
+
+            <div class="row">
+                <div class="span3">
+
+                    <?php if ($this->other): ?>
+                    <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
+                    <?php foreach ($this->other as $row): ?>
+                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['name']); ?>">Annunci In <strong><?php echo $row['name']; ?></strong></a></li>
+                    <?php endforeach ?>
+                    </ul>
+                    <?php endif ?>
+                </div>
+            </div>
+
+
+        </div><!--span2-->
+
+
+
+
+
+        <div class="span9">
+            <div class="row">
+                <div class="span9">
+                <?php if ($this->list): ?>
+                <ul class="thumbnails">
+                    <?php $cnt = 1; ?>
+                    <?php foreach ($this->list as $row): ?>
+
+                        <li class="span3" style="background: #fff;">
+                        <div class="thumbnail">
+                        <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360" alt="<?php echo $row['title']; ?>" title="<?php echo $row['title']; ?>">
+                        <div class="caption" style="min-height: 170px;">
+                            <h4><a class="hh" rel="tooltip" data-placement="top" title="Tooltip on top" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></h4>
+                            <p><?php echo $this->truncate($row['description'])->toLength(100); ?></p>
+                            <p><a href="#" class="btn btn-warning">€ <?php echo $row['price']; ?></a>
+                            <button title="Tip Utente <?php echo $this->type_user[$row['type_user']]; ?> - <?php echo $row['category']; ?> - <?php echo $row['province']; ?>" type="button" class="btn"><i class="icon-info-sign"></i></button></p>
+                        </div>
+                        </div>
+                        </li>
+                <?php if($cnt % 3 == 0): ?>
+                </ul>
+                <ul class="thumbnails">
+                <? endif; ?>
+
+
+                    <?php $cnt++; ?>
+                    <?php endforeach ?>
+                </ul>
+                <?php else: ?>
+
+                <div class="row">
+                            <div class="span9">
+                                <div class="alert alert-error">
+                                    <strong><i class="icon-exclamation-sign"></i> <?php echo $this->notfound; ?></strong>
+                                </div>
+                            </div>
+                        </div>
+                <?php endif ?>
+
+                </div>
+            </div><!--row-->
+
+        </div><!--spam10-->
+
+
+
+
+
+    </div><!--row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><!--container-->
+

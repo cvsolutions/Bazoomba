@@ -202,7 +202,7 @@ class Application_Form_User extends Zend_Form
 
         $iva = new Zend_Form_Element_Text( 'vat', array( 'autocomplete' => 'off' ) );
         $iva->setAttrib( 'autocomplete', 'off' );
-        $iva->setAttrib( 'class', 'brand' );
+        $iva->setAttrib( 'class', 'brands' );
         $iva->setLabel( 'Partita Iva' )
         ->setRequired( false )
         ->addFilter( 'StripTags' )
@@ -210,7 +210,7 @@ class Application_Form_User extends Zend_Form
         ->addValidator( 'NotEmpty' );
 
         $name_company = new Zend_Form_Element_Text( 'name_company', array( 'autocomplete' => 'off' ) );
-        $name_company->setAttrib( 'class', 'brand' );
+        $name_company->setAttrib( 'class', 'brands' );
         $name_company->setLabel( 'Ragione Sociale' )
         ->setRequired( false )
         ->addFilter( 'StripTags' )

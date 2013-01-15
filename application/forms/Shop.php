@@ -210,7 +210,7 @@ class Application_Form_Shop extends Zend_Form
             ) );
 
         $div = new Zend_Form_Element_Hidden( 'div' );
-        $div->setDecorators( array( array( 'HtmlTag', array( 'tag'=>'div', 'id'=>'map_canvas' ) ) ) );
+        $div->setDecorators( array( array( 'HtmlTag', array( 'tag'=>'div', 'id'=>'mapcanvas' ) ) ) );
 
         $lat = new Zend_Form_Element_Hidden( 'latitude' );
         $lat->setRequired( true );
