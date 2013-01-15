@@ -54,12 +54,14 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow('guest', array('index', 'error'));
         $this->allow('guest', 'login', array('index', 'notauthorized'));
         $this->allow('guest', 'shop', array('index', 'json', 'ads'));
-        $this->allow('guest', 'ajax', array('index', 'autocomplete', 'newuser', 'controlemail', 'geolocation', 'region'));
+        $this->allow(
+            'guest', 'ajax', array('index', 'autocomplete', 'newuser', 'controlemail', 'geolocation', 'region')
+        );
         $this->allow('guest', 'user', array('index', 'lostpassword', 'resetpassword', 'new', 'confirm'));
         $this->allow('guest', 'filter', array('index', 'search', 'category', 'region', 'subcategory', 'province'));
         $this->allow('guest', 'content', array('index', 'about', 'privacy', 'terms'));
         $this->allow('guest', 'cronjob', array('expiration', 'eliminates', 'remembernewads'));
-        $this->allow('guest', 'request', array('index', 'subscribe', 'edit', 'delete'));
+        $this->allow('guest', 'request', array('index', 'subscribe', 'edit', 'delete', 'mysearch'));
         $this->allow('guest', 'page', array('site'));
         $this->allow('guest', 'links', array('index'));
         $this->allow('guest', 'export', array('ads'));
@@ -67,7 +69,9 @@ class Application_Model_LibraryAcl extends Zend_Acl
 
         $this->allow('user', 'user', array('index', 'logout'));
         $this->allow('user', 'login', array('index', 'notauthorized'));
-        $this->allow('user', 'account', array('index', 'edit', 'editpassword', 'avatar', 'logout','favorites','removefavorite'));
+        $this->allow(
+            'user', 'account', array('index', 'edit', 'editpassword', 'avatar', 'logout', 'favorites', 'removefavorite')
+        );
         $this->allow('user', 'shop', array('index', 'new', 'modification', 'media', 'public', 'my'));
         $this->allow('user', 'ajax', array('index', 'newshop', 'province', 'city', 'subcategory', 'addfavorite'));
         $this->allow('user', 'page', array('index', 'new', 'edit', 'picture', 'gallery', 'deletegallery'));
@@ -76,7 +80,9 @@ class Application_Model_LibraryAcl extends Zend_Acl
         $this->allow('admin', 'setting');
         $this->allow('admin', 'dashboard');
         $this->allow('admin', 'login', array('add', 'list', 'edit', 'delete', 'logout', 'notauthorized'));
-        $this->allow('admin', 'shop', array('index', 'edit', 'list', 'gallery', 'delete', 'search', 'detail', 'status'));
+        $this->allow(
+            'admin', 'shop', array('index', 'edit', 'list', 'gallery', 'delete', 'search', 'detail', 'status')
+        );
         $this->allow('admin', 'category', array('add', 'list', 'edit', 'delete'));
         $this->allow('admin', 'user', array('index', 'edit', 'list', 'delete'));
         $this->allow('admin', 'gallery', array('index', 'list', 'status', 'delete'));

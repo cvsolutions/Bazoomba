@@ -126,6 +126,7 @@
           <actionMethod actionName="subscribe"/>
           <actionMethod actionName="edit"/>
           <actionMethod actionName="delete"/>
+          <actionMethod actionName="mysearch"/>
         </controllerFile>
         <controllerFile controllerName="Links">
           <actionMethod actionName="index"/>
@@ -329,6 +330,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Gallery">
             <viewScriptFile forActionName="deletemedia"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Request">
+            <viewScriptFile forActionName="mysearch"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

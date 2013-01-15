@@ -1,8 +1,10 @@
 <p>Ciao <?php echo $this->params['user']; ?></p>
-<p>qui di seguito trovi l'elenco dei tuoi annunci...</p>
+<p>Qui di seguito trovi l'elenco dei tuoi annunci...</p>
 
 <ul>
     <?php foreach($this->params['ads'] as $row): ?>
     <li><?php echo $this->params['type_ads'][$row['type']]; ?> (<?php echo new Zend_Date($row['registered']); ?>) / <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a></li>
     <?php endforeach; ?>
 </ul>
+
+    <p><i><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'request', 'action' => 'mysearch', 'email' => $this->params['email'], 'token' => $this->params['token']), null, true); ?>">Clicca sul seguente link per cambiare le impostazioni di ricerca</a></i></p>

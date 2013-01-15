@@ -28,6 +28,7 @@ class CronjobController extends Zend_Controller_Action
          * @todo eliminazione degli annunci in scadenza
          *
          * 1) expiration = date()
+         * porto lo status = 2
          */
     }
 
@@ -36,8 +37,8 @@ class CronjobController extends Zend_Controller_Action
         /**
          * @todo eliminazione dei record inutilizzati sul database
          *
-         * 1) User: status = 0
-         * 2) ADS: status = 1 & step != 3
+         * 1) User: status = 0 & date > 7
+         * 2) ADS: status != 1
          * 3) Gallery = status = 0
          * 4) request = status = 0
          */
@@ -78,8 +79,10 @@ class CronjobController extends Zend_Controller_Action
                              'template' => 'shop_remember_new_ads.phtml',
                              'params'   => array(
                                  'user'     => $row['name'],
+                                 'email'    => $row['email'],
                                  'type_ads' => $this->params->type_ads->toArray(),
-                                 'ads'      => $listADS
+                                 'ads'      => $listADS,
+                                 'token'    => $row['token']
                              )
                         )
                     );

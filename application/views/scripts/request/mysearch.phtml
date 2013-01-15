@@ -1,0 +1,31 @@
+<div class="container">
+    <h3>Ciao <?php echo $this->user['name']; ?></h3>
+
+    <p>qui di seguito trovi l'elenco delle richieste...</p>
+
+    <?php if ($this->list): ?>
+    <table class="table table-hover">
+        <tr>
+            <th>Categoria</th>
+            <th>Regione</th>
+            <th>Parole chiavi</th>
+            <th>Pubblicato</th>
+            <th>Stato</th>
+            <th>Elimina</th>
+        </tr>
+        <?php foreach ($this->list as $row): ?>
+        <tr>
+            <td><?php echo $row['name_category']; ?></td>
+            <td><?php echo $row['name_region']; ?></td>
+            <td><?php echo str_replace('|', ', ', $row['tags']); ?></td>
+            <td><?php echo new Zend_Date($row['registered']); ?></td>
+            <td><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'request', 'action' => 'edit', 'id' => $row['id'], 'email' => $this->user['email'], 'token' => $this->user['token']), null, true); ?>" class="btn btn-<?php echo $this->btn_class[$row['status']]; ?>"><?php echo $this->status[$row['status']]; ?></a></td>
+            <td><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'request', 'action' => 'delete', 'id' => $row['id'], 'email' => $this->user['email'], 'token' => $this->user['token']), null, true); ?>" class="btn btn-warning">Elimina</a></td>
+        </tr>
+        <?php endforeach ?>
+    </table>
+    <?php else: ?>
+    <p><?php echo $this->notfound; ?></p>
+    <?php endif; ?>
+
+</div> <!-- /container -->

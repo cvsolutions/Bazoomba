@@ -78,6 +78,7 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
 
     /**
      * Tutte le richieste fatte dagli utenti
+     *
      * @return array
      */
     public function List_Request()
@@ -89,6 +90,7 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
                                 'email',
                                 'category',
                                 'region',
+                                'token',
                                 'tags'
                            )
         );
@@ -97,5 +99,96 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
+    /**
+     * Verifica sul Token di sicurezza
+     * per accedere alla lista delle richieste
+     *
+     * @param $email Indirizzo email
+     * @param $token Token di sicurezza
+     *
+     * @return array
+     * @throws Exception
+     */
+    public function Check_Token_Request($email, $token)
+    {
+        $row = $this->fetchRow(sprintf("email = '%s' AND token = '%s'", $email, $token));
+        if (!$row) {
+            $params = Plugin_Common::getParams();
+            throw new Exception($params->label_no_id, 1);
+        }
+        return $row->toArray();
+    }
+
+    /**
+     * Recupero la lista delle richieste
+     * fatte dal cliente con una determinata e-mail
+     *
+     * @param $email Indirizzo email
+     *
+     * @return array
+     */
+    public function List_Token_Request($email)
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from(
+            'ads_request', array(
+                                'id',
+                                'registered',
+                                'status',
+                                'tags'
+                           )
+        );
+        $query->join('ads_category', 'ads_request.category = ads_category.id', array('name_category' => 'name'));
+        $query->join('ads_region', 'ads_request.region = ads_region.id', array('name_region' => 'name'));
+        $query->where(sprintf("email = '%s'", $email));
+        // echo $query->assemble();
+        return $this->getDefaultAdapter()->fetchAll($query);
+    }
+
+    /**
+     * Dettaglio Completo della richiesta
+     *
+     * @param $id ID della richiesta
+     *
+     * @return array
+     * @throws Exception
+     */
+    public function Info_Request($id)
+    {
+        $row = $this->fetchRow(sprintf('id = %d', $id));
+        if (!$row) {
+            $params = Plugin_Common::getParams();
+            throw new Exception($params->label_no_id, 1);
+        }
+        return $row->toArray();
+    }
+
+    /**
+     * Aggiorno lo stato della richiesta
+     *
+     * @param $id     ID della richiesta
+     * @param $status Stato
+     *
+     * @return int
+     */
+    public function Update_Status_Request($id, $status)
+    {
+        $arrayName = array(
+            'status' => $status
+        );
+        return $this->update($arrayName, sprintf('id = %d', $id));
+    }
+
+    /**
+     * Elimino la richiesta
+     *
+     * @param $id ID della richiesta
+     *
+     * @return int
+     */
+    public function Delete_Request($id)
+    {
+        return $this->delete(sprintf('id = %d', $id));
+    }
 
 }
