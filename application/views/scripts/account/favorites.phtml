@@ -1,0 +1,64 @@
+<div class="container" style="background-color: #f0f0f0; border-radius: 15px; margin-top: 20px;">
+
+    <?php echo $this->render('globals/menu_user.phtml'); ?>
+
+    <div class="row">
+        <div class="span12">
+            <div style="padding: 12px;">
+
+                <div style="background-color: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: -25px;">
+
+                    <?php if(count($this->favorites) > 0): ?>
+
+
+
+
+                     <?php foreach ($this->favorites as $row): ?>
+                     <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+
+                         <div class="span3">
+                             <?php if($row['photo'] != 0): ?>
+                                 <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360">
+                             <?php else: ?>
+                                 <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=no_image.jpg&width=480&height=360">
+                             <?php endif; ?>
+                         </div>
+
+                         <div class="span8">
+                             <div style="padding: 12px;">
+
+                                <h4><?php echo $row['title']; ?></h4>
+                                <p><?php echo $this->truncate($row['description']); ?></p>
+                                <h4>€ <?php echo $row['price']; ?> - Inserito il <?php echo new Zend_Date($row['data']); ?></h4>
+                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'removefavorite', 'item' => $row['id']), null, true); ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i> Rimuovi</a>
+
+
+                            </div><!--padding-->
+                         </div><!--span8-->
+
+                     </div><!-- row-->
+                     <?php endforeach ?>
+
+
+                      <?php else: ?>
+
+                        <div class="row">
+                            <div class="span11">
+                                <div class="alert alert-error" style="margin-left: auto; margin-right: auto;">
+                                    <strong>Non hai inserito nessun annucnio nei preferiti.</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endif; ?>
+
+                </div><!--style-->
+            </div><!--padding-->
+        </div><!--12-->
+    </div><!--row-->
+
+</div><!--container-->
+
+
+
+
