@@ -1,6 +1,6 @@
 <?php echo $this->headTitle(sprintf('%s | %s | %s', $this->row['title'], $this->category['name'], $this->region['name'])); ?>
 
-<?php if ($this->user['type'] == 2 AND count($this->othersAdsPage) > 0): ?>
+<?php if ($this->user['type'] == 2 AND count($this->othersAdsPage) > 1): ?>
 <div class="container" style="margin-top: 20px; margin-bottom: -20px;">
     <div class="row">
         <div class="span12">
@@ -45,7 +45,7 @@
               <a class="btn btn-mini btn" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'export', 'action' => 'ads', 'id' => $this->row['id']), null, true); ?>" type="button"><i class="icon-print"></i>  Stampa Volantino </a>
 
               <?php if ($this->identity): ?>
-              <button id="<?php echo $this->user['id']; ?>,<?php echo $this->row['id']; ?>" class="btn btn-mini btn addfavorite" type="button"><i class="icon-star"></i>  Aggiungi ai Preferiti</button>
+              <buttonh data-user="<?php echo $this->identity->id; ?>" data-shop="<?php echo $this->row['id']; ?>" class="btn btn-mini btn addfavorite" type="button"><i class="icon-star"></i>  Aggiungi ai Preferiti </button>
               <?php endif; ?>
             </div><!--pull-right-->
         </div><!--span12-->
@@ -122,26 +122,14 @@
                     <div class="span3">
                         <div style="padding:12px;">
                             <div style="background: #f6f6f6; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
-                                  <div id="maps" style="width: 100%; height: 200px;"></div>
-                                  <center><a href="#expMaps" data-toggle="modal"><button style="margin-top: 10px;" class="btn" type="button"><i class="icon-map-marker"></i>  Espandi Mappa</button> </a></center>
+                                  <div id="map" style="width: 100%; height: 200px;"></div>
+                                  <center><a href="#"><button style="margin-top: 10px;" class="btn" type="button"><i class="icon-map-marker"></i>  Espandi Mappa</button> </a></center>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!--ExpMaps-->
-                <div id="expMaps" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">Mappa</h3>
-                    </div>
-                    <div class="modal-body">
-                         <div id="expmaps" style="width: 100%; height: 400px;"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Chiudi</button>
-                    </div>
-                </div>
+
 
                 <div class="row">
                     <div class="span3">
@@ -157,9 +145,14 @@
 
                             <?php else: ?>
 
-                            <center><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=logo&image=<?php echo $this->logo; ?>&width=480&height=320" alt="<?php echo $this->user['name_company']; ?>" title="<?php echo $this->user['name_company']; ?>"/></center>
+                            <center><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=logo&image=<?php echo $this->logo; ?>&width=480&height=320" alt="<?php echo $this->user['name_company']; ?>" title="<?php echo ucwords($this->user['name_company']); ?>"/></center>
 
-                            <center><h4><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'site', 'item' => $this->page['id']), null, true); ?>"><?php echo $this->user['name_company']; ?></a></h4></center>
+                            <?php if(count($this->page) == 0): ?>
+                                <center><h4><?php echo ucwords($this->user['name_company']); ?></h4></center>
+
+                            <?php else: ?>
+                                 <center><h4><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'page', 'action' => 'site', 'item' => $this->page['id']), null, true); ?>"><?php echo ucwords($this->user['name_company']); ?></a></h4></center>
+                            <?php endif; ?>
                             <center><h5>P.Iva <?php echo $this->user['vat']; ?></h5></center>
                             <?php if($this->page['site']): ?> <center><h5><a class="btn btn-mini" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'links'), null, true); ?>?url=<?php echo $this->page['site']; ?>&location=2" target="_blank"><i class="icon-globe"></i> <?php echo $this->page['site']; ?></a></h5></center><?php endif; ?>
                             <?php if($this->page['telephone']): ?><center><h5>Tel. Azienda <?php echo $this->page['telephone']; ?></h5></center><?php endif; ?>
@@ -215,7 +208,7 @@
                         <div style="padding:12px;">
                             <div style="background: #fff; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                             <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=320">
-                                <center><h5><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>"><?php echo $row['title']; ?></a> <br /> € <?php echo $row['price']; ?></h5></center>
+                                <center><h5><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a> <br /> € <?php echo $row['price']; ?></h5></center>
                             </div>
                         </div>
                     </div>
@@ -250,31 +243,18 @@ var mapOptions = {
     styles: vikey
 };
 
-var map = new google.maps.Map(document.getElementById("maps"),
+var map = new google.maps.Map(document.getElementById("map"),
 mapOptions);
 var marker = new google.maps.Marker({ position: latlang,map: map,title: "<?php echo $this->row['title']; ?>" });
 
-/** Exp Maps*/
-var expvikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
-var explatlang = new google.maps.LatLng(<?php echo $this->row['latitude']; ?>,<?php echo $this->row['longitude']; ?>);
-var mapOptions = {
-    center: explatlang,
-    zoom: 9,
-    disableDefaultUI: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: expvikey
-};
-
-var map = new google.maps.Map(document.getElementById("expmaps"),
-mapOptions);
-var expmarker = new google.maps.Marker({ position: explatlang,map: map,title: "<?php echo $this->row['title']; ?>" });
                 $(".addfavorite").click(function(e){
                 $.ajax({
                 type: 'POST',
                 url: 'http://bazoomba/ajax/addfavorite',
                 dataType: 'json',
                 data: {
-                    fav: $(".addfavorite").attr("id")
+                    user: $(".addfavorite").data("user"),
+                    shop: $(".addfavorite").data("shop")
                 },
                 success: function(data) {
                     $('#result_favorite').fadeIn().delay(4000).slideUp(1500);

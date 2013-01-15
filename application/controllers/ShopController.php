@@ -213,7 +213,7 @@ class ShopController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function deleteAction() {
-        // action body
+        // code
     }
 
     /**
@@ -239,7 +239,6 @@ class ShopController extends Zend_Controller_Action
 
         Plugin_Common::Chech_Off_Line();
         $id = $this->_getParam( 'show', 0 );
-
 
         $shop = new Application_Model_DbTable_Shop();
         $ShopInfo = $shop->getSiteShopInfo( $id );
@@ -377,6 +376,8 @@ class ShopController extends Zend_Controller_Action
         $this->view->id_ads = $id_ads;
         $shop = new Application_Model_DbTable_Shop();
         $ads = $shop->getAdminShopInfo( $id_ads );
+
+
 
         if ( $ads['step'] == 3 ) {
             $this->_redirect( '/' );

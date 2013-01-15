@@ -1,3 +1,4 @@
+<?php echo $this->headTitle('I miei annunci - '.$this->identity->name.''); ?>
 <div class="container" style="background-color: #f0f0f0; border-radius: 15px; margin-top: 20px;">
 
     <?php echo $this->render('globals/menu_user.phtml'); ?>
@@ -24,17 +25,15 @@
                      <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
 
                          <div class="span3">
-                             <?php if($row['photo'] != 0): ?>
+                             <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>">
                                  <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360">
-                             <?php else: ?>
-                                 <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=no_image.jpg&width=480&height=360">
-                             <?php endif; ?>
+                             </a>
                          </div>
 
                          <div class="span8">
                              <div style="padding: 12px;">
 
-                                <h4><?php echo $row['title']; ?></h4>
+                                <h4><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></h4>
                                 <p><?php echo $this->truncate($row['description']); ?></p>
                                 <h4>€ <?php echo $row['price']; ?> - Inserito il <?php echo new Zend_Date($row['registered']); ?></h4>
 
@@ -47,11 +46,11 @@
                                 <?php endif; ?>
 
                                 <?php if($row['step'] == 3 AND $row['status'] == 0): ?>
-                                <a href="#" class="btn btn-info">Ads In Attesa Di Approvazione</a>
+                                <a href="#" class="btn btn-info">Annuncio In Attesa Di Approvazione</a>
                                 <?php endif; ?>
 
                                 <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
-                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>" class="btn btn-success"><i class="icon-ok icon-white"></i> Attivo</a>
+                                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>" class="btn btn-success"><i class="icon-ok icon-white"></i> Attivo</a>
 
                                 <div class="btn-group">
                                 <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="icon-remove"></i> Elimina Annuncio <span class="caret"></span></button>
@@ -75,8 +74,8 @@
                       <?php else: ?>
 
                         <div class="row">
-                            <div class="span12">
-                                <div class="alert alert-error">
+                            <div class="span11">
+                                <div class="alert alert-error" style="margin-left: auto; margin-right: auto;">
                                     <strong>Non hai inserito nessun annuncio attualmente. Pubblica adesso il tuo primo annuncio.</strong>
                                 </div>
                             </div>

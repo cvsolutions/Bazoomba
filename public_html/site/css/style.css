@@ -23,3 +23,5 @@ body {
 #maps img {
     max-width: none;
 }
+#mapcanvas {width: 600px; height: 450px; }
+#mapcanvas img { max-width: none; }

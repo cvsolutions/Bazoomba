@@ -30,9 +30,10 @@ function Show_Maps(posizione) {
         }
     });
 
+    var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
     $('#maps').gmap('addMarker', {
         'position':new google.maps.LatLng(latitude, longitude),
-        'icon': 'http://bazoomba/site/img/world.png',
+        'icon': 'http://bazoomba/site/img/her.gif',
         'bounds':true
     }).click(function () {
             $('#maps').gmap('openInfoWindow', {

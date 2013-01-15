@@ -601,6 +601,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                         )
         );
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
+        $query->order('ads_gallery.registered ASC');
         $query->where(sprintf('ads_shop.user = %d', $id));
         $query->where('ads_shop.status != 2');
         $query->group('ads_shop.id');
@@ -658,6 +659,5 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
-
 
 }

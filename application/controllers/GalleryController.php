@@ -10,7 +10,9 @@
  * @author   Concetto Vecchio
  * @license
  * @link
+ *
  */
+
 class GalleryController extends Zend_Controller_Action
 {
 
@@ -20,8 +22,9 @@ class GalleryController extends Zend_Controller_Action
      * @var mixed
      *
      * @access public
+     *
      */
-    public $params;
+    public $params = null;
 
     /**
      * init
@@ -29,8 +32,10 @@ class GalleryController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function init() {
+    public function init()
+    {
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
     }
@@ -41,8 +46,10 @@ class GalleryController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         // action body
     }
 
@@ -52,8 +59,10 @@ class GalleryController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function listAction() {
+    public function listAction()
+    {
         $shop = $this->_getParam( 'shop', 0 );
         $gallery = new Application_Model_DbTable_Gallery();
         $info_shop = new Application_Model_DbTable_Shop();
@@ -70,8 +79,10 @@ class GalleryController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function deleteAction() {
+    public function deleteAction()
+    {
         $id = $this->_getParam( 'id', 0 );
         $ads = $this->_getParam( 'ads', 0 );
 
@@ -86,8 +97,10 @@ class GalleryController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function editAction() {
+    public function editAction()
+    {
         // action body
     }
 
@@ -97,8 +110,10 @@ class GalleryController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
-    public function statusAction() {
+    public function statusAction()
+    {
         $type = $this->_getParam( 'type', 0 );
         $id = $this->_getParam( 'id', 0 );
         $ads = $this->_getParam( 'ads', 0 );
@@ -108,5 +123,17 @@ class GalleryController extends Zend_Controller_Action
         $this->redirect( sprintf( '/gallery/list/shop/%d', $ads ) );
     }
 
+    public function deletemediaAction()
+    {
+        $id_photo = $this->_getParam( 'id', 0 );
+        $id_ads = $this->_getParam( 'ads', 0 );
+
+        $Gallery = new Application_Model_DbTable_Gallery();
+        if($Gallery->controlDeleteImage($id_photo, $id_ads) == 1) {
+            if($Gallery->Delete_Media($id_photo)) $this->_redirect(sprintf ('/shop/media/id/%d', $id_ads));
+        }
+    }
+
 
 }
+

@@ -1,26 +1,32 @@
 <?php
 
 /**
-* AccountController
-*
-* @uses     Zend_Controller_Action
-*
-* @category Account
-* @package  Bazoomba.it
-* @author   Concetto Vecchio
-* @license
-* @link
-*/
+ * AccountController
+ *
+ * @uses     Zend_Controller_Action
+ *
+ * @category Account
+ * @package  Bazoomba.it
+ * @author   Concetto Vecchio
+ * @license
+ * @link
+ *
+ *
+ */
+
 class AccountController extends Zend_Controller_Action
 {
+
     /**
      * $params
      *
      * @var mixed
      *
      * @access public
+     *
+     *
      */
-    public $params;
+    public $params = null;
 
     /**
      * init
@@ -28,10 +34,17 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
+     *
      */
-    public function init() {
+    public function init()
+    {
         /* Initialize action controller here */
         $this->params = Plugin_Common::getParams();
+
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+        $this->view->identity = $identity;
     }
 
     /**
@@ -40,8 +53,11 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
+     *
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
 
@@ -56,8 +72,11 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
+     *
      */
-    public function editAction() {
+    public function editAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -117,8 +136,11 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
+     *
      */
-    public function editpasswordAction() {
+    public function editpasswordAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
@@ -157,8 +179,11 @@ class AccountController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
+     *
      */
-    public function avatarAction() {
+    public function avatarAction()
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
 
@@ -188,4 +213,25 @@ class AccountController extends Zend_Controller_Action
             }
         }
     }
+
+    public function favoritesAction()
+    {
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+        $this->view->identity = $identity;
+
+        $fav = new Application_Model_DbTable_Favorite();
+        $this->view->favorites = $fav->favoriteshop($identity->id);
+
+    }
+
+    public function removefavoriteAction()
+    {
+       $id = $this->_getParam( 'item', 0 );
+       $fav = new Application_Model_DbTable_Favorite();
+       if($fav->removefavorite($id)) $this->_redirect( '/account/favorites' ); 
+    }
+
+
 }
+

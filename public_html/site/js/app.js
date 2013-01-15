@@ -1,19 +1,5 @@
 $(document).ready(function() {
 
-    $('.hh').tooltip({
-      selector: "a[rel=tooltip]"
-    });
-
-    $('.tooltip-test').tooltip();
-    $('.popover-test').popover();
-
-    // popover demo
-    $("a[rel=popover]")
-      .popover()
-      .click(function(e) {
-        e.preventDefault()
-      });
-
     //add class in careusal
     $('div.item:first').addClass("active");
 
@@ -116,15 +102,15 @@ $(document).ready(function() {
     /** Type Account on New & Edit*/
     var type = $('#type').val();
     if(type == 1) {
-        $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').hide();
+        $('.brands, #vat-label, #vat-element, #name_company-label, #name_company-element').hide();
     }
 
     $('#type').change(function() {
         var type_click = $(this).val();
         if(type_click == 1) {
-            $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').hide();
+            $('.brands, #vat-label, #vat-element, #name_company-label, #name_company-element').hide();
         } else {
-            $('.brand, #vat-label, #vat-element, #name_company-label, #name_company-element').show();
+            $('.brands, #vat-label, #vat-element, #name_company-label, #name_company-element').show();
         }
     });
 
@@ -152,7 +138,7 @@ $(document).ready(function() {
             styles: vikey
         };
 
-        map = new google.maps.Map(document.getElementById("map_canvas"), options);
+        map = new google.maps.Map(document.getElementById("mapcanvas"), options);
         geocoder = new google.maps.Geocoder();
 
         var infowindow = new google.maps.InfoWindow({
@@ -215,11 +201,6 @@ $(document).ready(function() {
                 }
             }
         });
-    });
-
-    $("#map_canvas").fadeOut(500);
-    $("#address").keypress(function() {
-        $("#map_canvas").fadeIn(2000);
     });
 
 });

@@ -19,10 +19,11 @@ $region_select = $select->RegionByAds();
     <meta charset="utf-8" />
     <?php echo $this->headTitle(); ?>
     <?php echo $this->headMeta(); ?>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="<?php echo $this->serverUrl(); ?>/site/css/style.css" rel="stylesheet">
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
@@ -88,6 +89,7 @@ $region_select = $select->RegionByAds();
                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'edit'), null, true); ?>"><i class="icon-pencil"></i> Modifica Dati</a></li>
                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'editpassword'), null, true); ?>"><i class="icon-lock"></i> Modifica Password</a></li>
                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'avatar'), null, true); ?>"><i class="icon-picture"></i> Immagine di profilo</a></li>
+                           <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'favorites'), null, true); ?>"><i class="icon-star"></i> Preferiti</a></li>
                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'user', 'action' => 'logout'), null, true); ?>"><i class="icon-off"></i> Logout</a></li>
                        </ul>
                    </li>

@@ -1,3 +1,4 @@
+<?php echo $this->headTitle('Brand Page - '.ucwords($this->identity->name_company).''); ?>
 <div class="container" style="background-color: #f0f0f0; border-radius: 15px; margin-top: 20px;">
 
     <?php echo $this->render('globals/menu_user.phtml'); ?>
@@ -13,7 +14,7 @@
 
                     <h1>La tua Pagina <?php if($this->page['status'] == 0): ?> <span class="red">[Off-line]</span> <?php else: ?> <span class="green">[On-line]</span> <?php endif; ?> </h1>
 
-                    <h4><?php echo $this->identity->name_company ?> - P.Iva <?php echo $this->identity->vat ?> - Phone: <?php echo $this->page['telephone'] ?></h4>
+                    <h4><?php echo ucwords($this->identity->name_company) ?> - P.Iva <?php echo $this->identity->vat ?> - Phone: <?php echo $this->page['telephone'] ?></h4>
                     <p><i>Indrizzo: <?php echo $this->page['address']; ?></i></p>
                     <div id="map" style="width: 600px; height: 250px;"></div>
                     <p>
