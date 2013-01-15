@@ -307,19 +307,18 @@ class AjaxController extends Zend_Controller_Action
     {
         if ($this->getRequest()->getPost()) {
 
-                $user = $this->_request->getPost('user');
-                $shop = $this->_request->getPost('shop');
-                $favorite = new Application_Model_DbTable_Favorite();
+            $user = $this->_request->getPost('user');
+            $shop = $this->_request->getPost('shop');
+            $favorite = new Application_Model_DbTable_Favorite();
 
-                if($favorite->controlfavorite($user, $shop) == 0)
-                {
-                    if($favorite->addFavorite($user, $shop)) {
-                        echo Zend_Json::encode(array('result' => $this->params->label_success_favorite));
-                    }
-
-                } else {
-                    echo Zend_Json::encode(array('result' => $this->params->label_error_favorite));
+            if ($favorite->controlfavorite($user, $shop) == 0) {
+                if ($favorite->addFavorite($user, $shop)) {
+                    echo Zend_Json::encode(array('result' => $this->params->label_success_favorite));
                 }
+
+            } else {
+                echo Zend_Json::encode(array('result' => $this->params->label_error_favorite));
+            }
         }
 
     }

@@ -127,7 +127,9 @@ class Plugin_Common extends Zend_Controller_Plugin_Abstract {
         $setting = new Application_Model_DbTable_Setting();
         $info = $setting->getSettings();
         if ( $info['off_line'] == 1 ) {
-            $this->redirect( '/index/offline' );
+            header('Location: /index/offline');
+            exit;
+            // $this->_redirect( '/index/offline' );
         }
     }
 

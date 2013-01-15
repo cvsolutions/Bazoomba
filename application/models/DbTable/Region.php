@@ -76,12 +76,23 @@ class Application_Model_DbTable_Region extends Zend_Db_Table_Abstract
      */
     public function Region_GeoCode($latitude, $longitude)
     {
-        $query = sprintf("TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(ads_region.latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(ads_region.longitude) , 2 ) ) , 3 ) < 150", $latitude, $longitude);
-        $row = $this->fetchRow($query);
-        if (!$row) {
-            return array('name' => 'Italia');
-        }
-        return $row->toArray();
+        $query = $this->getDefaultAdapter()->select();
+        $query->from(
+            'ads_region', array(
+                               'name'
+                          )
+        );
+        $query->where(
+            sprintf(
+                "TRUNCATE ( 6363 * sqrt( POW( RADIANS('%s') - RADIANS(latitude) , 2 ) + POW( RADIANS('%s') - RADIANS(longitude) , 2 ) ) , 3 ) < 300",
+                $latitude, $longitude
+            )
+        );
+
+        $query->order('name DESC');
+        $query->limit('0, 1');
+        // echo $query->assemble();
+        return $this->getDefaultAdapter()->fetchRow($query);
     }
 
 
