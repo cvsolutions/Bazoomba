@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Gen 14, 2013 alle 21:57
+-- Generato il: Gen 17, 2013 alle 22:01
 -- Versione del server: 5.5.25
 -- Versione PHP: 5.4.4
 
@@ -8565,18 +8565,14 @@ CREATE TABLE `ads_request` (
   `ip_address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76823 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45212 ;
 
 --
 -- Dump dei dati per la tabella `ads_request`
 --
 
 INSERT INTO `ads_request` (`id`, `token`, `name`, `email`, `category`, `region`, `tags`, `registered`, `status`, `ip_address`) VALUES
-(30883, '011ae8ed821b26f1e3da2032eec40ea4', 'Concetto Vecchio', 'webcr@hotmail.it', 37278, 15, 'nuovo|iphone', '2012-12-22 10:51:02', 1, '127.0.0.1'),
-(62261, 'f500036224d2c5b71345ab66ab526bbe', 'Pippo', 'info@pippo.it', 59368, 15, 'iphone|nuovo', '2013-01-13 21:37:15', 1, '127.0.0.1'),
-(63927, 'e6f5e5d8da7ad986cdb7d86e8ccb54f0', 'Lorem Ipsum', 'info@lorem.it', 36874, 15, 'Philips', '2012-12-22 10:52:51', 1, '127.0.0.1'),
-(69643, '5d508c6162d7489f562755ead1069602', 'CV Solutions', 'info@cvsolutions.it', 37278, 9, 'mac|os|imac nuovo', '2012-12-22 11:08:25', 1, '127.0.0.1'),
-(76822, 'd9314fc99091b7c58d65bdf8831e4705', 'pinco pallino', 'cvsolutions@me.com', 36874, 15, 'nikon|affare|usato|nuovo', '2012-12-22 11:01:49', 1, '127.0.0.1');
+(45211, '83132cff6ff1a2e447015addf979326f', 'CV', 'info@cvsolutions.it', 37278, 15, 'nikon', '2013-01-15 22:56:05', 0, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8628,6 +8624,7 @@ CREATE TABLE `ads_shop` (
   `registered` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `expiration` date NOT NULL,
+  `visits` int(11) NOT NULL,
   `computer` text NOT NULL,
   `ip_address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
@@ -8645,12 +8642,12 @@ CREATE TABLE `ads_shop` (
 -- Dump dei dati per la tabella `ads_shop`
 --
 
-INSERT INTO `ads_shop` (`id`, `code`, `category`, `sub_category`, `region`, `province`, `city`, `user`, `type`, `title`, `price`, `description`, `tags`, `latitude`, `longitude`, `status`, `terms`, `step`, `registered`, `modified`, `expiration`, `computer`, `ip_address`) VALUES
-(66225, '7NI9VN', 59368, 21735, 15, 22, 7659, 16429, 4, 'iphone 4s nuovo o rigenerato', 350.00, 'Ragazzi oggi ho ricevuto il mio iphone 4s in sostituzione e volevo capire se era rigenerato o nuovo solo per curiositÃ ''.', 'nuovo, telefono, iphone, 3g', 37.727053, 15.184054, 1, 1, 3, '2013-01-13 21:09:37', '2013-01-13 21:11:03', '2013-03-14', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
-(12058, 'XBAX41', 37278, 63961, 15, 53, 7546, 16429, 5, 'Makkina fotografica ottima', 450.00, 'The Unix epoch (or Unix time or POSIX time or Unix timestamp) is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), not counting leap seconds (in ISO 8601: 1970-01-01T00:00:00Z). Literally speaking the epoch is Unix time 0 (midnight 1/1/1970), but ''epoch'' is often used as a synonym for ''Unix time''. Many Unix systems store epoch dates as a signed 32-bit integer, which might cause problems on January 19, 2038 (known as the Year 2038 problem or Y2038).  \n', 'nikon, nuova f345', 37.851637, 15.285313, 1, 1, 3, '2013-01-13 21:12:30', '2013-01-13 21:12:44', '2013-03-14', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
-(33831, 'SV6FSB', 15177, 44693, 9, 54, 1803, 94016, 4, 'How to get the current epoch time in ...', 100.00, 'Please note: All tools on this page are based on the time settings of your computer and use JavaScript to convert times. JavaScript does not support leap seconds.\n', '', 45.529593, 9.041606, 1, 1, 2, '2013-01-13 21:14:54', '2013-01-13 21:15:06', '2013-03-14', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
-(85246, '65YE6X', 97023, 81617, 15, 22, 7658, 94016, 1, 'Lorem Ipsum - All the facts - Lipsum generator', 120.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.\n', 'lorem', 37.793014, 15.207856, 1, 1, 2, '2013-01-13 21:21:25', '2013-01-13 21:21:39', '2013-03-14', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
-(42533, 'HIQABK', 37278, 73647, 15, 61, 7438, 16429, 1, 'Castel Brando Hotel', 1000.00, 'Veneto, Treviso, Cison di Valmarino,Tovena, San Boldo, Soller, Gai, Zuel, Rolle, Mura, Area Turismo, Arte, Cultura, Tradizioni, Musei, Dove Mangiare, Dove ...\n', 'Musei', 38.155087, 13.108810, 1, 1, 2, '2013-01-13 21:34:45', '2013-01-13 21:35:15', '2013-03-14', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1');
+INSERT INTO `ads_shop` (`id`, `code`, `category`, `sub_category`, `region`, `province`, `city`, `user`, `type`, `title`, `price`, `description`, `tags`, `latitude`, `longitude`, `status`, `terms`, `step`, `registered`, `modified`, `expiration`, `visits`, `computer`, `ip_address`) VALUES
+(66225, '7NI9VN', 59368, 21735, 15, 22, 7659, 16429, 4, 'iphone 4s nuovo o rigenerato', 350.00, 'Ragazzi oggi ho ricevuto il mio iphone 4s in sostituzione e volevo capire se era rigenerato o nuovo solo per curiositÃ ''.', 'nuovo, telefono, iphone, 3g', 37.727053, 15.184054, 1, 1, 3, '2013-01-13 21:09:37', '2013-01-13 21:11:03', '2013-03-14', 0, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
+(12058, 'XBAX41', 37278, 63961, 15, 53, 7546, 16429, 5, 'Makkina fotografica ottima', 450.00, 'The Unix epoch (or Unix time or POSIX time or Unix timestamp) is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), not counting leap seconds (in ISO 8601: 1970-01-01T00:00:00Z). Literally speaking the epoch is Unix time 0 (midnight 1/1/1970), but ''epoch'' is often used as a synonym for ''Unix time''. Many Unix systems store epoch dates as a signed 32-bit integer, which might cause problems on January 19, 2038 (known as the Year 2038 problem or Y2038).  \n', 'nikon, nuova f345', 37.851637, 15.285313, 1, 1, 3, '2013-01-13 21:12:30', '2013-01-13 21:12:44', '2013-03-14', 1, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
+(33831, 'SV6FSB', 15177, 44693, 9, 54, 1803, 94016, 4, 'How to get the current epoch time in ...', 100.00, 'Please note: All tools on this page are based on the time settings of your computer and use JavaScript to convert times. JavaScript does not support leap seconds.\n', 'nuovo, ciao', 45.529593, 9.041606, 1, 1, 2, '2013-01-13 21:14:54', '2013-01-13 21:15:06', '2013-03-14', 1, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
+(85246, '65YE6X', 97023, 81617, 15, 22, 7658, 94016, 1, 'Lorem Ipsum - All the facts - Lipsum generator', 120.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.\n', 'lorem', 37.793014, 15.207856, 1, 1, 2, '2013-01-13 21:21:25', '2013-01-13 21:21:39', '2013-03-14', 0, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
+(42533, 'HIQABK', 37278, 73647, 15, 61, 7438, 16429, 1, 'Castel Brando Hotel', 1000.00, 'Veneto, Treviso, Cison di Valmarino,Tovena, San Boldo, Soller, Gai, Zuel, Rolle, Mura, Area Turismo, Arte, Cultura, Tradizioni, Musei, Dove Mangiare, Dove ...\n', 'Musei', 38.155087, 13.108810, 1, 1, 2, '2013-01-13 21:34:45', '2013-01-13 21:35:15', '2013-03-14', 3, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8686,8 +8683,8 @@ CREATE TABLE `ads_user` (
 --
 
 INSERT INTO `ads_user` (`id`, `type`, `name`, `avatar`, `email`, `pwd`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `modified`, `last_login`, `ip_address`) VALUES
-(16429, 1, 'Concetto Vecchio', '50f2993d55079.jpg', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2013-01-13 12:23:41', '2013-01-13 21:33:53', '127.0.0.1'),
-(94016, 2, 'cvsolutions', '50f29a89700b1.jpg', 'info@cvsolutions.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a83977e45eadcdedefb50a944a3272c8b48df4b5', '095123987', 0, 'cvsolutions', 'cvsolutions', 1, 'user', 1, '2012-12-10 20:00:27', '2013-01-13 12:29:13', '2013-01-13 21:13:49', '127.0.0.1'),
+(16429, 1, 'Concetto Vecchio', '50f2993d55079.jpg', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2013-01-13 12:23:41', '2013-01-17 20:57:50', '127.0.0.1'),
+(94016, 2, 'cvsolutions', '50f29a89700b1.jpg', 'info@cvsolutions.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a83977e45eadcdedefb50a944a3272c8b48df4b5', '095123987', 0, 'cvsolutions', 'cvsolutions', 1, 'user', 1, '2012-12-10 20:00:27', '2013-01-13 12:29:13', '2013-01-15 21:54:33', '127.0.0.1'),
 (14034, 1, 'Pinco Pallino', '', 'info@pippo.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'feaf4c00da53de0b5c96277a56f047a0a442113a', '0', 0, '', '', 1, 'user', 1, '2012-12-10 20:08:59', '2012-12-10 20:09:13', '2012-12-10 20:09:45', '127.0.0.1');
 
 -- --------------------------------------------------------

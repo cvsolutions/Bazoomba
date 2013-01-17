@@ -30,14 +30,14 @@ function Show_Maps(posizione) {
         }
     });
 
-    var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
+
     $('#maps').gmap('addMarker', {
         'position':new google.maps.LatLng(latitude, longitude),
-        'icon': 'http://bazoomba/site/img/her.gif',
+        'icon':'http://bazoomba/site/img/avatar.png',
         'bounds':true
     }).click(function () {
             $('#maps').gmap('openInfoWindow', {
-                'content': 'io...'
+                'content':'la tua posizione esatta...'
             }, this);
         });
 
@@ -46,11 +46,11 @@ function Show_Maps(posizione) {
             $.each(data, function (i, marker) {
                 $('#maps').gmap('addMarker', {
                     'position':new google.maps.LatLng(marker.latitude, marker.longitude),
-                    'icon': 'http://bazoomba/site/img/bigcity.png',
+                    'icon':'http://bazoomba/site/img/bigcity.png',
                     'bounds':true
                 }).click(function () {
                         $('#maps').gmap('openInfoWindow', {
-                            'content':marker.title
+                            'content':'<div><a href="http://bazoomba/shop/ads/show/' + marker.id + '/"><img src="http://bazoomba/image.php?mode=crop&folder=ads&image=' + marker.photo + '&width=350&height=170"></a></div><div style="width: 350px;"><br><p><h4>' + marker.title + '</h4></p><p>' + marker.name_category + ' :: <span style="color: #c60f13; font-size: 24px;">€ ' + marker.price + '</span></p></div>'
                         }, this);
                     });
             });

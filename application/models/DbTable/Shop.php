@@ -243,7 +243,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where('ads_user.status = 1');
         $query->where('ads_gallery.status = 1');
         $query->group('ads_shop.id');
-        $query->order('ads_shop.modified DESC');
+        $query->order('ads_shop.visits DESC');
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
@@ -603,12 +603,17 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
         $query->order('ads_gallery.registered DESC');
         $query->where(sprintf('ads_shop.user = %d', $id));
-        $query->where('ads_shop.status != 2');
+        // $query->where('ads_shop.status != 2');
         $query->group('ads_shop.id');
         $query->order('ads_shop.registered DESC');
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
+    /**
+     * @param $id
+     *
+     * @return array
+     */
     public function othersAdsPage($id)
     {
         $query = $this->getDefaultAdapter()->select();
@@ -660,8 +665,27 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
-    public function Delete_Ads($id) {
-        return $this->delete( 'id = ' . $id );
+    /**
+     * @param $id
+     *
+     * @return int
+     */
+    public function Delete_Ads($id)
+    {
+        return $this->delete('id = ' . $id);
+    }
+
+    /**
+     * @param $id
+     *
+     * @return int
+     */
+    public function updateVisits($id)
+    {
+        $arrayName = array(
+            'visits' => new Zend_Db_Expr('visits + 1')
+        );
+        return $this->update($arrayName, sprintf('id = %d', $id));
     }
 
 }

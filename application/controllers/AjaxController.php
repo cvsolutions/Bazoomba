@@ -303,6 +303,9 @@ class AjaxController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    /**
+     *
+     */
     public function addfavoriteAction()
     {
         if ($this->getRequest()->getPost()) {
