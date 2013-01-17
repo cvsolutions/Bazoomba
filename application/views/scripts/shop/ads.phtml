@@ -5,7 +5,7 @@
     <div class="row">
         <div class="span12">
             <div class="alert alert-box">
-                Questo annuncio è gestito da un azienda verificata <strong>( <?php echo $this->user['name_company']; ?> )</strong>. Guarda tutti gli altri annunci <strong><?php echo $this->user['name_company']; ?>.</strong>
+                Questo annuncio è gestito da un azienda verificata <strong>( <?php echo ucwords($this->user['name_company']); ?> )</strong>. Guarda tutti gli altri annunci <strong><?php echo ucwords($this->user['name_company']); ?>.</strong>
                 <span class="pull-right"><a href="#"><button class="btn btn-mini btn" type="button"><i class="icon-tags"></i> Altri Annunci (<?php echo count($this->othersAdsPage); ?>)</button></a></span>
             </div>
         </div>

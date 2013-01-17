@@ -152,6 +152,7 @@
           <dbTableFile dbTableName="Request"/>
           <dbTableFile dbTableName="Links"/>
           <dbTableFile dbTableName="Favorite"/>
+          <dbTableFile dbTableName="Delete"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>

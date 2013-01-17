@@ -25,15 +25,22 @@
                      <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
 
                          <div class="span3">
+                             <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
                              <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>">
                                  <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360">
                              </a>
+                             <?php else: ?>
+                                 <img class="photoAT" src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360">
+                             <?php endif; ?>
                          </div>
 
                          <div class="span8">
                              <div style="padding: 12px;">
-
+                                 <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
                                 <h4><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></h4>
+                                <?php else: ?>
+                                <h4><?php echo $row['title']; ?></h4>
+                                <?php endif; ?>
                                 <p><?php echo $this->truncate($row['description']); ?></p>
                                 <h4>€ <?php echo $row['price']; ?> - Inserito il <?php echo new Zend_Date($row['registered']); ?></h4>
 
@@ -55,10 +62,10 @@
                                 <div class="btn-group">
                                 <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="icon-remove"></i> Elimina Annuncio <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'item' => 1), null, true); ?>">Elimina perchè non più disponibile.</a></li>
-                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'item' => 2), null, true); ?>">Elimina perchè venduto.</a></li>
-                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'item' => 3), null, true); ?>">Elimina per motivi personali/altro.</a></li>
-                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'item' => 4), null, true); ?>">Elimina perchè non mi piace Bazoomba.</a></li>
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'shop' => $this->seourl($row['title']), 'item' => 1), null, true); ?>">Elimina perchè non più disponibile.</a></li>
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'shop' => $this->seourl($row['title']), 'item' => 2), null, true); ?>">Elimina perchè venduto.</a></li>
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'shop' => $this->seourl($row['title']), 'item' => 3), null, true); ?>">Elimina per motivi personali/altro.</a></li>
+                                    <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'delete', 'ads' => $row['id'], 'shop' => $this->seourl($row['title']), 'item' => 4), null, true); ?>">Elimina perchè non mi piace Bazoomba.</a></li>
                                 </ul>
                                 </div>
                                 <?php endif; ?>

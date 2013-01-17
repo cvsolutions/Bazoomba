@@ -257,6 +257,11 @@ class PageController extends Zend_Controller_Action
 
     public function siteAction()
     {
+
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+        $this->view->identity = $identity;
+        
         $id = $this->_getParam( 'item', 0 );
         $Page = new Application_Model_DbTable_Page();
         $PageInfo = $Page->getInfoPage($id);

@@ -213,7 +213,32 @@ class ShopController extends Zend_Controller_Action
      * @return mixed Value.
      */
     public function deleteAction() {
-        // code
+
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getStorage()->read();
+
+        $id_ads = $this->_getParam( 'ads', 0 );
+        $type = $this->_getParam( 'item', 0 );
+        $title_shop = $this->_getParam( 'shop', 0 );
+
+        $shop = new Application_Model_DbTable_Shop();
+        $ShopInfo = $shop->getSiteShopInfo( $id_ads );
+
+        if($ShopInfo['user'] == $identity->id) {
+
+            /** salvo la motivazione*/
+            $delete = new Application_Model_DbTable_Delete();
+            $query = $delete->save_delete($title_shop, $identity->id, $type);
+
+            /**elimino le foto fisicamente e dal db*/
+            $gallery = new Application_Model_DbTable_Gallery();
+            $gallery->Delete_Media_Ads($id_ads);
+
+            /**elimino l'annuncio*/
+            $shop->Delete_Ads($id_ads);
+
+            $this->_redirect('shop/my');
+        }
     }
 
     /**
@@ -270,7 +295,6 @@ class ShopController extends Zend_Controller_Action
         $PageInfo = $Page->getMyPage( $ShopInfo['user'], null);
         $this->view->page = $PageInfo;
         $this->view->logo = Plugin_Common::Control_Image('logo', $PageInfo['logo']);
-
 
         $this->view->notfound = $this->params->label_not_found_ads;
 

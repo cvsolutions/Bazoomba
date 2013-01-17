@@ -132,7 +132,7 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
 
     /**
      * galleryPage
-     * Recupero tutte le photo
+     * Recupero tutte le photo della brand page
      *
      * @param mixed   $id ID ADS.
      *
@@ -161,6 +161,14 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
         return $this->delete( 'status = 0' );
     }
 
+    /**
+     * controlDeleteImage
+     * Verifica se si hanno i permessi per eliminare foto
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
     public function controlDeleteImage($photo, $ads)
     {
         $query = $this->getDefaultAdapter()->select();
@@ -169,11 +177,41 @@ class Application_Model_DbTable_Gallery extends Zend_Db_Table_Abstract
         return $this->getDefaultAdapter()->fetchOne( $query );
     }
 
-        public function Delete_Media($id) {
+    public function Delete_Media($id)
+    {
         $row = $this->getImageInfo( $id );
         if ( $row['image'] > 0 ) unlink( sprintf( '%s/uploaded/ads/%s', $_SERVER['DOCUMENT_ROOT'], $row['image'] ) );
         return $this->delete( 'id = ' . $id );
     }
+
+    /**
+     * Delete_Media_Ads
+     * Crea un array di tutte le immagini dell'annuncio
+     * e poi tramite ciclo elimina fisicamente e dal db le foto
+     * Metodo richimato dall'utente quando decide di eliminare l'annuncio.
+     *
+     * @access public
+     *
+     * @return mixed Value.
+     */
+    public function Delete_Media_Ads($ads)
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from(
+            'ads_gallery', array(
+                             'id',
+                             'image'
+                        )
+        );
+        $query->where(sprintf('ads_gallery.shop = %d', $ads));
+        $img = $this->getDefaultAdapter()->fetchAll($query);
+
+        foreach ($img as $key) {
+            if ( $key['image'] > 0 ) unlink( sprintf( '%s/uploaded/ads/%s', $_SERVER['DOCUMENT_ROOT'], $key['image'] ) );
+        }
+        return $this->delete( 'shop = ' . $ads );
+    }
+
 
 
 }
