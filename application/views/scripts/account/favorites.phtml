@@ -29,16 +29,16 @@
                                 <h4><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['idshop']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></h4>
                                 <p><?php echo $this->truncate($row['description']); ?></p>
                                 <h4>€ <?php echo $row['price']; ?> - Inserito il <?php echo new Zend_Date($row['data']); ?></h4>
-                                <a href="#deleteFavorite" role="button" class="btn btn-danger" data-toggle="modal"><i class="icon-remove icon-white"></i> Rimuovi</a>
+                                <a href="#deleteFavorite_<?php echo $row['id']; ?>" role="button" class="btn btn-danger" data-toggle="modal"><i class="icon-remove icon-white"></i> Rimuovi</a>
 
                                 <!-- deleteFavorite -->
-                                <div id="deleteFavorite" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div id="deleteFavorite_<?php echo $row['id']; ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                     <h2 id="myModalLabel">Rimuovi Preferito</h2>
                                 </div>
                                 <div class="modal-body">
-                                    <h3>Vuoi davvero rimuovere, questo preferito dalla tua lista?</h3>
+                                    <h3>Vuoi davvero rimuovere <?php echo $row['title']; ?>, dalla tua lista dei preferiti?</h3>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn" data-dismiss="modal" aria-hidden="true">Annula</button>
