@@ -64,6 +64,8 @@ class AccountController extends Zend_Controller_Action
         $Access = new Zend_Session_Namespace( 'LastLogin' );
         $this->view->identity = $identity;
         $this->view->last_login = $Access->yourLoginTime;
+
+        $this->view->avatar = Plugin_Common::Control_Image('avatar', $identity->avatar);
     }
 
     /**
@@ -229,7 +231,7 @@ class AccountController extends Zend_Controller_Action
     {
        $id = $this->_getParam( 'item', 0 );
        $fav = new Application_Model_DbTable_Favorite();
-       if($fav->removefavorite($id)) $this->_redirect( '/account/favorites' ); 
+       if($fav->removefavorite($id)) $this->_redirect( '/account/favorites' );
     }
 
 
