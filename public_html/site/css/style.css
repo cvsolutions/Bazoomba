@@ -1,7 +1,6 @@
 body {
     background-image: url('bg.png');
     background-repeat: repeat;
-    padding-top: 51px;
 }
 
 .gallery {
@@ -23,5 +22,12 @@ body {
 #maps img {
     max-width: none;
 }
-#mapcanvas {width: 600px; height: 450px; }
-#mapcanvas img { max-width: none; }
+
+#mapcanvas {
+    width: 600px;
+    height: 450px;
+}
+
+#mapcanvas img {
+    max-width: none;
+}

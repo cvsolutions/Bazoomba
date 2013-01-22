@@ -207,8 +207,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
     /**
-     * Gli ultimi 100 annunci
-     * nelle vivinanze in base ad un ragio di 10km
+     * Gli ultimi annunci
+     * nelle vivinanze in base ad un ragio di 500km
      * da mostrare in homepage
      *
      * @param $latitude
@@ -332,8 +332,10 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
         switch ($params['type']) {
 
-            // ricerca globale
-            // concatenate con -> q / categorie / regioni
+            /**
+             * ricerca globale
+             * concatenate con -> q / categorie / regioni
+             */
             case 'global':
 
                 if ($params['category']) {
@@ -354,9 +356,11 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                 }
                 break;
 
-            // filtro per categorie
-            // concatenato per tipologia di annuncio
-            // tipologia di account user
+            /**
+             * filtro per categorie
+             * concatenato per tipologia di annuncio
+             * tipologia di account user
+             */
             case 'category':
                 if ($params['ads']) {
                     $query->where(sprintf('ads_shop.type = %d', $params['ads']));
@@ -367,14 +371,18 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                 $query->where(sprintf('ads_shop.category = %d', $params['id']));
                 break;
 
-            // filtro per sotto categorie
+            /**
+             * filtro per sotto categorie
+             */
             case 'sub_category':
                 $query->where(sprintf('ads_shop.sub_category = %d', $params['id']));
                 break;
 
-            // filtro per regione
-            // concatenato per tipologia di annuncio
-            // tipologia di account user
+            /**
+             * filtro per regione
+             * concatenato per tipologia di annuncio
+             * tipologia di account user
+             */
             case 'region':
                 if ($params['ads']) {
                     $query->where(sprintf('ads_shop.type = %d', $params['ads']));
@@ -385,7 +393,9 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                 $query->where(sprintf('ads_shop.region = %d', $params['id']));
                 break;
 
-            // filtro per provincia
+            /**
+             * filtro per provincia
+             */
             case 'province':
                 $query->where(sprintf('ads_shop.province = %d', $params['id']));
                 break;
@@ -550,6 +560,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
     /**
      * controlAds
+     * Verifico che l'annuncio
+     * appartiene all'user
      *
      * @param mixed   $id_ads ID Annuncio.
      *
@@ -577,6 +589,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
 
     /**
      * myshop
+     * La lista completa degli annunci online
      *
      * @param mixed   $id ID Annuncio.
      *
@@ -603,13 +616,16 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
         $query->order('ads_gallery.registered DESC');
         $query->where(sprintf('ads_shop.user = %d', $id));
-        // $query->where('ads_shop.status != 2');
+        $query->where('ads_shop.status != 2');
         $query->group('ads_shop.id');
         $query->order('ads_shop.registered DESC');
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
     /**
+     * Gli altri annunci dello stesso
+     * user, attivi e online
+     *
      * @param $id
      *
      * @return array
@@ -629,8 +645,39 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         );
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
         $query->where(sprintf('user = %d', $id));
+        $query->where('ads_shop.status = 1');
+        $query->where('ads_shop.expiration >= CURDATE()');
+        $query->where('ads_gallery.status = 1');
         $query->group('ads_shop.id');
         $query->order('ads_shop.registered DESC');
+        return $this->getDefaultAdapter()->fetchAll($query);
+    }
+
+    /**
+     * Gli annunci online nella pagina
+     * di ricerca globale
+     *
+     * @return array
+     */
+    public function SearchAdsPage()
+    {
+        $query = $this->getDefaultAdapter()->select();
+        $query->from(
+            'ads_shop', array(
+                             'id',
+                             'type',
+                             'title',
+                             'description',
+                             'price'
+                        )
+        );
+        $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));
+        $query->where('ads_shop.status = 1');
+        $query->where('ads_shop.expiration >= CURDATE()');
+        $query->where('ads_gallery.status = 1');
+        $query->group('ads_shop.id');
+        $query->order('RAND()');
+        $query->limit('0, 4');
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
@@ -666,6 +713,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
     /**
+     * Elimino l'annuncio definitivo
+     *
      * @param $id
      *
      * @return int
@@ -676,6 +725,9 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
     }
 
     /**
+     * Aggiorno quante volte è stato
+     * visualizzato l'annuncio
+     *
      * @param $id
      *
      * @return int

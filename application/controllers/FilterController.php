@@ -56,6 +56,9 @@ class FilterController extends Zend_Controller_Action
         $form = new Application_Form_Filter();
         $this->view->searchForm = $form->search();
 
+        $shop = new Application_Model_DbTable_Shop();
+        $this->view->list = $shop->SearchAdsPage();
+
         /* la lista delle regioni */
         $region = new Application_Model_DbTable_Region();
         $this->view->region = $region->fetchAll();
