@@ -254,6 +254,16 @@ class Application_Form_Shop extends Zend_Form
     public function addMedia() {
         $this->setAttrib( 'id', 'addMedia' );
 
+        $title = new Zend_Form_Element_Text( 'title' );
+        $title->setLabel( 'Descrivi questa foto' );
+        $title->setRequired( true );
+        $title->addValidator( 'NotEmpty' );
+        $title->setAttrib( 'placeholder', 'Descrivi questa foto' );
+        $title->addFilters( array(
+                'StringTrim',
+                'StripTags'
+            ) );
+
         $image = new Zend_Form_Element_File( 'image' );
         $image->setLabel( 'File' );
         $image->setDestination( sprintf( '%s/uploaded/ads', $_SERVER['DOCUMENT_ROOT'] ) );
@@ -264,7 +274,7 @@ class Application_Form_Shop extends Zend_Form
         $submit->setLabel( 'Insersci Immagine' );
         $submit->setAttrib( 'class', 'btn btn-primary' );
 
-        return $this->addElements( array( $image, $submit ) );
+        return $this->addElements( array($title, $image, $submit ) );
     }
 
     /**

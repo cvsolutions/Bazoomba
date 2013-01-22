@@ -450,10 +450,11 @@ class ShopController extends Zend_Controller_Action
                 $form_data = $this->getRequest()->getPost();
                 if ($form->isValid($form_data)) {
                     $image = $form->getValue('image');
+                    $title = $form->getValue('title');
                     $id = $this->_getParam('id');
 
                     $media = new Application_Model_DbTable_Gallery();
-                    $media->addMedia($id, $image, 0);
+                    $media->addMedia($id, $image, $title, 0);
 
                     $shop->updateStep($id_ads, 2);
 
@@ -528,6 +529,7 @@ class ShopController extends Zend_Controller_Action
 
         $shop = new Application_Model_DbTable_Shop();
         $this->view->myshop = $shop->myshop($identity->id);
+
     }
 
     /**

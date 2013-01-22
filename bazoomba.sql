@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Gen 17, 2013 alle 22:01
+-- Generato il: Gen 22, 2013 alle 16:55
 -- Versione del server: 5.5.25
 -- Versione PHP: 5.4.4
 
@@ -8271,6 +8271,7 @@ CREATE TABLE `ads_favorites` (
 CREATE TABLE `ads_gallery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `shop` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `page` int(11) NOT NULL,
@@ -8280,18 +8281,23 @@ CREATE TABLE `ads_gallery` (
   PRIMARY KEY (`id`),
   KEY `shop` (`shop`),
   KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dump dei dati per la tabella `ads_gallery`
 --
 
-INSERT INTO `ads_gallery` (`id`, `image`, `shop`, `status`, `page`, `registered`, `modified`, `ip_address`) VALUES
-(1, '50f314aa0c086.jpg', 66225, 1, 0, '2013-01-13 21:10:18', '0000-00-00 00:00:00', '127.0.0.1'),
-(2, '50f315332b1c7.jpg', 12058, 1, 0, '2013-01-13 21:12:35', '0000-00-00 00:00:00', '127.0.0.1'),
-(3, '50f315c341dbc.jpg', 33831, 1, 0, '2013-01-13 21:14:59', '0000-00-00 00:00:00', '127.0.0.1'),
-(4, '50f3174947f97.jpg', 85246, 1, 0, '2013-01-13 21:21:29', '0000-00-00 00:00:00', '127.0.0.1'),
-(5, '50f31a690c799.jpg', 42533, 1, 0, '2013-01-13 21:34:49', '0000-00-00 00:00:00', '127.0.0.1');
+INSERT INTO `ads_gallery` (`id`, `image`, `title`, `shop`, `status`, `page`, `registered`, `modified`, `ip_address`) VALUES
+(1, '50f314aa0c086.jpg', '', 66225, 1, 0, '2013-01-13 21:10:18', '0000-00-00 00:00:00', '127.0.0.1'),
+(2, '50f315332b1c7.jpg', '', 12058, 1, 0, '2013-01-13 21:12:35', '0000-00-00 00:00:00', '127.0.0.1'),
+(3, '50f315c341dbc.jpg', '', 33831, 1, 0, '2013-01-13 21:14:59', '0000-00-00 00:00:00', '127.0.0.1'),
+(4, '50f3174947f97.jpg', '', 85246, 1, 0, '2013-01-13 21:21:29', '0000-00-00 00:00:00', '127.0.0.1'),
+(5, '50f31a690c799.jpg', '', 42533, 1, 0, '2013-01-13 21:34:49', '0000-00-00 00:00:00', '127.0.0.1'),
+(6, '50faa3116afa8.jpg', '', 16812, 1, 0, '2013-01-19 14:43:45', '0000-00-00 00:00:00', '127.0.0.1'),
+(7, '50faa31736a0f.jpg', '', 16812, 1, 0, '2013-01-19 14:43:51', '0000-00-00 00:00:00', '127.0.0.1'),
+(8, '50feb42119553.jpg', 'Macbook retina Vista con serfista', 75377, 1, 0, '2013-01-22 16:45:37', '0000-00-00 00:00:00', '127.0.0.1'),
+(9, '50feb44ce2f89.jpg', 'Macbook Vista Dall''Alto', 75377, 1, 0, '2013-01-22 16:46:20', '0000-00-00 00:00:00', '127.0.0.1'),
+(10, '50feb45e2973f.jpg', 'Macbook Vista centrale', 75377, 1, 0, '2013-01-22 16:46:38', '0000-00-00 00:00:00', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8644,10 +8650,12 @@ CREATE TABLE `ads_shop` (
 
 INSERT INTO `ads_shop` (`id`, `code`, `category`, `sub_category`, `region`, `province`, `city`, `user`, `type`, `title`, `price`, `description`, `tags`, `latitude`, `longitude`, `status`, `terms`, `step`, `registered`, `modified`, `expiration`, `visits`, `computer`, `ip_address`) VALUES
 (66225, '7NI9VN', 59368, 21735, 15, 22, 7659, 16429, 4, 'iphone 4s nuovo o rigenerato', 350.00, 'Ragazzi oggi ho ricevuto il mio iphone 4s in sostituzione e volevo capire se era rigenerato o nuovo solo per curiositÃ ''.', 'nuovo, telefono, iphone, 3g', 37.727053, 15.184054, 1, 1, 3, '2013-01-13 21:09:37', '2013-01-13 21:11:03', '2013-03-14', 0, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
-(12058, 'XBAX41', 37278, 63961, 15, 53, 7546, 16429, 5, 'Makkina fotografica ottima', 450.00, 'The Unix epoch (or Unix time or POSIX time or Unix timestamp) is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), not counting leap seconds (in ISO 8601: 1970-01-01T00:00:00Z). Literally speaking the epoch is Unix time 0 (midnight 1/1/1970), but ''epoch'' is often used as a synonym for ''Unix time''. Many Unix systems store epoch dates as a signed 32-bit integer, which might cause problems on January 19, 2038 (known as the Year 2038 problem or Y2038).  \n', 'nikon, nuova f345', 37.851637, 15.285313, 1, 1, 3, '2013-01-13 21:12:30', '2013-01-13 21:12:44', '2013-03-14', 1, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
+(12058, 'XBAX41', 37278, 63961, 15, 53, 7546, 16429, 5, 'Makkina fotografica ottima', 450.00, 'The Unix epoch (or Unix time or POSIX time or Unix timestamp) is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), not counting leap seconds (in ISO 8601: 1970-01-01T00:00:00Z). Literally speaking the epoch is Unix time 0 (midnight 1/1/1970), but ''epoch'' is often used as a synonym for ''Unix time''. Many Unix systems store epoch dates as a signed 32-bit integer, which might cause problems on January 19, 2038 (known as the Year 2038 problem or Y2038).  \n', 'nikon, nuova f345', 37.851637, 15.285313, 1, 1, 3, '2013-01-13 21:12:30', '2013-01-13 21:12:44', '2013-03-14', 5, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
 (33831, 'SV6FSB', 15177, 44693, 9, 54, 1803, 94016, 4, 'How to get the current epoch time in ...', 100.00, 'Please note: All tools on this page are based on the time settings of your computer and use JavaScript to convert times. JavaScript does not support leap seconds.\n', 'nuovo, ciao', 45.529593, 9.041606, 1, 1, 2, '2013-01-13 21:14:54', '2013-01-13 21:15:06', '2013-03-14', 1, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
 (85246, '65YE6X', 97023, 81617, 15, 22, 7658, 94016, 1, 'Lorem Ipsum - All the facts - Lipsum generator', 120.00, 'Lorem Ipsum Ã¨ un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum Ã¨ considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblÃ² per preparare un testo campione. Ãˆ sopravvissuto non solo a piÃ¹ di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni â€™60, con la diffusione dei fogli di caratteri trasferibili â€œLetrasetâ€, che contenevano passaggi del Lorem Ipsum, e piÃ¹ recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.\n', 'lorem', 37.793014, 15.207856, 1, 1, 2, '2013-01-13 21:21:25', '2013-01-13 21:21:39', '2013-03-14', 0, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
-(42533, 'HIQABK', 37278, 73647, 15, 61, 7438, 16429, 1, 'Castel Brando Hotel', 1000.00, 'Veneto, Treviso, Cison di Valmarino,Tovena, San Boldo, Soller, Gai, Zuel, Rolle, Mura, Area Turismo, Arte, Cultura, Tradizioni, Musei, Dove Mangiare, Dove ...\n', 'Musei', 38.155087, 13.108810, 1, 1, 2, '2013-01-13 21:34:45', '2013-01-13 21:35:15', '2013-03-14', 3, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1');
+(42533, 'HIQABK', 37278, 73647, 15, 61, 7438, 16429, 1, 'Castel Brando Hotel', 1000.00, 'Veneto, Treviso, Cison di Valmarino,Tovena, San Boldo, Soller, Gai, Zuel, Rolle, Mura, Area Turismo, Arte, Cultura, Tradizioni, Musei, Dove Mangiare, Dove ...\n', 'Musei', 38.155087, 13.108810, 1, 1, 2, '2013-01-13 21:34:45', '2013-01-13 21:35:15', '2013-03-14', 3, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
+(16812, 'AUXIJ9', 84842, 17318, 15, 53, 7546, 38892, 2, 'Ferrari 360 Modena - Nuova', 200000.00, 'La 360 Modena Ã¨ una berlinetta sportiva che monta un motore a benzina con trazione posteriore. La "piccola" di casa Ferrari ha preso parte a numerosi eventi sportivi con la versione Challenge, alleggerita rispetto al modello di base ma con lo stesso motore. Questo nuovo modello segna una svolta decisiva per la storia della Ferrari, infatti non ha piÃ¹ i fanali anteriori "a scomparsa", sostituiti da altri "a vista" con nuove tecnologie di illuminazione; non presenta piÃ¹ neanche le classiche linee tese, come la sua progenitrice, la Ferrari F355. Il motore ora Ã¨ il nuovo V8 a 5 valvole per cilindro, con angolo di 90Â° e con cilindrata portata a 3.586 cmÂ³, ed eroga 400 cavalli a 8500 giri/minuto. Grazie ad un largo impiego di alluminio, ora ha un peso minore del 28% rispetto alla F355, nonostante abbia delle dimensioni maggiori.\nNel 2000 Ã¨ nata la 360 Spider, con tetto in tela ripiegabile elettricamente. Disponibile anche con il cambio F1 di diretta derivazione dai modelli di Formula 1.\nUna caratteristica particolare di questo modello Ã¨ il fatto che il motore, in posizione posteriore, Ã¨ in bella vista attraverso il lunotto posteriore della vettura.\nL''ultima versione presentata in ordine di tempo, nel 2003, Ã¨ la Challenge Stradale, prodotta in 1.274 esemplari,[1] che ripresenta la carrozzeria coupÃ© della versione Modena ma con alcuni accorgimenti piÃ¹ corsaioli come l''adozione di impianto frenante costituito da dischi in materiale composito carbo-ceramicodi, assetto ribassato di 15 mm, paraurti anteriore con due aperture laterali, minigonne piÃ¹ marcate, un piccolo rialzo del cofano del vano motore con funzione di spoiler, specchi retrovisori in carbonio, cerchi da 19â€ con disegno di origine Challenge, sedili con guscio in carbonio. Le modifiche piÃ¹ importanti per l''incremento delle prestazioni sono l''incremento della potenza del motore portata a 425 CV e un alleggerimento della vettura grazie ad un maggiore utilizzo di metalli piÃ¹ leggeri (per esempio titanio per le molle degli ammortizzatori e bulloni ruota) e carbonio utilizzato sia in particolari strutturali sia in elementi di finizione esterni ed interni. In questo modo il peso della Challenge Stradale scende a 1.180 kg. Anche il cambio elettroattuato con levette al volante denominato "F1" Ã¨ stato velocizzato dai 200 millisecondi della Modena ai 150 della Challenge Stradale e l''aerodinamica Ã¨ stata migliorata con un piÃ¹ accentuato splitter anteriore che ha consentito di incrementare del 50% il carico verticale rispetto alla 360 Modena. Con questa versione speciale della 360 Modena, si voleva arrivare ad un obiettivo preciso: quello di regalare al guidatore delle sensazioni che solo un''auto da competizione riesce a dare utilizzandola, oltre che in pista, anche su strada.', 'ferrari 360', 37.851637, 15.285313, 1, 1, 3, '2013-01-19 14:41:51', '2013-01-19 14:47:20', '2013-03-20', 10, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1'),
+(75377, 'YKKPSC', 59368, 83323, 15, 53, 7546, 38892, 2, 'Nuovo Macbook Pro 15"', 1400.00, 'Il MacBook Pro Ã¨ un computer portatile, prodotto e venduto dalla Apple Computer e dedicato all''utente evoluto o all''utente professionale, basato su un processore Intel dual-core ed Ã¨ il successore del PowerBook G4. Il modello iniziale con lo schermo a 15,4 pollici viene annunciato da Steve Jobs al Macworld Expo il 10 gennaio 2006. La commercializzazione del MacBook Pro comincia nella metÃ  di febbraio 2006.[1][2] Il 24 aprile 2006 segue una nuova versione con lo schermo da 17 pollici, che rimpiazza il PowerBook G4 17". Il 24 ottobre 2006 Apple rilascia la nuova versione con processore Intel Core 2 Duo. Il 5 giugno 2007 Apple rilascia la nuova versione di MacBook Pro con piattaforma Intel Santa Rosa. Il 26 febbraio 2008 Apple rilascia la nuova versione di MacBook Pro con piattaforma Intel Penryn.\nIl MacBook Pro e il nuovo iMac Core Duo sono i primi computer Apple a montare processori Intel invece che PowerPC. Il Mac mini con processore Intel Ã¨ stato presentato alcune settimane dopo. Il resto della linea di prodotti Apple Ã¨ passato a Intel completamente con l''arrivo del Mac Pro il 7 agosto 2006.\n\nL''8 giugno 2009 alla WWDC di San Francisco vengono aggiornati i nuovi modelli della linea MacBook Pro. Il design Ã¨ costituito da un guscio unico in alluminio denominato "UniBody" (presentati nella conferenza di Settembre "Spotlights turns on Notebook") sempre nei modelli da 15 e 17 pollici. Sempre lo stesso giorno Apple annuncia che il MacBook Late 2008 cambia nome ed entra ufficialmente a far parte della famiglia dei nuovi MacBook Pro. \n\nDi conseguenza la nuova famiglia dei MacBook Pro Ã¨ formata da tre prodotti: la versione da 13 pollici (disponibile in due varianti) il modello da 15 pollici ( disponibile in tre differenti varianti) e il modello da 17 pollici (in un''unica variante). Tutta la nuova famiglia dei MacBook Pro include sotto la scocca in alluminio nuovi processori piÃ¹ potenti, nuovi dischi rigidi capienti e potenti allo stesso tempo e nuovissime schede grafiche che vengono fornite da Nvidia. \n\nDue dei modelli da 15 e il modello unico da 17 contengono al loro interno due differenti schede grafiche una piÃ¹ potente dell''altra; in questo modo il MacBook Pro passa automaticamente da una scheda grafica all''altra, nel caso in cui la meno potente non riesca soddisfare le prestazioni grafiche di cui necessita la macchina. tutti i nuovi MacBook Pro possiedono una tastiera nera retroilluminata e schermi lucidi (in cristallo polarizzato) anch''essi con tecnologia a retroilluminazione LED. Il 13 aprile 2010 Apple aggiorna l''intera linea dei MacBook Pro (Unibody). I modelli da 15 e 17 pollici utilizzano processori Intel Core i5 e Core i7. L''11 giugno 2012, durante la WWDC, vengono presentati i nuovi MacBook Pro da 13 e 15 pollici, con aggiornamenti hardware. Il modello da 17 pollici non viene piÃ¹ messo in commercio ma subentra un nuovo modello di MacBook Pro: il "next-generation MacBook Pro", con display Retina, nuovi processori Ivy Bridge e una nuova scheda grafica Nvidia, con tecnologia Kepler e uno spessore di 18 millimetri.', 'macbook pro 2012, nuovo macbook', 37.851637, 15.285313, 1, 1, 3, '2013-01-22 16:42:08', '2013-01-22 16:47:10', '2013-03-23', 4, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8685,7 +8693,8 @@ CREATE TABLE `ads_user` (
 INSERT INTO `ads_user` (`id`, `type`, `name`, `avatar`, `email`, `pwd`, `serialkey`, `telephone`, `phone_show`, `vat`, `name_company`, `status`, `role`, `newsletter`, `registered`, `modified`, `last_login`, `ip_address`) VALUES
 (16429, 1, 'Concetto Vecchio', '50f2993d55079.jpg', 'webcr@hotmail.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a22a7236bb8f9fe8d42e0cf176674d2edc45c942', '095123987', 0, '', '', 1, 'user', 1, '2012-12-10 19:52:07', '2013-01-13 12:23:41', '2013-01-17 20:57:50', '127.0.0.1'),
 (94016, 2, 'cvsolutions', '50f29a89700b1.jpg', 'info@cvsolutions.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'a83977e45eadcdedefb50a944a3272c8b48df4b5', '095123987', 0, 'cvsolutions', 'cvsolutions', 1, 'user', 1, '2012-12-10 20:00:27', '2013-01-13 12:29:13', '2013-01-15 21:54:33', '127.0.0.1'),
-(14034, 1, 'Pinco Pallino', '', 'info@pippo.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'feaf4c00da53de0b5c96277a56f047a0a442113a', '0', 0, '', '', 1, 'user', 1, '2012-12-10 20:08:59', '2012-12-10 20:09:13', '2012-12-10 20:09:45', '127.0.0.1');
+(14034, 1, 'Pinco Pallino', '', 'info@pippo.it', '34aed5f48ed5bbd1fd10a23b8b13c3aeac01c4a6', 'feaf4c00da53de0b5c96277a56f047a0a442113a', '0', 0, '', '', 1, 'user', 1, '2012-12-10 20:08:59', '2012-12-10 20:09:13', '2012-12-10 20:09:45', '127.0.0.1'),
+(38892, 2, 'Vincenzo Provenza', '', 'vichi89@hotmail.it', 'fc0ee89b1e0d0ed83730414a0f7999b557fa0292', '2aa7617c2512214ecf4fb0d2fa5c50e5d5695c5d', '3405863783', 1, '098983738', 'I Love Code', 1, 'user', 1, '2013-01-19 14:38:40', '2013-01-19 14:40:21', '2013-01-22 16:36:50', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -8704,7 +8713,7 @@ CREATE TABLE `ads_video` (
   `ip_address` varchar(255) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dump dei dati per la tabella `ads_video`
@@ -8723,7 +8732,9 @@ INSERT INTO `ads_video` (`id`, `user`, `shop`, `type`, `url`, `registered`, `mod
 (14, 16429, 12058, 1, '', '2013-01-13 21:12:30', '0000-00-00 00:00:00', '127.0.0.1', 1),
 (15, 94016, 33831, 1, '', '2013-01-13 21:14:54', '0000-00-00 00:00:00', '127.0.0.1', 1),
 (16, 94016, 85246, 1, '', '2013-01-13 21:21:25', '0000-00-00 00:00:00', '127.0.0.1', 1),
-(17, 16429, 42533, 1, '', '2013-01-13 21:34:45', '0000-00-00 00:00:00', '127.0.0.1', 1);
+(17, 16429, 42533, 1, '', '2013-01-13 21:34:45', '0000-00-00 00:00:00', '127.0.0.1', 1),
+(18, 38892, 16812, 1, '', '2013-01-19 14:41:51', '0000-00-00 00:00:00', '127.0.0.1', 1),
+(19, 38892, 75377, 1, '', '2013-01-22 16:42:08', '0000-00-00 00:00:00', '127.0.0.1', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

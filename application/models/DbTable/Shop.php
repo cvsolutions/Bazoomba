@@ -610,7 +610,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                              'registered',
                              'expiration',
                              'status',
-                             'step'
+                             'step',
+                             'visits'
                         )
         );
         $query->joinLeft('ads_gallery', 'ads_shop.id = ads_gallery.shop', array('photo' => 'image'));

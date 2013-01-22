@@ -10,14 +10,14 @@
                 <div style="background-color: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: -25px;">
 
                     <?php if ($this->myshop): ?>
-                    <div class="btn-group">
+<!--                    <div class="btn-group">
                     <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Annunci (<?php echo count($this->myshop); ?>) <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <li><a href="#">Ordina Per Attivi</a></li>
                         <li><a href="#">Ordina Per Sospesi</a></li>
                         <li><a href="#">Ordina Per Data</a></li>
                     </ul>
-                    </div><!-- /btn-group -->
+                    </div> /btn-group -->
 
 
 
@@ -58,6 +58,8 @@
 
                                 <?php if($row['step'] == 3 AND $row['status'] == 1): ?>
                                 <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>" class="btn btn-success"><i class="icon-ok icon-white"></i> Attivo</a>
+
+                                <button class="btn btn-success"><i class="icon-signal"></i> <?php echo $row['visits']; ?> Visite</button>
 
                                 <div class="btn-group">
                                 <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="icon-remove"></i> Elimina Annuncio <span class="caret"></span></button>
