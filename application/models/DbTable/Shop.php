@@ -226,7 +226,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                              'title',
                              'latitude',
                              'longitude',
-                             'price'
+                             new Zend_Db_Expr('FORMAT(price,2) AS price')
                         )
         );
         $query->join('ads_category', 'ads_shop.category = ads_category.id', array('name_category' => 'name'));

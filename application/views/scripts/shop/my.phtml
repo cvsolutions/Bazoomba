@@ -1,4 +1,8 @@
-<?php echo $this->headTitle('I miei annunci - '.$this->identity->name.''); ?>
+<?php
+echo $this->headTitle('I miei annunci - '.$this->identity->name.'');
+$locale = new Zend_Locale('it_IT');
+?>
+
 <div class="container" style="background-color: #f0f0f0; border-radius: 15px; margin-top: 20px;">
 
     <?php echo $this->render('globals/menu_user.phtml'); ?>
@@ -42,7 +46,7 @@
                                 <h4><?php echo $row['title']; ?></h4>
                                 <?php endif; ?>
                                 <p><?php echo $this->truncate($row['description']); ?></p>
-                                <h4>€ <?php echo $row['price']; ?> - Inserito il <?php echo new Zend_Date($row['registered']); ?></h4>
+                                <h4>€ <?php echo Zend_Locale_Format::toNumber($row['price'], array('precision' => 2, 'locale' => $locale)); ?> - Inserito il <?php echo new Zend_Date($row['registered']); ?></h4>
 
                                 <?php if($row['step'] == 1 AND $row['status'] == 0): ?>
                                 <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'media', 'id' => $row['id']), null, true); ?>" class="btn btn-warning">Aggiungi Immagini</a>

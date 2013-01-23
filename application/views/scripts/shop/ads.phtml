@@ -1,4 +1,9 @@
-<?php echo $this->headTitle(sprintf('%s | %s | %s', $this->row['title'], $this->category['name'], $this->region['name'])); ?>
+<?php
+echo $this->headTitle(sprintf('%s | %s | %s', $this->row['title'], $this->category['name'], $this->region['name']));
+$locale = new Zend_Locale('it_IT');
+?>
+
+
 
 <?php if ($this->user['type'] == 2 AND count($this->othersAdsPage) > 1): ?>
 <div class="container" style="margin-top: 20px; margin-bottom: -20px;">
@@ -104,7 +109,7 @@
                 <div class="row">
                     <div class="span3">
                         <div style="padding:12px;">
-                            <h2 class="pull-right"> € <?php echo $this->row['price']; ?></h2>
+                            <h2 class="pull-right"> € <?php echo Zend_Locale_Format::toNumber($this->row['price'], array('precision' => 2, 'locale' => $locale)); ?></h2>
                         </div>
                     </div>
                 </div>
@@ -209,7 +214,7 @@
                         <div style="padding:12px;">
                             <div style="background: #fff; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                             <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=320">
-                                <center><h5><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a> <br /> € <?php echo $row['price']; ?></h5></center>
+                                <center><h5><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a> <br /> € <?php echo Zend_Locale_Format::toNumber($row['price'], array('precision' => 2, 'locale' => $locale)); ?></h5></center>
                             </div>
                         </div>
                     </div>

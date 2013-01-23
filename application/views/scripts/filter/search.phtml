@@ -1,4 +1,7 @@
-<?php echo $this->headTitle('Ricerca'); ?>
+<?php
+echo $this->headTitle('Ricerca');
+$locale = new Zend_Locale('it_IT');
+?>
 
 <!-- list ads -->
 <h1>Circa <?php echo $this->total_list; ?> risultati</h1>
@@ -8,7 +11,7 @@
 		<li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></li>
 		<li><?php echo $this->truncate($row['description']); ?></li>
 		<li><?php echo $row['category']; ?>, <?php echo $row['region']; ?>, <?php echo $row['province']; ?></li>
-		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo $row['price']; ?></li>
+		<li><?php echo $this->type_ads[$row['type']]; ?>, € <?php echo Zend_Locale_Format::toNumber($row['price'], array('precision' => 2, 'locale' => $locale)); ?></li>
 		<li><?php echo $this->type_user[$row['type_user']]; ?></li>
 		<li><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=100&height=100"></li>
 	</ul>
