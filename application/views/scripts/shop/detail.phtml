@@ -1,4 +1,7 @@
-<?php $this->layout()->setLayout('login'); ?>
+<?php
+$this->layout()->setLayout('login');
+$locale = new Zend_Locale('it_IT');
+?>
 
 <div class="">
 	<?php echo $this->render('globals/menu_admin.phtml'); ?>
@@ -84,7 +87,7 @@
 						</tr>
 						<tr>
 							<td>Prezzo</td>
-							<td>€ <?php echo $this->row['price']; ?></td>
+							<td>€ <?php echo Zend_Locale_Format::toNumber($this->row['price'], array('precision' => 2, 'locale' => $locale)); ?></td>
 						</tr>
 					</tbody>
 				</table>
