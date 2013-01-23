@@ -8,8 +8,13 @@ $locale = new Zend_Locale('it_IT');
     <div class="row">
         <div class="span12">
             <div class="alert alert-box">
-                Questo annuncio √® gestito da un azienda verificata <strong>( <?php echo ucwords($this->user['name_company']); ?> )</strong>. Guarda tutti gli altri annunci <strong><?php echo ucwords($this->user['name_company']); ?>.</strong>
-                <span class="pull-right"><a href="#"><button class="btn btn-mini btn" type="button"><i class="icon-tags"></i> Altri Annunci (<?php echo count($this->othersAdsPage); ?>)</button></a></span>
+                Questo annuncio è gestito da un azienda verificata <strong>( <?php echo ucwords($this->user['name_company']); ?> )</strong>. 
+                Guarda tutti gli altri annunci <strong><?php echo ucwords($this->user['name_company']); ?>.</strong>
+                <span class="pull-right">
+                <a href="#">
+                <button class="btn btn-mini btn" type="button"><i class="icon-tags"></i> Altri Annunci (<?php echo count($this->othersAdsPage); ?>)</button>
+                </a>
+                </span>
             </div>
         </div>
     </div><!--row-->
@@ -38,10 +43,10 @@ $locale = new Zend_Locale('it_IT');
             <div class="pull-left" style="padding: 12px;">
                 <strong>#<?php echo $this->row['code']; ?> - <?php echo new Zend_Date($this->row['registered']); ?></strong>
                 <a href="#"><button class="btn btn-mini" type="button"><?php echo $this->type_ads[$this->row['type']]; ?></button></a>
-                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id']), null, true); ?>"><button class="btn btn-mini" type="button"><?php echo $this->region['name']; ?></button></a>
-                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'province', 'item' => $this->province['id'], 'parent' => $this->region['id']), null, true); ?>"><button class="btn btn-mini" type="button"><?php echo $this->province['name']; ?></button></a>
-                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id']), null, true); ?>"><button class="btn btn-mini" type="button"><?php echo $this->category['name']; ?></button></a>
-                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'subcategory', 'item' => $this->category['id'], 'parent' => $this->sub_category['id']), null, true); ?>"><button class="btn btn-mini" type="button"><?php echo $this->sub_category['name']; ?></button></a>
+                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id']), null, true); ?>/<?php echo $this->seourl($this->region['name']); ?>"><button class="btn btn-mini" type="button"><?php echo $this->region['name']; ?></button></a>
+                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'province', 'item' => $this->province['id'], 'parent' => $this->region['id']), null, true); ?>/<?php echo $this->seourl($this->province['name']); ?>"><button class="btn btn-mini" type="button"><?php echo $this->province['name']; ?></button></a>
+                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id']), null, true); ?>/<?php echo $this->seourl($this->category['name']); ?>"><button class="btn btn-mini" type="button"><?php echo $this->category['name']; ?></button></a>
+                <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'subcategory', 'item' => $this->category['id'], 'parent' => $this->sub_category['id']), null, true); ?>/<?php echo $this->seourl($this->sub_category['name']); ?>"><button class="btn btn-mini" type="button"><?php echo $this->sub_category['name']; ?></button></a>
             </div><!--pull-left-->
 
             <div class="pull-right" style="padding: 12px;">

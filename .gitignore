@@ -1,5 +1,6 @@
 library
 .DS_Store
 .idea
-library/Zend/.DS_Store
-.zfproject.xml
+.buildpath
+.project
+.settings
