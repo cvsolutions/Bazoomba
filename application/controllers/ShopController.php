@@ -276,8 +276,6 @@ class ShopController extends Zend_Controller_Action
      */
     public function adsAction()
     {
-
-
         Plugin_Common::Chech_Off_Line();
         $id = $this->_getParam('show', 0);
 

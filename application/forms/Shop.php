@@ -22,7 +22,8 @@ class Application_Form_Shop extends Zend_Form
      * @return mixed Value.
      */
     public function init() {
-        /* Form Elements & Other Definitions Here ... */
+
+        
     }
 
     /**

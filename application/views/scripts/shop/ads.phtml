@@ -148,13 +148,27 @@ $locale = new Zend_Locale('it_IT');
 
                             <?php if ($this->user['type'] == 1): ?>
 
-                            <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=avatar&image=<?php echo $this->avatar; ?>&width=480&height=320" alt="<?php echo $this->user['name']; ?>" title="<?php echo $this->user['name']; ?>"/>
+                             <?php if($this->avatar == 0): ?>
+                            <?php echo $this->gravatar($this->user['email'], array('imgSize' => 480)); ?>
+                            <?php else: ?>
+                            <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=avatar&image=<?php echo $this->avatar; ?>&width=480&height=320" alt="<?php echo $this->identity->name; ?>" title="<?php echo $this->identity->name; ?>"/>
+                            <?php endif; ?>
                             <center><h4><?php echo $this->user['name']; ?></h4></center>
                             <center><h5><?php if ($this->user['phone_show'] == 1): ?>Tel. <?php echo $this->user['telephone']; ?><?php endif ?></h5></center>
 
                             <?php else: ?>
+                            <?php if($this->logo == 0): ?>
 
+                            <?php if($this->avatar == 0): ?>
+                            <?php echo $this->gravatar($this->user['email'], array('imgSize' => 480)); ?>
+                            <?php else: ?>
+                            <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=avatar&image=<?php echo $this->avatar; ?>&width=480&height=320" alt="<?php echo $this->identity->name; ?>" title="<?php echo $this->identity->name; ?>"/>
+                            <?php endif; ?>
+
+                            <?php else: ?>
                             <center><img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=logo&image=<?php echo $this->logo; ?>&width=480&height=320" alt="<?php echo $this->user['name_company']; ?>" title="<?php echo ucwords($this->user['name_company']); ?>"/></center>
+                            <?php endif; ?>
+
 
                             <?php if(count($this->page) == 0): ?>
                                 <center><h4><?php echo ucwords($this->user['name_company']); ?></h4></center>
