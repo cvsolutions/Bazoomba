@@ -34,6 +34,15 @@ $locale = new Zend_Locale('it_IT');
 
             <div class="row">
                 <div class="span3">
+                    <div class="alert alert-success">
+                        <p>Price range <span id="amount"></span></p>
+                        <div id="slider-range"></div>
+                     </div>
+                </div><!--span3-->
+            </div><!--row-->
+            
+            <div class="row">
+                <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
                      <?php foreach ($this->type_user as $key => $value): ?>
                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id'], 'ads' => $key), null, true); ?>"><?php echo $value; ?></a></li>
@@ -101,7 +110,7 @@ $locale = new Zend_Locale('it_IT');
                     <?php $cnt = 1; ?>
                     <?php foreach ($this->list as $row): ?>
 
-                        <li class="span3" style="background: #fff;">
+                        <li class="span3 box_ads" id="range_<?php echo sprintf('%d', $row['price']); ?>" style="background: #fff;">
                         <div class="thumbnail">
                         <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360" alt="<?php echo $row['title']; ?>" title="<?php echo $row['title']; ?>">
                         <div class="caption" style="min-height: 170px;">
@@ -137,28 +146,36 @@ $locale = new Zend_Locale('it_IT');
 
         </div><!--spam10-->
 
-
-
-
-
     </div><!--row-->
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </div><!--container-->
 
-
+<script type="text/javascript">
+$(function() {
+	
+	$("#slider-range").slider({
+		range : true,
+		// step: 50,
+		min : <?php echo min($this->range); ?>,
+		max : <?php echo max($this->range); ?>,
+		values: [ <?php echo min($this->range); ?>,<?php echo max($this->range); ?> ],
+		value : [ <?php echo implode(', ', array_reverse($this->range)); ?> ],
+		slide : function(event, ui) {
+			$('.box_ads').hide('').attr('cnt', '');
+			$("#amount").html("&euro; " + ui.values[0] + " - &euro; " + ui.values[1]);
+			for (var i = ui.values[0]; i <= ui.values[1]; i++) {
+				$('#range_' + i).attr('cnt', 'show').show('slow');
+			}
+			var total = $('.box_ads[cnt=show]').length;
+			$('.cnt_range').html(total);		
+		}
+	});
+	$("#amount").html(
+			"&euro; " + $("#slider-range").slider("values", 0) + " - &euro; "
+					+ $("#slider-range").slider("values", 1));
+});
+</script>
 
 
 
