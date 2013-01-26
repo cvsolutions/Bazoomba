@@ -118,7 +118,7 @@ $locale = new Zend_Locale('it_IT');
                         <div class="thumbnail">
                         <img src="<?php echo $this->serverUrl(); ?>/image.php?mode=crop&folder=ads&image=<?php echo $row['photo']; ?>&width=480&height=360" alt="<?php echo $row['title']; ?>" title="<?php echo $row['title']; ?>">
                         <div class="caption" style="min-height: 170px;">
-                            <h4><a class="hh" rel="tooltip" data-placement="top" title="Tooltip on top" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></h4>
+                            <h4><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></h4>
                             <p><?php echo $this->truncate($row['description'])->toLength(100); ?></p>
                             <p><a href="#" class="btn btn-warning">€ <?php echo Zend_Locale_Format::toNumber($row['price'], array('precision' => 2, 'locale' => $locale)); ?></a>
                             <button rel="tooltip" title="Tip Utente <?php echo $this->type_user[$row['type_user']]; ?> - <?php echo $row['category']; ?> - <?php echo $row['province']; ?>" type="button" class="btn"><i class="icon-info-sign"></i></button></p>
@@ -164,10 +164,10 @@ $(function() {
 		values: [ <?php echo min($this->range); ?>,<?php echo max($this->range); ?> ],
 		value : [ <?php echo implode(', ', array_reverse($this->range)); ?> ],
 		slide : function(event, ui) {
-			$('.box_ads').hide('').attr('cnt', '');
+			$('.box_ads').hide().attr('cnt', '');
 			$("#amount").html("&euro; " + ui.values[0] + " - &euro; " + ui.values[1]);
 			for (var i = ui.values[0]; i <= ui.values[1]; i++) {
-				$('#range_' + i).attr('cnt', 'show').show('slow');
+				$('#range_' + i).attr('cnt', 'show').fadeIn();
 			}
 			var total = $('.box_ads[cnt=show]').length;
 			$('.cnt_range').html(total);
