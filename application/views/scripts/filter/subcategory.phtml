@@ -107,7 +107,7 @@ $locale = new Zend_Locale('it_IT');
                             <h4><a class="hh" rel="tooltip" data-placement="top" title="Tooltip on top" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></h4>
                             <p><?php echo $this->truncate($row['description'])->toLength(100); ?></p>
                             <p><a href="#" class="btn btn-warning">€ <?php echo Zend_Locale_Format::toNumber($row['price'], array('precision' => 2, 'locale' => $locale)); ?></a>
-                            <button title="Tip Utente <?php echo $this->type_user[$row['type_user']]; ?> - <?php echo $row['category']; ?> - <?php echo $row['province']; ?>" type="button" class="btn"><i class="icon-info-sign"></i></button></p>
+                            <button rel="tooltip" title="Tip Utente <?php echo $this->type_user[$row['type_user']]; ?> - <?php echo $row['category']; ?> - <?php echo $row['province']; ?>" type="button" class="btn"><i class="icon-info-sign"></i></button></p>
                         </div>
                         </div>
                         </li>
