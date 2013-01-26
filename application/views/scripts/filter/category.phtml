@@ -140,6 +140,14 @@ $locale = new Zend_Locale('it_IT');
                             </div>
                         </div>
                 <?php endif ?>
+                
+                <div id="not_found_range" style="display: none;" class="row">
+                            <div class="span9">
+                                <div class="alert alert-error">
+                                    <strong><i class="icon-exclamation-sign"></i> <?php echo $this->notfound; ?></strong>
+                                </div>
+                            </div>
+                        </div>
 
                 </div>
             </div><!--row-->
@@ -163,12 +171,17 @@ $(function() {
 		value : [ <?php echo implode(', ', array_reverse($this->range)); ?> ],
 		slide : function(event, ui) {
 			$('.box_ads').hide().attr('cnt', '');
+			$('#not_found_range').hide();
 			$("#amount").html("&euro; " + ui.values[0] + " - &euro; " + ui.values[1]);
 			for (var i = ui.values[0]; i <= ui.values[1]; i++) {
 				$('#range_' + i).attr('cnt', 'show').fadeIn();
 			}
 			var total = $('.box_ads[cnt=show]').length;
-			$('.cnt_range').html(total);		
+			$('.cnt_range').html(total);
+
+			if(total == 0){
+				$('#not_found_range').fadeIn();
+			}			
 		}
 	});
 	$("#amount").html(
