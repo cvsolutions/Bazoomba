@@ -31,7 +31,7 @@ $locale = new Zend_Locale('it_IT');
             <div class="row">
                 <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
-                     <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>"><strong>Annunci Trovati In <?php echo $this->region['name']; ?> </strong><span class="badge badge-warning"> <?php echo count($this->list); ?></span></a></li>
+                     <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>"><strong>Annunci Trovati In <?php echo $this->region['name']; ?> </strong><span class="badge badge-warning cnt_range"> <?php echo count($this->list); ?></span></a></li>
                      </ul>
                 </div><!--span3-->
             </div><!--row-->
@@ -39,7 +39,7 @@ $locale = new Zend_Locale('it_IT');
             <div class="row">
                 <div class="span3">
                     <div class="alert alert-success">
-                        <p>Price range: <span id="amount"></span></p>
+                        <p>Price range <span id="amount"></span></p>
                         <div id="slider-range"></div>
                      </div>
                 </div><!--span3-->
@@ -158,6 +158,7 @@ $(function() {
 	
 	$("#slider-range").slider({
 		range : true,
+		// step: 50,
 		min : <?php echo min($this->range); ?>,
 		max : <?php echo max($this->range); ?>,
 		values: [ <?php echo min($this->range); ?>,<?php echo max($this->range); ?> ],
@@ -166,8 +167,10 @@ $(function() {
 			$('.box_ads').hide('').attr('cnt', '');
 			$("#amount").html("&euro; " + ui.values[0] + " - &euro; " + ui.values[1]);
 			for (var i = ui.values[0]; i <= ui.values[1]; i++) {
-				$('#range_' + i).attr('cnt', 'show').show('');
+				$('#range_' + i).attr('cnt', 'show').show('slow');
 			}
+			var total = $('.box_ads[cnt=show]').length;
+			$('.cnt_range').html(total);		
 		}
 	});
 	$("#amount").html(
