@@ -42,6 +42,27 @@ class FilterController extends Zend_Controller_Action
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
     }
+    
+    /**
+     * Creo un array di valori
+     * con i prezzi della ricerca
+     * 
+     * @param unknown_type $shop Array DB List
+     * @return multitype:
+     */
+    private function slider_range($shop = array())
+    {
+        if(is_array($shop))
+        {
+            // print_r($shop);
+            foreach ($shop as $row)
+            {
+                $price = sprintf('%d', $row['price']);
+                $item[] = $price;
+            }
+            return array_unique($item);
+        }
+    }
 
     /**
      * indexAction
@@ -100,7 +121,9 @@ class FilterController extends Zend_Controller_Action
          * mostro a video+array()
          */
         $shop = new Application_Model_DbTable_Shop();
-        $this->view->list = $shop->fullShopFilter( array( 'type' => 'region', 'id' => $id, 'ads' => $ads, 'user' => $user ) );
+        $fullShop = $shop->fullShopFilter( array( 'type' => 'region', 'id' => $id, 'ads' => $ads, 'user' => $user ) );
+        $this->view->list = $fullShop;
+        $this->view->range = $this->slider_range($fullShop);
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
