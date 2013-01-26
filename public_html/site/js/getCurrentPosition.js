@@ -1,7 +1,7 @@
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(Show_Maps);
 } else {
-    alert('La geo-localizzazione NON √® possibile...');
+    alert('La geo-localizzazione NON è possibile...');
 }
 
 /**
