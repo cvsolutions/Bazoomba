@@ -302,7 +302,7 @@ class FilterController extends Zend_Controller_Action
                     /* Zend_Paginator */
                     $page = $this->_getParam('page', 1);
                     $paginator = Zend_Paginator::factory($result);
-                    $paginator->setItemCountPerPage(2);
+                    $paginator->setItemCountPerPage(6);
                     $paginator->setCurrentPageNumber($page);
 
                     /**

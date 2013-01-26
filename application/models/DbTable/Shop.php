@@ -146,7 +146,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         );
         $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
         $query->order('ads_shop.registered DESC');
-        $query->limit('0, 10');
+        $query->limit(10);
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
@@ -174,7 +174,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
         $query->where("ads_shop.modified <= NOW()  AND ads_shop.modified >= CONCAT(CURDATE(),'')");
         $query->order('ads_shop.modified DESC');
-        $query->limit('0, 10');
+        $query->limit(10);
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
@@ -202,7 +202,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->join('ads_user', 'ads_shop.user = ads_user.id', array('user' => 'name'));
         $query->where('ads_shop.expiration = CURDATE()');
         $query->order('ads_shop.expiration DESC');
-        $query->limit('0, 10');
+        $query->limit(10);
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 
@@ -294,7 +294,7 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where('ads_gallery.status = 1');
         $query->order('registered DESC');
         $query->group('ads_shop.id');
-        $query->limit('0, 10');
+        $query->limit(10);
         // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
@@ -677,8 +677,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where('ads_shop.expiration >= CURDATE()');
         $query->where('ads_gallery.status = 1');
         $query->group('ads_shop.id');
-        $query->order('RAND()');
-        $query->limit('0, 4');
+        $query->limit(4);
+        // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 

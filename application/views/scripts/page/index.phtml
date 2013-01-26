@@ -24,7 +24,7 @@
                         <?php echo stripslashes(nl2br($this->page['description'])) ?>
                     </p>
 
-                    <a class="btn btn-info" href="<?php echo $this->page['site'] ?>"><?php echo $this->page['site'] ?></a>
+                    <a class="btn btn-info" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'links'), null, true); ?>?url=<?php echo $this->page['site']; ?>&location=1" target="_blank"><?php echo $this->page['site'] ?></a>
 
                     <script type="text/javascript">
                     var initialize = function() {
