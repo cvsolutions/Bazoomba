@@ -244,7 +244,6 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
         $query->where('ads_gallery.status = 1');
         $query->group('ads_shop.id');
         $query->order('ads_shop.visits DESC');
-        // echo $query->assemble();
         return $this->getDefaultAdapter()->fetchAll($query);
     }
 

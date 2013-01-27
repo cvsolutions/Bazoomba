@@ -35,7 +35,10 @@
         <div class="row">
         <div class="alert alert-success">
             <p>Attiva un alert e ricevi gli ultimi annunci nella tua email</p>
-            <a href="" class="btn btn-warning">Non hai trovato quello che cerchi?</a>
+            <a href="<?php echo $this->url(array(
+                            'controller' => 'request', 
+                            'action' => 'subscribe'
+                            ), null, true); ?>" class="btn btn-warning">Non hai trovato quello che cerchi?</a>
         </div>
         </div>
         
