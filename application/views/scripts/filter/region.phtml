@@ -54,12 +54,11 @@ $locale = new Zend_Locale('it_IT');
                      </div>
                 </div><!--span3-->
             </div><!--row-->
-            
-            
+
             <div class="row">
                 <div class="span3">
                 <p>
-                <a href="" style="width: 90%" class="btn btn-primary">
+                <a href="<?php echo $this->url(array('controller' => 'filter', 'action' => 'maps'), null, true); ?>" style="width: 90%" class="btn btn-primary">
                 <i class="icon-map-marker icon-white"></i>
                 Mostra gli annunci sulla Mappa
                 </a>

@@ -43,6 +43,17 @@ $locale = new Zend_Locale('it_IT');
 
             <div class="row">
                 <div class="span3">
+                <p>
+                <a href="<?php echo $this->url(array('controller' => 'filter', 'action' => 'maps'), null, true); ?>" style="width: 90%" class="btn btn-primary">
+                <i class="icon-map-marker icon-white"></i>
+                Mostra gli annunci sulla Mappa
+                </a>
+                </p>     
+                </div><!--span3-->
+            </div><!--row-->
+            
+            <div class="row">
+                <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
                      <?php foreach ($this->type_user as $key => $value): ?>
                         <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id'], 'user' => $key), null, true); ?>"><i class="icon-search"></i> <?php echo $value; ?></a></li>

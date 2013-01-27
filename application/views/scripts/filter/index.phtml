@@ -4,11 +4,18 @@
 	<div class="row">
 
 		<div class="span6">
+		    
+		    <div class="row">
 			<h1 class="lead">Ricerca</h1>
-            <?php echo $this->searchForm; ?>
+			<div class="alert">
+			<?php echo $this->searchForm; ?>
+			</div>
+            </div>
 
             <!-- Random List ADS -->
             <?php if ($this->list): ?>
+            <div class="row">
+            <h1 class="lead">I migliori annunci per te</h1>
             <table class="table">
                 <?php foreach ($this->list as $row): ?>
 				<tr>
@@ -23,10 +30,20 @@
 				<?php endforeach ?>
 			</table>
             <? endif; ?>
-
-
+        </div>
+        
+        <div class="row">
+        <div class="alert alert-success">
+            <p>Attiva un alert e ricevi gli ultimi annunci nella tua email</p>
+            <a href="" class="btn btn-warning">Non hai trovato quello che cerchi?</a>
+        </div>
+        </div>
+        
+        
         </div>
 		<!--span6-->
+		
+		
 
 		<div class="span6">
 
