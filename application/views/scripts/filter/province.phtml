@@ -56,7 +56,7 @@ $locale = new Zend_Locale('it_IT');
                 <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
                      <?php foreach ($this->type_user as $key => $value): ?>
-                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id'], 'user' => $key), null, true); ?>"><i class="icon-search"></i> <?php echo $value; ?></a></li>
+                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id'], 'user' => $key), null, true); ?>"><i class="icon-<?php echo $this->icon_type_user[$key]; ?>"></i> <?php echo $value; ?></a></li>
                     <?php endforeach ?>
                     </ul>
                 </div><!--span3-->
@@ -66,7 +66,7 @@ $locale = new Zend_Locale('it_IT');
                 <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
                      <?php foreach ($this->type_ads as $key => $value): ?>
-                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id'], 'ads' => $key), null, true); ?>"><i class="icon-search"></i> <?php echo $value; ?></a></li>
+                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'region', 'item' => $this->region['id'], 'ads' => $key), null, true); ?>"><i class="icon-<?php echo $this->icon_type_ads[$key]; ?>"></i> <?php echo $value; ?></a></li>
                     <?php endforeach ?>
                     </ul>
                 </div><!--span3-->

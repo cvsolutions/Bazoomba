@@ -25,6 +25,27 @@ class FilterController extends Zend_Controller_Action
      *
      */
     public $params = null;
+    
+    /**
+     * Image icon Type User
+     * @var array
+     */
+    private $_icon_type_user = array(
+            1 => 'user',
+            2 => 'briefcase'
+            );
+    
+    /**
+     * Image icon Type ADS 
+     * @var unknown_type
+     */
+    private $_icon_type_ads = array(
+            1 => 'search',
+            2 => 'shopping-cart',
+            3 => 'flag',
+            4 => 'lock',
+            5 => 'resize-small'
+    );
 
     /**
      * init
@@ -135,6 +156,8 @@ class FilterController extends Zend_Controller_Action
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
+        $this->view->icon_type_user = $this->_icon_type_user;
+        $this->view->icon_type_ads = $this->_icon_type_ads;
     }
 
     /**
@@ -179,6 +202,8 @@ class FilterController extends Zend_Controller_Action
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
+        $this->view->icon_type_user = $this->_icon_type_user;
+        $this->view->icon_type_ads = $this->_icon_type_ads;
     }
 
     /**
@@ -223,6 +248,8 @@ class FilterController extends Zend_Controller_Action
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
+        $this->view->icon_type_user = $this->_icon_type_user;
+        $this->view->icon_type_ads = $this->_icon_type_ads;
     }
 
     /**
@@ -263,6 +290,8 @@ class FilterController extends Zend_Controller_Action
         $this->view->type_ads = $this->params->type_ads->toArray();
         $this->view->type_user = $this->params->type_user->toArray();
         $this->view->notfound = $this->params->label_not_found;
+        $this->view->icon_type_user = $this->_icon_type_user;
+        $this->view->icon_type_ads = $this->_icon_type_ads;
     }
 
     /**
