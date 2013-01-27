@@ -11,7 +11,7 @@
 * @license  
 * @link     
 */
-class Application_Form_Filter extends Zend_Form
+class Application_Form_Filter extends Twitter_Form
 {
 
     /**

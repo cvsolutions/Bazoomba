@@ -333,7 +333,7 @@ class ShopController extends Zend_Controller_Action
                     array(
                          'email'    => $UserInfo['email'],
                          'reply'    => $mail,
-                         'subject'  => sprintf('%s - Risposta a: %s', $this->params->from_email, $dd),
+                         'subject'  => sprintf('%s - Risposta a: %s', $this->params->from_email, $name),
                          'template' => 'reply_advertiser.phtml',
                          'params'   => array(
                              'site'        => $this->params->from_email,

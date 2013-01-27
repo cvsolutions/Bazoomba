@@ -102,13 +102,6 @@ class IndexController extends Zend_Controller_Action
             /* redirect */
             $this->redirect('/');
         }
-        $this->view->shop = $last_Ads->LastHomeShop();
-        $select = new Application_Model_OptionSelect();
-        $this->view->region = $select->appendRegion();
-
-        $auth = Zend_Auth::getInstance();
-        $identity = $auth->getStorage()->read();
-        $this->view->identity = $identity;
     }
 
 

@@ -10,7 +10,9 @@
  * @author   Concetto Vecchio
  * @license
  * @link
+ *
  */
+
 class FilterController extends Zend_Controller_Action
 {
 
@@ -20,8 +22,9 @@ class FilterController extends Zend_Controller_Action
      * @var mixed
      *
      * @access public
+     *
      */
-    public $params;
+    public $params = null;
 
     /**
      * init
@@ -29,6 +32,7 @@ class FilterController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
     public function init()
     {
@@ -48,8 +52,9 @@ class FilterController extends Zend_Controller_Action
      * @param array $shop
      *
      * @return array
+     *
      */
-    private function slider_range($shop = array())
+    private function slider_range($shop = array ())
     {
         if (is_array($shop)) {
             // print_r($shop);
@@ -67,6 +72,7 @@ class FilterController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
     public function indexAction()
     {
@@ -85,6 +91,8 @@ class FilterController extends Zend_Controller_Action
         /* le categorie attive */
         $category = new Application_Model_DbTable_Category();
         $this->view->category = $category->Parent_With_Category(0);
+        
+        $this->view->type_ads = $this->params->type_ads->toArray();
     }
 
     /**
@@ -94,6 +102,7 @@ class FilterController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
     public function regionAction()
     {
@@ -135,6 +144,7 @@ class FilterController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
     public function categoryAction()
     {
@@ -179,6 +189,7 @@ class FilterController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
     public function provinceAction()
     {
@@ -222,6 +233,7 @@ class FilterController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
     public function subcategoryAction()
     {
@@ -253,7 +265,6 @@ class FilterController extends Zend_Controller_Action
         $this->view->notfound = $this->params->label_not_found;
     }
 
-
     /**
      * searchAction
      * ricerca singola / concatenata
@@ -262,6 +273,7 @@ class FilterController extends Zend_Controller_Action
      * @access public
      *
      * @return mixed Value.
+     *
      */
     public function searchAction()
     {
@@ -320,5 +332,11 @@ class FilterController extends Zend_Controller_Action
         }
     }
 
+    public function mapsAction()
+    {
+        // action body
+    }
+
 
 }
+

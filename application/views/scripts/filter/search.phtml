@@ -12,8 +12,14 @@ $locale = new Zend_Locale('it_IT');
                 <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
                      <li>
+                     <a href="javascript:void(0)">
+                     <strong>Annunci Trovati</strong> 
+                     <span class="badge badge-warning cnt_range"> <?php echo $this->total_list; ?></span>
+                     </a>
+                     </li>
+                     <li>
                      <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>">
-                     <strong>Annunci Trovati</strong> <span class="badge badge-warning cnt_range"> <?php echo $this->total_list; ?></span>
+                     <i class="icon-search"></i> Effettua una nuova Ricerca
                      </a>
                      </li>
                      </ul>
@@ -36,7 +42,9 @@ $locale = new Zend_Locale('it_IT');
         <div class="span9">
             <div class="row">
                 <div class="span9">
-                <?php if ($this->list): ?>
+                
+                <?php if (count($this->list) > 0): ?>
+                
                 <ul class="thumbnails">
                     <?php $cnt = 1; ?>
                     <?php foreach ($this->list as $row): ?>
@@ -56,8 +64,7 @@ $locale = new Zend_Locale('it_IT');
                 </ul>
                 <ul class="thumbnails">
                 <? endif; ?>
-
-
+                
                     <?php $cnt++; ?>
                     <?php endforeach ?>
                 </ul>
@@ -65,9 +72,9 @@ $locale = new Zend_Locale('it_IT');
                 <div class="breadcrumb">
                 <?php echo $this->paginationControl($this->list, 'Sliding', 'filter/pagination.phtml'); ?>
                 </div>
-                
-                <?php else: ?>
 
+                <?php else: ?>
+                
                 <div class="row">
                             <div class="span9">
                                 <div class="alert alert-error">

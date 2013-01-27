@@ -10,7 +10,7 @@ $locale = new Zend_Locale('it_IT');
 
             <div class="row">
                 <div class="span3">
-                        <div class="btn-group" style="margin-bottom: 10px;">
+                        <div class="btn-group" style="margin-bottom: 15px;">
                         <button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i> <?php echo $this->category['name']; ?> <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                         <?php if ($this->parent): ?>
@@ -19,7 +19,6 @@ $locale = new Zend_Locale('it_IT');
                         <?php endforeach ?>
                         <?php endif ?>
                         </ul>
-                        <button class="btn" style="margin-left: 5px;"><i class="icon-refresh"></i> Maps</button>
                         </div><!-- /btn-group -->
                 </div><!--span3-->
             </div><!--row-->
@@ -27,7 +26,17 @@ $locale = new Zend_Locale('it_IT');
             <div class="row">
                 <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
-                     <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>"><strong>Annunci In <?php echo $this->category['name']; ?> </strong><span class="badge badge-warning"> <?php echo count($this->list); ?></span></a></li>
+                     <li>
+                     <a href="javascript:void(0)">
+                     <strong>Annunci In <?php echo $this->category['name']; ?></strong>
+                     <span class="badge badge-warning"><?php echo count($this->list); ?></span>
+                     </a>
+                     </li>
+                     <li>
+                     <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>">
+                     <i class="icon-search"></i> Effettua una nuova Ricerca
+                     </a>
+                     </li>
                      </ul>
                 </div><!--span3-->
             </div><!--row-->
@@ -43,9 +52,20 @@ $locale = new Zend_Locale('it_IT');
             
             <div class="row">
                 <div class="span3">
+                <p>
+                <a href="" style="width: 90%" class="btn btn-primary">
+                <i class="icon-map-marker icon-white"></i>
+                Mostra gli annunci sulla Mappa
+                </a>
+                </p>     
+                </div><!--span3-->
+            </div><!--row-->
+            
+            <div class="row">
+                <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
                      <?php foreach ($this->type_user as $key => $value): ?>
-                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id'], 'ads' => $key), null, true); ?>"><?php echo $value; ?></a></li>
+                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id'], 'ads' => $key), null, true); ?>"><i class="icon-search"></i> <?php echo $value; ?></a></li>
                     <?php endforeach ?>
                     </ul>
                 </div><!--span3-->
@@ -55,7 +75,7 @@ $locale = new Zend_Locale('it_IT');
                 <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
                      <?php foreach ($this->type_ads as $key => $value): ?>
-                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id'], 'ads' => $key), null, true); ?>"><?php echo $value; ?></a></li>
+                        <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'category', 'item' => $this->category['id'], 'ads' => $key), null, true); ?>"> <i class="icon-search"></i> <?php echo $value; ?></a></li>
                     <?php endforeach ?>
                     </ul>
                 </div><!--span3-->

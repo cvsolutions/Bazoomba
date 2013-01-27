@@ -4,13 +4,14 @@ $locale = new Zend_Locale('it_IT');
 ?>
 
 <div class="container">
+
     <div class="row" style="margin-top: 20px;">
 
         <div class="span3">
 
             <div class="row">
                 <div class="span3">
-                        <div class="btn-group" style="margin-bottom: 10px;">
+                        <div class="btn-group" style="margin-bottom: 15px;">
                         <button class="btn dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-search"></i> Seleziona Provincia <span class="caret"></span>
                         </button>
@@ -23,7 +24,6 @@ $locale = new Zend_Locale('it_IT');
                         </li>
                         <?php endforeach ?>
                         </ul>
-                        <button class="btn" style="margin-left: 5px;"><i class="icon-refresh"></i> Maps</button>
                         </div><!-- /btn-group -->
                 </div><!--span3-->
             </div><!--row-->
@@ -31,7 +31,17 @@ $locale = new Zend_Locale('it_IT');
             <div class="row">
                 <div class="span3">
                      <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
-                     <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>"><strong>Annunci Trovati In <?php echo $this->region['name']; ?> </strong><span class="badge badge-warning cnt_range"> <?php echo count($this->list); ?></span></a></li>
+                     <li>
+                     <a href="javascript:void(0)">
+                     <strong>Annunci Trovati In <?php echo $this->region['name']; ?></strong>
+                     <span class="badge badge-warning cnt_range"><?php echo count($this->list); ?></span>
+                     </a>
+                     </li>
+                     <li>
+                     <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'index'), null, true); ?>">
+                     <i class="icon-search"></i> Effettua una nuova Ricerca
+                     </a>
+                     </li>
                      </ul>
                 </div><!--span3-->
             </div><!--row-->
@@ -42,6 +52,18 @@ $locale = new Zend_Locale('it_IT');
                         <p>Price range <span id="amount"></span></p>
                         <div id="slider-range"></div>
                      </div>
+                </div><!--span3-->
+            </div><!--row-->
+            
+            
+            <div class="row">
+                <div class="span3">
+                <p>
+                <a href="" style="width: 90%" class="btn btn-primary">
+                <i class="icon-map-marker icon-white"></i>
+                Mostra gli annunci sulla Mappa
+                </a>
+                </p>     
                 </div><!--span3-->
             </div><!--row-->
 
@@ -157,6 +179,7 @@ $locale = new Zend_Locale('it_IT');
             </div><!--row-->
 
         </div><!--spam10-->
+        
     </div><!--row-->
 
 </div><!--container-->

@@ -3,7 +3,7 @@
             <div style="padding:12px;">
             <div class="navbar">
                 <div class="navbar-inner">
-                    <a class="brand" href="#">My Account</a>
+                    <a class="brand" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'index'), null, true); ?>">My Account</a>
                         <ul class="nav pull-left">
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'avatar'), null, true); ?>"><i class="icon-picture"></i> Immagine di Profilo</a></li>
                             <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'account', 'action' => 'edit'), null, true); ?>"><i class="icon-edit"></i> Modifica Dati</a></li>

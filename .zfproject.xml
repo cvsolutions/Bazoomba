@@ -96,6 +96,7 @@
           <actionMethod actionName="province"/>
           <actionMethod actionName="subcategory"/>
           <actionMethod actionName="search"/>
+          <actionMethod actionName="maps"/>
         </controllerFile>
         <controllerFile controllerName="Ajax">
           <actionMethod actionName="index"/>
@@ -334,6 +335,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Request">
             <viewScriptFile forActionName="mysearch"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Filter">
+            <viewScriptFile forActionName="maps"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

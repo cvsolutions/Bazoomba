@@ -1,39 +1,44 @@
 <?php $this->headTitle('Ricerca'); ?>
 
 <div class="container">
-    <div class="row">
+	<div class="row">
 
-        <div class="span6">
-            <h1>Ricerca</h1>
+		<div class="span6">
+			<h1 class="lead">Ricerca</h1>
             <?php echo $this->searchForm; ?>
 
             <!-- Random List ADS -->
             <?php if ($this->list): ?>
-            <?php foreach ($this->list as $row): ?>
-                <ul>
-                    <li>
-                    <a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'ads', 'show' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['title']); ?>">
-                    <?php echo $row['title']; ?>
-                    </a>
-                    </li>
-                </ul>
-                <?php endforeach ?>
+            <table class="table">
+                <?php foreach ($this->list as $row): ?>
+				<tr>
+					<td><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array(
+                            'controller' => 'shop', 
+                            'action' => 'ads', 
+                            'show' => $row['id']
+                            ), null, true); ?>/<?php echo $this->seourl($row['title']); ?>"><?php echo $row['title']; ?></a></td>
+					<td><?php echo $this->type_ads[$row['type']]; ?></td>
+					<td>&euro; <?php echo Zend_Locale_Format::toNumber($row['price'], array('precision' => 2, 'locale' => $locale)); ?></td>
+				</tr>
+				<?php endforeach ?>
+			</table>
             <? endif; ?>
 
 
         </div>
-        <!--span6-->
+		<!--span6-->
 
-        <div class="span6">
+		<div class="span6">
 
-            <div class="row">
-                <div class="span3">
-                    <h1>Italia</h1>
+			<div class="row">
+				<div class="span3">
+					<h1 class="lead">Italia</h1>
                     <?php if ($this->region): ?>
+                        <ul class="nav nav-tabs nav-stacked"
+						style="background: #fff;">
                     <?php foreach ($this->region as $row): ?>
-                        <ul>
-                            <li>
-                            <a href="
+                            <li><a
+							href="
                             <?php echo $this->serverUrl(); ?><?php echo $this->url(
                                     array(
                                             'controller' => 'filter', 
@@ -41,41 +46,44 @@
                                             'item' => $row['id']), null, true
                             ); ?>/<?php echo $this->seourl($row['name']); ?>">
                             <?php echo $row['name']; ?>
-                            </a>
-                            </li>
-                        </ul>
+                            </a></li>
                         <?php endforeach ?>
+                        </ul>
+                        
                     <?php endif ?>
                 </div>
 
-                <div class="span3">
-                    <h1>Categorie</h1>
+				<div class="span3">
+					<h1 class="lead">Categorie</h1>
                     <?php if ($this->category): ?>
+                    <ul class="nav nav-tabs nav-stacked"
+						style="background: #fff;">
                     <?php foreach ($this->category as $row): ?>
-                        <ul>
-                            <li><a href="<?php echo $this->serverUrl(); ?><?php echo $this->url(
+                            <li><a
+							href="<?php echo $this->serverUrl(); ?><?php echo $this->url(
                                     array(
                                         'controller' => 'filter', 
                                         'action' => 'category', 
                                         'item' => $row['id']), null, true); ?>/<?php echo $this->seourl($row['name']); ?>">
                                         <?php echo $row['name']; ?>
-                                        </a>
-                                        </li>
-                        </ul>
+                                        </a></li>
                         <?php endforeach ?>
+                        </ul>
                     <?php endif ?>
                 </div>
-            </div>
+			</div>
 
 
-        </div>
-        <!--span6-->
+		</div>
+		<!--span6-->
 
-    </div>
-    <!--row-->
+	</div>
+	<!--row-->
 
 
-</div><!--contaner-->
+</div>
+<!--contaner-->
 
-<script src="<?php echo $this->serverUrl(); ?>/site/js/jquery.autocomplete.js"></script>
+<script
+	src="<?php echo $this->serverUrl(); ?>/site/js/jquery.autocomplete.js"></script>
 
