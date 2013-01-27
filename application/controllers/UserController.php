@@ -73,6 +73,7 @@ class UserController extends Zend_Controller_Action
                 $result = $auth->authenticate( $adapter );
 
                 if ( $result->isValid() ) {
+                    
                     $user = $adapter->getResultRowObject();
                     $auth->getStorage()->write( $user );
 

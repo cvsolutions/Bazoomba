@@ -45,6 +45,9 @@ class AccountController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getStorage()->read();
         $this->view->identity = $identity;
+        
+        // $path = realpath(dirname(__FILE__) . '/../../library') . '/facebook/facebook.php';
+        // include_once $path;
     }
 
     /**
