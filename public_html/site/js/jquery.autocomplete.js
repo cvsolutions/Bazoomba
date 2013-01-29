@@ -1,14 +1,13 @@
 $(document).ready(function() {
-
-    //add class in careusal
-    $('div.item:first').addClass("active");
-
+	
     // AUTOCOMPLETE
     var termTemplate = '<strong>%s</strong>';
+    var bazoomba = 'http://bazoomba';
+    
     $("#q").autocomplete({
         source: function(request, response) {
             $.ajax({
-                url: "http://bazoomba/ajax/autocomplete",
+                url: bazoomba + "/ajax/autocomplete",
                 dataType: "json",
                 data: {
                     term: request.term
@@ -45,9 +44,5 @@ $(document).ready(function() {
         }
 
     });
-
-    
-    
-
 
 });

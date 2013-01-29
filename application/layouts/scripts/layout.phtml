@@ -21,6 +21,7 @@ $category_select = $select->appendParentCategory();
     <meta charset="utf-8" />
     <?php echo $this->headTitle(); ?>
     <?php echo $this->headMeta(); ?>
+    <meta name="viewport" content="width=device-width" />
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo $this->serverUrl(); ?>/site/css/bootstrap-responsive.css" rel="stylesheet">
@@ -80,14 +81,14 @@ $category_select = $select->appendParentCategory();
                    </ul>
 
                    <!--Search Form-->
-                   <form class="navbar-search form-search pull-left" action="">
+                   <form class="navbar-search form-search visible-desktop pull-left" action="">
                     <div class="input-append">
                         <input type="text" class="span3 search-query" placeholder="Iphone 5, Samsung Galasy, BMW, Bilocale">
                         <button type="submit" class="btn btn-warning"><i class="icon-search"></i></button>
                     </div>
                 </form>
 
-                <a class="btn btn-warning pull-right" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new'), null, true); ?>"><i class="icon-plus icon-white"></i> Inserisci Annuncio Gratis</a>
+                <a class="btn btn-warning visible-desktop pull-right" href="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'shop', 'action' => 'new'), null, true); ?>"><i class="icon-plus icon-white"></i> Inserisci Annuncio Gratis</a>
                 <ul class="nav pull-right">
                     <?php if ($this->identity): ?>
                     <li class="dropdown">
