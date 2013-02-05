@@ -8,11 +8,7 @@ $locale = new Zend_Locale('it_IT');
     <div class="row">
         <div class="span12">
             <div class="alert alert-box">
-<<<<<<< HEAD
-                Questo annuncio &eacute; gestito da un azienda verificata <strong>( <?php echo ucwords($this->user['name_company']); ?> )</strong>. 
-=======
-                Questo annuncio è gestito da un azienda verificata <strong>( <?php echo ucwords($this->user['name_company']); ?> )</strong>.
->>>>>>> Add Maps
+                Questo annuncio &eacute; gestito da un azienda verificata <strong>( <?php echo ucwords($this->user['name_company']); ?> )</strong>.
                 Guarda tutti gli altri annunci <strong><?php echo ucwords($this->user['name_company']); ?>.</strong>
                 <span class="pull-right">
                 <a href="#">
@@ -100,7 +96,7 @@ $locale = new Zend_Locale('it_IT');
 
               <div class="row">
                   <div class="span6">
-                  <p class="lead"><?php echo nl2br($this->row['description']); ?></p>
+                  <p><?php echo nl2br($this->row['description']); ?></p>
                   </div>
               </div>
 
