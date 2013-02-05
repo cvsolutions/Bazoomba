@@ -84,6 +84,8 @@ $category_select = $select->appendParentCategory();
                    <form class="navbar-search form-search visible-desktop pull-left" method="get" action="<?php echo $this->serverUrl(); ?><?php echo $this->url(array('controller' => 'filter', 'action' => 'maps'), null, true); ?>">
                     <div class="input-append">
                         <input type="text" name="q" class="span3 search-query" placeholder="Iphone 5, Samsung Galasy, BMW, Bilocale">
+                        <input type="hidden" value="" name="latitude" id="lat_maps" />
+                        <input type="hidden" value="" name="longitude" id="lng_maps" />
                         <button type="submit" class="btn btn-warning"><i class="icon-search"></i></button>
                     </div>
                 </form>

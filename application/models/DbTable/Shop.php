@@ -319,6 +319,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                              'type',
                              'title',
                              'description',
+                    'latitude',
+                    'longitude',
                              'price',
                              'registered'
                         )
@@ -354,6 +356,22 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                     );
                 }
                 break;
+                
+                case 'maps':
+
+                    if ($params['region']) {
+                        $query->where(sprintf('ads_shop.region = %d', $params['region']));
+                    }
+                    
+                    if ($params['q']) {
+                        $query->where(
+                                sprintf(
+                                        "MATCH(ads_shop.title, ads_shop.description, ads_shop.tags) AGAINST('+%s*' IN BOOLEAN MODE)",
+                                        str_replace(' ', ' +', $params['q'])
+                                )
+                        );
+                    }
+                    break;
 
             /**
              * filtro per categorie

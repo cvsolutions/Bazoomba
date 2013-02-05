@@ -363,7 +363,25 @@ class FilterController extends Zend_Controller_Action
 
     public function mapsAction()
     {
-        // action body
+        $q = $this->_getParam('q', 0);
+        $latitude = $this->_getParam('latitude', 0);
+        $longitude = $this->_getParam('longitude', 0);
+        
+        $region = new Application_Model_DbTable_Region();
+        $row = $region->Region_GeoCode($latitude, $longitude);
+        
+        $shop = new Application_Model_DbTable_Shop();
+        $result = $shop->fullShopFilter(
+                array(
+                        'type'     => 'maps',
+                        'region' => $row['id'],
+                        'q'        => $q
+                )
+        );
+        
+        $this->view->jmaps = Zend_Json::encode($result);
+        // print_r($result);
+        
     }
 
 

@@ -14,6 +14,9 @@ function Show_Maps(posizione) {
     var latitude = posizione.coords.latitude;
     var longitude = posizione.coords.longitude;
     var bazoomba = 'http://bazoomba';
+    
+    $('#lat_maps').val(latitude);
+    $('#lng_maps').val(longitude);
 
     $.ajax({
         type:'POST',

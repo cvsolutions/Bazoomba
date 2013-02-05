@@ -55,6 +55,9 @@ $locale = new Zend_Locale('it_IT');
 </div><!--container-->
 
 <script type="text/javascript">
+
+var js_map = <?php echo $this->jmaps; ?>
+
         var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
         var mapOptions = {
           center: new google.maps.LatLng(37.236889,14.512939),
