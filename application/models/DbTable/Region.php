@@ -77,12 +77,6 @@ class Application_Model_DbTable_Region extends Zend_Db_Table_Abstract
     public function Region_GeoCode($latitude, $longitude)
     {
         $query = $this->getDefaultAdapter()->select();
-<<<<<<< HEAD
-        $query->from('ads_region', array(
-                'id',
-                'name'
-                )
-=======
         $query->from(
             'ads_region', array(
                     'id',
@@ -90,7 +84,6 @@ class Application_Model_DbTable_Region extends Zend_Db_Table_Abstract
                     'latitude',
                     'longitude'
                           )
->>>>>>> Maps - Part 1
         );
         $query->where(
             sprintf(
