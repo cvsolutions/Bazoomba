@@ -299,7 +299,8 @@ class AjaxController extends Zend_Controller_Action
         $region = new Application_Model_DbTable_Region();
         $row = $region->Region_GeoCode($latitude, $longitude);
 
-        echo $row['name'];
+        $result = array('lat' => $row['latitude'], 'lng' => $row['longitude'], 'name' => $row['name']);
+        echo Zend_Json::encode($result);
         $this->_helper->viewRenderer->setNoRender(true);
     }
 

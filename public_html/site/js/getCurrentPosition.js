@@ -1,7 +1,7 @@
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(Show_Maps);
 } else {
-    alert('La geo-localizzazione NON è possibile...');
+    alert('La geo-localizzazione NON ÔøΩ possibile...');
 }
 
 /**
@@ -14,7 +14,7 @@ function Show_Maps(posizione) {
     var latitude = posizione.coords.latitude;
     var longitude = posizione.coords.longitude;
     var bazoomba = 'http://bazoomba';
-    
+
     $('#lat_maps').val(latitude);
     $('#lng_maps').val(longitude);
 
@@ -25,9 +25,11 @@ function Show_Maps(posizione) {
             latitude:latitude,
             longitude:longitude
         },
-        dataType:'html',
+        dataType:'json',
         success:function (msg) {
-            $('#name_region').html(msg);
+            $('#name_region').html(msg.name);
+            $('#lat_region').val(msg.lat);
+            $('#lng_region').val(msg.lng);
         },
         error:function () {
             alert('Chiamata fallita, si prega di riprovare...');
@@ -54,15 +56,15 @@ function Show_Maps(posizione) {
                     'bounds':true
                 }).click(function () {
                         $('#maps').gmap('openInfoWindow', {
-                            'content': '<div><a href="' + bazoomba + '/shop/ads/show/' 
-                            	+ marker.id 
-                            	+ '/"><img src="http://' + bazoomba + '/image.php?mode=crop&folder=ads&image=' 
-                            	+ marker.photo 
-                            	+ '&width=350&height=170"></a></div><div style="width: 350px;"><br><p><h4>' 
-                            	+ marker.title 
-                            	+ '</h4></p><p>' 
-                            	+ marker.name_category 
-                            	+ ' :: <span style="color: #c60f13; font-size: 24px;">€ ' 
+                            'content': '<div><a href="' + bazoomba + '/shop/ads/show/'
+                            	+ marker.id
+                            	+ '/"><img src="http://' + bazoomba + '/image.php?mode=crop&folder=ads&image='
+                            	+ marker.photo
+                            	+ '&width=350&height=170"></a></div><div style="width: 350px;"><br><p><h4>'
+                            	+ marker.title
+                            	+ '</h4></p><p>'
+                            	+ marker.name_category
+                            	+ ' :: <span style="color: #c60f13; font-size: 24px;">ÔøΩ '
                             	+ marker.price + '</span></p></div>'
                         }, this);
                     });

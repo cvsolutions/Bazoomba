@@ -25,7 +25,7 @@ class FilterController extends Zend_Controller_Action
      *
      */
     public $params = null;
-    
+
     /**
      * Image icon Type User
      * @var array
@@ -34,9 +34,9 @@ class FilterController extends Zend_Controller_Action
             1 => 'user',
             2 => 'briefcase'
             );
-    
+
     /**
-     * Image icon Type ADS 
+     * Image icon Type ADS
      * @var unknown_type
      */
     private $_icon_type_ads = array(
@@ -112,7 +112,7 @@ class FilterController extends Zend_Controller_Action
         /* le categorie attive */
         $category = new Application_Model_DbTable_Category();
         $this->view->category = $category->Parent_With_Category(0);
-        
+
         $this->view->type_ads = $this->params->type_ads->toArray();
     }
 
@@ -196,7 +196,7 @@ class FilterController extends Zend_Controller_Action
         $fullShop = $shop->fullShopFilter(
             array('type' => 'category', 'id' => $id, 'ads' => $ads, 'user' => $user)
         );
-        
+
         $this->view->list = $fullShop;
         $this->view->range = $this->slider_range($fullShop);
         $this->view->type_ads = $this->params->type_ads->toArray();
@@ -366,10 +366,11 @@ class FilterController extends Zend_Controller_Action
         $q = $this->_getParam('q', 0);
         $latitude = $this->_getParam('latitude', 0);
         $longitude = $this->_getParam('longitude', 0);
-        
+        $coo_region = array('lat' => $this->_getParam('lat_region', 0), 'lng' => $this->_getParam('lng_region', 0));
+
         $region = new Application_Model_DbTable_Region();
         $row = $region->Region_GeoCode($latitude, $longitude);
-        
+
         $shop = new Application_Model_DbTable_Shop();
         $result = $shop->fullShopFilter(
                 array(
@@ -378,10 +379,13 @@ class FilterController extends Zend_Controller_Action
                         'q'        => $q
                 )
         );
-        
+
         $this->view->jmaps = Zend_Json::encode($result);
+        $this->view->cnt = count($result);
+        $this->view->coo_region = $coo_region;
+        //echo Zend_Json::encode($result);
         // print_r($result);
-        
+
     }
 
 

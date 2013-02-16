@@ -24,7 +24,7 @@ $locale = new Zend_Locale('it_IT');
 
 
           <ul class="nav nav-tabs nav-stacked" style="background: #fff;">
-              <li><a href="#"><strong>Annunci Trovati </strong><span class="badge badge-warning"> 3200</span></a></li>
+              <li><a href="#"><strong>Annunci Trovati </strong><span class="badge badge-warning"> <?php echo $this->cnt; ?></span></a></li>
               <li><a href="#"><i class="icon-tags"></i> Tags</a></li>
               <li><a href="#"><i class="icon-bookmark"></i> Preferiti</a></li>
               <li><a href="#"><i class="icon-map-marker"></i> Provincia</a></li>
@@ -53,22 +53,56 @@ $locale = new Zend_Locale('it_IT');
 
       </div>
 </div><!--container-->
-
 <script type="text/javascript">
 
-var js_map = <?php echo $this->jmaps; ?>
+(function() {
+window.onload = function(){
+var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
+var latlng = new google.maps.LatLng(<?php echo $this->coo_region['lat']; ?> , <?php echo $this->coo_region['lng']; ?>);
+var options = {
+	zoom: 8,
+	center: latlng,
+	backgroundColor: '#fff',
+	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	styles: vikey
+};
 
-        var vikey = [{ stylers: [{ gamma: 0.52 },{ saturation: 11 } ] }];
-        var mapOptions = {
-          center: new google.maps.LatLng(37.236889,14.512939),
-          zoom: 9,
-          disableDefaultUI: true,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          styles: vikey
-        };
-        var map = new google.maps.Map(document.getElementById("maps_canvas"),
-            mapOptions);
+var map = new google.maps.Map(document.getElementById('maps_canvas'), options);
+var json = <?php echo $this->jmaps; ?>;
 
-    </script>
+var Nowmarkers = [];
+var shadow = new google.maps.MarkerImage(
+    'http://bazoomba/uploaded/marker/shadow.png',
+    new google.maps.Size(54,37),
+    new google.maps.Point(0,0),
+    new google.maps.Point(16,37)
+  );
+infowindow = new google.maps.InfoWindow({
+             content: "loading…"
+             });
+
+function Tooltip(nome,markers,image) {
+	google.maps.event.addListener(markers, "click", function () {
+        var div = '<img src="http://bazoomba/image.php?mode=crop&folder=ads&image='+image+'&width=200&height=150" /> '+name+'';
+        infowindow.setContent(div);
+        infowindow.open(map, this);
+        });
+}
+
+for (i=0; i < json.length; i++) {
+var lat = new google.maps.LatLng(json[i].latitude, json[i].longitude);
+var markerNow = new google.maps.Marker({
+	animation: google.maps.Animation.DROP,
+	position: lat,
+	map: map,
+	title: json[i].title,
+	shadow: shadow
+});
+Tooltip(json[i].title, markerNow, json[i].photo);
+    Nowmarkers[i] = markerNow;
+}
+}
+})();
+</script>
 
 

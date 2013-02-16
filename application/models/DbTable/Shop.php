@@ -319,8 +319,8 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                              'type',
                              'title',
                              'description',
-                    'latitude',
-                    'longitude',
+                             'latitude',
+                             'longitude',
                              'price',
                              'registered'
                         )
@@ -356,13 +356,13 @@ class Application_Model_DbTable_Shop extends Zend_Db_Table_Abstract
                     );
                 }
                 break;
-                
+
                 case 'maps':
 
                     if ($params['region']) {
                         $query->where(sprintf('ads_shop.region = %d', $params['region']));
                     }
-                    
+
                     if ($params['q']) {
                         $query->where(
                                 sprintf(
